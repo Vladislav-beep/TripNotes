@@ -9,25 +9,59 @@
 /* Begin PBXBuildFile section */
 		B91E813D2767A88E00D0748B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91E813C2767A88E00D0748B /* AppDelegate.swift */; };
 		B91E813F2767A88E00D0748B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91E813E2767A88E00D0748B /* SceneDelegate.swift */; };
-		B91E81412767A88E00D0748B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91E81402767A88E00D0748B /* ViewController.swift */; };
-		B91E81442767A88E00D0748B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B91E81422767A88E00D0748B /* Main.storyboard */; };
+		B91E81412767A88E00D0748B /* TripsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91E81402767A88E00D0748B /* TripsViewController.swift */; };
 		B91E81462767A88F00D0748B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B91E81452767A88F00D0748B /* Assets.xcassets */; };
 		B91E81492767A88F00D0748B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B91E81472767A88F00D0748B /* LaunchScreen.storyboard */; };
+		B91E81532767A9AC00D0748B /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91E81522767A9AC00D0748B /* TabBarViewController.swift */; };
+		B91E81562767AA4F00D0748B /* FavouritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91E81552767AA4F00D0748B /* FavouritesViewController.swift */; };
+		B9DE0D412768FD6400805E4C /* TripModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DE0D402768FD6400805E4C /* TripModel.swift */; };
+		B9DE0D4A2768FD7900805E4C /* TripNotesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DE0D492768FD7900805E4C /* TripNotesTests.swift */; };
+		B9DE0D532768FDA800805E4C /* TripsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91E81402767A88E00D0748B /* TripsViewController.swift */; };
+		B9DE0D562768FDAB00805E4C /* TripTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F39E042767D28600DAFB4C /* TripTableViewCell.swift */; };
+		B9DE0D592768FDAE00805E4C /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91E81522767A9AC00D0748B /* TabBarViewController.swift */; };
+		B9DE0D5C2768FDB100805E4C /* FavouritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91E81552767AA4F00D0748B /* FavouritesViewController.swift */; };
+		B9DE0D5F2768FDB800805E4C /* TripModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DE0D402768FD6400805E4C /* TripModel.swift */; };
+		B9F39E052767D28600DAFB4C /* TripTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F39E042767D28600DAFB4C /* TripTableViewCell.swift */; };
+		B9F39E082767D47A00DAFB4C /* Extension + UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F39E072767D47A00DAFB4C /* Extension + UIColor.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B9DE0D4C2768FD7900805E4C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B91E81312767A88E00D0748B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B91E81382767A88E00D0748B;
+			remoteInfo = TripNotes;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		B91E81392767A88E00D0748B /* TripNotes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TripNotes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B91E813C2767A88E00D0748B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B91E813E2767A88E00D0748B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		B91E81402767A88E00D0748B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		B91E81432767A88E00D0748B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		B91E81402767A88E00D0748B /* TripsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripsViewController.swift; sourceTree = "<group>"; };
 		B91E81452767A88F00D0748B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B91E81482767A88F00D0748B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B91E814A2767A88F00D0748B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B91E81522767A9AC00D0748B /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		B91E81552767AA4F00D0748B /* FavouritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewController.swift; sourceTree = "<group>"; };
+		B9DE0D402768FD6400805E4C /* TripModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripModel.swift; sourceTree = "<group>"; };
+		B9DE0D472768FD7900805E4C /* TripNotesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TripNotesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B9DE0D492768FD7900805E4C /* TripNotesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripNotesTests.swift; sourceTree = "<group>"; };
+		B9DE0D4B2768FD7900805E4C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B9F39E042767D28600DAFB4C /* TripTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripTableViewCell.swift; sourceTree = "<group>"; };
+		B9F39E072767D47A00DAFB4C /* Extension + UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIColor.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		B91E81362767A88E00D0748B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B9DE0D442768FD7900805E4C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -41,6 +75,7 @@
 			isa = PBXGroup;
 			children = (
 				B91E813B2767A88E00D0748B /* TripNotes */,
+				B9DE0D482768FD7900805E4C /* TripNotesTests */,
 				B91E813A2767A88E00D0748B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -49,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				B91E81392767A88E00D0748B /* TripNotes.app */,
+				B9DE0D472768FD7900805E4C /* TripNotesTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -58,13 +94,34 @@
 			children = (
 				B91E813C2767A88E00D0748B /* AppDelegate.swift */,
 				B91E813E2767A88E00D0748B /* SceneDelegate.swift */,
-				B91E81402767A88E00D0748B /* ViewController.swift */,
-				B91E81422767A88E00D0748B /* Main.storyboard */,
+				B91E81402767A88E00D0748B /* TripsViewController.swift */,
+				B9F39E042767D28600DAFB4C /* TripTableViewCell.swift */,
+				B91E81522767A9AC00D0748B /* TabBarViewController.swift */,
+				B91E81552767AA4F00D0748B /* FavouritesViewController.swift */,
+				B9DE0D402768FD6400805E4C /* TripModel.swift */,
 				B91E81452767A88F00D0748B /* Assets.xcassets */,
 				B91E81472767A88F00D0748B /* LaunchScreen.storyboard */,
 				B91E814A2767A88F00D0748B /* Info.plist */,
+				B9F39E0A2767D47F00DAFB4C /* Extensions */,
 			);
 			path = TripNotes;
+			sourceTree = "<group>";
+		};
+		B9DE0D482768FD7900805E4C /* TripNotesTests */ = {
+			isa = PBXGroup;
+			children = (
+				B9DE0D492768FD7900805E4C /* TripNotesTests.swift */,
+				B9DE0D4B2768FD7900805E4C /* Info.plist */,
+			);
+			path = TripNotesTests;
+			sourceTree = "<group>";
+		};
+		B9F39E0A2767D47F00DAFB4C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B9F39E072767D47A00DAFB4C /* Extension + UIColor.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -87,6 +144,24 @@
 			productReference = B91E81392767A88E00D0748B /* TripNotes.app */;
 			productType = "com.apple.product-type.application";
 		};
+		B9DE0D462768FD7900805E4C /* TripNotesTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B9DE0D4E2768FD7900805E4C /* Build configuration list for PBXNativeTarget "TripNotesTests" */;
+			buildPhases = (
+				B9DE0D432768FD7900805E4C /* Sources */,
+				B9DE0D442768FD7900805E4C /* Frameworks */,
+				B9DE0D452768FD7900805E4C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B9DE0D4D2768FD7900805E4C /* PBXTargetDependency */,
+			);
+			name = TripNotesTests;
+			productName = TripNotesTests;
+			productReference = B9DE0D472768FD7900805E4C /* TripNotesTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -98,6 +173,10 @@
 				TargetAttributes = {
 					B91E81382767A88E00D0748B = {
 						CreatedOnToolsVersion = 12.0.1;
+					};
+					B9DE0D462768FD7900805E4C = {
+						CreatedOnToolsVersion = 12.0.1;
+						TestTargetID = B91E81382767A88E00D0748B;
 					};
 				};
 			};
@@ -115,6 +194,7 @@
 			projectRoot = "";
 			targets = (
 				B91E81382767A88E00D0748B /* TripNotes */,
+				B9DE0D462768FD7900805E4C /* TripNotesTests */,
 			);
 		};
 /* End PBXProject section */
@@ -126,7 +206,13 @@
 			files = (
 				B91E81492767A88F00D0748B /* LaunchScreen.storyboard in Resources */,
 				B91E81462767A88F00D0748B /* Assets.xcassets in Resources */,
-				B91E81442767A88E00D0748B /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B9DE0D452768FD7900805E4C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,23 +223,41 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B91E81412767A88E00D0748B /* ViewController.swift in Sources */,
+				B9F39E052767D28600DAFB4C /* TripTableViewCell.swift in Sources */,
+				B91E81532767A9AC00D0748B /* TabBarViewController.swift in Sources */,
+				B9DE0D412768FD6400805E4C /* TripModel.swift in Sources */,
+				B91E81412767A88E00D0748B /* TripsViewController.swift in Sources */,
+				B9F39E082767D47A00DAFB4C /* Extension + UIColor.swift in Sources */,
 				B91E813D2767A88E00D0748B /* AppDelegate.swift in Sources */,
+				B91E81562767AA4F00D0748B /* FavouritesViewController.swift in Sources */,
 				B91E813F2767A88E00D0748B /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B9DE0D432768FD7900805E4C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B9DE0D592768FDAE00805E4C /* TabBarViewController.swift in Sources */,
+				B9DE0D562768FDAB00805E4C /* TripTableViewCell.swift in Sources */,
+				B9DE0D5F2768FDB800805E4C /* TripModel.swift in Sources */,
+				B9DE0D4A2768FD7900805E4C /* TripNotesTests.swift in Sources */,
+				B9DE0D5C2768FDB100805E4C /* FavouritesViewController.swift in Sources */,
+				B9DE0D532768FDA800805E4C /* TripsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXVariantGroup section */
-		B91E81422767A88E00D0748B /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B91E81432767A88E00D0748B /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
+/* Begin PBXTargetDependency section */
+		B9DE0D4D2768FD7900805E4C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B91E81382767A88E00D0748B /* TripNotes */;
+			targetProxy = B9DE0D4C2768FD7900805E4C /* PBXContainerItemProxy */;
 		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
 		B91E81472767A88F00D0748B /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -319,6 +423,46 @@
 			};
 			name = Release;
 		};
+		B9DE0D4F2768FD7900805E4C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Y994MRWU9A;
+				INFOPLIST_FILE = TripNotesTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = swift.ru.TripNotesTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TripNotes.app/TripNotes";
+			};
+			name = Debug;
+		};
+		B9DE0D502768FD7900805E4C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Y994MRWU9A;
+				INFOPLIST_FILE = TripNotesTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = swift.ru.TripNotesTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TripNotes.app/TripNotes";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -336,6 +480,15 @@
 			buildConfigurations = (
 				B91E814E2767A88F00D0748B /* Debug */,
 				B91E814F2767A88F00D0748B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B9DE0D4E2768FD7900805E4C /* Build configuration list for PBXNativeTarget "TripNotesTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B9DE0D4F2768FD7900805E4C /* Debug */,
+				B9DE0D502768FD7900805E4C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
