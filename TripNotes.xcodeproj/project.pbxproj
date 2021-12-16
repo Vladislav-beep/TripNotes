@@ -14,6 +14,7 @@
 		B91E81492767A88F00D0748B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B91E81472767A88F00D0748B /* LaunchScreen.storyboard */; };
 		B91E81532767A9AC00D0748B /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91E81522767A9AC00D0748B /* TabBarViewController.swift */; };
 		B91E81562767AA4F00D0748B /* FavouritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91E81552767AA4F00D0748B /* FavouritesViewController.swift */; };
+		B9DCF135276BAFF8007B0320 /* TripsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DCF134276BAFF8007B0320 /* TripsViewModel.swift */; };
 		B9DE0D412768FD6400805E4C /* TripModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DE0D402768FD6400805E4C /* TripModel.swift */; };
 		B9DE0D4A2768FD7900805E4C /* TripNotesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DE0D492768FD7900805E4C /* TripNotesTests.swift */; };
 		B9DE0D532768FDA800805E4C /* TripsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91E81402767A88E00D0748B /* TripsViewController.swift */; };
@@ -45,6 +46,7 @@
 		B91E814A2767A88F00D0748B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B91E81522767A9AC00D0748B /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		B91E81552767AA4F00D0748B /* FavouritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewController.swift; sourceTree = "<group>"; };
+		B9DCF134276BAFF8007B0320 /* TripsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripsViewModel.swift; sourceTree = "<group>"; };
 		B9DE0D402768FD6400805E4C /* TripModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripModel.swift; sourceTree = "<group>"; };
 		B9DE0D472768FD7900805E4C /* TripNotesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TripNotesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9DE0D492768FD7900805E4C /* TripNotesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripNotesTests.swift; sourceTree = "<group>"; };
@@ -94,11 +96,9 @@
 			children = (
 				B91E813C2767A88E00D0748B /* AppDelegate.swift */,
 				B91E813E2767A88E00D0748B /* SceneDelegate.swift */,
-				B91E81402767A88E00D0748B /* TripsViewController.swift */,
-				B9F39E042767D28600DAFB4C /* TripTableViewCell.swift */,
+				B9DE0D64276900DC00805E4C /* Trips */,
+				B9DE0D65276900F700805E4C /* Favourites */,
 				B91E81522767A9AC00D0748B /* TabBarViewController.swift */,
-				B91E81552767AA4F00D0748B /* FavouritesViewController.swift */,
-				B9DE0D402768FD6400805E4C /* TripModel.swift */,
 				B91E81452767A88F00D0748B /* Assets.xcassets */,
 				B91E81472767A88F00D0748B /* LaunchScreen.storyboard */,
 				B91E814A2767A88F00D0748B /* Info.plist */,
@@ -114,6 +114,33 @@
 				B9DE0D4B2768FD7900805E4C /* Info.plist */,
 			);
 			path = TripNotesTests;
+			sourceTree = "<group>";
+		};
+		B9DE0D64276900DC00805E4C /* Trips */ = {
+			isa = PBXGroup;
+			children = (
+				B91E81402767A88E00D0748B /* TripsViewController.swift */,
+				B9DCF134276BAFF8007B0320 /* TripsViewModel.swift */,
+				B9DE0D402768FD6400805E4C /* TripModel.swift */,
+				B9DE0D682769024D00805E4C /* Cell */,
+			);
+			path = Trips;
+			sourceTree = "<group>";
+		};
+		B9DE0D65276900F700805E4C /* Favourites */ = {
+			isa = PBXGroup;
+			children = (
+				B91E81552767AA4F00D0748B /* FavouritesViewController.swift */,
+			);
+			path = Favourites;
+			sourceTree = "<group>";
+		};
+		B9DE0D682769024D00805E4C /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				B9F39E042767D28600DAFB4C /* TripTableViewCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		B9F39E0A2767D47F00DAFB4C /* Extensions */ = {
@@ -230,6 +257,7 @@
 				B9F39E082767D47A00DAFB4C /* Extension + UIColor.swift in Sources */,
 				B91E813D2767A88E00D0748B /* AppDelegate.swift in Sources */,
 				B91E81562767AA4F00D0748B /* FavouritesViewController.swift in Sources */,
+				B9DCF135276BAFF8007B0320 /* TripsViewModel.swift in Sources */,
 				B91E813F2767A88E00D0748B /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

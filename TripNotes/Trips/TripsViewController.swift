@@ -26,8 +26,6 @@ class TripsViewController: UIViewController {
         let image = UIImage(systemName: "plus")
         button.setImage(image, for: .normal)
         button.layer.cornerRadius = 25
-       // button.setTitle("Done", for: .normal)
-
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
