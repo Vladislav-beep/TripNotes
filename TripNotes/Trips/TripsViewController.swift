@@ -37,11 +37,19 @@ class TripsViewController: UIViewController {
        return button
    }()
     
+    lazy var settingsButton: UIBarButtonItem = {
+//        let button = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
+        let button = UIBarButtonItem(image: UIImage(systemName: "gear"), style: .plain, target: self, action: #selector(addTapped))
+        
+        
+        return button
+    }()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Trips"
-        
+        setupNavigationBar()
         
         setupTableContraints()
         setupAddButtonConstraints()
@@ -51,6 +59,24 @@ class TripsViewController: UIViewController {
 //        let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
 //        let play = UIBarButtonItem(title: "Play", style: .plain, target: self, action: #selector(addTapped))
 //        navigationItem.rightBarButtonItems = [add, play]
+    }
+    
+    @objc func addTapped() {
+        
+    }
+    
+    func setupNavigationBar() {
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.leftBarButtonItems = [UIBarButtonItem.customButton(self, action: #selector(addTapped), imageName: "gear", widthAndHeight: 40)]
+        navigationController?.navigationBar.tintColor = .tripWhite
+        
+        let navBarAppearance = UINavigationBarAppearance()
+        navBarAppearance.configureWithOpaqueBackground()
+        navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.tripWhite]
+        navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.tripWhite]
+        navBarAppearance.backgroundColor = .tripRed
+        navigationController?.navigationBar.standardAppearance = navBarAppearance
+        navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
     }
     
     func setupTableContraints() {
@@ -98,4 +124,6 @@ extension TripsViewController: UITableViewDelegate {
         120
     }
 }
+
+
 
