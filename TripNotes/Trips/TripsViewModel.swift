@@ -7,16 +7,30 @@
 
 import Foundation
 
-protocol TripsViewModelProtocol {
-    init(trip: Trip)
+protocol TripsViewModelProtocol: class {
+    var trips: [Trip] { get }
+    func getTrips(completion: @escaping() -> Void)
+    func numberOfRows() -> Int
+    func tripCellViewModel(for indexPath: IndexPath) -> TripTableViewCellViewModelProtocol?
 }
 
 class TripsViewModel: TripsViewModelProtocol {
-    private let trip: Trip
     
-    required init(trip: Trip) {
-        self.trip = trip
+    var trips: [Trip] = []
+    
+    func getTrips(completion: @escaping () -> Void) {
+        trips = Trip.getData()
+        completion()
     }
     
+   
     
+    func numberOfRows() -> Int {
+        trips.count
+    }
+    
+    func tripCellViewModel(for indexPath: IndexPath) -> TripTableViewCellViewModelProtocol? {
+        let trip = trips[indexPath.row]
+        return TripTableViewCellViewModel(trip: trip)
+    }
 }

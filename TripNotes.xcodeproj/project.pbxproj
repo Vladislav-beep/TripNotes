@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B90B9A0C276D015A008DD627 /* TripTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90B9A0B276D015A008DD627 /* TripTableViewCellViewModel.swift */; };
 		B91E813D2767A88E00D0748B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91E813C2767A88E00D0748B /* AppDelegate.swift */; };
 		B91E813F2767A88E00D0748B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91E813E2767A88E00D0748B /* SceneDelegate.swift */; };
 		B91E81412767A88E00D0748B /* TripsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91E81402767A88E00D0748B /* TripsViewController.swift */; };
@@ -38,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B90B9A0B276D015A008DD627 /* TripTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripTableViewCellViewModel.swift; sourceTree = "<group>"; };
 		B91E81392767A88E00D0748B /* TripNotes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TripNotes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B91E813C2767A88E00D0748B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B91E813E2767A88E00D0748B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -132,7 +134,7 @@
 				B91E81402767A88E00D0748B /* TripsViewController.swift */,
 				B9DCF134276BAFF8007B0320 /* TripsViewModel.swift */,
 				B9DE0D402768FD6400805E4C /* TripModel.swift */,
-				B9DE0D682769024D00805E4C /* Cell */,
+				B9DE0D682769024D00805E4C /* TripsCell */,
 			);
 			path = Trips;
 			sourceTree = "<group>";
@@ -145,12 +147,13 @@
 			path = Favourites;
 			sourceTree = "<group>";
 		};
-		B9DE0D682769024D00805E4C /* Cell */ = {
+		B9DE0D682769024D00805E4C /* TripsCell */ = {
 			isa = PBXGroup;
 			children = (
 				B9F39E042767D28600DAFB4C /* TripTableViewCell.swift */,
+				B90B9A0B276D015A008DD627 /* TripTableViewCellViewModel.swift */,
 			);
-			path = Cell;
+			path = TripsCell;
 			sourceTree = "<group>";
 		};
 		B9F39E0A2767D47F00DAFB4C /* Extensions */ = {
@@ -262,6 +265,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B9F39E052767D28600DAFB4C /* TripTableViewCell.swift in Sources */,
+				B90B9A0C276D015A008DD627 /* TripTableViewCellViewModel.swift in Sources */,
 				B91E81532767A9AC00D0748B /* TabBarViewController.swift in Sources */,
 				B9DE0D412768FD6400805E4C /* TripModel.swift in Sources */,
 				B9DCF13E276BBE29007B0320 /* Extension + UIBarButtonItem.swift in Sources */,

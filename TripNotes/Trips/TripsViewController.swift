@@ -9,18 +9,24 @@ import UIKit
 
 class TripsViewController: UIViewController {
     
-    
-    let trips = Trip.getData()
+   // let trips = Trip.getData()
+    private var viewModel: TripsViewModelProtocol! {
+        didSet {
+            viewModel.getTrips { [weak self] in
+                self?.tableView.reloadData()
+            }
+        }
+    }
 
-    lazy var tableView: UITableView = {
+    private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.backgroundColor = .white
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(TripTableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
     
-    lazy var addButton: UIButton = {
+    private lazy var addButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .tripRed
         let image = UIImage(systemName: "plus")
@@ -30,18 +36,11 @@ class TripsViewController: UIViewController {
         return button
     }()
     
-    lazy var navigationImage: UIButton = {
-       let button = UIButton()
-       button.setImage(UIImage(named: "my profile"), for: .normal)
-     //  button.addTarget(self, action: #selector(imageTapped), for: .touchUpInside)
-       return button
-   }()
-    
-    lazy var settingsButton: UIBarButtonItem = {
-//        let button = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
-        let button = UIBarButtonItem(image: UIImage(systemName: "gear"), style: .plain, target: self, action: #selector(addTapped))
-        
-        
+    private lazy var settingsButton: UIBarButtonItem = {
+        let button = UIBarButtonItem.customButton(self,
+                                                  action: #selector(addTapped),
+                                                  imageName: "gear",
+                                                  widthAndHeight: 40)
         return button
     }()
     
@@ -50,24 +49,21 @@ class TripsViewController: UIViewController {
         super.viewDidLoad()
         title = "Trips"
         setupNavigationBar()
+        viewModel = TripsViewModel()
         
         setupTableContraints()
         setupAddButtonConstraints()
         tableView.delegate = self
         tableView.dataSource = self
-        
-//        let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
-//        let play = UIBarButtonItem(title: "Play", style: .plain, target: self, action: #selector(addTapped))
-//        navigationItem.rightBarButtonItems = [add, play]
     }
     
     @objc func addTapped() {
-        
+        print("sc")
     }
     
-    func setupNavigationBar() {
+    private func setupNavigationBar() {
         navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.leftBarButtonItems = [UIBarButtonItem.customButton(self, action: #selector(addTapped), imageName: "gear", widthAndHeight: 40)]
+        navigationItem.leftBarButtonItems = [settingsButton]
         navigationController?.navigationBar.tintColor = .tripWhite
         
         let navBarAppearance = UINavigationBarAppearance()
@@ -79,7 +75,7 @@ class TripsViewController: UIViewController {
         navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
     }
     
-    func setupTableContraints() {
+    private func setupTableContraints() {
         view.addSubview(tableView)
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
@@ -89,32 +85,28 @@ class TripsViewController: UIViewController {
         ])
     }
     
-    func setupAddButtonConstraints() {
+    private func setupAddButtonConstraints() {
         navigationController?.view.addSubview(addButton)
         NSLayoutConstraint.activate([
-            addButton.centerXAnchor.constraint(equalTo: (navigationController?.view.centerXAnchor)!, constant: 0),
-            addButton.bottomAnchor.constraint(equalTo: navigationController!.view.bottomAnchor, constant: -UIScreen.main.bounds.height / 7),
+            addButton.centerXAnchor.constraint(equalTo: navigationController?.view.centerXAnchor ?? NSLayoutXAxisAnchor(), constant: 0),
+            addButton.bottomAnchor.constraint(equalTo: navigationController?.view.bottomAnchor ?? NSLayoutYAxisAnchor(), constant: -UIScreen.main.bounds.height / 7.5),
             addButton.widthAnchor.constraint(equalToConstant: 60),
             addButton.heightAnchor.constraint(equalToConstant: 60)
         ])
     }
-    
-   
 }
 
 extension TripsViewController: UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(trips.count)
-        return trips.count
+        viewModel.numberOfRows()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell")
-        
-        let trip = trips[indexPath.row]
-        cell?.textLabel?.text = trip.country
-        print(trip.country)
-        return cell!
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as? TripTableViewCell
+   
+        cell?.viewModel = viewModel.tripCellViewModel(for: indexPath)
+        return cell ?? UITableViewCell()
     }
 }
 
