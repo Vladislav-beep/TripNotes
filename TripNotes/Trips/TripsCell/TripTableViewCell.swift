@@ -34,9 +34,6 @@ import UIKit
         descriptionLabel.numberOfLines = 2
         descriptionLabel.font = UIFont.systemFont(ofSize: 15)
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
-    //    descriptionLabel.text = "Trip with Brokkkkkkk krjkfjrkjrkrkrkrkrkrkrkrkfkfkjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfjfkf"
-     // descriptionLabel.text = "Trip with Bro"
-        
         return descriptionLabel
     }()
     
@@ -53,7 +50,6 @@ import UIKit
         dateLabel.numberOfLines = 1
         dateLabel.font = UIFont.boldSystemFont(ofSize: 17)
         dateLabel.translatesAutoresizingMaskIntoConstraints = false
-      //  dateLabel.text = "25 Feb. 2020 - 07 Mar. 2020"
         return dateLabel
     }()
     
@@ -66,7 +62,6 @@ import UIKit
         totalSumLabel.adjustsFontSizeToFitWidth = true
         totalSumLabel.minimumScaleFactor = 0.2
         totalSumLabel.translatesAutoresizingMaskIntoConstraints = false
-        totalSumLabel.text = "1 $"
         return totalSumLabel
     }()
     
@@ -96,6 +91,7 @@ import UIKit
             countryLabel.text = viewModel.country
             descriptionLabel.text = viewModel.description
             dateLabel.text = viewModel.date
+            totalSumLabel.text = viewModel.getTotalSum()
         }
     }
     

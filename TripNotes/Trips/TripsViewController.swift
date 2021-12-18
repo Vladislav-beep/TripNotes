@@ -21,6 +21,7 @@ class TripsViewController: UIViewController {
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.backgroundColor = .white
+        tableView.separatorStyle = .none
         tableView.register(TripTableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView

@@ -12,6 +12,7 @@ struct Trip {
     let beginningDate: Date
     let finishingDate: Date
     let description: String
+    let currency: Currency
     let tripNotes: [TripNote]
     let avatarTrip: Data?
     
@@ -19,50 +20,50 @@ struct Trip {
        let array = [Trip(country: "Germany",
                      beginningDate: Date(),
                      finishingDate: Date(),
-                     description: "With bro",
-                     tripNotes: [TripNote(city: "Berlin", category: .hotels, price: 68, currency: .euro, isFavoutite: false, adress: nil)],
+                     description: "With bro", currency: .ruble,
+                     tripNotes: [TripNote(city: "Berlin", category: .hotels, price: 68, isFavoutite: false, adress: nil)],
                      avatarTrip: nil),
                     Trip(country: "America",
                                   beginningDate: Date(),
                                   finishingDate: Date(),
-                                  description: "Work and travel",
-                                  tripNotes: [TripNote(city: "Berlin", category: .hotels, price: 72, currency: .euro, isFavoutite: false, adress: nil)],
+                                  description: "Work and travel", currency: .euro,
+                                  tripNotes: [TripNote(city: "Berlin", category: .hotels, price: 72.90, isFavoutite: false, adress: nil)],
                                   avatarTrip: nil),
                     Trip(country: "Dominicana",
                                   beginningDate: Date(),
                                   finishingDate: Date(),
-                                  description: "With bro and bro",
-                                  tripNotes: [TripNote(city: "Berlin", category: .hotels, price: 2, currency: .euro, isFavoutite: false, adress: nil)],
+                                  description: "With bro and bro", currency: .dollar,
+                                  tripNotes: [TripNote(city: "Berlin", category: .hotels, price: 2.89, isFavoutite: false, adress: nil)],
                                   avatarTrip: nil),
                     Trip(country: "Egypt",
                                   beginningDate: Date(),
                                   finishingDate: Date(),
-                                  description: "With bro",
-                                  tripNotes: [TripNote(city: "Berlin", category: .hotels, price: 10, currency: .euro, isFavoutite: false, adress: nil)],
+                                  description: "With bro", currency: .euro,
+                                  tripNotes: [TripNote(city: "Berlin", category: .hotels, price: 10.54, isFavoutite: false, adress: nil)],
                                   avatarTrip: nil),
                     Trip(country: "Egypt",
                                   beginningDate: Date(),
                                   finishingDate: Date(),
-                                  description: "With bro",
-                                  tripNotes: [TripNote(city: "Berlin", category: .hotels, price: 40, currency: .euro, isFavoutite: false, adress: nil)],
+                                  description: "With bro", currency: .ruble,
+                                  tripNotes: [TripNote(city: "Berlin", category: .hotels, price: 40.32, isFavoutite: false, adress: nil)],
                                   avatarTrip: nil),
                     Trip(country: "Egypt",
                                   beginningDate: Date(),
                                   finishingDate: Date(),
-                                  description: "With bro",
-                                  tripNotes: [TripNote(city: "Berlin", category: .hotels, price: 66, currency: .euro, isFavoutite: false, adress: nil)],
+                                  description: "With bro", currency: .dollar,
+                                  tripNotes: [TripNote(city: "Berlin", category: .hotels, price: 66.78, isFavoutite: false, adress: nil)],
                                   avatarTrip: nil),
                     Trip(country: "Egypt",
                                   beginningDate: Date(),
                                   finishingDate: Date(),
-                                  description: "With bro",
-                                  tripNotes: [TripNote(city: "Berlin", category: .hotels, price: 54, currency: .euro, isFavoutite: false, adress: nil)],
+                                  description: "With bro", currency: .euro,
+                                  tripNotes: [TripNote(city: "Berlin", category: .hotels, price: 54.44, isFavoutite: false, adress: nil)],
                                   avatarTrip: nil),
                     Trip(country: "Egypt",
                                   beginningDate: Date(),
                                   finishingDate: Date(),
-                                  description: "With bro",
-                                  tripNotes: [TripNote(city: "Berlin", category: .hotels, price: 12, currency: .euro, isFavoutite: false, adress: nil)],
+                                  description: "With bro", currency: .dollar,
+                                  tripNotes: [TripNote(city: "Berlin", category: .hotels, price: 12.65, isFavoutite: false, adress: nil)],
                                   avatarTrip: nil)]
         
         return array
@@ -73,7 +74,6 @@ struct TripNote {
     let city: String
     let category: Category
     let price: Double
-    let currency: Currency
     let isFavoutite: Bool
     let adress: String?
 }
@@ -87,8 +87,8 @@ enum Category {
     case other
 }
 
-enum Currency {
-    case ruble
-    case dollar
-    case euro
+enum Currency: String {
+    case ruble = "₽"
+    case dollar = "$"
+    case euro = "€"
 }

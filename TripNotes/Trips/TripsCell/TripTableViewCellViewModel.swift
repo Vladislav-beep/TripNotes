@@ -11,6 +11,7 @@ protocol TripTableViewCellViewModelProtocol {
     var country: String { get }
     var description: String { get }
     var date: String { get }
+    func getTotalSum() -> String
     init(trip: Trip)
 }
 
@@ -35,4 +36,15 @@ class TripTableViewCellViewModel: TripTableViewCellViewModelProtocol {
         self.trip = trip
     }
     
+    func getTotalSum() -> String {
+        var totalSum: Double = 0
+        
+        for note in trip.tripNotes {
+            totalSum += Double(note.price)
+        }
+        
+        let roundedTotalSum = String(format: "%.2f", totalSum)
+        let stringTotalSum = "\(roundedTotalSum) \(trip.currency.rawValue)"
+        return stringTotalSum
+    }
 }
