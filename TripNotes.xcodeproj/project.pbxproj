@@ -24,6 +24,7 @@
 		B9DE0D592768FDAE00805E4C /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91E81522767A9AC00D0748B /* TabBarViewController.swift */; };
 		B9DE0D5C2768FDB100805E4C /* FavouritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91E81552767AA4F00D0748B /* FavouritesViewController.swift */; };
 		B9DE0D5F2768FDB800805E4C /* TripModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DE0D402768FD6400805E4C /* TripModel.swift */; };
+		B9E85C3D276E6468004FD1D8 /* Extension UIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E85C3C276E6468004FD1D8 /* Extension UIStackView.swift */; };
 		B9F39E052767D28600DAFB4C /* TripTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F39E042767D28600DAFB4C /* TripTableViewCell.swift */; };
 		B9F39E082767D47A00DAFB4C /* Extension + UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F39E072767D47A00DAFB4C /* Extension + UIColor.swift */; };
 /* End PBXBuildFile section */
@@ -55,6 +56,7 @@
 		B9DE0D472768FD7900805E4C /* TripNotesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TripNotesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9DE0D492768FD7900805E4C /* TripNotesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripNotesTests.swift; sourceTree = "<group>"; };
 		B9DE0D4B2768FD7900805E4C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B9E85C3C276E6468004FD1D8 /* Extension UIStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension UIStackView.swift"; sourceTree = "<group>"; };
 		B9F39E042767D28600DAFB4C /* TripTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripTableViewCell.swift; sourceTree = "<group>"; };
 		B9F39E072767D47A00DAFB4C /* Extension + UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIColor.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -161,6 +163,7 @@
 			children = (
 				B9F39E072767D47A00DAFB4C /* Extension + UIColor.swift */,
 				B9DCF13D276BBE29007B0320 /* Extension + UIBarButtonItem.swift */,
+				B9E85C3C276E6468004FD1D8 /* Extension UIStackView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -274,6 +277,7 @@
 				B91E813D2767A88E00D0748B /* AppDelegate.swift in Sources */,
 				B91E81562767AA4F00D0748B /* FavouritesViewController.swift in Sources */,
 				B9DCF135276BAFF8007B0320 /* TripsViewModel.swift in Sources */,
+				B9E85C3D276E6468004FD1D8 /* Extension UIStackView.swift in Sources */,
 				B91E813F2767A88E00D0748B /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
