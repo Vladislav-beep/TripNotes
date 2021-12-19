@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		B90B9A0C276D015A008DD627 /* TripTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90B9A0B276D015A008DD627 /* TripTableViewCellViewModel.swift */; };
+		B90DB426276F134B00F1A544 /* NoteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90DB425276F134B00F1A544 /* NoteModel.swift */; };
+		B90DB42A276F137500F1A544 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90DB429276F137500F1A544 /* Category.swift */; };
+		B90DB42E276F139700F1A544 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90DB42D276F139700F1A544 /* Currency.swift */; };
+		B90DB438276F14B100F1A544 /* DateFormatorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90DB437276F14B100F1A544 /* DateFormatorService.swift */; };
 		B91E813D2767A88E00D0748B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91E813C2767A88E00D0748B /* AppDelegate.swift */; };
 		B91E813F2767A88E00D0748B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91E813E2767A88E00D0748B /* SceneDelegate.swift */; };
 		B91E81412767A88E00D0748B /* TripsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91E81402767A88E00D0748B /* TripsViewController.swift */; };
@@ -41,6 +45,10 @@
 
 /* Begin PBXFileReference section */
 		B90B9A0B276D015A008DD627 /* TripTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripTableViewCellViewModel.swift; sourceTree = "<group>"; };
+		B90DB425276F134B00F1A544 /* NoteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteModel.swift; sourceTree = "<group>"; };
+		B90DB429276F137500F1A544 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		B90DB42D276F139700F1A544 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
+		B90DB437276F14B100F1A544 /* DateFormatorService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatorService.swift; sourceTree = "<group>"; };
 		B91E81392767A88E00D0748B /* TripNotes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TripNotes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B91E813C2767A88E00D0748B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B91E813E2767A88E00D0748B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -79,6 +87,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B90DB424276F132C00F1A544 /* Notes */ = {
+			isa = PBXGroup;
+			children = (
+				B90DB425276F134B00F1A544 /* NoteModel.swift */,
+				B90DB429276F137500F1A544 /* Category.swift */,
+			);
+			path = Notes;
+			sourceTree = "<group>";
+		};
+		B90DB431276F13AF00F1A544 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B9DE0D402768FD6400805E4C /* TripModel.swift */,
+				B90DB42D276F139700F1A544 /* Currency.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B90DB436276F147000F1A544 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				B90DB437276F14B100F1A544 /* DateFormatorService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		B91E81302767A88E00D0748B = {
 			isa = PBXGroup;
 			children = (
@@ -103,12 +137,14 @@
 				B91E813C2767A88E00D0748B /* AppDelegate.swift */,
 				B91E813E2767A88E00D0748B /* SceneDelegate.swift */,
 				B9DE0D64276900DC00805E4C /* Trips */,
+				B90DB424276F132C00F1A544 /* Notes */,
 				B9DE0D65276900F700805E4C /* Favourites */,
 				B9DCF13A276BB6F0007B0320 /* TabBar */,
+				B90DB436276F147000F1A544 /* Services */,
+				B9F39E0A2767D47F00DAFB4C /* Extensions */,
 				B91E81452767A88F00D0748B /* Assets.xcassets */,
 				B91E81472767A88F00D0748B /* LaunchScreen.storyboard */,
 				B91E814A2767A88F00D0748B /* Info.plist */,
-				B9F39E0A2767D47F00DAFB4C /* Extensions */,
 			);
 			path = TripNotes;
 			sourceTree = "<group>";
@@ -135,7 +171,7 @@
 			children = (
 				B91E81402767A88E00D0748B /* TripsViewController.swift */,
 				B9DCF134276BAFF8007B0320 /* TripsViewModel.swift */,
-				B9DE0D402768FD6400805E4C /* TripModel.swift */,
+				B90DB431276F13AF00F1A544 /* Model */,
 				B9DE0D682769024D00805E4C /* TripsCell */,
 			);
 			path = Trips;
@@ -272,13 +308,17 @@
 				B91E81532767A9AC00D0748B /* TabBarViewController.swift in Sources */,
 				B9DE0D412768FD6400805E4C /* TripModel.swift in Sources */,
 				B9DCF13E276BBE29007B0320 /* Extension + UIBarButtonItem.swift in Sources */,
+				B90DB426276F134B00F1A544 /* NoteModel.swift in Sources */,
+				B90DB42E276F139700F1A544 /* Currency.swift in Sources */,
 				B91E81412767A88E00D0748B /* TripsViewController.swift in Sources */,
 				B9F39E082767D47A00DAFB4C /* Extension + UIColor.swift in Sources */,
 				B91E813D2767A88E00D0748B /* AppDelegate.swift in Sources */,
 				B91E81562767AA4F00D0748B /* FavouritesViewController.swift in Sources */,
 				B9DCF135276BAFF8007B0320 /* TripsViewModel.swift in Sources */,
 				B9E85C3D276E6468004FD1D8 /* Extension UIStackView.swift in Sources */,
+				B90DB438276F14B100F1A544 /* DateFormatorService.swift in Sources */,
 				B91E813F2767A88E00D0748B /* SceneDelegate.swift in Sources */,
+				B90DB42A276F137500F1A544 /* Category.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -13,7 +13,9 @@ import UIKit
         let tripImageView = UIImageView()
         tripImageView.layer.cornerRadius = 10
         tripImageView.clipsToBounds = true
-        tripImageView.contentMode = .scaleAspectFit
+        tripImageView.contentMode = .scaleAspectFill
+        tripImageView.image = UIImage(named: "placeHolder2")
+        tripImageView.layer.opacity = 0.65
         tripImageView.backgroundColor = .tripRed
         tripImageView.translatesAutoresizingMaskIntoConstraints = false
         return tripImageView
@@ -73,6 +75,8 @@ import UIKit
         infoStackView.translatesAutoresizingMaskIntoConstraints = false
         return infoStackView
     }()
+    
+
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

@@ -11,12 +11,22 @@ protocol TripTableViewCellViewModelProtocol {
     var country: String { get }
     var description: String { get }
     var date: String { get }
+    var avatarTrip: Data? { get }
     func getTotalSum() -> String
     init(trip: Trip)
 }
 
 
 class TripTableViewCellViewModel: TripTableViewCellViewModelProtocol {
+    
+    let image = "placeHolder1"
+    
+    var avatarTrip: Data? {
+        nil
+    }
+    
+  
+    
     
     var description: String {
         trip.description

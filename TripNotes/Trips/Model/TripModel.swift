@@ -32,7 +32,7 @@ struct Trip {
                     Trip(country: "Dominicana",
                                   beginningDate: Date(),
                                   finishingDate: Date(),
-                                  description: "With bro and bro", currency: .dollar,
+                                  description: "With bro and bro оаоаоаоаоаоаоаоаолщыокиращкеьлкикоуьалаллалалалалала", currency: .dollar,
                                   tripNotes: [TripNote(city: "Berlin", category: .hotels, price: 2.89, isFavoutite: false, adress: nil)],
                                   avatarTrip: nil),
                     Trip(country: "Egypt",
@@ -70,25 +70,3 @@ struct Trip {
     }
 }
 
-struct TripNote {
-    let city: String
-    let category: Category
-    let price: Double
-    let isFavoutite: Bool
-    let adress: String?
-}
-
-enum Category {
-    case hotels
-    case tranport
-    case foodAndRestaurants
-    case activity
-    case purchases
-    case other
-}
-
-enum Currency: String {
-    case ruble = "₽"
-    case dollar = "$"
-    case euro = "€"
-}
