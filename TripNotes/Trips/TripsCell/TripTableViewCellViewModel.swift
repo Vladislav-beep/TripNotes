@@ -53,8 +53,9 @@ class TripTableViewCellViewModel: TripTableViewCellViewModelProtocol {
             totalSum += Double(note.price)
         }
         
-        let roundedTotalSum = String(format: "%.2f", totalSum)
-        let stringTotalSum = "\(roundedTotalSum) \(trip.currency.rawValue)"
-        return stringTotalSum
+      
+        let formattedTotalSum = totalSum.formattedWithSeparator
+        let returnTotalSum = "\(formattedTotalSum) \(trip.currency.rawValue)"
+        return returnTotalSum
     }
 }

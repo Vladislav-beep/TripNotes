@@ -27,7 +27,7 @@ class TripsViewController: UIViewController {
         return tableView
     }()
     
-    private lazy var addButton: UIButton = {
+    private lazy var addTripButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .tripRed
         let image = UIImage(systemName: "plus")
@@ -35,6 +35,15 @@ class TripsViewController: UIViewController {
         button.layer.cornerRadius = 25
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
+    }()
+    
+    private lazy var addNoteButton: UIButton = {
+        let addNoteButton = UIButton()
+        addNoteButton.setTitle("Add Note", for: .normal)
+        addNoteButton.layer.cornerRadius = 8
+        addNoteButton.translatesAutoresizingMaskIntoConstraints = false
+        addNoteButton.backgroundColor = .tripRed
+        return addNoteButton
     }()
     
     private lazy var settingsButton: UIBarButtonItem = {
@@ -46,6 +55,8 @@ class TripsViewController: UIViewController {
     }()
     
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Trips"
@@ -54,8 +65,15 @@ class TripsViewController: UIViewController {
         
         setupTableContraints()
         setupAddButtonConstraints()
+        setupAddNoteButtonConstraints()
         tableView.delegate = self
         tableView.dataSource = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        addTripButton.isHidden = false
+        addNoteButton.isHidden = true
     }
     
     @objc func addTapped() {
@@ -87,12 +105,22 @@ class TripsViewController: UIViewController {
     }
     
     private func setupAddButtonConstraints() {
-        navigationController?.view.addSubview(addButton)
+        navigationController?.view.addSubview(addTripButton)
         NSLayoutConstraint.activate([
-            addButton.centerXAnchor.constraint(equalTo: navigationController?.view.centerXAnchor ?? NSLayoutXAxisAnchor(), constant: 0),
-            addButton.bottomAnchor.constraint(equalTo: navigationController?.view.bottomAnchor ?? NSLayoutYAxisAnchor(), constant: -UIScreen.main.bounds.height / 7.5),
-            addButton.widthAnchor.constraint(equalToConstant: 60),
-            addButton.heightAnchor.constraint(equalToConstant: 60)
+            addTripButton.centerXAnchor.constraint(equalTo: navigationController?.view.centerXAnchor ?? NSLayoutXAxisAnchor(), constant: 0),
+            addTripButton.bottomAnchor.constraint(equalTo: navigationController?.view.bottomAnchor ?? NSLayoutYAxisAnchor(), constant: -UIScreen.main.bounds.height / 7.5),
+            addTripButton.widthAnchor.constraint(equalToConstant: 60),
+            addTripButton.heightAnchor.constraint(equalToConstant: 60)
+        ])
+    }
+    
+    func setupAddNoteButtonConstraints() {
+        navigationController?.view.addSubview(addNoteButton)
+        NSLayoutConstraint.activate([
+            addNoteButton.centerXAnchor.constraint(equalTo: navigationController?.view.centerXAnchor ?? NSLayoutXAxisAnchor(), constant: 0),
+            addNoteButton.bottomAnchor.constraint(equalTo: navigationController?.view.bottomAnchor ?? NSLayoutYAxisAnchor(), constant: -UIScreen.main.bounds.height / 7.5),
+            addNoteButton.widthAnchor.constraint(equalToConstant: 100),
+            addNoteButton.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
 }
@@ -101,6 +129,13 @@ extension TripsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         viewModel.numberOfRows()
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        2
+    }
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        "k"
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -115,6 +150,14 @@ extension TripsViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         150
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let notesViewModel = viewModel.viewModelForSelectedRow(at: indexPath)
+        addTripButton.isHidden = true
+        addNoteButton.isHidden = false
+        navigationController?.pushViewController(NotesViewController(notesViewModel: notesViewModel), animated: true)
     }
 }
 

@@ -14,7 +14,7 @@ import UIKit
         tripImageView.layer.cornerRadius = 10
         tripImageView.clipsToBounds = true
         tripImageView.contentMode = .scaleAspectFill
-        tripImageView.image = UIImage(named: "placeHolder2")
+        tripImageView.image = UIImage(named: Constants.ImageNames.tripPlaceHolderImage.rawValue)
         tripImageView.layer.opacity = 0.65
         tripImageView.backgroundColor = .tripRed
         tripImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -76,11 +76,19 @@ import UIKit
         return infoStackView
     }()
     
-
+    private lazy var textView: UIView = {
+        let textView = UIView()
+        textView.backgroundColor = .tripRed
+        textView.layer.opacity = 0.3
+        textView.layer.cornerRadius = 4
+        textView.translatesAutoresizingMaskIntoConstraints = false
+        return textView
+    }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupTripImageConstraints()
+        setupTextViewConstraints()
         setupTotalSumLabelConstraints()
         descriptionLabelConstraints()
         setupInfoStackViewConstraints()
@@ -129,14 +137,24 @@ import UIKit
         ])
     }
     
+    private func setupTextViewConstraints() {
+        contentView.addSubview(textView)
+        NSLayoutConstraint.activate([
+            textView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            textView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: -10),
+            textView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -30),
+            textView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -44),
+        ])
+    }
+    
     private func setupInfoStackViewConstraints() {
         descriptionLabelConstraints()
-        tripImageView.addSubview(infoStackView)
+        contentView.addSubview(infoStackView)
         NSLayoutConstraint.activate([
-            infoStackView.topAnchor.constraint(equalTo: tripImageView.topAnchor, constant: 10),
-            infoStackView.leadingAnchor.constraint(equalTo: tripImageView.leadingAnchor, constant: 15),
-            infoStackView.trailingAnchor.constraint(equalTo: tripImageView.trailingAnchor, constant: -20),
-            infoStackView.bottomAnchor.constraint(equalTo: tripImageView.bottomAnchor, constant: -30),
+            infoStackView.topAnchor.constraint(equalTo: textView.topAnchor, constant: 0),
+            infoStackView.leadingAnchor.constraint(equalTo: textView.leadingAnchor, constant: 28),
+            infoStackView.trailingAnchor.constraint(equalTo: textView.trailingAnchor, constant: 0),
+            infoStackView.bottomAnchor.constraint(equalTo: textView.bottomAnchor, constant: 0),
         
         ])
     }

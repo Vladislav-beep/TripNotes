@@ -1,5 +1,5 @@
 //
-//  DateFormatorService.swift
+//  DateFormatterService.swift
 //  TripNotes
 //
 //  Created by Владислав Сизонов on 19.12.2021.
