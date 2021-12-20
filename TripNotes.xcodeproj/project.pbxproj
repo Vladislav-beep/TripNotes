@@ -17,6 +17,9 @@
 		B90DB444276F326000F1A544 /* Extension + Numeric.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90DB443276F326000F1A544 /* Extension + Numeric.swift */; };
 		B90DB44A276F532D00F1A544 /* NotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90DB449276F532D00F1A544 /* NotesViewController.swift */; };
 		B90DB44F276F54F100F1A544 /* NotesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90DB44E276F54F100F1A544 /* NotesViewModel.swift */; };
+		B90DB456276FB38D00F1A544 /* NotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90DB449276F532D00F1A544 /* NotesViewController.swift */; };
+		B90DB459276FB39200F1A544 /* TripTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90B9A0B276D015A008DD627 /* TripTableViewCellViewModel.swift */; };
+		B90DB45A276FB39E00F1A544 /* NotesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90DB44E276F54F100F1A544 /* NotesViewModel.swift */; };
 		B91E813D2767A88E00D0748B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91E813C2767A88E00D0748B /* AppDelegate.swift */; };
 		B91E813F2767A88E00D0748B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91E813E2767A88E00D0748B /* SceneDelegate.swift */; };
 		B91E81412767A88E00D0748B /* TripsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91E81402767A88E00D0748B /* TripsViewController.swift */; };
@@ -34,6 +37,7 @@
 		B9DE0D5C2768FDB100805E4C /* FavouritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91E81552767AA4F00D0748B /* FavouritesViewController.swift */; };
 		B9DE0D5F2768FDB800805E4C /* TripModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DE0D402768FD6400805E4C /* TripModel.swift */; };
 		B9E85C3D276E6468004FD1D8 /* Extension UIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E85C3C276E6468004FD1D8 /* Extension UIStackView.swift */; };
+		B9F018982770DF1D006F2DE7 /* TripsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DCF134276BAFF8007B0320 /* TripsViewModel.swift */; };
 		B9F39E052767D28600DAFB4C /* TripTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F39E042767D28600DAFB4C /* TripTableViewCell.swift */; };
 		B9F39E082767D47A00DAFB4C /* Extension + UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F39E072767D47A00DAFB4C /* Extension + UIColor.swift */; };
 /* End PBXBuildFile section */
@@ -356,7 +360,11 @@
 			files = (
 				B9DE0D592768FDAE00805E4C /* TabBarViewController.swift in Sources */,
 				B9DE0D562768FDAB00805E4C /* TripTableViewCell.swift in Sources */,
+				B90DB459276FB39200F1A544 /* TripTableViewCellViewModel.swift in Sources */,
 				B9DE0D5F2768FDB800805E4C /* TripModel.swift in Sources */,
+				B90DB456276FB38D00F1A544 /* NotesViewController.swift in Sources */,
+				B9F018982770DF1D006F2DE7 /* TripsViewModel.swift in Sources */,
+				B90DB45A276FB39E00F1A544 /* NotesViewModel.swift in Sources */,
 				B9DE0D4A2768FD7900805E4C /* TripNotesTests.swift in Sources */,
 				B9DE0D5C2768FDB100805E4C /* FavouritesViewController.swift in Sources */,
 				B9DE0D532768FDA800805E4C /* TripsViewController.swift in Sources */,

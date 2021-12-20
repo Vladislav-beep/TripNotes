@@ -54,9 +54,6 @@ class TripsViewController: UIViewController {
         return button
     }()
     
-    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Trips"
@@ -94,6 +91,28 @@ class TripsViewController: UIViewController {
         navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
     }
     
+    private func editAction(at indexPath: IndexPath) -> UIContextualAction {
+        let editAction = UIContextualAction(style: .normal, title: "Edit Trip") { (action, view, complition) in
+            
+           //: TODO переход на экран добаления трипа
+            complition(true)
+        }
+        editAction.backgroundColor = .tripBlue
+        editAction.image = UIImage(systemName: Constants.ImageNames.tripDeleteRowImage.rawValue)
+        return editAction
+    }
+    
+    private func doneAction(at indexPath: IndexPath) -> UIContextualAction {
+        let action = UIContextualAction(style: .destructive, title: "Delete") { (action, view, complition) in
+            
+           // self.tableView.deleteRows(at: [indexPath], with: .automatic)
+            complition(true)
+        }
+        action.backgroundColor = .tripRed
+        action.image = UIImage(systemName: Constants.ImageNames.tripDeleteRowImage.rawValue)
+        return action
+    }
+    
     private func setupTableContraints() {
         view.addSubview(tableView)
         NSLayoutConstraint.activate([
@@ -128,14 +147,33 @@ class TripsViewController: UIViewController {
 extension TripsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        viewModel.numberOfRows()
+        viewModel.numberOfRows(section: section)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
         2
     }
+    
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        "k"
+        viewModel.titleForHeaderInSection(section: section)
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let returnedView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 35))
+           returnedView.backgroundColor = .clear
+        
+        let kview = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width / 2 - 20, height: 25))
+        kview.layer.cornerRadius = 2
+        kview.layer.opacity = 0.6
+        kview.backgroundColor = .tripYellow
+        
+        let label = UILabel(frame: CGRect(x: 10, y: 0, width: view.frame.size.width, height: 25))
+        label.font = UIFont.boldSystemFont(ofSize: 22)
+        label.text = viewModel.titleForHeaderInSection(section: section)
+        label.textColor = .tripBlue
+            returnedView.addSubview(kview)
+        returnedView.addSubview(label)
+        return returnedView
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -158,6 +196,24 @@ extension TripsViewController: UITableViewDelegate {
         addTripButton.isHidden = true
         addNoteButton.isHidden = false
         navigationController?.pushViewController(NotesViewController(notesViewModel: notesViewModel), animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+         
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let done = doneAction(at: indexPath)
+        
+        return UISwipeActionsConfiguration(actions: [done])
+    }
+    
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let edit = editAction(at: indexPath)
+        
+        return UISwipeActionsConfiguration(actions: [edit])
     }
 }
 

@@ -53,7 +53,6 @@ class TripTableViewCellViewModel: TripTableViewCellViewModelProtocol {
             totalSum += Double(note.price)
         }
         
-      
         let formattedTotalSum = totalSum.formattedWithSeparator
         let returnTotalSum = "\(formattedTotalSum) \(trip.currency.rawValue)"
         return returnTotalSum

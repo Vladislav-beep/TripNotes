@@ -18,14 +18,6 @@ class NotesViewController: UIViewController {
         
     }()
     
-//    private lazy var addNoteButton: UIButton = {
-//        let button = UIButton()
-//        button.setTitle("Add Note", for: .normal)
-//        button.translatesAutoresizingMaskIntoConstraints = false
-//        button.backgroundColor = .tripRed
-//        return button
-//    }()
-    
     init(notesViewModel: NotesViewModelProtocol) {
         super.init(nibName: nil, bundle: nil)
         self.viewModel = notesViewModel
@@ -40,16 +32,14 @@ class NotesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-      //  setupAddNoteButtonConstraints()
+        view.addSubview(label)
+        NSLayoutConstraint.activate([
+            label.topAnchor.constraint(equalTo: view.topAnchor, constant: 20),
+            label.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            label.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 20),
+            label.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 20)
+        ])
     }
     
-//    func setupAddNoteButtonConstraints() {
-//        navigationController?.view.addSubview(addNoteButton)
-//        NSLayoutConstraint.activate([
-//            addNoteButton.centerXAnchor.constraint(equalTo: navigationController?.view.centerXAnchor ?? NSLayoutXAxisAnchor(), constant: 0),
-//            addNoteButton.bottomAnchor.constraint(equalTo: navigationController?.view.bottomAnchor ?? NSLayoutYAxisAnchor(), constant: -UIScreen.main.bounds.height / 7.5),
-//            addNoteButton.widthAnchor.constraint(equalToConstant: 100),
-//            addNoteButton.heightAnchor.constraint(equalToConstant: 50)
-//        ])
-//    }
+
 }
