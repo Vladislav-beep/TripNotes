@@ -69,8 +69,6 @@ class TripsViewModel: TripsViewModelProtocol {
             let trip = tr[indexPath.row]
             return TripTableViewCellViewModel(trip: trip)
         }
-        
-      //  return TripTableViewCellViewModel(trip: trip)
     }
     
     func viewModelForSelectedRow(at indexPath: IndexPath) -> NotesViewModelProtocol {
@@ -82,8 +80,6 @@ class TripsViewModel: TripsViewModelProtocol {
             let tr = trips.filter { $0.finishingDate < Date() }
             let trip = tr[indexPath.row]
             return NotesViewModel(trip: trip)
-      //  let trip = trips[indexPath.row]
-      //  return NotesViewModel(trip: trip)
     }
 }
 }

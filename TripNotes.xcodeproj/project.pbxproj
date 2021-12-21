@@ -40,6 +40,10 @@
 		B9F018982770DF1D006F2DE7 /* TripsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DCF134276BAFF8007B0320 /* TripsViewModel.swift */; };
 		B9F39E052767D28600DAFB4C /* TripTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F39E042767D28600DAFB4C /* TripTableViewCell.swift */; };
 		B9F39E082767D47A00DAFB4C /* Extension + UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F39E072767D47A00DAFB4C /* Extension + UIColor.swift */; };
+		B9FB61182772336700126A59 /* NewTripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9FB61172772336700126A59 /* NewTripViewController.swift */; };
+		B9FB611C2772339500126A59 /* NewTripViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9FB611B2772339500126A59 /* NewTripViewModel.swift */; };
+		B9FB611F277236B400126A59 /* NewTripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9FB61172772336700126A59 /* NewTripViewController.swift */; };
+		B9FB61242772617000126A59 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9FB61232772617000126A59 /* CustomTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +85,9 @@
 		B9E85C3C276E6468004FD1D8 /* Extension UIStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension UIStackView.swift"; sourceTree = "<group>"; };
 		B9F39E042767D28600DAFB4C /* TripTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripTableViewCell.swift; sourceTree = "<group>"; };
 		B9F39E072767D47A00DAFB4C /* Extension + UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIColor.swift"; sourceTree = "<group>"; };
+		B9FB61172772336700126A59 /* NewTripViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTripViewController.swift; sourceTree = "<group>"; };
+		B9FB611B2772339500126A59 /* NewTripViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTripViewModel.swift; sourceTree = "<group>"; };
+		B9FB61232772617000126A59 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +170,7 @@
 				B9DE0D64276900DC00805E4C /* Trips */,
 				B90DB424276F132C00F1A544 /* Notes */,
 				B9DE0D65276900F700805E4C /* Favourites */,
+				B9FB61162772334000126A59 /* NewTrip */,
 				B9DCF13A276BB6F0007B0320 /* TabBar */,
 				B90DB436276F147000F1A544 /* Services */,
 				B9F39E0A2767D47F00DAFB4C /* Extensions */,
@@ -229,6 +237,24 @@
 				B90DB443276F326000F1A544 /* Extension + Numeric.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		B9FB61162772334000126A59 /* NewTrip */ = {
+			isa = PBXGroup;
+			children = (
+				B9FB61172772336700126A59 /* NewTripViewController.swift */,
+				B9FB611B2772339500126A59 /* NewTripViewModel.swift */,
+				B9FB61222772614500126A59 /* SubViews */,
+			);
+			path = NewTrip;
+			sourceTree = "<group>";
+		};
+		B9FB61222772614500126A59 /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				B9FB61232772617000126A59 /* CustomTextField.swift */,
+			);
+			path = SubViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -334,6 +360,7 @@
 				B90DB43C276F2D1500F1A544 /* Constants.swift in Sources */,
 				B90B9A0C276D015A008DD627 /* TripTableViewCellViewModel.swift in Sources */,
 				B90DB444276F326000F1A544 /* Extension + Numeric.swift in Sources */,
+				B9FB61182772336700126A59 /* NewTripViewController.swift in Sources */,
 				B91E81532767A9AC00D0748B /* TabBarViewController.swift in Sources */,
 				B9DE0D412768FD6400805E4C /* TripModel.swift in Sources */,
 				B9DCF13E276BBE29007B0320 /* Extension + UIBarButtonItem.swift in Sources */,
@@ -349,7 +376,9 @@
 				B90DB438276F14B100F1A544 /* DateFormatterService.swift in Sources */,
 				B90DB44A276F532D00F1A544 /* NotesViewController.swift in Sources */,
 				B91E813F2767A88E00D0748B /* SceneDelegate.swift in Sources */,
+				B9FB61242772617000126A59 /* CustomTextField.swift in Sources */,
 				B90DB440276F323000F1A544 /* Extension + Formatter.swift in Sources */,
+				B9FB611C2772339500126A59 /* NewTripViewModel.swift in Sources */,
 				B90DB42A276F137500F1A544 /* Category.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -362,6 +391,7 @@
 				B9DE0D562768FDAB00805E4C /* TripTableViewCell.swift in Sources */,
 				B90DB459276FB39200F1A544 /* TripTableViewCellViewModel.swift in Sources */,
 				B9DE0D5F2768FDB800805E4C /* TripModel.swift in Sources */,
+				B9FB611F277236B400126A59 /* NewTripViewController.swift in Sources */,
 				B90DB456276FB38D00F1A544 /* NotesViewController.swift in Sources */,
 				B9F018982770DF1D006F2DE7 /* TripsViewModel.swift in Sources */,
 				B90DB45A276FB39E00F1A544 /* NotesViewModel.swift in Sources */,

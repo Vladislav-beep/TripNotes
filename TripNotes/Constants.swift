@@ -12,6 +12,7 @@ struct Constants {
     enum ImageNames: String {
         case tripPlaceHolderImage = "tripPlaceHolder"
         case tripDeleteRowImage = "trash"
+        case tripEditRowImage = "pencil"
     }
     
     enum SectionTripNames: String {

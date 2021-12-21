@@ -33,6 +33,7 @@ class TripsViewController: UIViewController {
         let image = UIImage(systemName: "plus")
         button.setImage(image, for: .normal)
         button.layer.cornerRadius = 25
+        button.addTarget(self, action: #selector(addTrip), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -77,6 +78,11 @@ class TripsViewController: UIViewController {
         print("sc")
     }
     
+    @objc func addTrip() {
+        let newTripVC = NewTripViewController()
+        present(newTripVC, animated: true)
+    }
+    
     private func setupNavigationBar() {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.leftBarButtonItems = [settingsButton]
@@ -98,11 +104,11 @@ class TripsViewController: UIViewController {
             complition(true)
         }
         editAction.backgroundColor = .tripBlue
-        editAction.image = UIImage(systemName: Constants.ImageNames.tripDeleteRowImage.rawValue)
+        editAction.image = UIImage(systemName: Constants.ImageNames.tripEditRowImage.rawValue)
         return editAction
     }
     
-    private func doneAction(at indexPath: IndexPath) -> UIContextualAction {
+    private func deleteAction(at indexPath: IndexPath) -> UIContextualAction {
         let action = UIContextualAction(style: .destructive, title: "Delete") { (action, view, complition) in
             
            // self.tableView.deleteRows(at: [indexPath], with: .automatic)
@@ -205,7 +211,7 @@ extension TripsViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let done = doneAction(at: indexPath)
+        let done = deleteAction(at: indexPath)
         
         return UISwipeActionsConfiguration(actions: [done])
     }
