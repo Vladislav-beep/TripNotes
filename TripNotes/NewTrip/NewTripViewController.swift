@@ -29,7 +29,9 @@ class NewTripViewController: UIViewController {
         avatarImageView.image = UIImage(named: Constants.ImageNames.tripPlaceHolderImage.rawValue)
         avatarImageView.clipsToBounds = true
         avatarImageView.contentMode = .scaleAspectFill
-        avatarImageView.layer.opacity = 0.55
+        avatarImageView.layer.opacity = 0.8
+        avatarImageView.addGestureRecognizer(tapGestureRecognizer)
+        avatarImageView.isUserInteractionEnabled = true
         avatarImageView.translatesAutoresizingMaskIntoConstraints = false
         return avatarImageView
     }()
@@ -72,7 +74,7 @@ class NewTripViewController: UIViewController {
     }()
     
     private lazy var descriptionTextField: CustomTextField = {
-        let descriptionTextField = CustomTextField(imageName: "pencil")
+        let descriptionTextField = CustomTextField(imageName: "pencil.and.outline")
         descriptionTextField.placeholder = "Descripe your trip shortly"
         return descriptionTextField
     }()
@@ -97,6 +99,13 @@ class NewTripViewController: UIViewController {
         return addNewTripButton
     }()
     
+    private lazy var tapGestureRecognizer: UITapGestureRecognizer = {
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self,
+                                                          action: #selector(setAvatarImage(_:)))
+        
+        return tapGestureRecognizer
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupScrollViewConstraints()
@@ -110,6 +119,27 @@ class NewTripViewController: UIViewController {
     
     @objc func backButtonPressed() {
         dismiss(animated: true)
+    }
+    
+    @objc func setAvatarImage(_ sender: UITapGestureRecognizer) {
+        print("djjv")
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        let camera = UIAlertAction(title: "Camera", style: .default) { _ in
+            self.chooseImagePicker(source: .camera)
+        }
+        
+        let photo = UIAlertAction(title: "Gallery", style: .default) { _ in
+            self.chooseImagePicker(source: .photoLibrary)
+        }
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+        
+        actionSheet.addAction(camera)
+        actionSheet.addAction(photo)
+        actionSheet.addAction(cancel)
+        
+        present(actionSheet, animated: true)
     }
     
     private func setupScrollViewConstraints() {
@@ -180,5 +210,27 @@ class NewTripViewController: UIViewController {
             addNewTripButton.trailingAnchor.constraint(equalTo: lowerView.trailingAnchor, constant: -20),
             addNewTripButton.heightAnchor.constraint(equalToConstant: 50)
         ])
+    }
+}
+
+extension NewTripViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func chooseImagePicker(source: UIImagePickerController.SourceType) {
+        if UIImagePickerController.isSourceTypeAvailable(source) {
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.allowsEditing = true
+            imagePicker.sourceType = source
+            present(imagePicker, animated: true)
+        }
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        avatarImageView.image = info[.editedImage] as? UIImage
+        avatarImageView.contentMode = .scaleAspectFill
+        avatarImageView.clipsToBounds = true
+        
+        dismiss(animated: true)
     }
 }

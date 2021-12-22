@@ -23,10 +23,11 @@ class CustomTextField: UITextField {
         layer.borderColor = UIColor.tripGrey.cgColor
         layer.masksToBounds = true
         
-        let imageView = UIImageView(frame: CGRect(x: 8.0, y: 8.0, width: 24.0, height: 24.0))
+        let imageView = UIImageView(frame: CGRect(x: 6.0, y: 6.0, width: 28.0, height: 28.0))
         let image = UIImage(systemName: imageName)
         imageView.image = image
         imageView.contentMode = .scaleAspectFit
+        imageView.tintColor = .tripRed
 
         let view = UIView(frame: CGRect(x: 0, y: 0, width: 32, height: 40))
         view.addSubview(imageView)
