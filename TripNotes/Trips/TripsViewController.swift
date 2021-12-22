@@ -212,7 +212,7 @@ extension TripsViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let done = deleteAction(at: indexPath)
-        
+        // TODO - delete row
         return UISwipeActionsConfiguration(actions: [done])
     }
     

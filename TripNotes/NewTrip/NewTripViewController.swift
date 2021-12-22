@@ -29,32 +29,51 @@ class NewTripViewController: UIViewController {
         avatarImageView.image = UIImage(named: Constants.ImageNames.tripPlaceHolderImage.rawValue)
         avatarImageView.clipsToBounds = true
         avatarImageView.contentMode = .scaleAspectFill
-        avatarImageView.layer.opacity = 0.65
+        avatarImageView.layer.opacity = 0.55
         avatarImageView.translatesAutoresizingMaskIntoConstraints = false
         return avatarImageView
     }()
     
+    private lazy var redView: UIView = {
+        let redView = UIView()
+        redView.backgroundColor = .tripRed
+        redView.layer.opacity = 0.6
+        redView.layer.cornerRadius = 4
+        redView.translatesAutoresizingMaskIntoConstraints = false
+        return redView
+    }()
+    
+    private lazy var backButton: UIButton = {
+        let backButton = UIButton()
+        let image = UIImage(systemName: "chevron.compact.left")
+        backButton.tintColor = .tripWhite
+        backButton.setBackgroundImage(image, for: .normal)
+        backButton.addTarget(self, action: #selector(backButtonPressed), for: .touchUpInside)
+        backButton.translatesAutoresizingMaskIntoConstraints = false
+        return backButton
+    }()
+    
     private lazy var countryTextField: CustomTextField = {
-        let countryTextField = CustomTextField()
+        let countryTextField = CustomTextField(imageName: "flag")
         countryTextField.placeholder = "Enter country"
         return countryTextField
     }()
     
     private lazy var beginDateTextField: CustomTextField = {
-        let beginDateTextField = CustomTextField()
+        let beginDateTextField = CustomTextField(imageName: "calendar")
         beginDateTextField.placeholder = "Date when trip begins"
         return beginDateTextField
     }()
     
     private lazy var finishDateTextField: CustomTextField = {
-        let finishDateTextField = CustomTextField()
+        let finishDateTextField = CustomTextField(imageName: "calendar")
         finishDateTextField.placeholder = "Date when trip ends"
         return finishDateTextField
     }()
     
     private lazy var descriptionTextField: CustomTextField = {
-        let descriptionTextField = CustomTextField()
-        descriptionTextField.placeholder = "Descripe shortly ypur trip"
+        let descriptionTextField = CustomTextField(imageName: "pencil")
+        descriptionTextField.placeholder = "Descripe your trip shortly"
         return descriptionTextField
     }()
     
@@ -83,8 +102,14 @@ class NewTripViewController: UIViewController {
         setupScrollViewConstraints()
         setupLowerViewConstraints()
         setupAvatarConstraints()
+        setupRedViewConstraints()
+        setupBackButtonConstraints()
         setupTextFieldsStackViewConstraints()
         setupAddNewTripButtonConstraints()
+    }
+    
+    @objc func backButtonPressed() {
+        dismiss(animated: true)
     }
     
     private func setupScrollViewConstraints() {
@@ -114,6 +139,26 @@ class NewTripViewController: UIViewController {
             avatarImageView.leadingAnchor.constraint(equalTo: lowerView.leadingAnchor, constant: 0),
             avatarImageView.trailingAnchor.constraint(equalTo: lowerView.trailingAnchor, constant: 0),
             avatarImageView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height / 4)
+        ])
+    }
+    
+    private func setupRedViewConstraints() {
+        lowerView.addSubview(redView)
+        NSLayoutConstraint.activate([
+            redView.topAnchor.constraint(equalTo: avatarImageView.topAnchor, constant: 0),
+            redView.leadingAnchor.constraint(equalTo: avatarImageView.leadingAnchor, constant: 10),
+            redView.bottomAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 20),
+            redView.widthAnchor.constraint(equalToConstant: 60)
+        ])
+    }
+    
+    private func setupBackButtonConstraints() {
+        lowerView.addSubview(backButton)
+        NSLayoutConstraint.activate([
+            backButton.topAnchor.constraint(equalTo: lowerView.topAnchor, constant: 10),
+            backButton.leadingAnchor.constraint(equalTo: lowerView.leadingAnchor, constant: 27),
+            backButton.heightAnchor.constraint(equalToConstant: 26),
+            backButton.widthAnchor.constraint(equalToConstant: 26)
         ])
     }
     
