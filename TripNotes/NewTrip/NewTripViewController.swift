@@ -10,6 +10,8 @@ import UIKit
 
 class NewTripViewController: UIViewController {
     
+    var viewModel: NewTripViewModelProtocol?
+    
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -57,7 +59,7 @@ class NewTripViewController: UIViewController {
     
     private lazy var countryTextField: CustomTextField = {
         let countryTextField = CustomTextField(imageName: "flag")
-        countryTextField.placeholder = "Enter country"
+        countryTextField.placeholder = "Country"
         return countryTextField
     }()
     
@@ -75,7 +77,7 @@ class NewTripViewController: UIViewController {
     
     private lazy var descriptionTextField: CustomTextField = {
         let descriptionTextField = CustomTextField(imageName: "pencil.and.outline")
-        descriptionTextField.placeholder = "Descripe your trip shortly"
+        descriptionTextField.placeholder = "Describe your trip shortly"
         return descriptionTextField
     }()
     
@@ -88,6 +90,30 @@ class NewTripViewController: UIViewController {
                                 spacing: 20,
                                 distribution: .fillEqually)
         return stack
+    }()
+    
+    private lazy var dollarButton: CurrencyButton = {
+        let dollarButton = CurrencyButton(title: "$")
+        return dollarButton
+    }()
+    
+    private lazy var rubleButton: CurrencyButton = {
+        let dollarButton = CurrencyButton(title: "₽")
+        return dollarButton
+    }()
+    
+    private lazy var euroButton: CurrencyButton = {
+        let dollarButton = CurrencyButton(title: "€")
+        return dollarButton
+    }()
+    
+    private lazy var buttonStack: UIStackView = {
+        let buttonStack = UIStackView(arrangedSubviews: [dollarButton, rubleButton, euroButton],
+                                      axis: .horizontal,
+                                      spacing: 10,
+                                      distribution: .fillEqually)
+        buttonStack.translatesAutoresizingMaskIntoConstraints = false
+        return buttonStack
     }()
     
     private lazy var addNewTripButton: UIButton = {
@@ -106,8 +132,9 @@ class NewTripViewController: UIViewController {
         return tapGestureRecognizer
     }()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    init(viewModel: NewTripViewModelProtocol) {
+        super.init(nibName: nil, bundle: nil)
+        self.viewModel = viewModel
         setupScrollViewConstraints()
         setupLowerViewConstraints()
         setupAvatarConstraints()
@@ -115,6 +142,16 @@ class NewTripViewController: UIViewController {
         setupBackButtonConstraints()
         setupTextFieldsStackViewConstraints()
         setupAddNewTripButtonConstraints()
+        setupCurrencyButtonsConstraints()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
     }
     
     @objc func backButtonPressed() {
@@ -175,8 +212,8 @@ class NewTripViewController: UIViewController {
     private func setupRedViewConstraints() {
         lowerView.addSubview(redView)
         NSLayoutConstraint.activate([
-            redView.topAnchor.constraint(equalTo: avatarImageView.topAnchor, constant: 0),
-            redView.leadingAnchor.constraint(equalTo: avatarImageView.leadingAnchor, constant: 10),
+            redView.topAnchor.constraint(equalTo: lowerView.topAnchor, constant: 0),
+            redView.leadingAnchor.constraint(equalTo: lowerView.leadingAnchor, constant: 10),
             redView.bottomAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 20),
             redView.widthAnchor.constraint(equalToConstant: 60)
         ])
@@ -198,14 +235,27 @@ class NewTripViewController: UIViewController {
             textFieldsStackView.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 40),
             textFieldsStackView.leadingAnchor.constraint(equalTo: lowerView.leadingAnchor, constant: 20),
             textFieldsStackView.trailingAnchor.constraint(equalTo: lowerView.trailingAnchor, constant: -20),
-            textFieldsStackView.heightAnchor.constraint(equalToConstant: 280)
+            textFieldsStackView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height * 0.344)
+        ])
+    }
+    
+    private func setupCurrencyButtonsConstraints() {
+        lowerView.addSubview(buttonStack)
+        NSLayoutConstraint.activate([
+            buttonStack.topAnchor.constraint(equalTo: textFieldsStackView.bottomAnchor, constant: 20),
+            buttonStack.bottomAnchor.constraint(equalTo: addNewTripButton.topAnchor, constant: -40),
+          //  buttonStack.leadingAnchor.constraint(equalTo: lowerView.leadingAnchor, constant: 20),
+          //  buttonStack.trailingAnchor.constraint(equalTo: lowerView.trailingAnchor, constant: -20),
+            buttonStack.centerXAnchor.constraint(equalTo: lowerView.centerXAnchor, constant: 0),
+            buttonStack.widthAnchor.constraint(equalTo: buttonStack.heightAnchor, multiplier: 3.5)
+       
         ])
     }
     
     private func setupAddNewTripButtonConstraints() {
         lowerView.addSubview(addNewTripButton)
         NSLayoutConstraint.activate([
-            addNewTripButton.bottomAnchor.constraint(equalTo: lowerView.bottomAnchor, constant: -55),
+            addNewTripButton.bottomAnchor.constraint(equalTo: lowerView.bottomAnchor, constant: -35),
             addNewTripButton.leadingAnchor.constraint(equalTo: lowerView.leadingAnchor, constant: 20),
             addNewTripButton.trailingAnchor.constraint(equalTo: lowerView.trailingAnchor, constant: -20),
             addNewTripButton.heightAnchor.constraint(equalToConstant: 50)

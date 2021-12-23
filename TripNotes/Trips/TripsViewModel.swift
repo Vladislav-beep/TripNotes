@@ -14,6 +14,7 @@ protocol TripsViewModelProtocol: class {
     func titleForHeaderInSection(section: Int) -> String
     func tripCellViewModel(for indexPath: IndexPath) -> TripTableViewCellViewModelProtocol?
     func viewModelForSelectedRow(at indexPAth: IndexPath) -> NotesViewModelProtocol
+    func newTripViewModel() -> NewTripViewModelProtocol
 }
 
 class TripsViewModel: TripsViewModelProtocol {
@@ -82,4 +83,8 @@ class TripsViewModel: TripsViewModelProtocol {
             return NotesViewModel(trip: trip)
     }
 }
+    
+    func newTripViewModel() -> NewTripViewModelProtocol {
+        return NewTripViewModel()
+    }
 }

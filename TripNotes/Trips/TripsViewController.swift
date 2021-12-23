@@ -79,7 +79,8 @@ class TripsViewController: UIViewController {
     }
     
     @objc func addTrip() {
-        let newTripVC = NewTripViewController()
+        let newTripViewModel = viewModel.newTripViewModel
+        let newTripVC = NewTripViewController(viewModel: newTripViewModel())
         present(newTripVC, animated: true)
     }
     
