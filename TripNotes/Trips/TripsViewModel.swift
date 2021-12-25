@@ -21,7 +21,6 @@ class TripsViewModel: TripsViewModelProtocol {
     
     var trips: [Trip] = []
     
-    
     func getTrips(completion: @escaping () -> Void) {
         trips = Trip.getData()
         completion()

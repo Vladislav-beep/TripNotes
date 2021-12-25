@@ -101,7 +101,7 @@ class TripsViewController: UIViewController {
     private func editAction(at indexPath: IndexPath) -> UIContextualAction {
         let editAction = UIContextualAction(style: .normal, title: "Edit Trip") { (action, view, complition) in
             
-           //: TODO переход на экран добаления трипа
+           //: TODO переход на экран добавления трипа
             complition(true)
         }
         editAction.backgroundColor = .tripBlue

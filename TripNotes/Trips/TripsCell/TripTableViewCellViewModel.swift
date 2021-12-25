@@ -25,9 +25,6 @@ class TripTableViewCellViewModel: TripTableViewCellViewModelProtocol {
         nil
     }
     
-  
-    
-    
     var description: String {
         trip.description
     }
