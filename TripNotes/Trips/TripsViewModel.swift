@@ -18,7 +18,7 @@ protocol TripsViewModelProtocol: class {
 }
 
 class TripsViewModel: TripsViewModelProtocol {
-  
+    
     var trips: [Trip] = []
     
     
@@ -26,7 +26,6 @@ class TripsViewModel: TripsViewModelProtocol {
         trips = Trip.getData()
         completion()
     }
-       
     
     func numberOfRows(section: Int) -> Int {
         var plannedCount = 0
@@ -62,7 +61,7 @@ class TripsViewModel: TripsViewModelProtocol {
     
     func tripCellViewModel(for indexPath: IndexPath) -> TripTableViewCellViewModelProtocol? {
         if indexPath.section == 0 {
-           let tr =  trips.filter { $0.finishingDate > Date() }
+            let tr =  trips.filter { $0.finishingDate > Date() }
             let trip = tr[indexPath.row]
             return TripTableViewCellViewModel(trip: trip)
         } else {
@@ -74,15 +73,15 @@ class TripsViewModel: TripsViewModelProtocol {
     
     func viewModelForSelectedRow(at indexPath: IndexPath) -> NotesViewModelProtocol {
         if indexPath.section == 0 {
-           let tr =  trips.filter { $0.finishingDate > Date() }
+            let tr =  trips.filter { $0.finishingDate > Date() }
             let trip = tr[indexPath.row]
             return NotesViewModel(trip: trip)
         } else {
             let tr = trips.filter { $0.finishingDate < Date() }
             let trip = tr[indexPath.row]
             return NotesViewModel(trip: trip)
+        }
     }
-}
     
     func newTripViewModel() -> NewTripViewModelProtocol {
         return NewTripViewModel()

@@ -16,12 +16,16 @@ class CustomTextField: UITextField {
         self.imageName = imageName
         super.init(frame: .zero)
         
-        borderStyle = UITextField.BorderStyle.roundedRect
+        borderStyle = .none
         backgroundColor = .tripGrey
-        layer.cornerRadius = 12
+        layer.cornerRadius = 16
         layer.borderWidth = 1
         layer.borderColor = UIColor.tripGrey.cgColor
-        layer.masksToBounds = true
+        layer.shadowColor = UIColor.darkGray.cgColor
+        layer.shadowRadius = 4
+        layer.shadowOpacity = 0.1
+        layer.shadowOffset = CGSize(width: 0, height: 5)
+        layer.shadowOpacity = 1
         
         let imageView = UIImageView(frame: CGRect(x: 6.0, y: 6.0, width: 28.0, height: 28.0))
         let image = UIImage(systemName: imageName)
@@ -29,7 +33,7 @@ class CustomTextField: UITextField {
         imageView.contentMode = .scaleAspectFit
         imageView.tintColor = .tripRed
 
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: 32, height: 40))
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: 38, height: 40))
         view.addSubview(imageView)
         leftViewMode = .always
         leftView = view

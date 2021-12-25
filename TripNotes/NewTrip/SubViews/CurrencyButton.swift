@@ -9,15 +9,23 @@ import UIKit
 
 class CurrencyButton: UIButton {
     
-    var title: String
+    private var title: String
+    private var selectedBackgroundColor: UIColor?
+    private var defaultBackgroundColor: UIColor? {
+        didSet {
+            backgroundColor = defaultBackgroundColor
+        }
+    }
     
     init(title: String) {
         self.title = title
         super.init(frame: .zero)
         
-        backgroundColor = .tripGrey
+        setBackgroundColor(.tripGrey, for: .normal)
+        setBackgroundColor(.tripRed, for: .selected)
         setTitleColor(.darkGray, for: .normal)
         setTitle(title, for: .normal)
+        
         titleLabel?.adjustsFontForContentSizeCategory = true
         titleLabel?.adjustsFontSizeToFitWidth = true
         titleLabel?.font = .systemFont(ofSize: 30, weight: .medium)
@@ -27,11 +35,42 @@ class CurrencyButton: UIButton {
         layer.shadowRadius = 5
         layer.shadowOffset = CGSize(width: 0, height: 5)
         layer.shadowOpacity = 0.5
-    
+        
         translatesAutoresizingMaskIntoConstraints = false
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    enum ButtonState {
+        case normal
+        case selected
+    }
+    
+    // change background color on isEnabled value changed
+    override var isSelected: Bool {
+        didSet {
+            if isSelected {
+                if let color = selectedBackgroundColor {
+                    self.backgroundColor = color
+                }
+            }
+            else {
+                if let color = defaultBackgroundColor {
+                    self.backgroundColor = color
+                }
+            }
+        }
+    }
+    
+    // set color for different state
+    func setBackgroundColor(_ color: UIColor?, for state: ButtonState) {
+        switch state {
+        case .selected:
+            selectedBackgroundColor = color
+        case .normal:
+            defaultBackgroundColor = color
+        }
     }
 }

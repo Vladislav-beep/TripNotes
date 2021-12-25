@@ -11,6 +11,7 @@ import UIKit
 class NewTripViewController: UIViewController {
     
     var viewModel: NewTripViewModelProtocol?
+   
     
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -94,23 +95,31 @@ class NewTripViewController: UIViewController {
     
     private lazy var dollarButton: CurrencyButton = {
         let dollarButton = CurrencyButton(title: "$")
+        dollarButton.addTarget(self, action: #selector(selectCurrency(_:)), for: .touchUpInside)
         return dollarButton
     }()
     
     private lazy var rubleButton: CurrencyButton = {
-        let dollarButton = CurrencyButton(title: "₽")
-        return dollarButton
+        let rubleButton = CurrencyButton(title: "₽")
+        rubleButton.addTarget(self, action: #selector(selectCurrency(_:)), for: .touchUpInside)
+        return rubleButton
     }()
     
     private lazy var euroButton: CurrencyButton = {
-        let dollarButton = CurrencyButton(title: "€")
-        return dollarButton
+        let euroButton = CurrencyButton(title: "€")
+        euroButton.addTarget(self, action: #selector(selectCurrency(_:)), for: .touchUpInside)
+        return euroButton
+    }()
+    
+    private lazy var buttonArray: [UIButton] = {
+        let array = [dollarButton, rubleButton, euroButton]
+        return array
     }()
     
     private lazy var buttonStack: UIStackView = {
         let buttonStack = UIStackView(arrangedSubviews: [dollarButton, rubleButton, euroButton],
                                       axis: .horizontal,
-                                      spacing: 10,
+                                      spacing: 14,
                                       distribution: .fillEqually)
         buttonStack.translatesAutoresizingMaskIntoConstraints = false
         return buttonStack
@@ -149,13 +158,13 @@ class NewTripViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-    }
-    
     @objc func backButtonPressed() {
         dismiss(animated: true)
+    }
+    
+    @objc func selectCurrency(_ sender: UIButton) {
+        buttonArray.forEach { $0.isSelected = false }
+        sender.isSelected = true
     }
     
     @objc func setAvatarImage(_ sender: UITapGestureRecognizer) {
@@ -243,12 +252,10 @@ class NewTripViewController: UIViewController {
         lowerView.addSubview(buttonStack)
         NSLayoutConstraint.activate([
             buttonStack.topAnchor.constraint(equalTo: textFieldsStackView.bottomAnchor, constant: 20),
-            buttonStack.bottomAnchor.constraint(equalTo: addNewTripButton.topAnchor, constant: -40),
-          //  buttonStack.leadingAnchor.constraint(equalTo: lowerView.leadingAnchor, constant: 20),
-          //  buttonStack.trailingAnchor.constraint(equalTo: lowerView.trailingAnchor, constant: -20),
             buttonStack.centerXAnchor.constraint(equalTo: lowerView.centerXAnchor, constant: 0),
-            buttonStack.widthAnchor.constraint(equalTo: buttonStack.heightAnchor, multiplier: 3.5)
-       
+            buttonStack.heightAnchor.constraint(equalTo: textFieldsStackView.heightAnchor,
+                                                multiplier: 0.28),
+            buttonStack.widthAnchor.constraint(equalTo: buttonStack.heightAnchor, multiplier: 3)
         ])
     }
     
