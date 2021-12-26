@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B90A37E427784E830028B6F1 /* Extension + UIBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DCF13D276BBE29007B0320 /* Extension + UIBarButtonItem.swift */; };
 		B90B9A0C276D015A008DD627 /* TripTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90B9A0B276D015A008DD627 /* TripTableViewCellViewModel.swift */; };
 		B90DB426276F134B00F1A544 /* NoteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90DB425276F134B00F1A544 /* NoteModel.swift */; };
 		B90DB42A276F137500F1A544 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90DB429276F137500F1A544 /* Category.swift */; };
@@ -393,6 +394,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B9DE0D592768FDAE00805E4C /* TabBarViewController.swift in Sources */,
+				B90A37E427784E830028B6F1 /* Extension + UIBarButtonItem.swift in Sources */,
 				B9DE0D562768FDAB00805E4C /* TripTableViewCell.swift in Sources */,
 				B90DB459276FB39200F1A544 /* TripTableViewCellViewModel.swift in Sources */,
 				B9DE0D5F2768FDB800805E4C /* TripModel.swift in Sources */,

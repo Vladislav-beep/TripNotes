@@ -11,7 +11,7 @@ import UIKit
 class NewTripViewController: UIViewController {
     
     var viewModel: NewTripViewModelProtocol?
-   
+    
     
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -111,7 +111,7 @@ class NewTripViewController: UIViewController {
         return euroButton
     }()
     
-    private lazy var buttonArray: [UIButton] = {
+    private lazy var buttonArray: [CurrencyButton] = {
         let array = [dollarButton, rubleButton, euroButton]
         return array
     }()
@@ -130,6 +130,10 @@ class NewTripViewController: UIViewController {
         addNewTripButton.backgroundColor = .tripRed
         addNewTripButton.layer.cornerRadius = 10
         addNewTripButton.setTitle("Plan new Trip", for: .normal)
+        addNewTripButton.layer.shadowColor = UIColor.darkGray.cgColor
+        addNewTripButton.layer.shadowRadius = 4
+        addNewTripButton.layer.shadowOpacity = 0.4
+        addNewTripButton.layer.shadowOffset = CGSize(width: 0, height: 5)
         addNewTripButton.translatesAutoresizingMaskIntoConstraints = false
         return addNewTripButton
     }()
@@ -144,15 +148,7 @@ class NewTripViewController: UIViewController {
     init(viewModel: NewTripViewModelProtocol) {
         super.init(nibName: nil, bundle: nil)
         self.viewModel = viewModel
-        setupScrollViewConstraints()
-        setupLowerViewConstraints()
-        setupAvatarConstraints()
-        setupRedViewConstraints()
-        setupBackButtonConstraints()
-        setupTextFieldsStackViewConstraints()
-        setupAddNewTripButtonConstraints()
-        setupCurrencyButtonsConstraints()
-        
+        setupConstraints()
         registerKeyBoardNotification()
     }
     
@@ -168,9 +164,13 @@ class NewTripViewController: UIViewController {
         dismiss(animated: true)
     }
     
-    @objc func selectCurrency(_ sender: UIButton) {
-        buttonArray.forEach { $0.isSelected = false }
+    @objc func selectCurrency(_ sender: CurrencyButton) {
+        buttonArray.forEach {
+            $0.isSelected = false
+            $0.stopAnimation()
+        }
         sender.isSelected = true
+        sender.pulsate()
     }
     
     @objc func setAvatarImage(_ sender: UITapGestureRecognizer) {
@@ -191,6 +191,17 @@ class NewTripViewController: UIViewController {
         actionSheet.addAction(cancel)
         
         present(actionSheet, animated: true)
+    }
+    
+    private func setupConstraints() {
+        setupScrollViewConstraints()
+        setupLowerViewConstraints()
+        setupAvatarConstraints()
+        setupRedViewConstraints()
+        setupBackButtonConstraints()
+        setupTextFieldsStackViewConstraints()
+        setupAddNewTripButtonConstraints()
+        setupCurrencyButtonsConstraints()
     }
     
     private func setupScrollViewConstraints() {

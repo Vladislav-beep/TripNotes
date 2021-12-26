@@ -23,9 +23,8 @@ class CustomTextField: UITextField {
         layer.borderColor = UIColor.tripGrey.cgColor
         layer.shadowColor = UIColor.darkGray.cgColor
         layer.shadowRadius = 4
-        layer.shadowOpacity = 0.1
+        layer.shadowOpacity = 0.4
         layer.shadowOffset = CGSize(width: 0, height: 5)
-        layer.shadowOpacity = 1
         
         let imageView = UIImageView(frame: CGRect(x: 6.0, y: 6.0, width: 28.0, height: 28.0))
         let image = UIImage(systemName: imageName)

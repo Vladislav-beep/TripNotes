@@ -48,7 +48,7 @@ class CurrencyButton: UIButton {
         case selected
     }
     
-    // change background color on isEnabled value changed
+    // change background color on isSelected value changed
     override var isSelected: Bool {
         didSet {
             if isSelected {
@@ -72,5 +72,21 @@ class CurrencyButton: UIButton {
         case .normal:
             defaultBackgroundColor = color
         }
+    }
+    
+    func pulsate() {
+        let pulse = CASpringAnimation(keyPath: "transform.scale")
+        pulse.fromValue = 0.97
+        pulse.toValue = 1
+        pulse.duration = 5
+        pulse.autoreverses = true
+        pulse.repeatCount = Float.greatestFiniteMagnitude
+        pulse.initialVelocity = 0.5
+        pulse.damping = 0.5
+        layer.add(pulse, forKey: nil)
+    }
+    
+    func stopAnimation() {
+        layer.removeAllAnimations()
     }
 }
