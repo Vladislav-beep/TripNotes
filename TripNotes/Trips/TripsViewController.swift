@@ -9,7 +9,6 @@ import UIKit
 
 class TripsViewController: UIViewController {
     
-   // let trips = Trip.getData()
     private var viewModel: TripsViewModelProtocol! {
         didSet {
             viewModel.getTrips { [weak self] in
@@ -52,6 +51,7 @@ class TripsViewController: UIViewController {
                                                   action: #selector(addTapped),
                                                   imageName: "gear",
                                                   widthAndHeight: 40)
+        // TODO:  function for selector
         return button
     }()
     
@@ -70,11 +70,15 @@ class TripsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+       // addTripButton.showAnimatedly()
+       // addNoteButton.hideAnimatedly()
         addTripButton.isHidden = false
         addNoteButton.isHidden = true
+        
     }
     
     @objc func addTapped() {
+        // TODO setting screen
         print("sc")
     }
     

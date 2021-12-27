@@ -38,8 +38,10 @@
 		B9DE0D592768FDAE00805E4C /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91E81522767A9AC00D0748B /* TabBarViewController.swift */; };
 		B9DE0D5C2768FDB100805E4C /* FavouritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91E81552767AA4F00D0748B /* FavouritesViewController.swift */; };
 		B9DE0D5F2768FDB800805E4C /* TripModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DE0D402768FD6400805E4C /* TripModel.swift */; };
-		B9E85C3D276E6468004FD1D8 /* Extension UIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E85C3C276E6468004FD1D8 /* Extension UIStackView.swift */; };
+		B9E85C3D276E6468004FD1D8 /* Extension + UIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E85C3C276E6468004FD1D8 /* Extension + UIStackView.swift */; };
 		B9EA410B27777D9A00CC173A /* NewTripViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9FB611B2772339500126A59 /* NewTripViewModel.swift */; };
+		B9EBFB05277A3EDE00746A0A /* Extension + UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9EBFB04277A3EDE00746A0A /* Extension + UIButton.swift */; };
+		B9EBFB0A277A3EEA00746A0A /* Extension + UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9EBFB04277A3EDE00746A0A /* Extension + UIButton.swift */; };
 		B9F018982770DF1D006F2DE7 /* TripsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DCF134276BAFF8007B0320 /* TripsViewModel.swift */; };
 		B9F39E052767D28600DAFB4C /* TripTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F39E042767D28600DAFB4C /* TripTableViewCell.swift */; };
 		B9F39E082767D47A00DAFB4C /* Extension + UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F39E072767D47A00DAFB4C /* Extension + UIColor.swift */; };
@@ -86,7 +88,8 @@
 		B9DE0D472768FD7900805E4C /* TripNotesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TripNotesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9DE0D492768FD7900805E4C /* TripNotesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripNotesTests.swift; sourceTree = "<group>"; };
 		B9DE0D4B2768FD7900805E4C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B9E85C3C276E6468004FD1D8 /* Extension UIStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension UIStackView.swift"; sourceTree = "<group>"; };
+		B9E85C3C276E6468004FD1D8 /* Extension + UIStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIStackView.swift"; sourceTree = "<group>"; };
+		B9EBFB04277A3EDE00746A0A /* Extension + UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIButton.swift"; sourceTree = "<group>"; };
 		B9F39E042767D28600DAFB4C /* TripTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripTableViewCell.swift; sourceTree = "<group>"; };
 		B9F39E072767D47A00DAFB4C /* Extension + UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIColor.swift"; sourceTree = "<group>"; };
 		B9FB61172772336700126A59 /* NewTripViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTripViewController.swift; sourceTree = "<group>"; };
@@ -236,9 +239,10 @@
 			children = (
 				B9F39E072767D47A00DAFB4C /* Extension + UIColor.swift */,
 				B9DCF13D276BBE29007B0320 /* Extension + UIBarButtonItem.swift */,
-				B9E85C3C276E6468004FD1D8 /* Extension UIStackView.swift */,
+				B9E85C3C276E6468004FD1D8 /* Extension + UIStackView.swift */,
 				B90DB43F276F323000F1A544 /* Extension + Formatter.swift */,
 				B90DB443276F326000F1A544 /* Extension + Numeric.swift */,
+				B9EBFB04277A3EDE00746A0A /* Extension + UIButton.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -378,10 +382,11 @@
 				B91E813D2767A88E00D0748B /* AppDelegate.swift in Sources */,
 				B91E81562767AA4F00D0748B /* FavouritesViewController.swift in Sources */,
 				B9DCF135276BAFF8007B0320 /* TripsViewModel.swift in Sources */,
-				B9E85C3D276E6468004FD1D8 /* Extension UIStackView.swift in Sources */,
+				B9E85C3D276E6468004FD1D8 /* Extension + UIStackView.swift in Sources */,
 				B90DB438276F14B100F1A544 /* DateFormatterService.swift in Sources */,
 				B90DB44A276F532D00F1A544 /* NotesViewController.swift in Sources */,
 				B91E813F2767A88E00D0748B /* SceneDelegate.swift in Sources */,
+				B9EBFB05277A3EDE00746A0A /* Extension + UIButton.swift in Sources */,
 				B9FB61242772617000126A59 /* CustomTextField.swift in Sources */,
 				B90DB440276F323000F1A544 /* Extension + Formatter.swift in Sources */,
 				B9FB611C2772339500126A59 /* NewTripViewModel.swift in Sources */,
@@ -398,6 +403,7 @@
 				B9DE0D562768FDAB00805E4C /* TripTableViewCell.swift in Sources */,
 				B90DB459276FB39200F1A544 /* TripTableViewCellViewModel.swift in Sources */,
 				B9DE0D5F2768FDB800805E4C /* TripModel.swift in Sources */,
+				B9EBFB0A277A3EEA00746A0A /* Extension + UIButton.swift in Sources */,
 				B9FB611F277236B400126A59 /* NewTripViewController.swift in Sources */,
 				B90DB456276FB38D00F1A544 /* NotesViewController.swift in Sources */,
 				B9EA410B27777D9A00CC173A /* NewTripViewModel.swift in Sources */,
