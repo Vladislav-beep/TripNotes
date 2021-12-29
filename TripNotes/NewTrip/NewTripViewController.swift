@@ -145,6 +145,14 @@ class NewTripViewController: UIViewController {
         return tapGestureRecognizer
     }()
     
+    private lazy var endEditingGestureRecognizer: UITapGestureRecognizer = {
+        let tap = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
+        return tap
+    }()
+    
+    
+    
+    
     init(viewModel: NewTripViewModelProtocol) {
         super.init(nibName: nil, bundle: nil)
         self.viewModel = viewModel
@@ -154,6 +162,17 @@ class NewTripViewController: UIViewController {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        countryTextField.delegate = self
+        beginDateTextField.delegate = self
+        finishDateTextField.delegate = self
+        descriptionTextField.delegate = self
+        
+        view.addGestureRecognizer(endEditingGestureRecognizer)
     }
     
     deinit {
@@ -305,6 +324,25 @@ extension NewTripViewController: UIImagePickerControllerDelegate, UINavigationCo
         avatarImageView.clipsToBounds = true
         
         dismiss(animated: true)
+    }
+}
+
+extension NewTripViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        switch textField {
+        case countryTextField:
+            beginDateTextField.becomeFirstResponder()
+        case beginDateTextField:
+            finishDateTextField.becomeFirstResponder()
+        case finishDateTextField:
+            descriptionTextField.becomeFirstResponder()
+        case descriptionTextField:
+            descriptionTextField.resignFirstResponder()
+        default:
+            descriptionTextField.resignFirstResponder()
+        }
+        return true
     }
 }
 

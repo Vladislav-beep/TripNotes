@@ -32,6 +32,11 @@ class TripsViewController: UIViewController {
         let image = UIImage(systemName: "plus")
         button.setImage(image, for: .normal)
         button.layer.cornerRadius = 25
+        button.layer.shadowColor = UIColor.darkGray.cgColor
+        button.layer.shadowRadius = 5
+        button.layer.shadowOffset = CGSize(width: 0, height: 5)
+        button.layer.shadowOpacity = 0.5
+        button.layer.shouldRasterize = true
         button.addTarget(self, action: #selector(addTrip), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -41,6 +46,11 @@ class TripsViewController: UIViewController {
         let addNoteButton = UIButton()
         addNoteButton.setTitle("Add Note", for: .normal)
         addNoteButton.layer.cornerRadius = 8
+        addNoteButton.layer.shadowColor = UIColor.darkGray.cgColor
+        addNoteButton.layer.shadowRadius = 5
+        addNoteButton.layer.shadowOffset = CGSize(width: 0, height: 5)
+        addNoteButton.layer.shadowOpacity = 0.5
+        addNoteButton.layer.shouldRasterize = true
         addNoteButton.translatesAutoresizingMaskIntoConstraints = false
         addNoteButton.backgroundColor = .tripRed
         return addNoteButton
@@ -70,15 +80,13 @@ class TripsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-       // addTripButton.showAnimatedly()
-       // addNoteButton.hideAnimatedly()
         addTripButton.isHidden = false
         addNoteButton.isHidden = true
         
     }
     
     @objc func addTapped() {
-        // TODO setting screen
+        // TODO settings screen
         print("sc")
     }
     
