@@ -67,14 +67,14 @@ class NewTripViewController: UIViewController {
     private lazy var beginDateTextField: CustomTextField = {
         let beginDateTextField = CustomTextField(imageName: "calendar")
         beginDateTextField.placeholder = "Date when trip begins"
-        beginDateTextField.setInputViewDatePicker(target: self, selector: #selector(tapDone2(_:)))
+        beginDateTextField.setInputViewDatePicker(target: self, selector: #selector(tapDone))
         return beginDateTextField
     }()
     
     private lazy var finishDateTextField: CustomTextField = {
         let finishDateTextField = CustomTextField(imageName: "calendar")
         finishDateTextField.placeholder = "Date when trip ends"
-        finishDateTextField.setInputViewDatePicker(target: self, selector: #selector(tapDone2(_:)))
+        finishDateTextField.setInputViewDatePicker(target: self, selector: #selector(tapDone3))
         return finishDateTextField
     }()
     
@@ -193,28 +193,43 @@ class NewTripViewController: UIViewController {
         finishDateTextField.becomeFirstResponder()
     }
     
-    @objc func tapDone2(_ sender: CustomTextField) {
-        if let inputView = sender.inputView {
+    @objc func tapDone3() {
+        if let inputView = finishDateTextField.inputView {
             let dateformatter = DateFormatter()
             dateformatter.dateStyle = .medium
             var datePicker = UIDatePicker()
             for subview in inputView.subviews {
                 if subview is UIDatePicker {
-                    datePicker = subview as? UIDatePicker ?? UIDatePicker()
+                    datePicker = subview as! UIDatePicker
                 }
             }
-            sender.text = dateformatter.string(from: datePicker.date)
-        }
-        switch sender {
-        case beginDateTextField:
-            finishDateTextField.becomeFirstResponder()
-        case finishDateTextField:
-            descriptionTextField.becomeFirstResponder()
-        default:
-            finishDateTextField.becomeFirstResponder()
+            finishDateTextField.text = dateformatter.string(from: datePicker.date)
         }
         descriptionTextField.becomeFirstResponder()
     }
+    
+//    @objc func tapDone2(_ sender: CustomTextField) {
+//        if let inputView = sender.inputView {
+//            let dateformatter = DateFormatter()
+//            dateformatter.dateStyle = .medium
+//            var datePicker = UIDatePicker()
+//            for subview in inputView.subviews {
+//                if subview is UIDatePicker {
+//                    datePicker = subview as? UIDatePicker ?? UIDatePicker()
+//                }
+//            }
+//            sender.text = dateformatter.string(from: datePicker.date)
+//        }
+//        switch sender {
+//        case beginDateTextField:
+//            finishDateTextField.becomeFirstResponder()
+//        case finishDateTextField:
+//            descriptionTextField.becomeFirstResponder()
+//        default:
+//            finishDateTextField.becomeFirstResponder()
+//        }
+//        descriptionTextField.becomeFirstResponder()
+//    }
     
     @objc func backButtonPressed() {
         dismiss(animated: true)

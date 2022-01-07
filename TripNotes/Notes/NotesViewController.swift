@@ -12,11 +12,11 @@ class NotesViewController: UIViewController {
     private var viewModel: NotesViewModelProtocol?
     
     private lazy var collectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.estimatedItemSize = CGSize(width: 100, height: 100)
-        layout.itemSize = CGSize(width: 100, height: 100)
-        layout.scrollDirection = .vertical
-        layout.minimumInteritemSpacing = 12
+        let layout = createLayout()
+//        layout.estimatedItemSize = CGSize(width: 100, height: 100)
+//        layout.itemSize = CGSize(width: 100, height: 100)
+//        layout.scrollDirection = .vertical
+//        layout.minimumInteritemSpacing = 12
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -24,7 +24,7 @@ class NotesViewController: UIViewController {
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.contentInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+      //  collectionView.contentInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
         return collectionView
     }()
     
@@ -42,7 +42,20 @@ class NotesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.backgroundColor = .tripYellow
+    }
+    
+    private func createLayout() -> UICollectionViewLayout {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                              heightDimension: .fractionalHeight(1.0))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 3, leading: 3, bottom: 3, trailing: 3)
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                               heightDimension: .fractionalWidth(0.4))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 2)
+        let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 0, trailing: 5)
+        let layout = UICollectionViewCompositionalLayout(section: section)
+        return layout
     }
     
     private func setupCollectionViewConstraints() {
@@ -59,12 +72,13 @@ class NotesViewController: UIViewController {
 extension NotesViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        150
+        15
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
         cell.backgroundColor = .tripRed
+        cell.layer.borderWidth = 1
         return cell
     }
 }
@@ -72,3 +86,4 @@ extension NotesViewController: UICollectionViewDataSource {
 extension NotesViewController: UICollectionViewDelegate {
     
 }
+
