@@ -19,4 +19,9 @@ struct Constants {
         case planned = "Planned"
         case past = "Past trip"
     }
+    
+    enum CellIdentifiers: String {
+        case tripTableViewCellId = "tripTableViewCell"
+        case noteCollectionViewCellId = "noteCollectionViewCell"
+    }
 }

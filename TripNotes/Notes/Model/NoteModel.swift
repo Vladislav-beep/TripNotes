@@ -11,6 +11,8 @@ struct TripNote {
     let city: String
     let category: Category
     let price: Double
+    let date: Date
+    let description: String?
     let isFavoutite: Bool
     let adress: String?
 }

@@ -7,11 +7,11 @@
 
 import Foundation
 
-enum Category {
-    case hotels
-    case tranport
-    case foodAndRestaurants
-    case activity
-    case purchases
-    case other
+enum Category: String {
+    case hotels = "Hotels"
+    case tranport = "Transport"
+    case foodAndRestaurants = "Food and Restaurants"
+    case activity = "Activities"
+    case purchases = "Purchases"
+    case other = "Other"
 }

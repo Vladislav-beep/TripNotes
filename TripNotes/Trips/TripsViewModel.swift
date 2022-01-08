@@ -37,7 +37,7 @@ class TripsViewModel: TripsViewModelProtocol {
                 finishedCount += 1
             }
         }
-        switch  section {
+        switch section {
         case 0:
             return plannedCount
         case 1:

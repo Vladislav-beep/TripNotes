@@ -21,7 +21,8 @@ class TripsViewController: UIViewController {
         let tableView = UITableView()
         tableView.backgroundColor = .white
         tableView.separatorStyle = .none
-        tableView.register(TripTableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(TripTableViewCell.self,
+                           forCellReuseIdentifier: Constants.CellIdentifiers.tripTableViewCellId.rawValue)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
@@ -179,7 +180,7 @@ extension TripsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let returnedView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 35))
-           returnedView.backgroundColor = .clear
+        returnedView.backgroundColor = .clear
         
         let kview = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width / 2 - 20, height: 25))
         kview.layer.cornerRadius = 2
@@ -190,13 +191,13 @@ extension TripsViewController: UITableViewDataSource {
         label.font = UIFont.boldSystemFont(ofSize: 22)
         label.text = viewModel.titleForHeaderInSection(section: section)
         label.textColor = .tripBlue
-            returnedView.addSubview(kview)
+        returnedView.addSubview(kview)
         returnedView.addSubview(label)
         return returnedView
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as? TripTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellIdentifiers.tripTableViewCellId.rawValue) as? TripTableViewCell
    
         cell?.viewModel = viewModel.tripCellViewModel(for: indexPath)
         return cell ?? UITableViewCell()
