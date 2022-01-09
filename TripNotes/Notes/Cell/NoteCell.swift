@@ -12,28 +12,41 @@ class NoteCell: UICollectionViewCell {
     private lazy var lowerView: UIView = {
         let lowerView = UIView()
         lowerView.backgroundColor = .tripYellow
+        lowerView.layer.cornerRadius = 10
+        lowerView.layer.opacity = 0.5
         lowerView.translatesAutoresizingMaskIntoConstraints = false
         return lowerView
     }()
     
     private lazy var categoryImageView: UIImageView = {
         let categoryImageView = UIImageView()
+        categoryImageView.layer.cornerRadius = 5
         categoryImageView.translatesAutoresizingMaskIntoConstraints = false
         categoryImageView.backgroundColor = .tripBlue
         return categoryImageView
     }()
     
-    private lazy var categoryTransportLabel: UILabel = {
-        let categoryTransportLabel = UILabel()
-        categoryTransportLabel.text = "Transport"
-        categoryTransportLabel.font = UIFont.boldSystemFont(ofSize: 15)
-        categoryTransportLabel.translatesAutoresizingMaskIntoConstraints = false
-        return categoryTransportLabel
+    private lazy var favouriteButton: UIButton = {
+        let favouriteButton = UIButton()
+        favouriteButton.layer.cornerRadius = 5
+        favouriteButton.setBackgroundImage(UIImage(systemName: "heart"), for: .normal)
+        favouriteButton.tintColor = .tripBlue
+        favouriteButton.backgroundColor = .clear
+        favouriteButton.translatesAutoresizingMaskIntoConstraints = false
+        return favouriteButton
+    }()
+    
+    private lazy var categoryLabel: UILabel = {
+        let categoryLabel = UILabel()
+        categoryLabel.adjustsFontSizeToFitWidth = true
+        categoryLabel.font = UIFont.systemFont(ofSize: 17, weight: .heavy)
+        categoryLabel.translatesAutoresizingMaskIntoConstraints = false
+        return categoryLabel
     }()
     private lazy var cityLabel: UILabel = {
         let cityLabel = UILabel()
-        cityLabel.text = "Berlin"
-        cityLabel.font = UIFont.systemFont(ofSize: 13, weight: .semibold)
+        cityLabel.adjustsFontSizeToFitWidth = true
+        cityLabel.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
         cityLabel.minimumScaleFactor = 0.5
         cityLabel.translatesAutoresizingMaskIntoConstraints = false
         return cityLabel
@@ -41,8 +54,8 @@ class NoteCell: UICollectionViewCell {
     
     private lazy var descriptionLabel: UILabel = {
         let descriptionLabel = UILabel()
-        descriptionLabel.text = "Bus ticket djjlejejkdnkeldfldfkfkfkfkfklf;s's;'ldfmmdf"
-        descriptionLabel.font = UIFont.systemFont(ofSize: 13, weight: .medium)
+        descriptionLabel.adjustsFontSizeToFitWidth = true
+        descriptionLabel.font = UIFont.systemFont(ofSize: 14, weight: .medium)
         descriptionLabel.minimumScaleFactor = 0.5
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         return descriptionLabel
@@ -50,15 +63,15 @@ class NoteCell: UICollectionViewCell {
     
     private lazy var dateLabel: UILabel = {
         let dateLabel = UILabel()
-        dateLabel.text = "11:34 12.02.2020"
-        dateLabel.font = UIFont.systemFont(ofSize: 11, weight: .regular)
+        dateLabel.adjustsFontSizeToFitWidth = true
+        dateLabel.font = UIFont.systemFont(ofSize: 13, weight: .regular)
         dateLabel.minimumScaleFactor = 0.5
         dateLabel.translatesAutoresizingMaskIntoConstraints = false
         return dateLabel
     }()
     
     private lazy var labelStackView: UIStackView = {
-        let labelStackView = UIStackView(arrangedSubviews: [categoryTransportLabel, cityLabel, descriptionLabel, dateLabel],
+        let labelStackView = UIStackView(arrangedSubviews: [categoryLabel, cityLabel, descriptionLabel, dateLabel],
                                          axis: .vertical,
                                          spacing: 5,
                                          distribution: .fillProportionally)
@@ -68,10 +81,11 @@ class NoteCell: UICollectionViewCell {
     
     private lazy var sumLabel: UILabel = {
         let sumLabel = UILabel()
-        sumLabel.text = "21.65 $"
-        sumLabel.font = UIFont.systemFont(ofSize: 23)
+        sumLabel.adjustsFontSizeToFitWidth = true
+        sumLabel.font = UIFont.systemFont(ofSize: 24, weight: .heavy)
         sumLabel.minimumScaleFactor = 0.3
         sumLabel.textAlignment = .right
+        sumLabel.textColor = .tripBlue
         sumLabel.translatesAutoresizingMaskIntoConstraints = false
         return sumLabel
     }()
@@ -82,6 +96,7 @@ class NoteCell: UICollectionViewCell {
         setupCategoryImageViewConstraints()
         setupLabelStackViewConstraints()
         setupSumLabelConstraints()
+        setupFavouteButtonConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -90,11 +105,12 @@ class NoteCell: UICollectionViewCell {
     
     var viewModel: NoteCellViewModelProtocol! {
         didSet {
-            categoryTransportLabel.text = viewModel.category
+            categoryLabel.text = viewModel.category
             descriptionLabel.text = viewModel.description
             cityLabel.text = viewModel.city
             dateLabel.text = viewModel.date
             sumLabel.text = viewModel.price
+            lowerView.setupBackGroundColor(for: viewModel.backGroundCategory)
         }
     }
     
@@ -109,32 +125,42 @@ class NoteCell: UICollectionViewCell {
     }
     
     private func setupCategoryImageViewConstraints() {
-        lowerView.addSubview(categoryImageView)
+        contentView.addSubview(categoryImageView)
         NSLayoutConstraint.activate([
-            categoryImageView.topAnchor.constraint(equalTo: lowerView.topAnchor, constant: 5),
-            categoryImageView.leadingAnchor.constraint(equalTo: lowerView.leadingAnchor, constant: 5),
-            categoryImageView.trailingAnchor.constraint(equalTo: lowerView.trailingAnchor, constant: -5),
+            categoryImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
+            categoryImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
+            categoryImageView.widthAnchor.constraint(equalTo: categoryImageView.heightAnchor),
             categoryImageView.heightAnchor.constraint(equalToConstant: 40)
         ])
     }
     
+    private func setupFavouteButtonConstraints() {
+        contentView.addSubview(favouriteButton)
+        NSLayoutConstraint.activate([
+            favouriteButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
+            favouriteButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5),
+            favouriteButton.widthAnchor.constraint(equalTo: favouriteButton.heightAnchor),
+            favouriteButton.heightAnchor.constraint(equalToConstant: 40)
+        ])
+    }
+    
     private func setupLabelStackViewConstraints() {
-        lowerView.addSubview(labelStackView)
+        contentView.addSubview(labelStackView)
         NSLayoutConstraint.activate([
             labelStackView.topAnchor.constraint(equalTo: categoryImageView.bottomAnchor, constant: 5),
-            labelStackView.leadingAnchor.constraint(equalTo: lowerView.leadingAnchor, constant: 5),
-            labelStackView.trailingAnchor.constraint(equalTo: lowerView.trailingAnchor, constant: -5),
-            labelStackView.bottomAnchor.constraint(equalTo: lowerView.bottomAnchor, constant: -30)
+            labelStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
+            labelStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5),
+            labelStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -30)
         ])
     }
     
     private func setupSumLabelConstraints() {
         contentView.addSubview(sumLabel)
         NSLayoutConstraint.activate([
-            sumLabel.topAnchor.constraint(equalTo: labelStackView.bottomAnchor, constant: 5),
             sumLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5),
-            sumLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 5),
-            sumLabel.widthAnchor.constraint(equalToConstant: 100)
+            sumLabel.widthAnchor.constraint(equalToConstant: 100),
+            sumLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -2),
+            sumLabel.heightAnchor.constraint(equalToConstant: 40)
         ])
     }
 }

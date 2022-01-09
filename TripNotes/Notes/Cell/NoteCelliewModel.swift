@@ -9,6 +9,7 @@ import Foundation
 
 protocol NoteCellViewModelProtocol {
     var category: String { get }
+    var backGroundCategory: Category { get }
     var city: String { get }
     var description: String { get }
     var date: String { get }
@@ -28,6 +29,10 @@ class NoteCellViewModel: NoteCellViewModelProtocol {
     
     var category: String {
         tripNote.category.rawValue
+    }
+    
+    var backGroundCategory: Category {
+        tripNote.category
     }
     
     var city: String {

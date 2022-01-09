@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B90566B2278B396F00B0EF2D /* Extension + UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90566B1278B396F00B0EF2D /* Extension + UIView.swift */; };
 		B909AFDD277E3135006EFC38 /* Extension + UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B909AFDC277E3135006EFC38 /* Extension + UITextField.swift */; };
 		B909AFE0277E437D006EFC38 /* Extension + UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B909AFDC277E3135006EFC38 /* Extension + UITextField.swift */; };
 		B90A37E427784E830028B6F1 /* Extension + UIBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DCF13D276BBE29007B0320 /* Extension + UIBarButtonItem.swift */; };
@@ -67,6 +68,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B90566B1278B396F00B0EF2D /* Extension + UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIView.swift"; sourceTree = "<group>"; };
 		B909AFDC277E3135006EFC38 /* Extension + UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UITextField.swift"; sourceTree = "<group>"; };
 		B90B9A0B276D015A008DD627 /* TripTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripTableViewCellViewModel.swift; sourceTree = "<group>"; };
 		B90DB425276F134B00F1A544 /* NoteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteModel.swift; sourceTree = "<group>"; };
@@ -262,6 +264,7 @@
 				B90DB443276F326000F1A544 /* Extension + Numeric.swift */,
 				B9EBFB04277A3EDE00746A0A /* Extension + UIButton.swift */,
 				B909AFDC277E3135006EFC38 /* Extension + UITextField.swift */,
+				B90566B1278B396F00B0EF2D /* Extension + UIView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -410,6 +413,7 @@
 				B91E813F2767A88E00D0748B /* SceneDelegate.swift in Sources */,
 				B9EBFB05277A3EDE00746A0A /* Extension + UIButton.swift in Sources */,
 				B9FB61242772617000126A59 /* CustomTextField.swift in Sources */,
+				B90566B2278B396F00B0EF2D /* Extension + UIView.swift in Sources */,
 				B90DB440276F323000F1A544 /* Extension + Formatter.swift in Sources */,
 				B9FB611C2772339500126A59 /* NewTripViewModel.swift in Sources */,
 				B90DB42A276F137500F1A544 /* Category.swift in Sources */,

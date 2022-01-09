@@ -28,8 +28,8 @@ struct Trip {
                                   finishingDate: Date(timeIntervalSinceNow: 300000),
                                   description: "Work and travel", currency: .euro,
                                   tripNotes: [
-                                    TripNote(city: "Berlin", category: .hotels, price: 72.00, date: Date(), description: "Hotel living", isFavoutite: false, adress: nil),
-                                    TripNote(city: "Glasgow", category: .activity, price: 26.00, date: Date(), description: "Technishe museum", isFavoutite: true, adress: nil),
+                                    TripNote(city: "Berlin", category: .hotels, price: 1172.00, date: Date(), description: "Hotel living", isFavoutite: false, adress: nil),
+                                    TripNote(city: "Glasgow", category: .activity, price: 344526.00, date: Date(), description: "Technishe museum", isFavoutite: true, adress: nil),
                                     TripNote(city: "Munchen", category: .foodAndRestaurants, price: 2.33, date: Date(), description: "Sossage restaurant", isFavoutite: false, adress: "13 Strasse"),
                                     TripNote(city: "Berlin", category: .purchases, price: 14.4, date: Date(), description: "T-shirt", isFavoutite: true, adress: nil),
                                     TripNote(city: "London", category: .tranport, price: 2.75, date: Date(), description: "Bus ticket", isFavoutite: false, adress: nil),
