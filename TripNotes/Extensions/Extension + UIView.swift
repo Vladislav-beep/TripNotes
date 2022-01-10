@@ -9,10 +9,10 @@ import UIKit
 
 extension UIView {
     
-    func setupBackGroundColor(for category: Category) {
+    func setupBackGroundColor(forCategory category: Category) {
         switch category {
         case .hotels:
-            backgroundColor = .tripGrey
+            backgroundColor = .lightGray
         case .tranport:
             backgroundColor = .tripBlue
         case .foodAndRestaurants:

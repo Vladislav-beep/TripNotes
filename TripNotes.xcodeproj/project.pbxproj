@@ -55,6 +55,7 @@
 		B9FB611C2772339500126A59 /* NewTripViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9FB611B2772339500126A59 /* NewTripViewModel.swift */; };
 		B9FB611F277236B400126A59 /* NewTripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9FB61172772336700126A59 /* NewTripViewController.swift */; };
 		B9FB61242772617000126A59 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9FB61232772617000126A59 /* CustomTextField.swift */; };
+		B9FD6C04278CAF2500311EF1 /* Extension + UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9FD6C03278CAF2500311EF1 /* Extension + UILabel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,6 +106,7 @@
 		B9FB61172772336700126A59 /* NewTripViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTripViewController.swift; sourceTree = "<group>"; };
 		B9FB611B2772339500126A59 /* NewTripViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTripViewModel.swift; sourceTree = "<group>"; };
 		B9FB61232772617000126A59 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		B9FD6C03278CAF2500311EF1 /* Extension + UILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UILabel.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -265,6 +267,7 @@
 				B9EBFB04277A3EDE00746A0A /* Extension + UIButton.swift */,
 				B909AFDC277E3135006EFC38 /* Extension + UITextField.swift */,
 				B90566B1278B396F00B0EF2D /* Extension + UIView.swift */,
+				B9FD6C03278CAF2500311EF1 /* Extension + UILabel.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -410,6 +413,7 @@
 				B9F296C127895C4300844D6C /* NoteCell.swift in Sources */,
 				B90DB438276F14B100F1A544 /* DateFormatterService.swift in Sources */,
 				B90DB44A276F532D00F1A544 /* NotesViewController.swift in Sources */,
+				B9FD6C04278CAF2500311EF1 /* Extension + UILabel.swift in Sources */,
 				B91E813F2767A88E00D0748B /* SceneDelegate.swift in Sources */,
 				B9EBFB05277A3EDE00746A0A /* Extension + UIButton.swift in Sources */,
 				B9FB61242772617000126A59 /* CustomTextField.swift in Sources */,

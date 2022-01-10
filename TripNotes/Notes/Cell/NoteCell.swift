@@ -13,7 +13,7 @@ class NoteCell: UICollectionViewCell {
         let lowerView = UIView()
         lowerView.backgroundColor = .tripYellow
         lowerView.layer.cornerRadius = 10
-        lowerView.layer.opacity = 0.5
+        lowerView.layer.opacity = 1
         lowerView.translatesAutoresizingMaskIntoConstraints = false
         return lowerView
     }()
@@ -96,7 +96,7 @@ class NoteCell: UICollectionViewCell {
         setupCategoryImageViewConstraints()
         setupLabelStackViewConstraints()
         setupSumLabelConstraints()
-        setupFavouteButtonConstraints()
+      //  setupFavouteButtonConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -110,7 +110,11 @@ class NoteCell: UICollectionViewCell {
             cityLabel.text = viewModel.city
             dateLabel.text = viewModel.date
             sumLabel.text = viewModel.price
-            lowerView.setupBackGroundColor(for: viewModel.backGroundCategory)
+            lowerView.setupBackGroundColor(forCategory: viewModel.backGroundCategory)
+            categoryLabel.setupTintColor(forCategory: viewModel.backGroundCategory)
+            cityLabel.setupTintColor(forCategory: viewModel.backGroundCategory)
+            descriptionLabel.setupTintColor(forCategory: viewModel.backGroundCategory)
+            dateLabel.setupTintColor(forCategory: viewModel.backGroundCategory)
         }
     }
     
