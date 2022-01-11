@@ -131,7 +131,8 @@ class NewTripViewController: UIViewController {
         let addNewTripButton = UIButton()
         addNewTripButton.backgroundColor = .tripRed
         addNewTripButton.layer.cornerRadius = 10
-        addNewTripButton.setTitle("Plan new Trip", for: .normal)
+        addNewTripButton.setTitle("+ Add Trip", for: .normal)
+        addNewTripButton.titleLabel?.font = .systemFont(ofSize: 20, weight: .regular)
         addNewTripButton.layer.shadowColor = UIColor.darkGray.cgColor
         addNewTripButton.layer.shadowRadius = 4
         addNewTripButton.layer.shadowOpacity = 0.4
@@ -143,7 +144,6 @@ class NewTripViewController: UIViewController {
     private lazy var tapGestureRecognizer: UITapGestureRecognizer = {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self,
                                                           action: #selector(setAvatarImage(_:)))
-        
         return tapGestureRecognizer
     }()
     
@@ -352,7 +352,7 @@ class NewTripViewController: UIViewController {
             addNewTripButton.bottomAnchor.constraint(equalTo: lowerView.bottomAnchor, constant: -35),
             addNewTripButton.leadingAnchor.constraint(equalTo: lowerView.leadingAnchor, constant: 20),
             addNewTripButton.trailingAnchor.constraint(equalTo: lowerView.trailingAnchor, constant: -20),
-            addNewTripButton.heightAnchor.constraint(equalToConstant: 50)
+            addNewTripButton.heightAnchor.constraint(equalToConstant: 58)
         ])
     }
 }

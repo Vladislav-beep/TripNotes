@@ -52,6 +52,7 @@ class TripsViewController: UIViewController {
         addNoteButton.layer.shadowOffset = CGSize(width: 0, height: 5)
         addNoteButton.layer.shadowOpacity = 0.5
         addNoteButton.layer.shouldRasterize = true
+        addNoteButton.addTarget(self, action: #selector(addNote), for: .touchUpInside)
         addNoteButton.translatesAutoresizingMaskIntoConstraints = false
         addNoteButton.backgroundColor = .tripRed
         return addNoteButton
@@ -95,6 +96,13 @@ class TripsViewController: UIViewController {
         let newTripViewModel = viewModel.newTripViewModel
         let newTripVC = NewTripViewController(viewModel: newTripViewModel())
         present(newTripVC, animated: true)
+    }
+    
+    @objc func addNote() {
+        let newNoteViewModel = viewModel.newNoteViewModel()
+        let newNoteVC = NewNoteViewController(viewModel: newNoteViewModel)
+        parent?.present(newNoteVC, animated: true)
+      //  present(newNoteVC, animated: true)
     }
     
     private func setupNavigationBar() {

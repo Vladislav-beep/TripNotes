@@ -56,6 +56,8 @@
 		B9FB611F277236B400126A59 /* NewTripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9FB61172772336700126A59 /* NewTripViewController.swift */; };
 		B9FB61242772617000126A59 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9FB61232772617000126A59 /* CustomTextField.swift */; };
 		B9FD6C04278CAF2500311EF1 /* Extension + UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9FD6C03278CAF2500311EF1 /* Extension + UILabel.swift */; };
+		B9FD6C08278E040900311EF1 /* NewNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9FD6C07278E040900311EF1 /* NewNoteViewController.swift */; };
+		B9FD6C0C278E043600311EF1 /* NewNoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9FD6C0B278E043600311EF1 /* NewNoteViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,6 +109,8 @@
 		B9FB611B2772339500126A59 /* NewTripViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTripViewModel.swift; sourceTree = "<group>"; };
 		B9FB61232772617000126A59 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		B9FD6C03278CAF2500311EF1 /* Extension + UILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UILabel.swift"; sourceTree = "<group>"; };
+		B9FD6C07278E040900311EF1 /* NewNoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewNoteViewController.swift; sourceTree = "<group>"; };
+		B9FD6C0B278E043600311EF1 /* NewNoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewNoteViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,6 +195,7 @@
 				B90DB424276F132C00F1A544 /* Notes */,
 				B9DE0D65276900F700805E4C /* Favourites */,
 				B9FB61162772334000126A59 /* NewTrip */,
+				B9FD6C0F278E045B00311EF1 /* New Note */,
 				B9DCF13A276BB6F0007B0320 /* TabBar */,
 				B90DB436276F147000F1A544 /* Services */,
 				B9F39E0A2767D47F00DAFB4C /* Extensions */,
@@ -289,6 +294,15 @@
 				B9A0EF6A2774DDCE00DE65E2 /* CurrencyButton.swift */,
 			);
 			path = SubViews;
+			sourceTree = "<group>";
+		};
+		B9FD6C0F278E045B00311EF1 /* New Note */ = {
+			isa = PBXGroup;
+			children = (
+				B9FD6C07278E040900311EF1 /* NewNoteViewController.swift */,
+				B9FD6C0B278E043600311EF1 /* NewNoteViewModel.swift */,
+			);
+			path = "New Note";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -402,6 +416,7 @@
 				B90DB44F276F54F100F1A544 /* NotesViewModel.swift in Sources */,
 				B909AFDD277E3135006EFC38 /* Extension + UITextField.swift in Sources */,
 				B90DB42E276F139700F1A544 /* Currency.swift in Sources */,
+				B9FD6C0C278E043600311EF1 /* NewNoteViewModel.swift in Sources */,
 				B91E81412767A88E00D0748B /* TripsViewController.swift in Sources */,
 				B9F39E082767D47A00DAFB4C /* Extension + UIColor.swift in Sources */,
 				B9A0EF6B2774DDCE00DE65E2 /* CurrencyButton.swift in Sources */,
@@ -411,6 +426,7 @@
 				B9DCF135276BAFF8007B0320 /* TripsViewModel.swift in Sources */,
 				B9E85C3D276E6468004FD1D8 /* Extension + UIStackView.swift in Sources */,
 				B9F296C127895C4300844D6C /* NoteCell.swift in Sources */,
+				B9FD6C08278E040900311EF1 /* NewNoteViewController.swift in Sources */,
 				B90DB438276F14B100F1A544 /* DateFormatterService.swift in Sources */,
 				B90DB44A276F532D00F1A544 /* NotesViewController.swift in Sources */,
 				B9FD6C04278CAF2500311EF1 /* Extension + UILabel.swift in Sources */,
