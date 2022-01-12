@@ -96,19 +96,22 @@ class NewTripViewController: UIViewController {
     }()
     
     private lazy var dollarButton: CurrencyButton = {
-        let dollarButton = CurrencyButton(title: "$")
+        let dollarButton = CurrencyButton(title: "$", fontSize: 30)
+        dollarButton.setup()
         dollarButton.addTarget(self, action: #selector(selectCurrency(_:)), for: .touchUpInside)
         return dollarButton
     }()
     
     private lazy var rubleButton: CurrencyButton = {
-        let rubleButton = CurrencyButton(title: "₽")
+        let rubleButton = CurrencyButton(title: "₽", fontSize: 30)
+        rubleButton.setup()
         rubleButton.addTarget(self, action: #selector(selectCurrency(_:)), for: .touchUpInside)
         return rubleButton
     }()
     
     private lazy var euroButton: CurrencyButton = {
-        let euroButton = CurrencyButton(title: "€")
+        let euroButton = CurrencyButton(title: "€", fontSize: 30)
+        euroButton.setup()
         euroButton.addTarget(self, action: #selector(selectCurrency(_:)), for: .touchUpInside)
         return euroButton
     }()

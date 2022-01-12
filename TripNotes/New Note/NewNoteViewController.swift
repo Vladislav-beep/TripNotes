@@ -11,6 +11,43 @@ class NewNoteViewController: UIViewController {
     
     var viewModel: NewNoteViewModelProtocol?
     
+    private lazy var scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        return scrollView
+    }()
+    
+    private lazy var lowerView: UIView = {
+        let lowerView = UIView()
+        lowerView.backgroundColor = .white
+        lowerView.translatesAutoresizingMaskIntoConstraints = false
+        return lowerView
+    }()
+    
+    private lazy var transportLabel: UILabel = {
+        let lb = UILabel()
+        lb.text = "Transport"
+        lb.adjustsFontSizeToFitWidth = true
+        lb.translatesAutoresizingMaskIntoConstraints = false
+        return lb
+    }()
+    
+    private lazy var transportButton: CurrencyButton = {
+        let transportButton = CurrencyButton()
+        transportButton.setImage(imageName: "car")
+        transportButton.setup()
+       // transportButton.tintColor = .tripBlue
+      //  dollarButton.addTarget(self, action: #selector(selectCurrency(_:)), for: .touchUpInside)
+        transportButton.translatesAutoresizingMaskIntoConstraints = false
+        return transportButton
+    }()
+    
+    private lazy var transportStackView: UIStackView = {
+        let stack = UIStackView(arrangedSubviews: [transportLabel, transportButton], axis: .vertical, spacing: 5, distribution: .fillProportionally)
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        return stack
+    }()
+    
     private lazy var addNoteTripButton: UIButton = {
         let addNoteTripButton = UIButton()
         addNoteTripButton.backgroundColor = .tripRed
@@ -28,6 +65,7 @@ class NewNoteViewController: UIViewController {
     init(viewModel: NewNoteViewModelProtocol) {
         super.init(nibName: nil, bundle: nil)
         self.viewModel = viewModel
+        setupConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -38,6 +76,57 @@ class NewNoteViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
     }
+    
+    private func setupConstraints() {
+        setupScrollViewConstraints()
+        setupLowerViewConstraints()
+        setupAddNewTripButtonConstraints()
+        setup()
+    }
+    
+    private func setupScrollViewConstraints() {
+        view.addSubview(scrollView)
+        NSLayoutConstraint.activate([
+            scrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
+        ])
+    }
+    
+    private func setupLowerViewConstraints() {
+        scrollView.addSubview(lowerView)
+        NSLayoutConstraint.activate([
+            lowerView.centerYAnchor.constraint(equalTo: scrollView.centerYAnchor),
+            lowerView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
+            lowerView.heightAnchor.constraint(equalTo: view.heightAnchor),
+            lowerView.widthAnchor.constraint(equalTo: view.widthAnchor)
+        ])
+    }
+    
+    private func setupAddNewTripButtonConstraints() {
+        lowerView.addSubview(addNoteTripButton)
+        NSLayoutConstraint.activate([
+            addNoteTripButton.bottomAnchor.constraint(equalTo: lowerView.bottomAnchor, constant: -35),
+            addNoteTripButton.leadingAnchor.constraint(equalTo: lowerView.leadingAnchor, constant: 20),
+            addNoteTripButton.trailingAnchor.constraint(equalTo: lowerView.trailingAnchor, constant: -20),
+            addNoteTripButton.heightAnchor.constraint(equalToConstant: 58)
+        ])
+    }
+    
+    private func setup() {
+        lowerView.addSubview(transportStackView)
+        NSLayoutConstraint.activate([
+            transportStackView.topAnchor.constraint(equalTo: lowerView.topAnchor, constant: 35),
+            transportStackView.leadingAnchor.constraint(equalTo: lowerView.leadingAnchor, constant: 20),
+          //  transportStackView.trailingAnchor.constraint(equalTo: lowerView.trailingAnchor, constant: -20),
+            transportStackView.heightAnchor.constraint(equalToConstant: 80),
+            transportStackView.widthAnchor.constraint(equalToConstant: 58)
+        ])
+    }
 }
+
+
+
 
 

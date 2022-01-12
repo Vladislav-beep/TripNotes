@@ -9,7 +9,8 @@ import UIKit
 
 class CurrencyButton: UIButton {
     
-    private var title: String
+    private var title: String?
+    private var fontSize: CGFloat?
     private var selectedBackgroundColor: UIColor?
     private var defaultBackgroundColor: UIColor? {
         didSet {
@@ -17,18 +18,30 @@ class CurrencyButton: UIButton {
         }
     }
     
-    init(title: String) {
+    init(title: String?, fontSize: CGFloat?) {
         self.title = title
+        self.fontSize = fontSize
         super.init(frame: .zero)
-        
+    }
+    
+    init() {
+        super.init(frame: .zero)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setup() {
         setBackgroundColor(.tripGrey, for: .normal)
         setBackgroundColor(.tripRed, for: .selected)
-        setTitleColor(.darkGray, for: .normal)
+        setTitleColor(.tripBlue, for: .normal)
+        tintColor = .tripBlue
         setTitle(title, for: .normal)
         
         titleLabel?.adjustsFontForContentSizeCategory = true
         titleLabel?.adjustsFontSizeToFitWidth = true
-        titleLabel?.font = .systemFont(ofSize: 30, weight: .medium)
+        titleLabel?.font = .systemFont(ofSize: fontSize ?? 15, weight: .medium)
         titleLabel?.minimumScaleFactor = 0.1
         layer.cornerRadius = 6
         layer.shadowColor = UIColor.darkGray.cgColor
@@ -37,10 +50,6 @@ class CurrencyButton: UIButton {
         layer.shadowOpacity = 0.5
         
         translatesAutoresizingMaskIntoConstraints = false
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
     enum ButtonState {
@@ -72,6 +81,10 @@ class CurrencyButton: UIButton {
         case .normal:
             defaultBackgroundColor = color
         }
+    }
+    
+    func setImage(imageName: String) {
+        setBackgroundImage(UIImage(systemName: imageName), for: .normal)
     }
     
     func pulsate() {
