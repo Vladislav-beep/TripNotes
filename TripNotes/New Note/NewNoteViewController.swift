@@ -24,6 +24,23 @@ class NewNoteViewController: UIViewController {
         return lowerView
     }()
     
+    private lazy var redView: UIView = {
+        let redView = UIView()
+        redView.backgroundColor = .tripRed
+        redView.translatesAutoresizingMaskIntoConstraints = false
+        return redView
+    }()
+    
+    private lazy var backButton: UIButton = {
+        let backButton = UIButton()
+        let image = UIImage(systemName: "chevron.compact.left")
+        backButton.tintColor = .tripWhite
+        backButton.setBackgroundImage(image, for: .normal)
+        backButton.addTarget(self, action: #selector(backButtonPressed), for: .touchUpInside)
+        backButton.translatesAutoresizingMaskIntoConstraints = false
+        return backButton
+    }()
+    
     private lazy var transportLabel: UILabel = {
         let lb = SelectionLabel(labelText: "Transport")
         return lb
@@ -170,6 +187,10 @@ class NewNoteViewController: UIViewController {
         view.backgroundColor = .white
     }
     
+    @objc func backButtonPressed() {
+        dismiss(animated: true)
+    }
+    
     @objc func selectCategory(_ sender: SelectionButton) {
         buttonArray.forEach {
             $0.isSelected = false
@@ -182,7 +203,9 @@ class NewNoteViewController: UIViewController {
     private func setupConstraints() {
         setupScrollViewConstraints()
         setupLowerViewConstraints()
+        setupRedViewConstraints()
         setupAddNewTripButtonConstraints()
+        setupBackButtonConstraints()
         setup()
     }
     
@@ -216,10 +239,30 @@ class NewNoteViewController: UIViewController {
         ])
     }
     
+    private func setupRedViewConstraints() {
+        lowerView.addSubview(redView)
+        NSLayoutConstraint.activate([
+            redView.topAnchor.constraint(equalTo: lowerView.topAnchor, constant: 0),
+            redView.leadingAnchor.constraint(equalTo: lowerView.leadingAnchor, constant: 0),
+            redView.trailingAnchor.constraint(equalTo: lowerView.trailingAnchor, constant: 0),
+            redView.heightAnchor.constraint(equalToConstant: 42)
+        ])
+    }
+    
+    private func setupBackButtonConstraints() {
+        lowerView.addSubview(backButton)
+        NSLayoutConstraint.activate([
+            backButton.topAnchor.constraint(equalTo: lowerView.topAnchor, constant: 10),
+            backButton.leadingAnchor.constraint(equalTo: lowerView.leadingAnchor, constant: 10),
+            backButton.heightAnchor.constraint(equalToConstant: 26),
+            backButton.widthAnchor.constraint(equalToConstant: 26)
+        ])
+    }
+    
     private func setup() {
         lowerView.addSubview(categoryStackView)
         NSLayoutConstraint.activate([
-            categoryStackView.topAnchor.constraint(equalTo: lowerView.topAnchor, constant: 35),
+            categoryStackView.topAnchor.constraint(equalTo: redView.bottomAnchor, constant: 35),
             categoryStackView.leadingAnchor.constraint(equalTo: lowerView.leadingAnchor, constant: 30),
             categoryStackView.trailingAnchor.constraint(equalTo: lowerView.trailingAnchor, constant: -30),
             categoryStackView.heightAnchor.constraint(equalToConstant: 80)
