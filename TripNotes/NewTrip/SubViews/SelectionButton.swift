@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CurrencyButton: UIButton {
+class SelectionButton: UIButton {
     
     private var title: String?
     private var fontSize: CGFloat?
@@ -28,10 +28,12 @@ class CurrencyButton: UIButton {
         self.title = title
         self.fontSize = fontSize
         super.init(frame: .zero)
+        setup()
     }
     
     init() {
         super.init(frame: .zero)
+        setup()
     }
     
     required init?(coder: NSCoder) {
@@ -97,6 +99,7 @@ class CurrencyButton: UIButton {
             categoryImageView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             categoryImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor)
         ])
+        categoryImageView.contentMode = .scaleAspectFit
         categoryImageView.image = UIImage(systemName: imageName)
     }
     

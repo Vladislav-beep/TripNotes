@@ -95,28 +95,25 @@ class NewTripViewController: UIViewController {
         return stack
     }()
     
-    private lazy var dollarButton: CurrencyButton = {
-        let dollarButton = CurrencyButton(title: "$", fontSize: 30)
-        dollarButton.setup()
+    private lazy var dollarButton: SelectionButton = {
+        let dollarButton = SelectionButton(title: "$", fontSize: 30)
         dollarButton.addTarget(self, action: #selector(selectCurrency(_:)), for: .touchUpInside)
         return dollarButton
     }()
     
-    private lazy var rubleButton: CurrencyButton = {
-        let rubleButton = CurrencyButton(title: "₽", fontSize: 30)
-        rubleButton.setup()
+    private lazy var rubleButton: SelectionButton = {
+        let rubleButton = SelectionButton(title: "₽", fontSize: 30)
         rubleButton.addTarget(self, action: #selector(selectCurrency(_:)), for: .touchUpInside)
         return rubleButton
     }()
     
-    private lazy var euroButton: CurrencyButton = {
-        let euroButton = CurrencyButton(title: "€", fontSize: 30)
-        euroButton.setup()
+    private lazy var euroButton: SelectionButton = {
+        let euroButton = SelectionButton(title: "€", fontSize: 30)
         euroButton.addTarget(self, action: #selector(selectCurrency(_:)), for: .touchUpInside)
         return euroButton
     }()
     
-    private lazy var buttonArray: [CurrencyButton] = {
+    private lazy var buttonArray: [SelectionButton] = {
         let array = [dollarButton, rubleButton, euroButton]
         return array
     }()
@@ -126,7 +123,6 @@ class NewTripViewController: UIViewController {
                                       axis: .horizontal,
                                       spacing: 14,
                                       distribution: .fillEqually)
-        buttonStack.translatesAutoresizingMaskIntoConstraints = false
         return buttonStack
     }()
     
@@ -238,7 +234,7 @@ class NewTripViewController: UIViewController {
         dismiss(animated: true)
     }
     
-    @objc func selectCurrency(_ sender: CurrencyButton) {
+    @objc func selectCurrency(_ sender: SelectionButton) {
         buttonArray.forEach {
             $0.isSelected = false
             $0.stopAnimation()

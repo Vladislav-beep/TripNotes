@@ -31,9 +31,11 @@
 		B91E81492767A88F00D0748B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B91E81472767A88F00D0748B /* LaunchScreen.storyboard */; };
 		B91E81532767A9AC00D0748B /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91E81522767A9AC00D0748B /* TabBarViewController.swift */; };
 		B91E81562767AA4F00D0748B /* FavouritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91E81552767AA4F00D0748B /* FavouritesViewController.swift */; };
-		B9A0EF6B2774DDCE00DE65E2 /* CurrencyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A0EF6A2774DDCE00DE65E2 /* CurrencyButton.swift */; };
+		B961212827934BDE00B7B81E /* NoteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90DB425276F134B00F1A544 /* NoteModel.swift */; };
+		B961212D279351FB00B7B81E /* SelectionLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B961212C279351FB00B7B81E /* SelectionLabel.swift */; };
+		B9A0EF6B2774DDCE00DE65E2 /* SelectionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A0EF6A2774DDCE00DE65E2 /* SelectionButton.swift */; };
 		B9D9FC11278F390B007710B4 /* NewNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9FD6C07278E040900311EF1 /* NewNoteViewController.swift */; };
-		B9D9FC14278F4E1D007710B4 /* CurrencyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A0EF6A2774DDCE00DE65E2 /* CurrencyButton.swift */; };
+		B9D9FC14278F4E1D007710B4 /* SelectionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A0EF6A2774DDCE00DE65E2 /* SelectionButton.swift */; };
 		B9DCF135276BAFF8007B0320 /* TripsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DCF134276BAFF8007B0320 /* TripsViewModel.swift */; };
 		B9DCF13E276BBE29007B0320 /* Extension + UIBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DCF13D276BBE29007B0320 /* Extension + UIBarButtonItem.swift */; };
 		B9DE0D412768FD6400805E4C /* TripModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DE0D402768FD6400805E4C /* TripModel.swift */; };
@@ -94,7 +96,8 @@
 		B91E814A2767A88F00D0748B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B91E81522767A9AC00D0748B /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		B91E81552767AA4F00D0748B /* FavouritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewController.swift; sourceTree = "<group>"; };
-		B9A0EF6A2774DDCE00DE65E2 /* CurrencyButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyButton.swift; sourceTree = "<group>"; };
+		B961212C279351FB00B7B81E /* SelectionLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionLabel.swift; sourceTree = "<group>"; };
+		B9A0EF6A2774DDCE00DE65E2 /* SelectionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionButton.swift; sourceTree = "<group>"; };
 		B9DCF134276BAFF8007B0320 /* TripsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripsViewModel.swift; sourceTree = "<group>"; };
 		B9DCF13D276BBE29007B0320 /* Extension + UIBarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIBarButtonItem.swift"; sourceTree = "<group>"; };
 		B9DE0D402768FD6400805E4C /* TripModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripModel.swift; sourceTree = "<group>"; };
@@ -209,6 +212,14 @@
 			path = TripNotes;
 			sourceTree = "<group>";
 		};
+		B961212B279351E300B7B81E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B961212C279351FB00B7B81E /* SelectionLabel.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		B9DCF13A276BB6F0007B0320 /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -293,7 +304,7 @@
 			isa = PBXGroup;
 			children = (
 				B9FB61232772617000126A59 /* CustomTextField.swift */,
-				B9A0EF6A2774DDCE00DE65E2 /* CurrencyButton.swift */,
+				B9A0EF6A2774DDCE00DE65E2 /* SelectionButton.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -301,6 +312,7 @@
 		B9FD6C0F278E045B00311EF1 /* New Note */ = {
 			isa = PBXGroup;
 			children = (
+				B961212B279351E300B7B81E /* Views */,
 				B9FD6C07278E040900311EF1 /* NewNoteViewController.swift */,
 				B9FD6C0B278E043600311EF1 /* NewNoteViewModel.swift */,
 			);
@@ -421,7 +433,7 @@
 				B9FD6C0C278E043600311EF1 /* NewNoteViewModel.swift in Sources */,
 				B91E81412767A88E00D0748B /* TripsViewController.swift in Sources */,
 				B9F39E082767D47A00DAFB4C /* Extension + UIColor.swift in Sources */,
-				B9A0EF6B2774DDCE00DE65E2 /* CurrencyButton.swift in Sources */,
+				B9A0EF6B2774DDCE00DE65E2 /* SelectionButton.swift in Sources */,
 				B9F296C527895C7F00844D6C /* NoteCelliewModel.swift in Sources */,
 				B91E813D2767A88E00D0748B /* AppDelegate.swift in Sources */,
 				B91E81562767AA4F00D0748B /* FavouritesViewController.swift in Sources */,
@@ -429,6 +441,7 @@
 				B9E85C3D276E6468004FD1D8 /* Extension + UIStackView.swift in Sources */,
 				B9F296C127895C4300844D6C /* NoteCell.swift in Sources */,
 				B9FD6C08278E040900311EF1 /* NewNoteViewController.swift in Sources */,
+				B961212D279351FB00B7B81E /* SelectionLabel.swift in Sources */,
 				B90DB438276F14B100F1A544 /* DateFormatterService.swift in Sources */,
 				B90DB44A276F532D00F1A544 /* NotesViewController.swift in Sources */,
 				B9FD6C04278CAF2500311EF1 /* Extension + UILabel.swift in Sources */,
@@ -450,11 +463,12 @@
 				B90A37E427784E830028B6F1 /* Extension + UIBarButtonItem.swift in Sources */,
 				B9DE0D562768FDAB00805E4C /* TripTableViewCell.swift in Sources */,
 				B90DB459276FB39200F1A544 /* TripTableViewCellViewModel.swift in Sources */,
-				B9D9FC14278F4E1D007710B4 /* CurrencyButton.swift in Sources */,
+				B9D9FC14278F4E1D007710B4 /* SelectionButton.swift in Sources */,
 				B909AFE0277E437D006EFC38 /* Extension + UITextField.swift in Sources */,
 				B9DE0D5F2768FDB800805E4C /* TripModel.swift in Sources */,
 				B9EBFB0A277A3EEA00746A0A /* Extension + UIButton.swift in Sources */,
 				B9FB611F277236B400126A59 /* NewTripViewController.swift in Sources */,
+				B961212827934BDE00B7B81E /* NoteModel.swift in Sources */,
 				B9D9FC11278F390B007710B4 /* NewNoteViewController.swift in Sources */,
 				B90DB456276FB38D00F1A544 /* NotesViewController.swift in Sources */,
 				B9EA410B27777D9A00CC173A /* NewTripViewModel.swift in Sources */,
