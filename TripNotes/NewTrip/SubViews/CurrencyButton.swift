@@ -18,6 +18,12 @@ class CurrencyButton: UIButton {
         }
     }
     
+    private lazy var categoryImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    
     init(title: String?, fontSize: CGFloat?) {
         self.title = title
         self.fontSize = fontSize
@@ -84,7 +90,14 @@ class CurrencyButton: UIButton {
     }
     
     func setImage(imageName: String) {
-        setBackgroundImage(UIImage(systemName: imageName), for: .normal)
+        self.addSubview(categoryImageView)
+        NSLayoutConstraint.activate([
+            categoryImageView.heightAnchor.constraint(equalToConstant: 40),
+            categoryImageView.widthAnchor.constraint(equalToConstant: 40),
+            categoryImageView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            categoryImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor)
+        ])
+        categoryImageView.image = UIImage(systemName: imageName)
     }
     
     func pulsate() {

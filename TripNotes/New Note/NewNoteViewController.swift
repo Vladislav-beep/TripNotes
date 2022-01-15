@@ -29,6 +29,7 @@ class NewNoteViewController: UIViewController {
         lb.text = "Transport"
         lb.adjustsFontSizeToFitWidth = true
         lb.translatesAutoresizingMaskIntoConstraints = false
+        lb.heightAnchor.constraint(equalToConstant: 20).isActive = true
         return lb
     }()
     
@@ -36,8 +37,7 @@ class NewNoteViewController: UIViewController {
         let transportButton = CurrencyButton()
         transportButton.setImage(imageName: "car")
         transportButton.setup()
-       // transportButton.tintColor = .tripBlue
-      //  dollarButton.addTarget(self, action: #selector(selectCurrency(_:)), for: .touchUpInside)
+        transportButton.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
         transportButton.translatesAutoresizingMaskIntoConstraints = false
         return transportButton
     }()
@@ -76,6 +76,20 @@ class NewNoteViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
     }
+    
+    @objc func buttonTapped(_ sender: CurrencyButton) {
+        transportButton.isSelected = true
+        transportButton.pulsate()
+    }
+    
+//    @objc func selectCurrency(_ sender: CurrencyButton) {
+//        buttonArray.forEach {
+//            $0.isSelected = false
+//            $0.stopAnimation()
+//        }
+//        sender.isSelected = true
+//        sender.pulsate()
+//    }
     
     private func setupConstraints() {
         setupScrollViewConstraints()
@@ -120,7 +134,7 @@ class NewNoteViewController: UIViewController {
             transportStackView.topAnchor.constraint(equalTo: lowerView.topAnchor, constant: 35),
             transportStackView.leadingAnchor.constraint(equalTo: lowerView.leadingAnchor, constant: 20),
           //  transportStackView.trailingAnchor.constraint(equalTo: lowerView.trailingAnchor, constant: -20),
-            transportStackView.heightAnchor.constraint(equalToConstant: 80),
+            transportStackView.heightAnchor.constraint(equalToConstant: 100),
             transportStackView.widthAnchor.constraint(equalToConstant: 58)
         ])
     }
