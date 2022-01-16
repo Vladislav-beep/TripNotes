@@ -1,14 +1,14 @@
 //
-//  SelectionLabel.swift
+//  sectionLabel.swift
 //  TripNotes
 //
-//  Created by Владислав Сизонов on 15.01.2022.
+//  Created by Владислав Сизонов on 16.01.2022.
 //
 
 import UIKit
 
-class SelectionLabel: UILabel {
-   
+class SectionLabel: UILabel {
+    
     private var labelText: String
     
     init(labelText: String) {
@@ -23,10 +23,9 @@ class SelectionLabel: UILabel {
     
     func initialize() {
         text = labelText
-        textColor = .tripBlue
-        textAlignment = .center
-        adjustsFontSizeToFitWidth = true
+        textColor = .tripRed
+        font = UIFont.systemFont(ofSize: 21, weight: .heavy)
         translatesAutoresizingMaskIntoConstraints = false
-        heightAnchor.constraint(equalToConstant: 20).isActive = true
+        heightAnchor.constraint(equalToConstant: 25).isActive = true
     }
 }

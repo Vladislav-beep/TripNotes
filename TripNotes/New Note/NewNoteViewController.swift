@@ -41,6 +41,11 @@ class NewNoteViewController: UIViewController {
         return backButton
     }()
     
+    private lazy var categoryLabel: UILabel = {
+        let label = SectionLabel(labelText: "Category")
+        return label
+    }()
+    
     private lazy var transportLabel: UILabel = {
         let lb = SelectionLabel(labelText: "Transport")
         return lb
@@ -148,13 +153,68 @@ class NewNoteViewController: UIViewController {
         return stack
     }()
     
-    private lazy var categoryStackView: UIStackView = {
+    private lazy var categoryOneStackView: UIStackView = {
         let stack = UIStackView(arrangedSubviews: [transportStackView, hotelStackView, foodStackView], axis: .horizontal, spacing: 5, distribution: .fillEqually)
         return stack
     }()
     
-    private lazy var category2StackView: UIStackView = {
+    private lazy var categoryTwoStackView: UIStackView = {
         let stack = UIStackView(arrangedSubviews: [activityStackView, perhaseStackView, otherStackView], axis: .horizontal, spacing: 5, distribution: .fillEqually)
+        return stack
+    }()
+    
+    private lazy var cityLabel: SectionLabel = {
+        let label = SectionLabel(labelText: "City")
+        return label
+    }()
+    
+    private lazy var cityTextField: CustomTextField = {
+        let textField = CustomTextField(imageName: "building.2.fill")
+        textField.placeholder = "Enter city"
+        return textField
+    }()
+    
+    private lazy var priceLabel: UILabel = {
+        let label = SectionLabel(labelText: "Price")
+        return label
+    }()
+    
+    private lazy var priceTextField: CustomTextField = {
+        let textField = CustomTextField(imageName: "eurosign.square")
+        textField.placeholder = "Enter price"
+        return textField
+    }()
+    
+    private lazy var descriptionLabel: UILabel = {
+        let label = SectionLabel(labelText: "Description")
+        return label
+    }()
+    
+    private lazy var descruptionTextView: UITextView = {
+        let textView = UITextView()
+        textView.backgroundColor = .tripGrey
+        textView.layer.cornerRadius = 10
+        textView.translatesAutoresizingMaskIntoConstraints = false
+        return textView
+    }()
+    
+    private lazy var cityStack: UIStackView = {
+        let stack = UIStackView(arrangedSubviews: [cityLabel, cityTextField], axis: .vertical, spacing: 6, distribution: .fillProportionally)
+        return stack
+    }()
+    
+    private lazy var priceStack: UIStackView = {
+        let stack = UIStackView(arrangedSubviews: [priceLabel, priceTextField], axis: .vertical, spacing: 6, distribution: .fillProportionally)
+        return stack
+    }()
+    
+    private lazy var stack: UIStackView = {
+        let stack = UIStackView(arrangedSubviews: [cityStack, priceStack], axis: .vertical, spacing: 20, distribution: .fillEqually)
+        return stack
+    }()
+    
+    private lazy var descriptionStack: UIStackView = {
+        let stack = UIStackView(arrangedSubviews: [descriptionLabel, descruptionTextView], axis: .vertical, spacing: 6, distribution: .fill)
         return stack
     }()
     
@@ -204,9 +264,12 @@ class NewNoteViewController: UIViewController {
         setupScrollViewConstraints()
         setupLowerViewConstraints()
         setupRedViewConstraints()
-        setupAddNewTripButtonConstraints()
         setupBackButtonConstraints()
-        setup()
+        setupCategoryLabelConstraints()
+        setupStackViewConstraints()
+        setupOtherStackViewConstraints()
+        setupDescriptionStackViewConstraints()
+        setupAddNewTripButtonConstraints()
     }
     
     private func setupScrollViewConstraints() {
@@ -226,16 +289,6 @@ class NewNoteViewController: UIViewController {
             lowerView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
             lowerView.heightAnchor.constraint(equalTo: view.heightAnchor),
             lowerView.widthAnchor.constraint(equalTo: view.widthAnchor)
-        ])
-    }
-    
-    private func setupAddNewTripButtonConstraints() {
-        lowerView.addSubview(addNoteTripButton)
-        NSLayoutConstraint.activate([
-            addNoteTripButton.bottomAnchor.constraint(equalTo: lowerView.bottomAnchor, constant: -35),
-            addNoteTripButton.leadingAnchor.constraint(equalTo: lowerView.leadingAnchor, constant: 20),
-            addNoteTripButton.trailingAnchor.constraint(equalTo: lowerView.trailingAnchor, constant: -20),
-            addNoteTripButton.heightAnchor.constraint(equalToConstant: 58)
         ])
     }
     
@@ -259,21 +312,61 @@ class NewNoteViewController: UIViewController {
         ])
     }
     
-    private func setup() {
-        lowerView.addSubview(categoryStackView)
+    private func setupCategoryLabelConstraints() {
+        lowerView.addSubview(categoryLabel)
         NSLayoutConstraint.activate([
-            categoryStackView.topAnchor.constraint(equalTo: redView.bottomAnchor, constant: 35),
-            categoryStackView.leadingAnchor.constraint(equalTo: lowerView.leadingAnchor, constant: 30),
-            categoryStackView.trailingAnchor.constraint(equalTo: lowerView.trailingAnchor, constant: -30),
-            categoryStackView.heightAnchor.constraint(equalToConstant: 80)
+            categoryLabel.topAnchor.constraint(equalTo: redView.bottomAnchor, constant: 10),
+            categoryLabel.leadingAnchor.constraint(equalTo: lowerView.leadingAnchor, constant: 10),
+            categoryLabel.trailingAnchor.constraint(equalTo: lowerView.trailingAnchor, constant: -10),
+            categoryLabel.heightAnchor.constraint(equalToConstant: 25)
+        ])
+    }
+    
+    private func setupStackViewConstraints() {
+        lowerView.addSubview(categoryOneStackView)
+        NSLayoutConstraint.activate([
+            categoryOneStackView.topAnchor.constraint(equalTo: categoryLabel.bottomAnchor, constant: 8),
+            categoryOneStackView.leadingAnchor.constraint(equalTo: lowerView.leadingAnchor, constant: 30),
+            categoryOneStackView.trailingAnchor.constraint(equalTo: lowerView.trailingAnchor, constant: -30),
+            categoryOneStackView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height * 0.1)
         ])
         
-        lowerView.addSubview(category2StackView)
+        lowerView.addSubview(categoryTwoStackView)
         NSLayoutConstraint.activate([
-            category2StackView.topAnchor.constraint(equalTo: categoryStackView.bottomAnchor, constant: 15),
-            category2StackView.leadingAnchor.constraint(equalTo: lowerView.leadingAnchor, constant: 30),
-            category2StackView.trailingAnchor.constraint(equalTo: lowerView.trailingAnchor, constant: -30),
-            category2StackView.heightAnchor.constraint(equalToConstant: 80)
+            categoryTwoStackView.topAnchor.constraint(equalTo: categoryOneStackView.bottomAnchor, constant: 10),
+            categoryTwoStackView.leadingAnchor.constraint(equalTo: lowerView.leadingAnchor, constant: 30),
+            categoryTwoStackView.trailingAnchor.constraint(equalTo: lowerView.trailingAnchor, constant: -30),
+            categoryTwoStackView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height * 0.1)
+        ])
+    }
+    
+    private func setupOtherStackViewConstraints() {
+        lowerView.addSubview(stack)
+        NSLayoutConstraint.activate([
+            stack.topAnchor.constraint(equalTo: categoryTwoStackView.bottomAnchor, constant: 20),
+            stack.leadingAnchor.constraint(equalTo: lowerView.leadingAnchor, constant: 10),
+            stack.trailingAnchor.constraint(equalTo: lowerView.trailingAnchor, constant: -10),
+            stack.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height * 0.233)
+        ])
+    }
+    
+    private func setupDescriptionStackViewConstraints() {
+        lowerView.addSubview(descriptionStack)
+        NSLayoutConstraint.activate([
+            descriptionStack.topAnchor.constraint(equalTo: stack.bottomAnchor, constant: 20),
+            descriptionStack.leadingAnchor.constraint(equalTo: lowerView.leadingAnchor, constant: 10),
+            descriptionStack.trailingAnchor.constraint(equalTo: lowerView.trailingAnchor, constant: -10),
+            descriptionStack.bottomAnchor.constraint(equalTo: addNoteTripButton.topAnchor, constant: -10)
+        ])
+    }
+    
+    private func setupAddNewTripButtonConstraints() {
+        lowerView.addSubview(addNoteTripButton)
+        NSLayoutConstraint.activate([
+            addNoteTripButton.bottomAnchor.constraint(equalTo: lowerView.bottomAnchor, constant: -35),
+            addNoteTripButton.leadingAnchor.constraint(equalTo: lowerView.leadingAnchor, constant: 20),
+            addNoteTripButton.trailingAnchor.constraint(equalTo: lowerView.trailingAnchor, constant: -20),
+            addNoteTripButton.heightAnchor.constraint(equalToConstant: 58)
         ])
     }
 }

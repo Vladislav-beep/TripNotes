@@ -94,8 +94,8 @@ class SelectionButton: UIButton {
     func setImage(imageName: String) {
         self.addSubview(categoryImageView)
         NSLayoutConstraint.activate([
-            categoryImageView.heightAnchor.constraint(equalToConstant: 40),
-            categoryImageView.widthAnchor.constraint(equalToConstant: 40),
+            categoryImageView.heightAnchor.constraint(equalToConstant: 35),
+            categoryImageView.widthAnchor.constraint(equalToConstant: 35),
             categoryImageView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             categoryImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor)
         ])
