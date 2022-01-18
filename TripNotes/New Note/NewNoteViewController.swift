@@ -182,6 +182,7 @@ class NewNoteViewController: UIViewController {
     private lazy var priceTextField: CustomTextField = {
         let textField = CustomTextField(imageName: "eurosign.square")
         textField.placeholder = "Enter price"
+        textField.keyboardType = .numberPad
         return textField
     }()
     
@@ -216,6 +217,15 @@ class NewNoteViewController: UIViewController {
     private lazy var descriptionStack: UIStackView = {
         let stack = UIStackView(arrangedSubviews: [descriptionLabel, descruptionTextView], axis: .vertical, spacing: 6, distribution: .fill)
         return stack
+    }()
+    
+    private lazy var adressButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Adress", for: .normal)
+        button.backgroundColor = .tripGrey
+        button.setImage(UIImage(systemName: "magnifyingglass"), for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
     }()
     
     private lazy var addNoteTripButton: UIButton = {
@@ -265,11 +275,11 @@ class NewNoteViewController: UIViewController {
         setupLowerViewConstraints()
         setupRedViewConstraints()
         setupBackButtonConstraints()
+        setupAddNewTripButtonConstraints()
         setupCategoryLabelConstraints()
         setupStackViewConstraints()
         setupOtherStackViewConstraints()
         setupDescriptionStackViewConstraints()
-        setupAddNewTripButtonConstraints()
     }
     
     private func setupScrollViewConstraints() {
