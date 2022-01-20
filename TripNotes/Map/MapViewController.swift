@@ -58,20 +58,33 @@ class MapViewController: UIViewController {
     
     private lazy var adressLabel: UILabel = {
         let label = UILabel()
-        label.text = "Berlin, WeerStrasse 17"
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 20, weight: .heavy)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
+    private lazy var pinImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(systemName: "mappin")
+        imageView.contentMode = .scaleAspectFit
+        imageView.tintColor = .tripRed
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupConstraints() 
+    }
+    
+    private func setupConstraints() {
         setupMapViewConstraints()
         setupCloseButtonConstraints()
         setupShowUserLocationButtonConstraints()
         setupOkButtonConstraints()
         setupAdressLabelConstraints()
+        setupPinImageViewConstraints()
     }
     
     @objc func closeScreen() {
@@ -131,6 +144,16 @@ class MapViewController: UIViewController {
             adressLabel.leadingAnchor.constraint(equalTo: mapView.leadingAnchor, constant: 15),
             adressLabel.trailingAnchor.constraint(equalTo: mapView.trailingAnchor, constant: -15),
             adressLabel.heightAnchor.constraint(equalToConstant: 50)
+        ])
+    }
+    
+    private func setupPinImageViewConstraints() {
+        mapView.addSubview(pinImageView)
+        NSLayoutConstraint.activate([
+            pinImageView.centerXAnchor.constraint(equalTo: mapView.centerXAnchor, constant: 0),
+            pinImageView.centerYAnchor.constraint(equalTo: mapView.centerYAnchor, constant: 0),
+            pinImageView.heightAnchor.constraint(equalToConstant: 40),
+            pinImageView.widthAnchor.constraint(equalTo: pinImageView.heightAnchor)
         ])
     }
 }
