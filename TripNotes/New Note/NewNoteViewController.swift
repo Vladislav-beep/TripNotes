@@ -182,7 +182,6 @@ class NewNoteViewController: UIViewController {
     private lazy var priceTextField: CustomTextField = {
         let textField = CustomTextField(imageName: "eurosign.square")
         textField.placeholder = "Enter price"
-        textField.keyboardType = .numberPad
         return textField
     }()
     
@@ -221,9 +220,17 @@ class NewNoteViewController: UIViewController {
     
     private lazy var adressButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Adress", for: .normal)
+        button.setTitle(" Adress", for: .normal)
+        button.tintColor = .tripBlue
+        button.setTitleColor(.tripBlue, for: .normal)
         button.backgroundColor = .tripGrey
         button.setImage(UIImage(systemName: "magnifyingglass"), for: .normal)
+        button.layer.cornerRadius = 6
+        button.layer.shadowColor = UIColor.darkGray.cgColor
+        button.layer.shadowRadius = 4
+        button.layer.shadowOpacity = 0.4
+        button.layer.shadowOffset = CGSize(width: 0, height: 5)
+        button.addTarget(self, action: #selector(getAdress), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -270,6 +277,11 @@ class NewNoteViewController: UIViewController {
         sender.pulsate()
     }
     
+    @objc func getAdress() {
+        let mapVC = MapViewController()
+        present(mapVC, animated: true)
+    }
+    
     private func setupConstraints() {
         setupScrollViewConstraints()
         setupLowerViewConstraints()
@@ -280,6 +292,7 @@ class NewNoteViewController: UIViewController {
         setupStackViewConstraints()
         setupOtherStackViewConstraints()
         setupDescriptionStackViewConstraints()
+        setupAdressButtonConstraints()
     }
     
     private func setupScrollViewConstraints() {
@@ -367,6 +380,16 @@ class NewNoteViewController: UIViewController {
             descriptionStack.leadingAnchor.constraint(equalTo: lowerView.leadingAnchor, constant: 10),
             descriptionStack.trailingAnchor.constraint(equalTo: lowerView.trailingAnchor, constant: -10),
             descriptionStack.bottomAnchor.constraint(equalTo: addNoteTripButton.topAnchor, constant: -10)
+        ])
+    }
+    
+    private func setupAdressButtonConstraints() {
+        lowerView.addSubview(adressButton)
+        NSLayoutConstraint.activate([
+            adressButton.topAnchor.constraint(equalTo: priceStack.bottomAnchor, constant: 20),
+            adressButton.trailingAnchor.constraint(equalTo: lowerView.trailingAnchor, constant: -10),
+            adressButton.widthAnchor.constraint(equalToConstant: 100),
+            adressButton.heightAnchor.constraint(equalToConstant: 25)
         ])
     }
     

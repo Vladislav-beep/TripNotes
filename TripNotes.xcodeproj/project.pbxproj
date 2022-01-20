@@ -34,6 +34,8 @@
 		B91E81562767AA4F00D0748B /* FavouritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91E81552767AA4F00D0748B /* FavouritesViewController.swift */; };
 		B961212827934BDE00B7B81E /* NoteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90DB425276F134B00F1A544 /* NoteModel.swift */; };
 		B961212D279351FB00B7B81E /* SelectionLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B961212C279351FB00B7B81E /* SelectionLabel.swift */; };
+		B96648792799D65F00F527E8 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96648782799D65F00F527E8 /* MapViewController.swift */; };
+		B966487E2799D66900F527E8 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96648782799D65F00F527E8 /* MapViewController.swift */; };
 		B9A0EF6B2774DDCE00DE65E2 /* SelectionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A0EF6A2774DDCE00DE65E2 /* SelectionButton.swift */; };
 		B9D9FC11278F390B007710B4 /* NewNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9FD6C07278E040900311EF1 /* NewNoteViewController.swift */; };
 		B9D9FC14278F4E1D007710B4 /* SelectionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A0EF6A2774DDCE00DE65E2 /* SelectionButton.swift */; };
@@ -99,6 +101,7 @@
 		B91E81522767A9AC00D0748B /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		B91E81552767AA4F00D0748B /* FavouritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewController.swift; sourceTree = "<group>"; };
 		B961212C279351FB00B7B81E /* SelectionLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionLabel.swift; sourceTree = "<group>"; };
+		B96648782799D65F00F527E8 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		B9A0EF6A2774DDCE00DE65E2 /* SelectionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionButton.swift; sourceTree = "<group>"; };
 		B9DCF134276BAFF8007B0320 /* TripsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripsViewModel.swift; sourceTree = "<group>"; };
 		B9DCF13D276BBE29007B0320 /* Extension + UIBarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIBarButtonItem.swift"; sourceTree = "<group>"; };
@@ -203,6 +206,7 @@
 				B9DE0D65276900F700805E4C /* Favourites */,
 				B9FB61162772334000126A59 /* NewTrip */,
 				B9FD6C0F278E045B00311EF1 /* New Note */,
+				B96648772799D63100F527E8 /* Map */,
 				B9DCF13A276BB6F0007B0320 /* TabBar */,
 				B90DB436276F147000F1A544 /* Services */,
 				B9F39E0A2767D47F00DAFB4C /* Extensions */,
@@ -221,6 +225,14 @@
 				B905759A279458BB001EA8D1 /* SectionLabel.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		B96648772799D63100F527E8 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				B96648782799D65F00F527E8 /* MapViewController.swift */,
+			);
+			path = Map;
 			sourceTree = "<group>";
 		};
 		B9DCF13A276BB6F0007B0320 /* TabBar */ = {
@@ -452,6 +464,7 @@
 				B91E813F2767A88E00D0748B /* SceneDelegate.swift in Sources */,
 				B9EBFB05277A3EDE00746A0A /* Extension + UIButton.swift in Sources */,
 				B9FB61242772617000126A59 /* CustomTextField.swift in Sources */,
+				B96648792799D65F00F527E8 /* MapViewController.swift in Sources */,
 				B90566B2278B396F00B0EF2D /* Extension + UIView.swift in Sources */,
 				B90DB440276F323000F1A544 /* Extension + Formatter.swift in Sources */,
 				B9FB611C2772339500126A59 /* NewTripViewModel.swift in Sources */,
@@ -466,6 +479,7 @@
 				B9DE0D592768FDAE00805E4C /* TabBarViewController.swift in Sources */,
 				B90A37E427784E830028B6F1 /* Extension + UIBarButtonItem.swift in Sources */,
 				B9DE0D562768FDAB00805E4C /* TripTableViewCell.swift in Sources */,
+				B966487E2799D66900F527E8 /* MapViewController.swift in Sources */,
 				B90DB459276FB39200F1A544 /* TripTableViewCellViewModel.swift in Sources */,
 				B9D9FC14278F4E1D007710B4 /* SelectionButton.swift in Sources */,
 				B909AFE0277E437D006EFC38 /* Extension + UITextField.swift in Sources */,
