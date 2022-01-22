@@ -13,4 +13,9 @@ protocol NewNoteViewModelProtocol {
 
 class NewNoteViewModel: NewNoteViewModelProtocol {
     
+    let locationService = LocationService()
+    
+    func showUserLocation() {
+        locationService.showUserLocation()
+    }
 }

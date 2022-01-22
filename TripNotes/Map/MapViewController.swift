@@ -8,7 +8,11 @@
 import UIKit
 import MapKit
 
-class MapViewController: UIViewController {
+class MapViewController: UIViewController, CLLocationManagerDelegate {
+    
+    let mapManager = LocationService()
+    
+    var viewModel: NewNoteViewModelProtocol?
     
     private lazy var mapView: MKMapView = {
         let mapView = MKMapView()
@@ -75,6 +79,8 @@ class MapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        checkLocationServices()
         setupConstraints() 
     }
     
@@ -87,12 +93,18 @@ class MapViewController: UIViewController {
         setupPinImageViewConstraints()
     }
     
+    private func checkLocationServices() {
+        mapManager.checkLocationServices(mapView: mapView) {
+            mapManager.locationManager.delegate = self
+        }
+    }
+    
     @objc func closeScreen() {
         dismiss(animated: true)
     }
     
     @objc func showUserLocationButtonTapped() {
-        
+        mapManager.showUserLocation()
     }
     
     private func setupMapViewConstraints() {
@@ -151,7 +163,7 @@ class MapViewController: UIViewController {
         mapView.addSubview(pinImageView)
         NSLayoutConstraint.activate([
             pinImageView.centerXAnchor.constraint(equalTo: mapView.centerXAnchor, constant: 0),
-            pinImageView.centerYAnchor.constraint(equalTo: mapView.centerYAnchor, constant: 0),
+            pinImageView.centerYAnchor.constraint(equalTo: mapView.centerYAnchor, constant: -15),
             pinImageView.heightAnchor.constraint(equalToConstant: 40),
             pinImageView.widthAnchor.constraint(equalTo: pinImageView.heightAnchor)
         ])

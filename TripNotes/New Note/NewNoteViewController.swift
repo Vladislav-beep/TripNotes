@@ -221,6 +221,7 @@ class NewNoteViewController: UIViewController {
     private lazy var adressButton: UIButton = {
         let button = UIButton()
         button.setTitle(" Adress", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .heavy)
         button.tintColor = .tripBlue
         button.setTitleColor(.tripBlue, for: .normal)
         button.backgroundColor = .tripGrey
