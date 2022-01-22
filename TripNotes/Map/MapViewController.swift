@@ -8,11 +8,11 @@
 import UIKit
 import MapKit
 
-class MapViewController: UIViewController, CLLocationManagerDelegate {
+class MapViewController: UIViewController {
     
     let mapManager = LocationService()
     
-    var viewModel: NewNoteViewModelProtocol?
+    var viewModel: MapViewModelProtocol?
     
     private lazy var mapView: MKMapView = {
         let mapView = MKMapView()
@@ -79,8 +79,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        checkLocationServices()
+        showUserLocation()
+        mapManager.locationManager.delegate = self
+     //   checkLocationServices()
         setupConstraints() 
     }
     
@@ -93,18 +94,26 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         setupPinImageViewConstraints()
     }
     
-    private func checkLocationServices() {
-        mapManager.checkLocationServices(mapView: mapView) {
-            mapManager.locationManager.delegate = self
-        }
-    }
+//    private func checkLocationServices() {
+//        mapManager.checkLocationServices(mapView: mapView) {
+//            mapManager.locationManager.delegate = self
+//        }
+//    }
     
     @objc func closeScreen() {
         dismiss(animated: true)
     }
     
     @objc func showUserLocationButtonTapped() {
-        mapManager.showUserLocation()
+        showUserLocation()
+    }
+    
+    private func showUserLocation() {
+        mapManager.showUserLocation2(mapView: mapView)
+//        let region = viewModel?.showUserLocation()
+//        guard let unwrappedRegion = region else { return }
+//        
+//        mapView.setRegion(unwrappedRegion, animated: true)
     }
     
     private func setupMapViewConstraints() {
@@ -167,5 +176,51 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
             pinImageView.heightAnchor.constraint(equalToConstant: 40),
             pinImageView.widthAnchor.constraint(equalTo: pinImageView.heightAnchor)
         ])
+    }
+    
+    deinit {
+        print("1")
+    }
+}
+
+
+
+extension MapViewController: CLLocationManagerDelegate {
+    
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        print("2")
+        manager.desiredAccuracy = kCLLocationAccuracyBest
+        
+        switch manager.authorizationStatus {
+        case .notDetermined:
+            manager.requestWhenInUseAuthorization()
+        case .restricted:
+            self.showAlert(title: "Your location is restricted",
+                           message: "To give permission go to: Settings -> My Places -> Location")
+        case .denied:
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                self.showAlert(title: "Your location is not available",
+                               message: "To give permission go to: Settings -> My Places -> Location")
+            }
+        case .authorizedAlways:
+            break
+        case .authorizedWhenInUse:
+            showUserLocation()
+        @unknown default:
+            print("New case is available")
+        }
+    }
+    
+    private func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default)
+        
+        alert.addAction(okAction)
+        
+        let alertWindow = UIWindow(frame: UIScreen.main.bounds)
+        alertWindow.rootViewController = UIViewController()
+        alertWindow.windowLevel = UIWindow.Level.alert + 1
+        alertWindow.makeKeyAndVisible()
+        alertWindow.rootViewController?.present(alert, animated: true)
     }
 }
