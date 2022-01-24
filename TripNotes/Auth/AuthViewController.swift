@@ -24,6 +24,44 @@ class AuthViewController: UIViewController {
         return lowerView
     }()
     
+    private lazy var welcomeLabel: UILabel = {
+        let welcomeLabel = UILabel()
+        welcomeLabel.numberOfLines = 2
+        welcomeLabel.text = "Welcome to \n TripNotes"
+        welcomeLabel.textAlignment = .center
+        welcomeLabel.adjustsFontSizeToFitWidth = true
+        welcomeLabel.font = UIFont.systemFont(ofSize: 30, weight: .regular)
+        welcomeLabel.translatesAutoresizingMaskIntoConstraints = false
+        return welcomeLabel
+    }()
+    
+    private lazy var loginTextField: UITextField = {
+        let loginTextField = UITextField()
+        loginTextField.backgroundColor = .tripYellow
+        loginTextField.textAlignment = .center
+        loginTextField.textColor = .tripGrey
+        loginTextField.layer.cornerRadius = 12
+        loginTextField.translatesAutoresizingMaskIntoConstraints = false
+        return loginTextField
+    }()
+    
+    private lazy var passwordTextField: UITextField = {
+        let passwordTextField = UITextField()
+        passwordTextField.backgroundColor = .tripYellow
+        passwordTextField.textAlignment = .center
+        passwordTextField.textColor = .tripGrey
+        passwordTextField.translatesAutoresizingMaskIntoConstraints = false
+        return passwordTextField
+    }()
+    
+    private lazy var textFieldStack: UIStackView = {
+        let textFieldStack = UIStackView(arrangedSubviews: [loginTextField, passwordTextField],
+                                         axis: .vertical,
+                                         spacing: 20,
+                                         distribution: .fillEqually)
+        return textFieldStack
+    }()
+    
     init(viewModel: AuthViewModelProtocol) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -41,6 +79,8 @@ class AuthViewController: UIViewController {
     private func setupConstraints() {
         setupScrollViewConstraints()
         setupLowerViewConstraints()
+        setupWelcomeLabelConstraints()
+        setupTextFieldStackConstraints()
     }
     
     private func setupScrollViewConstraints() {
@@ -60,6 +100,26 @@ class AuthViewController: UIViewController {
             lowerView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
             lowerView.heightAnchor.constraint(equalTo: view.heightAnchor),
             lowerView.widthAnchor.constraint(equalTo: view.widthAnchor)
+        ])
+    }
+    
+    private func setupWelcomeLabelConstraints() {
+        lowerView.addSubview(welcomeLabel)
+        NSLayoutConstraint.activate([
+            welcomeLabel.topAnchor.constraint(equalTo: lowerView.topAnchor, constant: 60),
+            welcomeLabel.leadingAnchor.constraint(equalTo: lowerView.leadingAnchor, constant: 20),
+            welcomeLabel.trailingAnchor.constraint(equalTo: lowerView.trailingAnchor, constant: -20),
+            welcomeLabel.heightAnchor.constraint(equalToConstant: 70)
+        ])
+    }
+    
+    private func setupTextFieldStackConstraints() {
+        lowerView.addSubview(textFieldStack)
+        NSLayoutConstraint.activate([
+            textFieldStack.topAnchor.constraint(equalTo: welcomeLabel.bottomAnchor, constant: 80),
+            textFieldStack.leadingAnchor.constraint(equalTo: lowerView.leadingAnchor, constant: 10),
+            textFieldStack.trailingAnchor.constraint(equalTo: lowerView.trailingAnchor, constant: -10),
+            textFieldStack.heightAnchor.constraint(equalToConstant: 140)
         ])
     }
 }
