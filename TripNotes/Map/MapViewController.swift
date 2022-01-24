@@ -79,8 +79,11 @@ class MapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+      //  mapManager.locationManager.delegate = self
+        viewModel?.locationService.locationManager.delegate = self
+        
         showUserLocation()
-        mapManager.locationManager.delegate = self
      //   checkLocationServices()
         setupConstraints() 
     }
@@ -109,11 +112,12 @@ class MapViewController: UIViewController {
     }
     
     private func showUserLocation() {
-        mapManager.showUserLocation2(mapView: mapView)
-//        let region = viewModel?.showUserLocation()
-//        guard let unwrappedRegion = region else { return }
-//        
-//        mapView.setRegion(unwrappedRegion, animated: true)
+      //  mapManager.showUserLocation2(mapView: mapView)
+        let region = viewModel?.showUserLocation()
+        print("37")
+        guard let unwrappedRegion = region else { return }
+
+        mapView.setRegion(unwrappedRegion, animated: true)
     }
     
     private func setupMapViewConstraints() {
@@ -177,13 +181,7 @@ class MapViewController: UIViewController {
             pinImageView.widthAnchor.constraint(equalTo: pinImageView.heightAnchor)
         ])
     }
-    
-    deinit {
-        print("1")
-    }
 }
-
-
 
 extension MapViewController: CLLocationManagerDelegate {
     

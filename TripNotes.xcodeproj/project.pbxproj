@@ -32,6 +32,8 @@
 		B91E81492767A88F00D0748B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B91E81472767A88F00D0748B /* LaunchScreen.storyboard */; };
 		B91E81532767A9AC00D0748B /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91E81522767A9AC00D0748B /* TabBarViewController.swift */; };
 		B91E81562767AA4F00D0748B /* FavouritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91E81552767AA4F00D0748B /* FavouritesViewController.swift */; };
+		B93DD4B3279F186C00D91A08 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93DD4B2279F186C00D91A08 /* AuthViewController.swift */; };
+		B93DD4B7279F19F400D91A08 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93DD4B6279F19F400D91A08 /* AuthViewModel.swift */; };
 		B961212827934BDE00B7B81E /* NoteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90DB425276F134B00F1A544 /* NoteModel.swift */; };
 		B961212D279351FB00B7B81E /* SelectionLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B961212C279351FB00B7B81E /* SelectionLabel.swift */; };
 		B96648792799D65F00F527E8 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96648782799D65F00F527E8 /* MapViewController.swift */; };
@@ -66,6 +68,7 @@
 		B9FB611C2772339500126A59 /* NewTripViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9FB611B2772339500126A59 /* NewTripViewModel.swift */; };
 		B9FB611F277236B400126A59 /* NewTripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9FB61172772336700126A59 /* NewTripViewController.swift */; };
 		B9FB61242772617000126A59 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9FB61232772617000126A59 /* CustomTextField.swift */; };
+		B9FCE18E279D8A4900E06739 /* mapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9698F2C279C5691005FB438 /* mapViewModel.swift */; };
 		B9FD6C04278CAF2500311EF1 /* Extension + UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9FD6C03278CAF2500311EF1 /* Extension + UILabel.swift */; };
 		B9FD6C08278E040900311EF1 /* NewNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9FD6C07278E040900311EF1 /* NewNoteViewController.swift */; };
 		B9FD6C0C278E043600311EF1 /* NewNoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9FD6C0B278E043600311EF1 /* NewNoteViewModel.swift */; };
@@ -104,6 +107,8 @@
 		B91E814A2767A88F00D0748B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B91E81522767A9AC00D0748B /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		B91E81552767AA4F00D0748B /* FavouritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewController.swift; sourceTree = "<group>"; };
+		B93DD4B2279F186C00D91A08 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
+		B93DD4B6279F19F400D91A08 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		B961212C279351FB00B7B81E /* SelectionLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionLabel.swift; sourceTree = "<group>"; };
 		B96648782799D65F00F527E8 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		B9698F22279C4689005FB438 /* LocationSevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSevice.swift; sourceTree = "<group>"; };
@@ -208,6 +213,7 @@
 			children = (
 				B91E813C2767A88E00D0748B /* AppDelegate.swift */,
 				B91E813E2767A88E00D0748B /* SceneDelegate.swift */,
+				B93DD4B1279F184F00D91A08 /* Auth */,
 				B9DE0D64276900DC00805E4C /* Trips */,
 				B90DB424276F132C00F1A544 /* Notes */,
 				B9DE0D65276900F700805E4C /* Favourites */,
@@ -223,6 +229,15 @@
 				B90DB43B276F2D1500F1A544 /* Constants.swift */,
 			);
 			path = TripNotes;
+			sourceTree = "<group>";
+		};
+		B93DD4B1279F184F00D91A08 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				B93DD4B2279F186C00D91A08 /* AuthViewController.swift */,
+				B93DD4B6279F19F400D91A08 /* AuthViewModel.swift */,
+			);
+			path = Auth;
 			sourceTree = "<group>";
 		};
 		B961212B279351E300B7B81E /* Views */ = {
@@ -461,6 +476,7 @@
 				B9F296C527895C7F00844D6C /* NoteCelliewModel.swift in Sources */,
 				B91E813D2767A88E00D0748B /* AppDelegate.swift in Sources */,
 				B91E81562767AA4F00D0748B /* FavouritesViewController.swift in Sources */,
+				B93DD4B7279F19F400D91A08 /* AuthViewModel.swift in Sources */,
 				B9DCF135276BAFF8007B0320 /* TripsViewModel.swift in Sources */,
 				B905759B279458BB001EA8D1 /* SectionLabel.swift in Sources */,
 				B9E85C3D276E6468004FD1D8 /* Extension + UIStackView.swift in Sources */,
@@ -475,6 +491,7 @@
 				B9FB61242772617000126A59 /* CustomTextField.swift in Sources */,
 				B96648792799D65F00F527E8 /* MapViewController.swift in Sources */,
 				B90566B2278B396F00B0EF2D /* Extension + UIView.swift in Sources */,
+				B93DD4B3279F186C00D91A08 /* AuthViewController.swift in Sources */,
 				B90DB440276F323000F1A544 /* Extension + Formatter.swift in Sources */,
 				B9FB611C2772339500126A59 /* NewTripViewModel.swift in Sources */,
 				B90DB42A276F137500F1A544 /* Category.swift in Sources */,
@@ -501,6 +518,7 @@
 				B961212827934BDE00B7B81E /* NoteModel.swift in Sources */,
 				B9D9FC11278F390B007710B4 /* NewNoteViewController.swift in Sources */,
 				B90DB456276FB38D00F1A544 /* NotesViewController.swift in Sources */,
+				B9FCE18E279D8A4900E06739 /* mapViewModel.swift in Sources */,
 				B9EA410B27777D9A00CC173A /* NewTripViewModel.swift in Sources */,
 				B9F018982770DF1D006F2DE7 /* TripsViewModel.swift in Sources */,
 				B90DB45A276FB39E00F1A544 /* NotesViewModel.swift in Sources */,

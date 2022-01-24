@@ -64,6 +64,9 @@ class TripsViewController: UIViewController {
                                                   imageName: "gear",
                                                   widthAndHeight: 40)
         // TODO:  function for selector
+        
+      
+        
         return button
     }()
     
@@ -89,6 +92,9 @@ class TripsViewController: UIViewController {
     
     @objc func addTapped() {
         // TODO settings screen
+        let vieM = AuthViewModel()
+        let authVC = AuthViewController(viewModel: vieM)
+        present(authVC, animated: true)
         print("sc")
     }
     

@@ -14,45 +14,11 @@ class LocationService {
     private var placeCoordinate: CLLocationCoordinate2D?
     private let regionInMeters = 1000.00
     
-//    func checkLocationServices(mapView: MKMapView, closure: () -> ()) {
-//        
-//        if CLLocationManager.locationServicesEnabled() {
-//            locationManager.desiredAccuracy = kCLLocationAccuracyBest
-//            checkLocationAuthorization(mapView: mapView)
-//            closure()
-//        } else {
-//            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-//                self.showAlert(title: "Location services are disabled",
-//                               message: "To enable it go: Settings -> Privacy -> Location services and turn on")
-//            }
-//        }
-//    }
-//    
-//    func checkLocationAuthorization(mapView: MKMapView) {
-//        switch CLLocationManager.authorizationStatus() {
-//        case .notDetermined:
-//            locationManager.requestWhenInUseAuthorization()
-//        case .restricted:
-//            self.showAlert(title: "Your location is restricted",
-//                           message: "To give permission go to: Settings -> My Places -> Location")
-//        case .denied:
-//            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-//                self.showAlert(title: "Your location is not available",
-//                               message: "To give permission go to: Settings -> My Places -> Location")
-//            }
-//        case .authorizedAlways:
-//            break
-//        case .authorizedWhenInUse:
-//            mapView.showsUserLocation = true
-//           showUserLocation()
-//        @unknown default:
-//            print("New case is available")
-//        }
-//    }
     
     func showUserLocation() -> MKCoordinateRegion {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        guard let location = locationManager.location?.coordinate else { return MKCoordinateRegion() }
+        guard let location = locationManager.location?.coordinate else {
+            return MKCoordinateRegion() }
             let region = MKCoordinateRegion(center: location,
                                             latitudinalMeters: regionInMeters,
                                             longitudinalMeters: regionInMeters)
