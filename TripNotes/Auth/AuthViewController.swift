@@ -35,23 +35,19 @@ class AuthViewController: UIViewController {
         return welcomeLabel
     }()
     
-    private lazy var loginTextField: UITextField = {
-        let loginTextField = UITextField()
-        loginTextField.backgroundColor = .tripYellow
-        loginTextField.textAlignment = .center
-        loginTextField.textColor = .tripGrey
-        loginTextField.layer.cornerRadius = 12
-        loginTextField.translatesAutoresizingMaskIntoConstraints = false
+    private lazy var loginTextField: AuthTextField = {
+        let loginTextField = AuthTextField(placeHolder: "Login")
         return loginTextField
     }()
     
-    private lazy var passwordTextField: UITextField = {
-        let passwordTextField = UITextField()
-        passwordTextField.backgroundColor = .tripYellow
-        passwordTextField.textAlignment = .center
-        passwordTextField.textColor = .tripGrey
-        passwordTextField.translatesAutoresizingMaskIntoConstraints = false
+    private lazy var passwordTextField: AuthTextField = {
+        let passwordTextField = AuthTextField(placeHolder: "Password")
         return passwordTextField
+    }()
+    
+    private let signInButton: SignInButton = {
+        let signInButton = SignInButton()
+        return signInButton
     }()
     
     private lazy var textFieldStack: UIStackView = {
@@ -81,6 +77,7 @@ class AuthViewController: UIViewController {
         setupLowerViewConstraints()
         setupWelcomeLabelConstraints()
         setupTextFieldStackConstraints()
+        setupSignInButtonConstraints()
     }
     
     private func setupScrollViewConstraints() {
@@ -120,6 +117,16 @@ class AuthViewController: UIViewController {
             textFieldStack.leadingAnchor.constraint(equalTo: lowerView.leadingAnchor, constant: 10),
             textFieldStack.trailingAnchor.constraint(equalTo: lowerView.trailingAnchor, constant: -10),
             textFieldStack.heightAnchor.constraint(equalToConstant: 140)
+        ])
+    }
+    
+    private func setupSignInButtonConstraints() {
+        lowerView.addSubview(signInButton)
+        NSLayoutConstraint.activate([
+            signInButton.topAnchor.constraint(equalTo: textFieldStack.bottomAnchor, constant: 30),
+            signInButton.leadingAnchor.constraint(equalTo: lowerView.leadingAnchor, constant: 10),
+            signInButton.trailingAnchor.constraint(equalTo: lowerView.trailingAnchor, constant: -10),
+            signInButton.heightAnchor.constraint(equalToConstant: 60)
         ])
     }
 }

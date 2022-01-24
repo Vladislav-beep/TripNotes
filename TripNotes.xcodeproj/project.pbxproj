@@ -36,6 +36,8 @@
 		B93DD4B7279F19F400D91A08 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93DD4B6279F19F400D91A08 /* AuthViewModel.swift */; };
 		B93DD4BA279F1BCA00D91A08 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93DD4B2279F186C00D91A08 /* AuthViewController.swift */; };
 		B93DD4BD279F1BCC00D91A08 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93DD4B6279F19F400D91A08 /* AuthViewModel.swift */; };
+		B93DD4C2279F23DA00D91A08 /* AuthTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93DD4C1279F23DA00D91A08 /* AuthTextField.swift */; };
+		B93DD4C8279F284300D91A08 /* SignInButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93DD4C7279F284300D91A08 /* SignInButton.swift */; };
 		B961212827934BDE00B7B81E /* NoteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90DB425276F134B00F1A544 /* NoteModel.swift */; };
 		B961212D279351FB00B7B81E /* SelectionLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B961212C279351FB00B7B81E /* SelectionLabel.swift */; };
 		B96648792799D65F00F527E8 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96648782799D65F00F527E8 /* MapViewController.swift */; };
@@ -111,6 +113,8 @@
 		B91E81552767AA4F00D0748B /* FavouritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewController.swift; sourceTree = "<group>"; };
 		B93DD4B2279F186C00D91A08 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		B93DD4B6279F19F400D91A08 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
+		B93DD4C1279F23DA00D91A08 /* AuthTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTextField.swift; sourceTree = "<group>"; };
+		B93DD4C7279F284300D91A08 /* SignInButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInButton.swift; sourceTree = "<group>"; };
 		B961212C279351FB00B7B81E /* SelectionLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionLabel.swift; sourceTree = "<group>"; };
 		B96648782799D65F00F527E8 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		B9698F22279C4689005FB438 /* LocationSevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSevice.swift; sourceTree = "<group>"; };
@@ -236,10 +240,20 @@
 		B93DD4B1279F184F00D91A08 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
+				B93DD4C0279F23C600D91A08 /* Views */,
 				B93DD4B2279F186C00D91A08 /* AuthViewController.swift */,
 				B93DD4B6279F19F400D91A08 /* AuthViewModel.swift */,
 			);
 			path = Auth;
+			sourceTree = "<group>";
+		};
+		B93DD4C0279F23C600D91A08 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B93DD4C1279F23DA00D91A08 /* AuthTextField.swift */,
+				B93DD4C7279F284300D91A08 /* SignInButton.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		B961212B279351E300B7B81E /* Views */ = {
@@ -477,6 +491,7 @@
 				B9A0EF6B2774DDCE00DE65E2 /* SelectionButton.swift in Sources */,
 				B9F296C527895C7F00844D6C /* NoteCelliewModel.swift in Sources */,
 				B91E813D2767A88E00D0748B /* AppDelegate.swift in Sources */,
+				B93DD4C2279F23DA00D91A08 /* AuthTextField.swift in Sources */,
 				B91E81562767AA4F00D0748B /* FavouritesViewController.swift in Sources */,
 				B93DD4B7279F19F400D91A08 /* AuthViewModel.swift in Sources */,
 				B9DCF135276BAFF8007B0320 /* TripsViewModel.swift in Sources */,
@@ -492,6 +507,7 @@
 				B9EBFB05277A3EDE00746A0A /* Extension + UIButton.swift in Sources */,
 				B9FB61242772617000126A59 /* CustomTextField.swift in Sources */,
 				B96648792799D65F00F527E8 /* MapViewController.swift in Sources */,
+				B93DD4C8279F284300D91A08 /* SignInButton.swift in Sources */,
 				B90566B2278B396F00B0EF2D /* Extension + UIView.swift in Sources */,
 				B93DD4B3279F186C00D91A08 /* AuthViewController.swift in Sources */,
 				B90DB440276F323000F1A544 /* Extension + Formatter.swift in Sources */,
