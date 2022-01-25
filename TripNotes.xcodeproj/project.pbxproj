@@ -46,6 +46,11 @@
 		B9698F26279C52CC005FB438 /* LocationSevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9698F22279C4689005FB438 /* LocationSevice.swift */; };
 		B9698F29279C53B8005FB438 /* NewNoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9FD6C0B278E043600311EF1 /* NewNoteViewModel.swift */; };
 		B9698F2D279C5691005FB438 /* mapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9698F2C279C5691005FB438 /* mapViewModel.swift */; };
+		B98282D327A07BF3006EFED8 /* SignInButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93DD4C7279F284300D91A08 /* SignInButton.swift */; };
+		B98282D827A07C84006EFED8 /* NewAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98282D727A07C84006EFED8 /* NewAccountViewController.swift */; };
+		B98282DE27A07CB2006EFED8 /* NewAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98282DD27A07CB2006EFED8 /* NewAccountViewModel.swift */; };
+		B98282E127A07CDA006EFED8 /* NewAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98282DD27A07CB2006EFED8 /* NewAccountViewModel.swift */; };
+		B98282E427A082CE006EFED8 /* NewAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98282D727A07C84006EFED8 /* NewAccountViewController.swift */; };
 		B9A0EF6B2774DDCE00DE65E2 /* SelectionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A0EF6A2774DDCE00DE65E2 /* SelectionButton.swift */; };
 		B9D9FC11278F390B007710B4 /* NewNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9FD6C07278E040900311EF1 /* NewNoteViewController.swift */; };
 		B9D9FC14278F4E1D007710B4 /* SelectionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A0EF6A2774DDCE00DE65E2 /* SelectionButton.swift */; };
@@ -119,6 +124,8 @@
 		B96648782799D65F00F527E8 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		B9698F22279C4689005FB438 /* LocationSevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSevice.swift; sourceTree = "<group>"; };
 		B9698F2C279C5691005FB438 /* mapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mapViewModel.swift; sourceTree = "<group>"; };
+		B98282D727A07C84006EFED8 /* NewAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAccountViewController.swift; sourceTree = "<group>"; };
+		B98282DD27A07CB2006EFED8 /* NewAccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAccountViewModel.swift; sourceTree = "<group>"; };
 		B9A0EF6A2774DDCE00DE65E2 /* SelectionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionButton.swift; sourceTree = "<group>"; };
 		B9DCF134276BAFF8007B0320 /* TripsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripsViewModel.swift; sourceTree = "<group>"; };
 		B9DCF13D276BBE29007B0320 /* Extension + UIBarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIBarButtonItem.swift"; sourceTree = "<group>"; };
@@ -220,6 +227,7 @@
 				B91E813C2767A88E00D0748B /* AppDelegate.swift */,
 				B91E813E2767A88E00D0748B /* SceneDelegate.swift */,
 				B93DD4B1279F184F00D91A08 /* Auth */,
+				B98282D627A07C56006EFED8 /* New account */,
 				B9DE0D64276900DC00805E4C /* Trips */,
 				B90DB424276F132C00F1A544 /* Notes */,
 				B9DE0D65276900F700805E4C /* Favourites */,
@@ -272,6 +280,15 @@
 				B9698F2C279C5691005FB438 /* mapViewModel.swift */,
 			);
 			path = Map;
+			sourceTree = "<group>";
+		};
+		B98282D627A07C56006EFED8 /* New account */ = {
+			isa = PBXGroup;
+			children = (
+				B98282D727A07C84006EFED8 /* NewAccountViewController.swift */,
+				B98282DD27A07CB2006EFED8 /* NewAccountViewModel.swift */,
+			);
+			path = "New account";
 			sourceTree = "<group>";
 		};
 		B9DCF13A276BB6F0007B0320 /* TabBar */ = {
@@ -475,6 +492,7 @@
 				B9F39E052767D28600DAFB4C /* TripTableViewCell.swift in Sources */,
 				B90DB43C276F2D1500F1A544 /* Constants.swift in Sources */,
 				B90B9A0C276D015A008DD627 /* TripTableViewCellViewModel.swift in Sources */,
+				B98282DE27A07CB2006EFED8 /* NewAccountViewModel.swift in Sources */,
 				B90DB444276F326000F1A544 /* Extension + Numeric.swift in Sources */,
 				B9FB61182772336700126A59 /* NewTripViewController.swift in Sources */,
 				B91E81532767A9AC00D0748B /* TabBarViewController.swift in Sources */,
@@ -499,6 +517,7 @@
 				B9E85C3D276E6468004FD1D8 /* Extension + UIStackView.swift in Sources */,
 				B9F296C127895C4300844D6C /* NoteCell.swift in Sources */,
 				B9FD6C08278E040900311EF1 /* NewNoteViewController.swift in Sources */,
+				B98282D827A07C84006EFED8 /* NewAccountViewController.swift in Sources */,
 				B961212D279351FB00B7B81E /* SelectionLabel.swift in Sources */,
 				B90DB438276F14B100F1A544 /* DateFormatterService.swift in Sources */,
 				B90DB44A276F532D00F1A544 /* NotesViewController.swift in Sources */,
@@ -524,6 +543,7 @@
 				B9DE0D592768FDAE00805E4C /* TabBarViewController.swift in Sources */,
 				B9698F29279C53B8005FB438 /* NewNoteViewModel.swift in Sources */,
 				B90A37E427784E830028B6F1 /* Extension + UIBarButtonItem.swift in Sources */,
+				B98282D327A07BF3006EFED8 /* SignInButton.swift in Sources */,
 				B9DE0D562768FDAB00805E4C /* TripTableViewCell.swift in Sources */,
 				B93DD4BA279F1BCA00D91A08 /* AuthViewController.swift in Sources */,
 				B966487E2799D66900F527E8 /* MapViewController.swift in Sources */,
@@ -531,8 +551,10 @@
 				B9D9FC14278F4E1D007710B4 /* SelectionButton.swift in Sources */,
 				B909AFE0277E437D006EFC38 /* Extension + UITextField.swift in Sources */,
 				B9DE0D5F2768FDB800805E4C /* TripModel.swift in Sources */,
+				B98282E427A082CE006EFED8 /* NewAccountViewController.swift in Sources */,
 				B9EBFB0A277A3EEA00746A0A /* Extension + UIButton.swift in Sources */,
 				B9FB611F277236B400126A59 /* NewTripViewController.swift in Sources */,
+				B98282E127A07CDA006EFED8 /* NewAccountViewModel.swift in Sources */,
 				B9698F26279C52CC005FB438 /* LocationSevice.swift in Sources */,
 				B961212827934BDE00B7B81E /* NoteModel.swift in Sources */,
 				B9D9FC11278F390B007710B4 /* NewNoteViewController.swift in Sources */,

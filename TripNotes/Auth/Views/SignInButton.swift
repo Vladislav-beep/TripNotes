@@ -12,6 +12,7 @@ class SignInButton: UIButton {
     init() {
         super.init(frame: .zero)
         setTitle("Sign in", for: .normal)
+        titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .heavy)
         backgroundColor = .tripRed
         layer.cornerRadius = 12
         layer.shadowRadius = 2
