@@ -29,6 +29,7 @@ class AuthViewController: UIViewController {
         welcomeLabel.numberOfLines = 2
         welcomeLabel.text = "Welcome to \n TripNotes"
         welcomeLabel.textAlignment = .center
+        welcomeLabel.textColor = .tripBlue
         welcomeLabel.adjustsFontSizeToFitWidth = true
         welcomeLabel.font = UIFont.systemFont(ofSize: 30, weight: .regular)
         welcomeLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -53,9 +54,35 @@ class AuthViewController: UIViewController {
     private lazy var textFieldStack: UIStackView = {
         let textFieldStack = UIStackView(arrangedSubviews: [loginTextField, passwordTextField],
                                          axis: .vertical,
-                                         spacing: 20,
+                                         spacing: 16,
                                          distribution: .fillEqually)
         return textFieldStack
+    }()
+    
+    private lazy var createLabel: UILabel = {
+        let createLabel = UILabel()
+        createLabel.text = "I don't have an account"
+        createLabel.textAlignment = .center
+        createLabel.textColor = .tripBlue
+        createLabel.layer.opacity = 0.5
+        createLabel.translatesAutoresizingMaskIntoConstraints = false
+        return createLabel
+    }()
+    
+    private lazy var createButton: UIButton = {
+        let createButton = UIButton()
+        createButton.translatesAutoresizingMaskIntoConstraints = false
+        createButton.setTitle("Create new account", for: .normal)
+        createButton.setTitleColor(.tripBlue, for: .normal)
+        return createButton
+    }()
+    
+    private lazy var createStack: UIStackView = {
+        let createStack = UIStackView(arrangedSubviews: [createLabel, createButton],
+                                         axis: .vertical,
+                                         spacing: 8,
+                                         distribution: .fillEqually)
+        return createStack
     }()
     
     init(viewModel: AuthViewModelProtocol) {
@@ -78,6 +105,7 @@ class AuthViewController: UIViewController {
         setupWelcomeLabelConstraints()
         setupTextFieldStackConstraints()
         setupSignInButtonConstraints()
+        setupCreateButtonConstraints()
     }
     
     private func setupScrollViewConstraints() {
@@ -123,10 +151,20 @@ class AuthViewController: UIViewController {
     private func setupSignInButtonConstraints() {
         lowerView.addSubview(signInButton)
         NSLayoutConstraint.activate([
-            signInButton.topAnchor.constraint(equalTo: textFieldStack.bottomAnchor, constant: 30),
+            signInButton.topAnchor.constraint(equalTo: textFieldStack.bottomAnchor, constant: 22),
             signInButton.leadingAnchor.constraint(equalTo: lowerView.leadingAnchor, constant: 10),
             signInButton.trailingAnchor.constraint(equalTo: lowerView.trailingAnchor, constant: -10),
             signInButton.heightAnchor.constraint(equalToConstant: 60)
+        ])
+    }
+    
+    private func setupCreateButtonConstraints() {
+        lowerView.addSubview(createStack)
+        NSLayoutConstraint.activate([
+            createStack.bottomAnchor.constraint(equalTo: lowerView.bottomAnchor, constant: -50),
+            createStack.centerXAnchor.constraint(equalTo: lowerView.centerXAnchor, constant: 0),
+            createStack.heightAnchor.constraint(equalToConstant: 55),
+            createStack.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width / 2)
         ])
     }
 }
