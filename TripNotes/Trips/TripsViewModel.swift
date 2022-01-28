@@ -20,7 +20,11 @@ protocol TripsViewModelProtocol: class {
 
 class TripsViewModel: TripsViewModelProtocol {
     
+    // MARK: Properties
+    
     var trips: [Trip] = []
+    
+    // MARK: Methods
     
     func getTrips(completion: @escaping () -> Void) {
         trips = Trip.getData()

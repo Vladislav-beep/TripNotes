@@ -9,7 +9,11 @@ import UIKit
 
 class NewAccountViewController: UIViewController {
     
+    // MARK: Dependencies
+    
     private var viewModel: NewAccountViewModelProtocol
+    
+    // MARK: UI
     
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -91,6 +95,8 @@ class NewAccountViewController: UIViewController {
         return createStack
     }()
     
+    // MARK: Life Time
+    
     init(viewModel: NewAccountViewModelProtocol) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -104,6 +110,8 @@ class NewAccountViewController: UIViewController {
         super.viewDidLoad()
         setupConstraints()
     }
+    
+    // MARK: Layout
     
     private func setupConstraints() {
         setupScrollViewConstraints()

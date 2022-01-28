@@ -9,6 +9,19 @@ import UIKit
 
  class TripTableViewCell: UITableViewCell {
     
+    // MARK: Dependencies
+    
+    var viewModel: TripTableViewCellViewModelProtocol! {
+        didSet {
+            countryLabel.text = viewModel.country
+            descriptionLabel.text = viewModel.description
+            dateLabel.text = viewModel.date
+            totalSumLabel.text = viewModel.getTotalSum()
+        }
+    }
+    
+    // MARK: UI
+    
     private lazy var tripImageView: UIImageView = {
         let tripImageView = UIImageView()
         tripImageView.layer.cornerRadius = 10
@@ -85,6 +98,8 @@ import UIKit
         return textView
     }()
     
+    // MARK: Life Time
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupTripImageConstraints()
@@ -98,14 +113,7 @@ import UIKit
         fatalError("init(coder:) has not been implemented")
     }
     
-    var viewModel: TripTableViewCellViewModelProtocol! {
-        didSet {
-            countryLabel.text = viewModel.country
-            descriptionLabel.text = viewModel.description
-            dateLabel.text = viewModel.date
-            totalSumLabel.text = viewModel.getTotalSum()
-        }
-    }
+    // MARK: Layout
     
     private func setupTripImageConstraints() {
         contentView.addSubview(tripImageView)

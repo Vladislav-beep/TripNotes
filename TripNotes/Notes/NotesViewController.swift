@@ -9,7 +9,11 @@ import UIKit
 
 class NotesViewController: UIViewController {
     
+    // MARK: Dependencies
+    
     private var viewModel: NotesViewModelProtocol
+    
+    // MARK: UI
     
     private lazy var collectionView: UICollectionView = {
         let layout = createLayout()
@@ -24,6 +28,8 @@ class NotesViewController: UIViewController {
         return collectionView
     }()
     
+    // MARK: Life Time
+    
     init(notesViewModel: NotesViewModelProtocol) {
         self.viewModel = notesViewModel
         super.init(nibName: nil, bundle: nil)
@@ -36,9 +42,7 @@ class NotesViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
+    // MARK: Private methods
     
     private func createLayout() -> UICollectionViewLayout {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
@@ -54,6 +58,8 @@ class NotesViewController: UIViewController {
         return layout
     }
     
+    // MARK: Layout
+    
     private func setupCollectionViewConstraints() {
         view.addSubview(collectionView)
         NSLayoutConstraint.activate([
@@ -64,6 +70,8 @@ class NotesViewController: UIViewController {
         ])
     }
 }
+
+// MARK: CollectionViewDataSource
 
 extension NotesViewController: UICollectionViewDataSource {
     
@@ -80,7 +88,4 @@ extension NotesViewController: UICollectionViewDataSource {
     }
 }
 
-extension NotesViewController: UICollectionViewDelegate {
-    
-}
 

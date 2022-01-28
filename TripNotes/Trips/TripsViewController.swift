@@ -9,6 +9,8 @@ import UIKit
 
 class TripsViewController: UIViewController {
     
+    // MARK: Dependencies
+    
     private var viewModel: TripsViewModelProtocol! {
         didSet {
             viewModel.getTrips { [weak self] in
@@ -17,6 +19,8 @@ class TripsViewController: UIViewController {
         }
     }
 
+    // MARK: UI
+    
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.backgroundColor = .white
@@ -70,6 +74,8 @@ class TripsViewController: UIViewController {
         return button
     }()
     
+    // MARK: Life Time
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Trips"
@@ -89,6 +95,8 @@ class TripsViewController: UIViewController {
         addNoteButton.isHidden = true
         
     }
+    
+    // MARK: Actions
     
     @objc func addTapped() {
         // TODO settings screen
@@ -110,6 +118,8 @@ class TripsViewController: UIViewController {
         parent?.present(newNoteVC, animated: true)
       //  present(newNoteVC, animated: true)
     }
+    
+    // MARK: Private methods
     
     private func setupNavigationBar() {
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -147,6 +157,8 @@ class TripsViewController: UIViewController {
         return action
     }
     
+    // MARK: Layout
+    
     private func setupTableContraints() {
         view.addSubview(tableView)
         NSLayoutConstraint.activate([
@@ -177,6 +189,8 @@ class TripsViewController: UIViewController {
         ])
     }
 }
+
+// MARK: TableViewDataSource
 
 extension TripsViewController: UITableViewDataSource {
     
@@ -217,6 +231,8 @@ extension TripsViewController: UITableViewDataSource {
         return cell ?? UITableViewCell()
     }
 }
+
+// MARK: TableViewDelegate
 
 extension TripsViewController: UITableViewDelegate {
     

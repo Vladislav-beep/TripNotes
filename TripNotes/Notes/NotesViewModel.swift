@@ -15,15 +15,22 @@ protocol NotesViewModelProtocol {
 }
 
 class NotesViewModel: NotesViewModelProtocol {
+    
+    // MARK: Properties
+    
     var text: String {
         trip.country
     }
     
     var trip: Trip
     
+    // MARK: Life time
+    
     required init(trip: Trip) {
         self.trip = trip
     }
+    
+    // MARK: Methods
     
     func getNotes() -> [TripNote] {
         return trip.tripNotes

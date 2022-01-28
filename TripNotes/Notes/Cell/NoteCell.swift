@@ -9,6 +9,26 @@ import UIKit
 
 class NoteCell: UICollectionViewCell {
     
+    // MARK: Dependencies
+    
+    var viewModel: NoteCellViewModelProtocol! {
+        didSet {
+            categoryLabel.text = viewModel.category
+            descriptionLabel.text = viewModel.description
+            cityLabel.text = viewModel.city
+            dateLabel.text = viewModel.date
+            sumLabel.text = viewModel.price
+            lowerView.setupBackGroundColor(forCategory: viewModel.backGroundCategory)
+            categoryLabel.setupTintColor(forCategory: viewModel.backGroundCategory)
+            cityLabel.setupTintColor(forCategory: viewModel.backGroundCategory)
+            descriptionLabel.setupTintColor(forCategory: viewModel.backGroundCategory)
+            dateLabel.setupTintColor(forCategory: viewModel.backGroundCategory)
+        }
+    }
+    
+    
+    // MARK: UI
+    
     private lazy var lowerView: UIView = {
         let lowerView = UIView()
         lowerView.backgroundColor = .tripYellow
@@ -90,6 +110,8 @@ class NoteCell: UICollectionViewCell {
         return sumLabel
     }()
     
+    // MARK: Life Time
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupLowerViewConstraints()
@@ -103,20 +125,7 @@ class NoteCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    var viewModel: NoteCellViewModelProtocol! {
-        didSet {
-            categoryLabel.text = viewModel.category
-            descriptionLabel.text = viewModel.description
-            cityLabel.text = viewModel.city
-            dateLabel.text = viewModel.date
-            sumLabel.text = viewModel.price
-            lowerView.setupBackGroundColor(forCategory: viewModel.backGroundCategory)
-            categoryLabel.setupTintColor(forCategory: viewModel.backGroundCategory)
-            cityLabel.setupTintColor(forCategory: viewModel.backGroundCategory)
-            descriptionLabel.setupTintColor(forCategory: viewModel.backGroundCategory)
-            dateLabel.setupTintColor(forCategory: viewModel.backGroundCategory)
-        }
-    }
+    // MARK: Layout
     
     private func setupLowerViewConstraints() {
         contentView.addSubview(lowerView)
@@ -125,7 +134,7 @@ class NoteCell: UICollectionViewCell {
             lowerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0),
             lowerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0),
             lowerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20)
-])
+        ])
     }
     
     private func setupCategoryImageViewConstraints() {

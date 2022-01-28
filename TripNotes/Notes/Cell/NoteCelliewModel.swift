@@ -18,6 +18,8 @@ protocol NoteCellViewModelProtocol {
 }
 
 class NoteCellViewModel: NoteCellViewModelProtocol {
+    
+    // MARK: Properties
    
     var description: String {
         tripNote.description ?? ""
@@ -43,8 +45,12 @@ class NoteCellViewModel: NoteCellViewModelProtocol {
         String(tripNote.price) + " " + currency.rawValue
     }
     
+    // MARK: Private properties
+    
     private let tripNote: TripNote
     private let currency: Currency
+    
+    // MARK: Life Time
     
     required init(tripNote: TripNote, currency: Currency) {
         self.tripNote = tripNote

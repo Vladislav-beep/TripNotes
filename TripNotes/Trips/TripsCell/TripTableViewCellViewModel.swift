@@ -19,6 +19,8 @@ protocol TripTableViewCellViewModelProtocol {
 
 class TripTableViewCellViewModel: TripTableViewCellViewModelProtocol {
     
+    // MARK: Properties
+    
     let image = "placeHolder1"
     
     var avatarTrip: Data? {
@@ -37,11 +39,17 @@ class TripTableViewCellViewModel: TripTableViewCellViewModelProtocol {
         trip.country
     }
     
+    // MARK: Private properties
+    
     private let trip: Trip
+    
+    // MARK: Life Time
     
     required init(trip: Trip) {
         self.trip = trip
     }
+    
+    // MARK: Methods
     
     func getTotalSum() -> String {
         var totalSum: Double = 0

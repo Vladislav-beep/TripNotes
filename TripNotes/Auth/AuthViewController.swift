@@ -9,7 +9,11 @@ import UIKit
 
 class AuthViewController: UIViewController {
     
+    // MARK: Dependencies
+    
     private var viewModel: AuthViewModelProtocol
+    
+    // MARK: UI
     
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -86,6 +90,8 @@ class AuthViewController: UIViewController {
         return createStack
     }()
     
+    // MARK: Life Time
+    
     init(viewModel: AuthViewModelProtocol) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -100,11 +106,15 @@ class AuthViewController: UIViewController {
         setupConstraints()
     }
     
+    // MARK: Actions
+    
     @objc func createNewAccount() {
         let newAccountViewModel = NewAccountViewModel()
         let newAccountVC = NewAccountViewController(viewModel: newAccountViewModel)
         present(newAccountVC, animated: true)
     }
+    
+    // MARK: Layout
     
     private func setupConstraints() {
         setupScrollViewConstraints()
