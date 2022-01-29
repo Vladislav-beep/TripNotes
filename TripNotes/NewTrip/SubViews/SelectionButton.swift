@@ -9,6 +9,8 @@ import UIKit
 
 class SelectionButton: UIButton {
     
+    // MARK: Private properties
+    
     private var title: String?
     private var fontSize: CGFloat?
     private var selectedBackgroundColor: UIColor?
@@ -18,11 +20,22 @@ class SelectionButton: UIButton {
         }
     }
     
+    // MARK: Enum
+    
+    enum ButtonState {
+        case normal
+        case selected
+    }
+    
+    // MARK: UI
+    
     private lazy var categoryImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
+    
+    // MARK: Life Time
     
     init(title: String?, fontSize: CGFloat?) {
         self.title = title
@@ -39,6 +52,8 @@ class SelectionButton: UIButton {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: Methods
     
     func setup() {
         setBackgroundColor(.tripGrey, for: .normal)
@@ -58,11 +73,6 @@ class SelectionButton: UIButton {
         layer.shadowOpacity = 0.5
         
         translatesAutoresizingMaskIntoConstraints = false
-    }
-    
-    enum ButtonState {
-        case normal
-        case selected
     }
     
     // change background color on isSelected value changed

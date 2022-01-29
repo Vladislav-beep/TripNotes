@@ -14,6 +14,7 @@ class NewTripViewController: UIViewController {
     
     var viewModel: NewTripViewModelProtocol?
     
+    // MARK: UI
     
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -153,6 +154,8 @@ class NewTripViewController: UIViewController {
         return tap
     }()
     
+    // MARK: Life Time
+    
     init(viewModel: NewTripViewModelProtocol) {
         super.init(nibName: nil, bundle: nil)
         self.viewModel = viewModel
@@ -163,7 +166,6 @@ class NewTripViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -178,6 +180,8 @@ class NewTripViewController: UIViewController {
     deinit {
         removeKeyboardNotification()
     }
+    
+    // MARK: Actions
     
     @objc func tapDone() {
         if let inputView = beginDateTextField.inputView {
@@ -264,6 +268,8 @@ class NewTripViewController: UIViewController {
         
         present(actionSheet, animated: true)
     }
+    
+    // MARK: Layout
     
     private func setupConstraints() {
         setupScrollViewConstraints()
@@ -358,6 +364,8 @@ class NewTripViewController: UIViewController {
     }
 }
 
+// MARK: ImagePicker
+
 extension NewTripViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func chooseImagePicker(source: UIImagePickerController.SourceType) {
@@ -380,6 +388,8 @@ extension NewTripViewController: UIImagePickerControllerDelegate, UINavigationCo
     }
 }
 
+// MARK: TextFieldDelegate
+
 extension NewTripViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -398,6 +408,8 @@ extension NewTripViewController: UITextFieldDelegate {
         return true
     }
 }
+
+// MARK: Keyboard methods
 
 extension NewTripViewController {
     

@@ -8,8 +8,12 @@
 import UIKit
 
 class SelectionLabel: UILabel {
+    
+    // MARK: Private properties
    
     private var labelText: String
+    
+    // MARK: Life Time
     
     init(labelText: String) {
         self.labelText = labelText
@@ -20,6 +24,8 @@ class SelectionLabel: UILabel {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: Methods
     
     func initialize() {
         text = labelText

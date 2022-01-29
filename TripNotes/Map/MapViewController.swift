@@ -10,9 +10,13 @@ import MapKit
 
 class MapViewController: UIViewController {
     
+    // MARK: Dependencies
+    
     let mapManager = LocationService()
     
     var viewModel: MapViewModelProtocol?
+    
+    // MARK: UI
     
     private lazy var mapView: MKMapView = {
         let mapView = MKMapView()
@@ -77,6 +81,8 @@ class MapViewController: UIViewController {
         return imageView
     }()
     
+    // MARK: Life Time
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -87,6 +93,8 @@ class MapViewController: UIViewController {
      //   checkLocationServices()
         setupConstraints() 
     }
+    
+    // MARK: Layout
     
     private func setupConstraints() {
         setupMapViewConstraints()
@@ -103,6 +111,8 @@ class MapViewController: UIViewController {
 //        }
 //    }
     
+    // MARK: Actions
+    
     @objc func closeScreen() {
         dismiss(animated: true)
     }
@@ -110,6 +120,8 @@ class MapViewController: UIViewController {
     @objc func showUserLocationButtonTapped() {
         showUserLocation()
     }
+    
+    // MARK: Private methods
     
     private func showUserLocation() {
       //  mapManager.showUserLocation2(mapView: mapView)
@@ -119,6 +131,21 @@ class MapViewController: UIViewController {
 
         mapView.setRegion(unwrappedRegion, animated: true)
     }
+    
+    private func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default)
+        
+        alert.addAction(okAction)
+        
+        let alertWindow = UIWindow(frame: UIScreen.main.bounds)
+        alertWindow.rootViewController = UIViewController()
+        alertWindow.windowLevel = UIWindow.Level.alert + 1
+        alertWindow.makeKeyAndVisible()
+        alertWindow.rootViewController?.present(alert, animated: true)
+    }
+    
+    // MARK: Layout
     
     private func setupMapViewConstraints() {
         view.addSubview(mapView)
@@ -183,6 +210,8 @@ class MapViewController: UIViewController {
     }
 }
 
+// MARK: CLLocationManagerDelegate
+
 extension MapViewController: CLLocationManagerDelegate {
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
@@ -207,18 +236,5 @@ extension MapViewController: CLLocationManagerDelegate {
         @unknown default:
             print("New case is available")
         }
-    }
-    
-    private func showAlert(title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .default)
-        
-        alert.addAction(okAction)
-        
-        let alertWindow = UIWindow(frame: UIScreen.main.bounds)
-        alertWindow.rootViewController = UIViewController()
-        alertWindow.windowLevel = UIWindow.Level.alert + 1
-        alertWindow.makeKeyAndVisible()
-        alertWindow.rootViewController?.present(alert, animated: true)
     }
 }

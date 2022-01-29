@@ -7,7 +7,7 @@
 
 import UIKit
 
-class NotesViewController: UIViewController {
+class NotesViewController: UIViewController, UICollectionViewDelegate {
     
     // MARK: Dependencies
     

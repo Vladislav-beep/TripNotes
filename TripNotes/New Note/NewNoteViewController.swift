@@ -9,7 +9,11 @@ import UIKit
 
 class NewNoteViewController: UIViewController {
     
+    // MARK: Dependencies
+    
     var viewModel: NewNoteViewModelProtocol?
+    
+    // MARK: UI
     
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -250,6 +254,8 @@ class NewNoteViewController: UIViewController {
         return addNoteTripButton
     }()
     
+    // MARK: Life Time
+    
     init(viewModel: NewNoteViewModelProtocol) {
         super.init(nibName: nil, bundle: nil)
         self.viewModel = viewModel
@@ -264,6 +270,8 @@ class NewNoteViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
     }
+    
+    // MARK: Actions
     
     @objc func backButtonPressed() {
         dismiss(animated: true)
@@ -282,6 +290,8 @@ class NewNoteViewController: UIViewController {
         let mapVC = MapViewController()
         present(mapVC, animated: true)
     }
+    
+    // MARK: Layout
     
     private func setupConstraints() {
         setupScrollViewConstraints()
