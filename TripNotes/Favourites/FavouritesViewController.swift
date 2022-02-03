@@ -39,8 +39,8 @@ class FavouritesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .tripBlue
         title = "Favourites"
+        setupCollectionViewConstraints()
     }
     
     private func createLayout() -> UICollectionViewLayout {
@@ -56,6 +56,16 @@ class FavouritesViewController: UIViewController {
         let layout = UICollectionViewCompositionalLayout(section: section)
         return layout
     }
+    
+    private func setupCollectionViewConstraints() {
+        view.addSubview(collectionView)
+        NSLayoutConstraint.activate([
+            collectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
+        ])
+    }
 }
 
 extension FavouritesViewController: UICollectionViewDataSource {
@@ -66,9 +76,8 @@ extension FavouritesViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.CellIdentifiers.noteCollectionViewCellId.rawValue,
-                                                      for: indexPath) as? NoteCell
+                                                     for: indexPath) as? NoteCell
         cell?.viewModel = viewModel.noteCellViewModel(for: indexPath)
-        
         return cell ?? UICollectionViewCell()
     }
 }
