@@ -46,6 +46,8 @@
 		B9698F26279C52CC005FB438 /* LocationSevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9698F22279C4689005FB438 /* LocationSevice.swift */; };
 		B9698F29279C53B8005FB438 /* NewNoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9FD6C0B278E043600311EF1 /* NewNoteViewModel.swift */; };
 		B9698F2D279C5691005FB438 /* mapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9698F2C279C5691005FB438 /* mapViewModel.swift */; };
+		B97374BF27AC5CBE000B208D /* FavouritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97374BE27AC5CBE000B208D /* FavouritesViewModel.swift */; };
+		B97374C227AC5CF8000B208D /* FavouritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97374BE27AC5CBE000B208D /* FavouritesViewModel.swift */; };
 		B98282D327A07BF3006EFED8 /* SignInButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93DD4C7279F284300D91A08 /* SignInButton.swift */; };
 		B98282D827A07C84006EFED8 /* NewAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98282D727A07C84006EFED8 /* NewAccountViewController.swift */; };
 		B98282DE27A07CB2006EFED8 /* NewAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98282DD27A07CB2006EFED8 /* NewAccountViewModel.swift */; };
@@ -124,6 +126,7 @@
 		B96648782799D65F00F527E8 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		B9698F22279C4689005FB438 /* LocationSevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSevice.swift; sourceTree = "<group>"; };
 		B9698F2C279C5691005FB438 /* mapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mapViewModel.swift; sourceTree = "<group>"; };
+		B97374BE27AC5CBE000B208D /* FavouritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewModel.swift; sourceTree = "<group>"; };
 		B98282D727A07C84006EFED8 /* NewAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAccountViewController.swift; sourceTree = "<group>"; };
 		B98282DD27A07CB2006EFED8 /* NewAccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAccountViewModel.swift; sourceTree = "<group>"; };
 		B9A0EF6A2774DDCE00DE65E2 /* SelectionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionButton.swift; sourceTree = "<group>"; };
@@ -323,6 +326,7 @@
 			isa = PBXGroup;
 			children = (
 				B91E81552767AA4F00D0748B /* FavouritesViewController.swift */,
+				B97374BE27AC5CBE000B208D /* FavouritesViewModel.swift */,
 			);
 			path = Favourites;
 			sourceTree = "<group>";
@@ -509,6 +513,7 @@
 				B9A0EF6B2774DDCE00DE65E2 /* SelectionButton.swift in Sources */,
 				B9F296C527895C7F00844D6C /* NoteCelliewModel.swift in Sources */,
 				B91E813D2767A88E00D0748B /* AppDelegate.swift in Sources */,
+				B97374BF27AC5CBE000B208D /* FavouritesViewModel.swift in Sources */,
 				B93DD4C2279F23DA00D91A08 /* AuthTextField.swift in Sources */,
 				B91E81562767AA4F00D0748B /* FavouritesViewController.swift in Sources */,
 				B93DD4B7279F19F400D91A08 /* AuthViewModel.swift in Sources */,
@@ -562,6 +567,7 @@
 				B9FCE18E279D8A4900E06739 /* mapViewModel.swift in Sources */,
 				B9EA410B27777D9A00CC173A /* NewTripViewModel.swift in Sources */,
 				B9F018982770DF1D006F2DE7 /* TripsViewModel.swift in Sources */,
+				B97374C227AC5CF8000B208D /* FavouritesViewModel.swift in Sources */,
 				B90DB45A276FB39E00F1A544 /* NotesViewModel.swift in Sources */,
 				B93DD4BD279F1BCC00D91A08 /* AuthViewModel.swift in Sources */,
 				B9DE0D4A2768FD7900805E4C /* TripNotesTests.swift in Sources */,

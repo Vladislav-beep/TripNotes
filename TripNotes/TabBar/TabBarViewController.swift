@@ -15,7 +15,7 @@ class TabBarViewController: UITabBarController {
         super.viewDidLoad()
 
         let firstViewController = UINavigationController(rootViewController: TripsViewController()) 
-        let secondViewController = UINavigationController(rootViewController: FavouritesViewController())
+        let secondViewController = UINavigationController(rootViewController: FavouritesViewController(notesViewModel: FavouritesViewModel()))
         
         firstViewController.tabBarItem.title = "Trips"
         firstViewController.tabBarItem.image = UIImage(systemName: "pencil")
