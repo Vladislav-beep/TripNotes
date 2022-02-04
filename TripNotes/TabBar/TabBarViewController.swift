@@ -13,14 +13,18 @@ class TabBarViewController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tabBar.unselectedItemTintColor = .tripBlue
+        tabBar.selectedImageTintColor = .tripRed
 
         let firstViewController = UINavigationController(rootViewController: TripsViewController()) 
         let secondViewController = UINavigationController(rootViewController: FavouritesViewController(notesViewModel: FavouritesViewModel()))
         
         firstViewController.tabBarItem.title = "Trips"
-        firstViewController.tabBarItem.image = UIImage(systemName: "pencil")
+        firstViewController.tabBarItem.image = UIImage(named: "1")
+        firstViewController.tabBarItem.badgeColor = .tripRed
         secondViewController.tabBarItem.title = "Favourites"
-        secondViewController.tabBarItem.image = UIImage(systemName: "circle.fill")
+        secondViewController.tabBarItem.image = UIImage(systemName: "heart.fill")
         viewControllers = [firstViewController, secondViewController]
     }
     
