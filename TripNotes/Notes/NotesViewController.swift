@@ -15,16 +15,20 @@ class NotesViewController: UIViewController, UICollectionViewDelegate {
     
     // MARK: UI
     
-    private lazy var collectionView: UICollectionView = {
-        let layout = createLayout()
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        collectionView.backgroundColor = .white
-        collectionView.register(NoteCell.self,
-                                forCellWithReuseIdentifier: Constants.CellIdentifiers.noteCollectionViewCellId.rawValue)
-        collectionView.showsHorizontalScrollIndicator = false
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
+//    private lazy var collectionView: UICollectionView = {
+//        let layout = createLayout()
+//        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+//        collectionView.delegate = self
+//        collectionView.dataSource = self
+//        collectionView.backgroundColor = .white
+//        collectionView.register(NoteCell.self,
+//                                forCellWithReuseIdentifier: Constants.CellIdentifiers.noteCollectionViewCellId.rawValue)
+//        collectionView.showsHorizontalScrollIndicator = false
+//        collectionView.translatesAutoresizingMaskIntoConstraints = false
+//        return collectionView
+//    }()
+    private lazy var collectionView: NotesCollectionView = {
+        let collectionView = NotesCollectionView()
         return collectionView
     }()
     
@@ -40,6 +44,10 @@ class NotesViewController: UIViewController, UICollectionViewDelegate {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewDidLoad() {
+        collectionView.dataSource = self
     }
     
     // MARK: Private methods
