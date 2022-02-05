@@ -12,6 +12,7 @@ class NotesViewController: UIViewController, UICollectionViewDelegate {
     // MARK: Dependencies
     
     private var viewModel: NotesViewModelProtocol
+    var coordinator: AppCoordinator?
     
     // MARK: UI
     

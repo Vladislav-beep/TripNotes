@@ -12,6 +12,7 @@ class AuthViewController: UIViewController {
     // MARK: Dependencies
     
     private var viewModel: AuthViewModelProtocol
+    var coordinator: AppCoordinator?
     
     // MARK: UI
     

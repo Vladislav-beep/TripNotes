@@ -33,7 +33,7 @@ struct Trip {
                                     TripNote(city: "Munchen", category: .foodAndRestaurants, price: 2.33, date: Date(), description: "Sossage restaurant", isFavoutite: false, adress: "13 Strasse"),
                                     TripNote(city: "Berlin", category: .purchases, price: 14.4, date: Date(), description: "T-shirt", isFavoutite: true, adress: nil),
                                     TripNote(city: "London", category: .tranport, price: 2.75, date: Date(), description: "Bus ticket", isFavoutite: false, adress: nil),
-                                    TripNote(city: "London", category: .other, price: 5.78, date: Date(), description: "Found one funt on the ground", isFavoutite: true, adress: nil)],
+                                    TripNote(city: "London", category: .other, price: 5.78, date: Date(), description: "Found one funt on the ground fot that it was great/ i bought two ice creams", isFavoutite: true, adress: nil)],
                                   avatarTrip: nil),
                     Trip(country: "Dominicana",
                                   beginningDate: Date(timeIntervalSince1970: -5000),

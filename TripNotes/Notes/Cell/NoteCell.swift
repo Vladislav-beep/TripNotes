@@ -45,14 +45,13 @@ class NoteCell: UICollectionViewCell {
         categoryImageView.backgroundColor = .tripBlue
         return categoryImageView
     }()
-
     
     private lazy var categoryLabel: NoteLabel = {
         let categoryLabel = NoteLabel(fontSize: 17, fontWeight: .heavy)
         return categoryLabel
     }()
     private lazy var cityLabel: NoteLabel = {
-        let cityLabel = NoteLabel(fontSize: 15, fontWeight: .semibold)
+        let cityLabel = NoteLabel(fontSize: 15, fontWeight: .bold)
         return cityLabel
     }()
     

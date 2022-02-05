@@ -18,6 +18,8 @@ class TripsViewController: UIViewController {
             }
         }
     }
+    
+    var coordinator: AppCoordinator?
 
     // MARK: UI
     

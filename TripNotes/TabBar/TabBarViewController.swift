@@ -9,6 +9,8 @@ import UIKit
 
 class TabBarViewController: UITabBarController {
     
+    var coordinator: AppCoordinator?
+    
     override var selectedIndex: Int { // Mark 1
         didSet {
             guard let selectedViewController = viewControllers?[selectedIndex] else { return }
@@ -35,23 +37,21 @@ class TabBarViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //     UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12, weight: .regular)], for: .normal)
-        //    UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15, weight: .heavy)], for: .selected)
-         tabBar.unselectedItemTintColor = .tripBlue
+        tabBar.unselectedItemTintColor = .tripBlue
         tabBar.tintColor = .tripRed
-        // tabBar.selectedImageTintColor = .tripRed
         
-        let firstViewController = UINavigationController(rootViewController: TripsViewController()) 
+   //     let firstViewController = UINavigationController(rootViewController: coordinator?.showTrips() ?? UIViewController())
+    //    let secondViewController = UINavigationController(rootViewController:coordinator?.showFavourites() ?? UIViewController())
+        let firstViewController = UINavigationController(rootViewController: TripsViewController())
         let secondViewController = UINavigationController(rootViewController: FavouritesViewController(notesViewModel: FavouritesViewModel()))
         
         firstViewController.tabBarItem.title = "Trips"
         firstViewController.tabBarItem.image = UIImage(named: "tabBarTrip")
-        // firstViewController.tabBarItem.badgeColor = .tripRed
+        
         secondViewController.tabBarItem.title = "Favourites"
         secondViewController.tabBarItem.image = UIImage(systemName: "heart.fill")
+        
         viewControllers = [firstViewController, secondViewController]
-        
-        
     }
     
 }
