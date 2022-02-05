@@ -198,9 +198,7 @@ extension TripsViewController: UITableViewDataSource {
         viewModel.numberOfRows(section: section)
     }
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        2
-    }
+    func numberOfSections(in tableView: UITableView) -> Int { 2 }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         viewModel.titleForHeaderInSection(section: section)

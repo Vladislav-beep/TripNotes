@@ -18,11 +18,11 @@ class NoteCell: UICollectionViewCell {
             cityLabel.text = viewModel.city
             dateLabel.text = viewModel.date
             sumLabel.text = viewModel.price
-            lowerView.setupBackGroundColor(forCategory: viewModel.backGroundCategory)
-            categoryLabel.setupTintColor(forCategory: viewModel.backGroundCategory)
-            cityLabel.setupTintColor(forCategory: viewModel.backGroundCategory)
-            descriptionLabel.setupTintColor(forCategory: viewModel.backGroundCategory)
-            dateLabel.setupTintColor(forCategory: viewModel.backGroundCategory)
+           // lowerView.setupBackGroundColor(forCategory: viewModel.backGroundCategory)
+           // categoryLabel.setupTintColor(forCategory: viewModel.backGroundCategory)
+           // cityLabel.setupTintColor(forCategory: viewModel.backGroundCategory)
+           // descriptionLabel.setupTintColor(forCategory: viewModel.backGroundCategory)
+           // dateLabel.setupTintColor(forCategory: viewModel.backGroundCategory)
         }
     }
     
@@ -45,48 +45,25 @@ class NoteCell: UICollectionViewCell {
         categoryImageView.backgroundColor = .tripBlue
         return categoryImageView
     }()
+
     
-    private lazy var favouriteButton: UIButton = {
-        let favouriteButton = UIButton()
-        favouriteButton.layer.cornerRadius = 5
-        favouriteButton.setBackgroundImage(UIImage(systemName: "heart"), for: .normal)
-        favouriteButton.tintColor = .tripBlue
-        favouriteButton.backgroundColor = .clear
-        favouriteButton.translatesAutoresizingMaskIntoConstraints = false
-        return favouriteButton
-    }()
-    
-    private lazy var categoryLabel: UILabel = {
-        let categoryLabel = UILabel()
-        categoryLabel.adjustsFontSizeToFitWidth = true
-        categoryLabel.font = UIFont.systemFont(ofSize: 17, weight: .heavy)
-        categoryLabel.translatesAutoresizingMaskIntoConstraints = false
+    private lazy var categoryLabel: NoteLabel = {
+        let categoryLabel = NoteLabel(fontSize: 17, fontWeight: .heavy)
         return categoryLabel
     }()
-    private lazy var cityLabel: UILabel = {
-        let cityLabel = UILabel()
-        cityLabel.adjustsFontSizeToFitWidth = true
-        cityLabel.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
-        cityLabel.minimumScaleFactor = 0.5
-        cityLabel.translatesAutoresizingMaskIntoConstraints = false
+    private lazy var cityLabel: NoteLabel = {
+        let cityLabel = NoteLabel(fontSize: 15, fontWeight: .semibold)
         return cityLabel
     }()
     
-    private lazy var descriptionLabel: UILabel = {
-        let descriptionLabel = UILabel()
-        descriptionLabel.adjustsFontSizeToFitWidth = true
-        descriptionLabel.font = UIFont.systemFont(ofSize: 14, weight: .medium)
-        descriptionLabel.minimumScaleFactor = 0.5
-        descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
+    private lazy var descriptionLabel: NoteLabel = {
+        let descriptionLabel = NoteLabel(fontSize: 14, fontWeight: .medium)
+        descriptionLabel.numberOfLines = 2
         return descriptionLabel
     }()
     
-    private lazy var dateLabel: UILabel = {
-        let dateLabel = UILabel()
-        dateLabel.adjustsFontSizeToFitWidth = true
-        dateLabel.font = UIFont.systemFont(ofSize: 13, weight: .regular)
-        dateLabel.minimumScaleFactor = 0.5
-        dateLabel.translatesAutoresizingMaskIntoConstraints = false
+    private lazy var dateLabel: NoteLabel = {
+        let dateLabel = NoteLabel(fontSize: 13, fontWeight: .regular)
         return dateLabel
     }()
     
@@ -144,16 +121,6 @@ class NoteCell: UICollectionViewCell {
             categoryImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
             categoryImageView.widthAnchor.constraint(equalTo: categoryImageView.heightAnchor),
             categoryImageView.heightAnchor.constraint(equalToConstant: 40)
-        ])
-    }
-    
-    private func setupFavouteButtonConstraints() {
-        contentView.addSubview(favouriteButton)
-        NSLayoutConstraint.activate([
-            favouriteButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
-            favouriteButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5),
-            favouriteButton.widthAnchor.constraint(equalTo: favouriteButton.heightAnchor),
-            favouriteButton.heightAnchor.constraint(equalToConstant: 40)
         ])
     }
     

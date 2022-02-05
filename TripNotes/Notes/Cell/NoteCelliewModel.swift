@@ -56,5 +56,4 @@ class NoteCellViewModel: NoteCellViewModelProtocol {
         self.tripNote = tripNote
         self.currency = currency
     }
-    
 }

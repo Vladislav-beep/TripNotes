@@ -10,7 +10,7 @@ import Foundation
 enum Category: String {
     case hotels = "Hotels"
     case tranport = "Transport"
-    case foodAndRestaurants = "Food and Restaurants"
+    case foodAndRestaurants = "Food"
     case activity = "Activities"
     case purchases = "Purchases"
     case other = "Other"

@@ -40,6 +40,8 @@
 		B93DD4BD279F1BCC00D91A08 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93DD4B6279F19F400D91A08 /* AuthViewModel.swift */; };
 		B93DD4C2279F23DA00D91A08 /* AuthTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93DD4C1279F23DA00D91A08 /* AuthTextField.swift */; };
 		B93DD4C8279F284300D91A08 /* SignInButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93DD4C7279F284300D91A08 /* SignInButton.swift */; };
+		B949FB0D27AEE4C700590F0E /* NoteLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B949FB0C27AEE4C600590F0E /* NoteLabel.swift */; };
+		B949FB1027AEE4EA00590F0E /* NoteLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B949FB0C27AEE4C600590F0E /* NoteLabel.swift */; };
 		B961212827934BDE00B7B81E /* NoteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90DB425276F134B00F1A544 /* NoteModel.swift */; };
 		B961212D279351FB00B7B81E /* SelectionLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B961212C279351FB00B7B81E /* SelectionLabel.swift */; };
 		B96648792799D65F00F527E8 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96648782799D65F00F527E8 /* MapViewController.swift */; };
@@ -125,6 +127,7 @@
 		B93DD4B6279F19F400D91A08 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		B93DD4C1279F23DA00D91A08 /* AuthTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTextField.swift; sourceTree = "<group>"; };
 		B93DD4C7279F284300D91A08 /* SignInButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInButton.swift; sourceTree = "<group>"; };
+		B949FB0C27AEE4C600590F0E /* NoteLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteLabel.swift; sourceTree = "<group>"; };
 		B961212C279351FB00B7B81E /* SelectionLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionLabel.swift; sourceTree = "<group>"; };
 		B96648782799D65F00F527E8 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		B9698F22279C4689005FB438 /* LocationSevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSevice.swift; sourceTree = "<group>"; };
@@ -278,6 +281,14 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		B949FB0B27AEE4B300590F0E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B949FB0C27AEE4C600590F0E /* NoteLabel.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		B961212B279351E300B7B81E /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -355,6 +366,7 @@
 		B9F296BF27895C2500844D6C /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				B949FB0B27AEE4B300590F0E /* Views */,
 				B9F296C027895C4300844D6C /* NoteCell.swift */,
 				B9F296C427895C7F00844D6C /* NoteCelliewModel.swift */,
 			);
@@ -509,6 +521,7 @@
 				B90DB43C276F2D1500F1A544 /* Constants.swift in Sources */,
 				B90B9A0C276D015A008DD627 /* TripTableViewCellViewModel.swift in Sources */,
 				B98282DE27A07CB2006EFED8 /* NewAccountViewModel.swift in Sources */,
+				B949FB0D27AEE4C700590F0E /* NoteLabel.swift in Sources */,
 				B90DB444276F326000F1A544 /* Extension + Numeric.swift in Sources */,
 				B9FB61182772336700126A59 /* NewTripViewController.swift in Sources */,
 				B91E81532767A9AC00D0748B /* TabBarViewController.swift in Sources */,
@@ -573,6 +586,7 @@
 				B98282E427A082CE006EFED8 /* NewAccountViewController.swift in Sources */,
 				B9EBFB0A277A3EEA00746A0A /* Extension + UIButton.swift in Sources */,
 				B9FB611F277236B400126A59 /* NewTripViewController.swift in Sources */,
+				B949FB1027AEE4EA00590F0E /* NoteLabel.swift in Sources */,
 				B98282E127A07CDA006EFED8 /* NewAccountViewModel.swift in Sources */,
 				B9698F26279C52CC005FB438 /* LocationSevice.swift in Sources */,
 				B961212827934BDE00B7B81E /* NoteModel.swift in Sources */,
