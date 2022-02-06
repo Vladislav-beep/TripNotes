@@ -15,19 +15,29 @@ protocol Coordinator {
 class AppCoordinator: Coordinator {
     var navigationController: UINavigationController
     
-    init(navigationController: UINavigationController) {
+    var keyboardService: KeyboardService
+    
+    init(navigationController: UINavigationController,
+         keyboardService: KeyboardService) {
         self.navigationController = navigationController
+        self.keyboardService = keyboardService
     }
     
     func start() {
-        showTabBar()
+        showLogin() 
     }
     
     func showLogin() {
-        let authVM = AuthViewModel()
+        let authVM = AuthViewModel(keyboardService: keyboardService)
         let auth = AuthViewController(viewModel: authVM)
         auth.coordinator = self
         navigationController.pushViewController(auth, animated: true)
+    }
+    
+    func showAccount() {
+        let newA = NewAccountViewController(viewModel: NewAccountViewModel())
+        newA.coordinator = self
+        navigationController.pushViewController(newA, animated: true)
     }
     
     func showTabBar() {

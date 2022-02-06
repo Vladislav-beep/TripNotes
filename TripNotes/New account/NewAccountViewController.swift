@@ -12,6 +12,7 @@ class NewAccountViewController: UIViewController {
     // MARK: Dependencies
     
     private var viewModel: NewAccountViewModelProtocol
+    var coordinator: AppCoordinator?
     
     // MARK: UI
     
@@ -79,12 +80,12 @@ class NewAccountViewController: UIViewController {
     }()
     
     private lazy var logInButton: UIButton = {
-        let createButton = UIButton()
-        createButton.setTitle("Log in now", for: .normal)
-        createButton.setTitleColor(.tripBlue, for: .normal)
-       // createButton.addTarget(self, action: #selector(createNewAccount), for: .touchUpInside)
-        createButton.translatesAutoresizingMaskIntoConstraints = false
-        return createButton
+        let logInButton = UIButton()
+        logInButton.setTitle("Log in now", for: .normal)
+        logInButton.setTitleColor(.tripBlue, for: .normal)
+        logInButton.addTarget(self, action: #selector(logIn), for: .touchUpInside)
+        logInButton.translatesAutoresizingMaskIntoConstraints = false
+        return logInButton
     }()
     
     private lazy var logInStack: UIStackView = {
@@ -100,6 +101,7 @@ class NewAccountViewController: UIViewController {
     init(viewModel: NewAccountViewModelProtocol) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
+        
     }
     
     required init?(coder: NSCoder) {
@@ -109,6 +111,28 @@ class NewAccountViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupConstraints()
+       
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: false)
+        navigationController?.view.backgroundColor = UIColor.white
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
+    deinit {
+        print("1")
+    }
+    
+    // MARK: Actions
+    
+    @objc func logIn() {
+        navigationController?.popViewController(animated: true)
     }
     
     // MARK: Layout
@@ -175,7 +199,7 @@ class NewAccountViewController: UIViewController {
     private func setupLogInConstraints() {
         lowerView.addSubview(logInStack)
         NSLayoutConstraint.activate([
-            logInStack.bottomAnchor.constraint(equalTo: lowerView.bottomAnchor, constant: -50),
+            logInStack.bottomAnchor.constraint(equalTo: lowerView.bottomAnchor, constant: -100),
             logInStack.centerXAnchor.constraint(equalTo: lowerView.centerXAnchor, constant: 0),
             logInStack.heightAnchor.constraint(equalToConstant: 55),
             logInStack.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width / 2)

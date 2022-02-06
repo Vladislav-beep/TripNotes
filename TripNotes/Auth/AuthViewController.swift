@@ -53,6 +53,7 @@ class AuthViewController: UIViewController {
     
     private let signInButton: SignInButton = {
         let signInButton = SignInButton()
+        signInButton.addTarget(self, action: #selector(showTabbar), for: .touchUpInside)
         return signInButton
     }()
     
@@ -107,12 +108,28 @@ class AuthViewController: UIViewController {
         setupConstraints()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: true)
+        navigationController?.view.backgroundColor = UIColor.white
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
     // MARK: Actions
     
     @objc func createNewAccount() {
-        let newAccountViewModel = NewAccountViewModel()
-        let newAccountVC = NewAccountViewController(viewModel: newAccountViewModel)
-        present(newAccountVC, animated: true)
+        coordinator?.showAccount()
+//        let newAccountViewModel = NewAccountViewModel()
+//        let newAccountVC = NewAccountViewController(viewModel: newAccountViewModel)
+//        present(newAccountVC, animated: true)
+    }
+    
+    @objc func showTabbar() {
+        coordinator?.showTabBar()
     }
     
     // MARK: Layout
@@ -179,7 +196,7 @@ class AuthViewController: UIViewController {
     private func setupCreateButtonConstraints() {
         lowerView.addSubview(createStack)
         NSLayoutConstraint.activate([
-            createStack.bottomAnchor.constraint(equalTo: lowerView.bottomAnchor, constant: -50),
+            createStack.bottomAnchor.constraint(equalTo: lowerView.bottomAnchor, constant: -100),
             createStack.centerXAnchor.constraint(equalTo: lowerView.centerXAnchor, constant: 0),
             createStack.heightAnchor.constraint(equalToConstant: 55),
             createStack.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width / 2)

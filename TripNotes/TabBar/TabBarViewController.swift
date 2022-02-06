@@ -40,8 +40,8 @@ class TabBarViewController: UITabBarController {
         tabBar.unselectedItemTintColor = .tripBlue
         tabBar.tintColor = .tripRed
         
-   //     let firstViewController = UINavigationController(rootViewController: coordinator?.showTrips() ?? UIViewController())
-    //    let secondViewController = UINavigationController(rootViewController:coordinator?.showFavourites() ?? UIViewController())
+      //  let firstViewController = TripsViewController()
+       // let secondViewController = FavouritesViewController(notesViewModel: FavouritesViewModel())
         let firstViewController = UINavigationController(rootViewController: TripsViewController())
         let secondViewController = UINavigationController(rootViewController: FavouritesViewController(notesViewModel: FavouritesViewModel()))
         
@@ -54,4 +54,7 @@ class TabBarViewController: UITabBarController {
         viewControllers = [firstViewController, secondViewController]
     }
     
+    
 }
+
+

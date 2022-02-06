@@ -21,12 +21,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //
 //        window.rootViewController = tabBarViewController
 //        window.makeKeyAndVisible()
+     
+        
+    
+   
+        
        
+        
+        
         let nav = UINavigationController()
-        coordinatior = AppCoordinator(navigationController: nav)
-        
+        let key = KeyboardService()
+        coordinatior = AppCoordinator(navigationController: nav, keyboardService: key)
+
         window.rootViewController = nav
-        
+
         window.makeKeyAndVisible()
         coordinatior?.start()
         self.window = window
