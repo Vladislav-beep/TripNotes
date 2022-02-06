@@ -9,11 +9,11 @@ import Foundation
 
 protocol NoteCellViewModelProtocol {
     var category: String { get }
-    var backGroundCategory: Category { get }
     var city: String { get }
     var description: String { get }
     var date: String { get }
     var price: String { get }
+    var imageCategory: Category { get }
     init(tripNote: TripNote, currency: Currency)
 }
 
@@ -29,12 +29,12 @@ class NoteCellViewModel: NoteCellViewModelProtocol {
         "\(tripNote.date)"
     }
     
-    var category: String {
-        tripNote.category.rawValue
+    var imageCategory: Category {
+        tripNote.category
     }
     
-    var backGroundCategory: Category {
-        tripNote.category
+    var category: String {
+        tripNote.category.rawValue
     }
     
     var city: String {

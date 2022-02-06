@@ -18,14 +18,9 @@ class NoteCell: UICollectionViewCell {
             cityLabel.text = viewModel.city
             dateLabel.text = viewModel.date
             sumLabel.text = viewModel.price
-           // lowerView.setupBackGroundColor(forCategory: viewModel.backGroundCategory)
-           // categoryLabel.setupTintColor(forCategory: viewModel.backGroundCategory)
-           // cityLabel.setupTintColor(forCategory: viewModel.backGroundCategory)
-           // descriptionLabel.setupTintColor(forCategory: viewModel.backGroundCategory)
-           // dateLabel.setupTintColor(forCategory: viewModel.backGroundCategory)
+            categoryImageView.image = setImage(for: viewModel.imageCategory)
         }
     }
-    
     
     // MARK: UI
     
@@ -41,8 +36,9 @@ class NoteCell: UICollectionViewCell {
     private lazy var categoryImageView: UIImageView = {
         let categoryImageView = UIImageView()
         categoryImageView.layer.cornerRadius = 5
+        categoryImageView.tintColor = .tripBlue
+        categoryImageView.contentMode = .scaleAspectFit
         categoryImageView.translatesAutoresizingMaskIntoConstraints = false
-        categoryImageView.backgroundColor = .tripBlue
         return categoryImageView
     }()
     
@@ -90,15 +86,37 @@ class NoteCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setupLowerViewConstraints()
-        setupCategoryImageViewConstraints()
-        setupLabelStackViewConstraints()
-        setupSumLabelConstraints()
-      //  setupFavouteButtonConstraints()
+        setupAllConstraints()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: Private methods
+    
+    private func setupAllConstraints() {
+        setupLowerViewConstraints()
+        setupCategoryImageViewConstraints()
+        setupLabelStackViewConstraints()
+        setupSumLabelConstraints()
+    }
+    
+    private func setImage(for category: Category) -> UIImage {
+        switch category {
+        case .hotels:
+            return UIImage(systemName: "building.fill") ?? UIImage()
+        case .tranport:
+            return UIImage(systemName: "tram.tunnel.fill") ?? UIImage()
+        case .foodAndRestaurants:
+            return UIImage(systemName: "hourglass.tophalf.fill") ?? UIImage()
+        case .activity:
+            return UIImage(systemName: "camera.on.rectangle.fill") ?? UIImage()
+        case .purchases:
+            return UIImage(systemName: "creditcard.fill") ?? UIImage()
+        case .other:
+            return UIImage(systemName: "square.3.stack.3d.bottom.fill") ?? UIImage()
+        }
     }
     
     // MARK: Layout

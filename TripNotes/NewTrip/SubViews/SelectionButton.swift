@@ -41,12 +41,12 @@ class SelectionButton: UIButton {
         self.title = title
         self.fontSize = fontSize
         super.init(frame: .zero)
-        setup()
+        initialize()
     }
     
     init() {
         super.init(frame: .zero)
-        setup()
+        initialize()
     }
     
     required init?(coder: NSCoder) {
@@ -55,7 +55,7 @@ class SelectionButton: UIButton {
     
     // MARK: Methods
     
-    func setup() {
+    private func initialize() {
         setBackgroundColor(.tripGrey, for: .normal)
         setBackgroundColor(.tripRed, for: .selected)
         setTitleColor(.tripBlue, for: .normal)

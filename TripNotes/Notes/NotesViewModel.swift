@@ -12,6 +12,7 @@ protocol NotesViewModelProtocol {
     var text: String { get }
     func numberOfCells() -> Int
     func noteCellViewModel(for indexPath: IndexPath) -> NoteCellViewModelProtocol?
+    func viewModelForSelectedRow(at indexpath: IndexPath) -> NoteCellViewModel
 }
 
 class NotesViewModel: NotesViewModelProtocol {
@@ -45,4 +46,10 @@ class NotesViewModel: NotesViewModelProtocol {
         let currency = trip?.currency ?? .dollar
         return NoteCellViewModel(tripNote: note, currency: currency)
     }
+    
+    func viewModelForSelectedRow(at indexpath: IndexPath) -> NoteCellViewModel {
+        let note = getNotes()[indexpath.item]
+        return NoteCellViewModel(tripNote: note, currency: trip?.currency ?? .dollar)
+    }
+
 }

@@ -37,6 +37,7 @@ class NotesViewController: UIViewController, UICollectionViewDelegate {
     
     override func viewDidLoad() {
         collectionView.dataSource = self
+        collectionView.delegate = self
     }
     
     // MARK: Layout
@@ -49,6 +50,12 @@ class NotesViewController: UIViewController, UICollectionViewDelegate {
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
         ])
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let noteVM = viewModel.viewModelForSelectedRow(at: indexPath)
+        let noteVC = DetailNoteViewController(viewModel: noteVM)
+        present(noteVC, animated: true)
     }
 }
 

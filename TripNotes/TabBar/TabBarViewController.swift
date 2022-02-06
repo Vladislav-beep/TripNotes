@@ -9,7 +9,11 @@ import UIKit
 
 class TabBarViewController: UITabBarController {
     
+    // MARK: Dependencies
+    
     var coordinator: AppCoordinator?
+    
+    // MARK: Overriden
     
     override var selectedIndex: Int { // Mark 1
         didSet {
@@ -54,7 +58,16 @@ class TabBarViewController: UITabBarController {
         viewControllers = [firstViewController, secondViewController]
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: true)
+        navigationController?.view.backgroundColor = UIColor.white
+    }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: true)
+    }
 }
 
 
