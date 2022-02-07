@@ -41,51 +41,56 @@ class DetailNoteViewController: UIViewController {
     }()
     
     private lazy var categoryLabel: NoteLabel = {
-        let categoryLabel = NoteLabel(fontSize: 17, fontWeight: .heavy)
+        let categoryLabel = NoteLabel(fontSize: 20, fontWeight: .heavy)
+        
+        categoryLabel.textAlignment = .center
         return categoryLabel
     }()
     private lazy var cityLabel: NoteLabel = {
-        let cityLabel = NoteLabel(fontSize: 15, fontWeight: .bold)
+        let cityLabel = NoteLabel(fontSize: 18, fontWeight: .bold)
         return cityLabel
     }()
     
     private lazy var descriptionLabel: NoteLabel = {
-        let descriptionLabel = NoteLabel(fontSize: 14, fontWeight: .medium)
-        descriptionLabel.numberOfLines = 2
+        let descriptionLabel = NoteLabel(fontSize: 15, fontWeight: .medium)
+        descriptionLabel.numberOfLines = 0
         return descriptionLabel
     }()
     
     private lazy var dateLabel: NoteLabel = {
-        let dateLabel = NoteLabel(fontSize: 13, fontWeight: .regular)
+        let dateLabel = NoteLabel(fontSize: 14, fontWeight: .regular)
+        dateLabel.adjustsFontSizeToFitWidth = true
+        dateLabel.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
         return dateLabel
     }()
     
     private lazy var labelStackView: UIStackView = {
-        let labelStackView = UIStackView(arrangedSubviews: [categoryLabel, cityLabel, descriptionLabel, dateLabel],
+        let labelStackView = UIStackView(arrangedSubviews: [categoryLabel, cityLabel, descriptionLabel, dateSumStack],
                                          axis: .vertical,
-                                         spacing: 5,
+                                         spacing: 8,
                                          distribution: .fillProportionally)
         labelStackView.translatesAutoresizingMaskIntoConstraints = false
         return labelStackView
     }()
     
+    private lazy var dateSumStack: UIStackView = {
+        let dateSumStack = UIStackView(arrangedSubviews: [dateLabel, sumLabel],
+                                       axis: .horizontal,
+                                       spacing: 0,
+                                       distribution: .fillEqually)
+        return dateSumStack
+    }()
+    
     private lazy var sumLabel: UILabel = {
         let sumLabel = UILabel()
         sumLabel.adjustsFontSizeToFitWidth = true
+        sumLabel.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         sumLabel.font = UIFont.systemFont(ofSize: 24, weight: .heavy)
         sumLabel.minimumScaleFactor = 0.3
         sumLabel.textAlignment = .right
         sumLabel.textColor = .tripBlue
         sumLabel.translatesAutoresizingMaskIntoConstraints = false
         return sumLabel
-    }()
-    
-    private lazy var imageSumStack: UIStackView = {
-        let stack = UIStackView(arrangedSubviews: [categoryImageView, sumLabel],
-                                axis: .horizontal,
-                                spacing: 8,
-                                distribution: .fillProportionally)
-        return stack
     }()
     
     init(viewModel: NoteCellViewModel) {
@@ -170,17 +175,20 @@ class DetailNoteViewController: UIViewController {
     }
     
     private func setupStackViewConstraints() {
-        redView.addSubview(imageSumStack)
+        redView.addSubview(categoryImageView)
         NSLayoutConstraint.activate([
-            imageSumStack.topAnchor.constraint(equalTo: redView.topAnchor, constant: 8),
-            imageSumStack.heightAnchor.constraint(equalToConstant: 40),
-            imageSumStack.trailingAnchor.constraint(equalTo: redView.trailingAnchor, constant: -10),
-            imageSumStack.leadingAnchor.constraint(equalTo: redView.leadingAnchor, constant: 10)
+            categoryImageView.topAnchor.constraint(equalTo: redView.topAnchor, constant: 8),
+            categoryImageView.heightAnchor.constraint(equalToConstant: 50),
+            categoryImageView.widthAnchor.constraint(equalToConstant: 50),
+            categoryImageView.centerXAnchor.constraint(equalTo: redView.centerXAnchor, constant: 0)
         ])
         
         redView.addSubview(labelStackView)
         NSLayoutConstraint.activate([
-            labelStackView.topAnchor.constraint(equalTo: redView.topAnchor, constant: 8),
+            categoryLabel.heightAnchor.constraint(equalToConstant: 20),
+            cityLabel.heightAnchor.constraint(equalToConstant: 20),
+            dateLabel.heightAnchor.constraint(equalToConstant: 20),
+            labelStackView.topAnchor.constraint(equalTo: categoryImageView.bottomAnchor, constant: 8),
             labelStackView.bottomAnchor.constraint(equalTo: redView.bottomAnchor, constant: -8),
             labelStackView.trailingAnchor.constraint(equalTo: redView.trailingAnchor, constant: -10),
             labelStackView.leadingAnchor.constraint(equalTo: redView.leadingAnchor, constant: 10)

@@ -29,11 +29,11 @@ struct Trip {
                                   description: "Work and travel", currency: .euro,
                                   tripNotes: [
                                     TripNote(city: "Berlin", category: .hotels, price: 1172.00, date: Date(), description: "Hotel living", isFavoutite: false, adress: nil),
-                                    TripNote(city: "Glasgow", category: .activity, price: 344526.00, date: Date(), description: "Technishe museum", isFavoutite: true, adress: nil),
+                                    TripNote(city: "Glasgow", category: .activity, price: 34452697899779.00, date: Date(), description: "Technishe museum", isFavoutite: true, adress: nil),
                                     TripNote(city: "Munchen", category: .foodAndRestaurants, price: 2.33, date: Date(), description: "Sossage restaurant", isFavoutite: false, adress: "13 Strasse"),
                                     TripNote(city: "Berlin", category: .purchases, price: 14.4, date: Date(), description: "T-shirt", isFavoutite: true, adress: nil),
                                     TripNote(city: "London", category: .tranport, price: 2.75, date: Date(), description: "Bus ticket", isFavoutite: false, adress: nil),
-                                    TripNote(city: "London", category: .other, price: 5.78, date: Date(), description: "Found one funt on the ground fot that it was great/ i bought two ice creams", isFavoutite: true, adress: nil)],
+                                    TripNote(city: "London", category: .other, price: 5.78, date: Date(), description: "Я попрошу тебя: оставь мне, пожалуйста, свою тень. В платье, украшенном солнечными бликами, пробившимися сквозь кленовую листву. Оставь мне свою тень, ведь завтра взойдет солнце, и у тебя будет точно такая же прекрасная тень. Не бойся, я не буду смотреть на землю, чтобы нечаянно не увидеть, как твоя тень положит свои руки на чьи-то плечи. Нет, я буду беречь твою тонкую стройную тень, а когда пойдет дождь, я верну тебе ее, и ты, гордая, пойдешь по городу.", isFavoutite: true, adress: nil)],
                                   avatarTrip: nil),
                     Trip(country: "Dominicana",
                                   beginningDate: Date(timeIntervalSince1970: -5000),
