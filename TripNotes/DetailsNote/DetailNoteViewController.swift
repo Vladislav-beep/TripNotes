@@ -31,6 +31,31 @@ class DetailNoteViewController: UIViewController {
         return redView
     }()
     
+    private lazy var closeButton: UIButton = {
+        let button = UIButton()
+        button.setBackgroundImage(UIImage(systemName: "xmark.circle.fill"), for: .normal)
+        button.tintColor = .tripBlue
+        button.addTarget(self, action: #selector(closeScreen), for: .touchUpInside)
+        button.layer.shadowColor = UIColor.darkGray.cgColor
+        button.layer.shadowRadius = 5
+        button.layer.shadowOffset = CGSize(width: 0, height: 5)
+        button.layer.shadowOpacity = 0.5
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    private lazy var likeButton: UIButton = {
+        let like = UIButton()
+        like.setBackgroundImage(UIImage(systemName: "heart.fill"), for: .normal)
+        like.tintColor = .tripRed
+        like.layer.shadowColor = UIColor.darkGray.cgColor
+        like.layer.shadowRadius = 3
+        like.layer.shadowOffset = CGSize(width: 0, height: 2)
+        like.layer.shadowOpacity = 0.3
+        like.translatesAutoresizingMaskIntoConstraints = false
+        return like
+    }()
+    
     private lazy var categoryImageView: UIImageView = {
         let categoryImageView = UIImageView()
         categoryImageView.layer.cornerRadius = 5
@@ -96,7 +121,6 @@ class DetailNoteViewController: UIViewController {
     init(viewModel: NoteCellViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
-        
     }
     
     required init?(coder: NSCoder) {
@@ -106,23 +130,30 @@ class DetailNoteViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .clear
+
         cityLabel.text = viewModel.city
         categoryLabel.text = viewModel.category
         descriptionLabel.text = viewModel.description
         dateLabel.text = viewModel.date
         sumLabel.text = viewModel.price
         categoryImageView.image = setImage(for: viewModel.imageCategory)
-//        let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.light)
-//        let blurEffectView = UIVisualEffectView(effect: blurEffect)
-//        blurEffectView.frame = view.bounds
-//        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-//        view.addSubview(blurEffectView)
+        
         setupAllConstraints()
+    }
+    
+    @objc func closeScreen() {
+        dismiss(animated: true)
+    }
+    
+    @objc func toggleFavourite() {
+        likeButton.isHidden = false
     }
     
     private func setupAllConstraints() {
         setupScrollViewConstraints()
         setupLowerViewConstraints()
+        setupCloseButtonConstraints()
+        setupLikeImageViewConstraints()
         setupRedView()
         setupStackViewConstraints()
     }
@@ -163,6 +194,26 @@ class DetailNoteViewController: UIViewController {
             lowerView.widthAnchor.constraint(equalTo: view.widthAnchor)
         ])
     }
+    
+    private func setupCloseButtonConstraints() {
+        redView.addSubview(closeButton)
+        NSLayoutConstraint.activate([
+            closeButton.heightAnchor.constraint(equalToConstant: 35),
+            closeButton.widthAnchor.constraint(equalTo: closeButton.heightAnchor),
+            closeButton.topAnchor.constraint(equalTo: redView.topAnchor, constant: 8),
+            closeButton.leadingAnchor.constraint(equalTo: redView.leadingAnchor, constant: 8),
+        ])
+    }
+    
+    private func setupLikeImageViewConstraints() {
+        redView.addSubview(likeButton)
+        NSLayoutConstraint.activate([
+            likeButton.heightAnchor.constraint(equalToConstant: 35),
+            likeButton.widthAnchor.constraint(equalTo: closeButton.heightAnchor),
+            likeButton.topAnchor.constraint(equalTo: redView.topAnchor, constant: 8),
+            likeButton.trailingAnchor.constraint(equalTo: redView.trailingAnchor, constant: -8),
+        ])
+    }
         
     private func setupRedView() {
         lowerView.addSubview(redView)
@@ -182,7 +233,7 @@ class DetailNoteViewController: UIViewController {
             categoryImageView.widthAnchor.constraint(equalToConstant: 50),
             categoryImageView.centerXAnchor.constraint(equalTo: redView.centerXAnchor, constant: 0)
         ])
-        
+
         redView.addSubview(labelStackView)
         NSLayoutConstraint.activate([
             categoryLabel.heightAnchor.constraint(equalToConstant: 20),
@@ -194,4 +245,39 @@ class DetailNoteViewController: UIViewController {
             labelStackView.leadingAnchor.constraint(equalTo: redView.leadingAnchor, constant: 10)
         ])
     }
+    
+    
+//    private func setupStackViewConstraints() {
+//
+//
+//        lowerView.addSubview(labelStackView)
+//        let k = categoryLabel.heightAnchor.constraint(equalToConstant: 40).constant
+//        let a = cityLabel.heightAnchor.constraint(equalToConstant: 40).constant
+//        let b = dateLabel.heightAnchor.constraint(equalToConstant: 40).constant
+//        let c = descriptionLabel.intrinsicContentSize.height
+//
+//
+//        let h = k + a + b + c
+//        print(descriptionLabel.intrinsicContentSize.height)
+//        print(categoryLabel.heightAnchor.constraint(equalToConstant: 40).constant)
+//        NSLayoutConstraint.activate([
+//         //   categoryLabel.heightAnchor.constraint(equalToConstant: 20),
+//         //   cityLabel.heightAnchor.constraint(equalToConstant: 20),
+//           // dateLabel.heightAnchor.constraint(equalToConstant: 20),
+//            labelStackView.bottomAnchor.constraint(equalTo: lowerView.bottomAnchor, constant: -30),
+//            labelStackView.heightAnchor.constraint(equalToConstant: h),
+//            labelStackView.trailingAnchor.constraint(equalTo: lowerView.trailingAnchor, constant: -10),
+//            labelStackView.leadingAnchor.constraint(equalTo: lowerView.leadingAnchor, constant: 10)
+//        ])
+//
+//        lowerView.addSubview(categoryImageView)
+//        NSLayoutConstraint.activate([
+//            categoryImageView.bottomAnchor.constraint(equalTo: labelStackView.topAnchor, constant: -8),
+//            categoryImageView.heightAnchor.constraint(equalToConstant: 50),
+//            categoryImageView.widthAnchor.constraint(equalToConstant: 50),
+//            categoryImageView.centerXAnchor.constraint(equalTo: lowerView.centerXAnchor, constant: 0)
+//        ])
+//
+//
+    
 }
