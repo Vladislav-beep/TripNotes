@@ -44,6 +44,7 @@
 		B93DD4BD279F1BCC00D91A08 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93DD4B6279F19F400D91A08 /* AuthViewModel.swift */; };
 		B93DD4C2279F23DA00D91A08 /* AuthTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93DD4C1279F23DA00D91A08 /* AuthTextField.swift */; };
 		B93DD4C8279F284300D91A08 /* SignInButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93DD4C7279F284300D91A08 /* SignInButton.swift */; };
+		B94439D827B84E09000DF640 /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94439D727B84E09000DF640 /* Animator.swift */; };
 		B949FB0D27AEE4C700590F0E /* NoteLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B949FB0C27AEE4C600590F0E /* NoteLabel.swift */; };
 		B949FB1027AEE4EA00590F0E /* NoteLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B949FB0C27AEE4C600590F0E /* NoteLabel.swift */; };
 		B949FB1927AEF0AE00590F0E /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B949FB1827AEF0AE00590F0E /* AppCoordinator.swift */; };
@@ -134,6 +135,7 @@
 		B93DD4B6279F19F400D91A08 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		B93DD4C1279F23DA00D91A08 /* AuthTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTextField.swift; sourceTree = "<group>"; };
 		B93DD4C7279F284300D91A08 /* SignInButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInButton.swift; sourceTree = "<group>"; };
+		B94439D727B84E09000DF640 /* Animator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animator.swift; sourceTree = "<group>"; };
 		B949FB0C27AEE4C600590F0E /* NoteLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteLabel.swift; sourceTree = "<group>"; };
 		B949FB1827AEF0AE00590F0E /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		B961212C279351FB00B7B81E /* SelectionLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionLabel.swift; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 				B90DB437276F14B100F1A544 /* DateFormatterService.swift */,
 				B9698F22279C4689005FB438 /* LocationSevice.swift */,
 				B90632EB27AFB86000F0C2A5 /* KeyboardService.swift */,
+				B94439D727B84E09000DF640 /* Animator.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -546,6 +549,7 @@
 				B90B9A0C276D015A008DD627 /* TripTableViewCellViewModel.swift in Sources */,
 				B98282DE27A07CB2006EFED8 /* NewAccountViewModel.swift in Sources */,
 				B949FB0D27AEE4C700590F0E /* NoteLabel.swift in Sources */,
+				B94439D827B84E09000DF640 /* Animator.swift in Sources */,
 				B90DB444276F326000F1A544 /* Extension + Numeric.swift in Sources */,
 				B949FB1927AEF0AE00590F0E /* AppCoordinator.swift in Sources */,
 				B9FB61182772336700126A59 /* NewTripViewController.swift in Sources */,
