@@ -11,6 +11,8 @@ class DetailNoteViewController: UIViewController {
     
     private var viewModel: NoteCellViewModel
     
+    lazy var contraint = heartImageView.heightAnchor.constraint(equalToConstant: 0)
+    
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -47,11 +49,12 @@ class DetailNoteViewController: UIViewController {
     private lazy var likeButton: UIButton = {
         let like = UIButton()
         like.setBackgroundImage(UIImage(systemName: "heart.fill"), for: .normal)
-        like.tintColor = .tripRed
+        like.tintColor = .tripGrey
         like.layer.shadowColor = UIColor.darkGray.cgColor
         like.layer.shadowRadius = 3
         like.layer.shadowOffset = CGSize(width: 0, height: 2)
         like.layer.shadowOpacity = 0.3
+        like.addTarget(self, action: #selector(toggleFavourite), for: .touchUpInside)
         like.translatesAutoresizingMaskIntoConstraints = false
         return like
     }()
@@ -118,6 +121,16 @@ class DetailNoteViewController: UIViewController {
         return sumLabel
     }()
     
+    private lazy var heartImageView: UIImageView = {
+        let heartImageView = UIImageView()
+        heartImageView.image = UIImage(systemName: "heart.fill")
+        heartImageView.tintColor = .tripRed
+        heartImageView.translatesAutoresizingMaskIntoConstraints = false
+        return heartImageView
+    }()
+    
+    lazy var animator = Animator(layoutConstraint: contraint, container: view)
+    
     init(viewModel: NoteCellViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -146,16 +159,21 @@ class DetailNoteViewController: UIViewController {
     }
     
     @objc func toggleFavourite() {
-        likeButton.isHidden = false
+        
+        animator.animate { [weak self] in
+            self?.likeButton.tintColor = .tripRed
+        }
     }
     
     private func setupAllConstraints() {
-        setupScrollViewConstraints()
-        setupLowerViewConstraints()
-        setupCloseButtonConstraints()
-        setupLikeImageViewConstraints()
+    //    setupScrollViewConstraints()
+      //  setupLowerViewConstraints()
         setupRedView()
+        setupCloseButtonConstraints()
+        setupLikeButtonConstraints()
+        
         setupStackViewConstraints()
+        setupHeartImageViewConstraints()
     }
     
     private func setImage(for category: Category) -> UIImage {
@@ -175,26 +193,36 @@ class DetailNoteViewController: UIViewController {
         }
     }
     
-    private func setupScrollViewConstraints() {
-        view.addSubview(scrollView)
+//    private func setupScrollViewConstraints() {
+//        view.addSubview(scrollView)
+//        NSLayoutConstraint.activate([
+//            scrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
+//            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
+//            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
+//            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
+//        ])
+//    }
+    
+//    private func setupLowerViewConstraints() {
+//        scrollView.addSubview(lowerView)
+//        NSLayoutConstraint.activate([
+//            lowerView.centerYAnchor.constraint(equalTo: scrollView.centerYAnchor),
+//            lowerView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
+//            lowerView.heightAnchor.constraint(equalTo: view.heightAnchor),
+//            lowerView.widthAnchor.constraint(equalTo: view.widthAnchor)
+//        ])
+//    }
+    
+    private func setupRedView() {
+        view.addSubview(redView)
         NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
-            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
-            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
-            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
+            redView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -35),
+            redView.heightAnchor.constraint(equalToConstant: 400),
+            redView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+            redView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10)
         ])
     }
-    
-    private func setupLowerViewConstraints() {
-        scrollView.addSubview(lowerView)
-        NSLayoutConstraint.activate([
-            lowerView.centerYAnchor.constraint(equalTo: scrollView.centerYAnchor),
-            lowerView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
-            lowerView.heightAnchor.constraint(equalTo: view.heightAnchor),
-            lowerView.widthAnchor.constraint(equalTo: view.widthAnchor)
-        ])
-    }
-    
+
     private func setupCloseButtonConstraints() {
         redView.addSubview(closeButton)
         NSLayoutConstraint.activate([
@@ -205,26 +233,16 @@ class DetailNoteViewController: UIViewController {
         ])
     }
     
-    private func setupLikeImageViewConstraints() {
+    private func setupLikeButtonConstraints() {
         redView.addSubview(likeButton)
         NSLayoutConstraint.activate([
             likeButton.heightAnchor.constraint(equalToConstant: 35),
             likeButton.widthAnchor.constraint(equalTo: closeButton.heightAnchor),
-            likeButton.topAnchor.constraint(equalTo: redView.topAnchor, constant: 8),
             likeButton.trailingAnchor.constraint(equalTo: redView.trailingAnchor, constant: -8),
+            likeButton.topAnchor.constraint(equalTo: redView.topAnchor, constant: 8)
         ])
     }
         
-    private func setupRedView() {
-        lowerView.addSubview(redView)
-        NSLayoutConstraint.activate([
-            redView.bottomAnchor.constraint(equalTo: lowerView.bottomAnchor, constant: -35),
-            redView.heightAnchor.constraint(equalToConstant: 400),
-            redView.trailingAnchor.constraint(equalTo: lowerView.trailingAnchor, constant: -10),
-            redView.leadingAnchor.constraint(equalTo: lowerView.leadingAnchor, constant: 10)
-        ])
-    }
-    
     private func setupStackViewConstraints() {
         redView.addSubview(categoryImageView)
         NSLayoutConstraint.activate([
@@ -243,6 +261,16 @@ class DetailNoteViewController: UIViewController {
             labelStackView.bottomAnchor.constraint(equalTo: redView.bottomAnchor, constant: -8),
             labelStackView.trailingAnchor.constraint(equalTo: redView.trailingAnchor, constant: -10),
             labelStackView.leadingAnchor.constraint(equalTo: redView.leadingAnchor, constant: 10)
+        ])
+    }
+    
+    private func setupHeartImageViewConstraints() {
+        redView.addSubview(heartImageView)
+        NSLayoutConstraint.activate([
+            heartImageView.centerXAnchor.constraint(equalTo: redView.centerXAnchor, constant: 0),
+            heartImageView.centerYAnchor.constraint(equalTo: redView.centerYAnchor, constant: 0),
+            contraint,
+            heartImageView.widthAnchor.constraint(equalTo: heartImageView.heightAnchor)
         ])
     }
     

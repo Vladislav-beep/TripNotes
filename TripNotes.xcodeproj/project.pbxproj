@@ -50,6 +50,7 @@
 		B949FB1927AEF0AE00590F0E /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B949FB1827AEF0AE00590F0E /* AppCoordinator.swift */; };
 		B949FB1E27AEF38800590F0E /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B949FB1827AEF0AE00590F0E /* AppCoordinator.swift */; };
 		B949FB2127AF1F7A00590F0E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91E813E2767A88E00D0748B /* SceneDelegate.swift */; };
+		B95F0BBF27B986FC008BCAF6 /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94439D727B84E09000DF640 /* Animator.swift */; };
 		B961212827934BDE00B7B81E /* NoteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90DB425276F134B00F1A544 /* NoteModel.swift */; };
 		B961212D279351FB00B7B81E /* SelectionLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B961212C279351FB00B7B81E /* SelectionLabel.swift */; };
 		B96648792799D65F00F527E8 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96648782799D65F00F527E8 /* MapViewController.swift */; };
@@ -631,6 +632,7 @@
 				B90DB45A276FB39E00F1A544 /* NotesViewModel.swift in Sources */,
 				B90632FE27AFE47F00F0C2A5 /* DetailNoteViewController.swift in Sources */,
 				B93DD4BD279F1BCC00D91A08 /* AuthViewModel.swift in Sources */,
+				B95F0BBF27B986FC008BCAF6 /* Animator.swift in Sources */,
 				B9DE0D4A2768FD7900805E4C /* TripNotesTests.swift in Sources */,
 				B949FB2127AF1F7A00590F0E /* SceneDelegate.swift in Sources */,
 				B9DE0D5C2768FDB100805E4C /* FavouritesViewController.swift in Sources */,
