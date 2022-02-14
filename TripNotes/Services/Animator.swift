@@ -34,6 +34,7 @@ class Animator {
             
             UIView.animate(withDuration: 0.3, animations: {
                 self?.container.layoutIfNeeded()
+                
                 completion()
             })
         }
