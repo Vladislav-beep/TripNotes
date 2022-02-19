@@ -85,7 +85,7 @@ class NewAccountViewController: UIViewController {
         let logInButton = UIButton()
         logInButton.setTitle("Log in now", for: .normal)
         logInButton.setTitleColor(.tripBlue, for: .normal)
-        logInButton.addTarget(self, action: #selector(logIn), for: .touchUpInside)
+        logInButton.addTarget(self, action: #selector(logInTapped), for: .touchUpInside)
         logInButton.translatesAutoresizingMaskIntoConstraints = false
         return logInButton
     }()
@@ -133,30 +133,23 @@ class NewAccountViewController: UIViewController {
     
     // MARK: Actions
     
-    @objc func logIn() {
+    @objc func logInTapped() {
         navigationController?.popViewController(animated: true)
     }
     
     @objc func signUpTapped() {
-        Auth.auth().createUser(withEmail: loginTextField.text ?? "", password: passwordTextField.text ?? "") { (result, error) in
-            if error != nil {
-                print(error?.localizedDescription)
-            } else {
-                let db = Firestore.firestore()
-                db.collection("users").addDocument(data: [
-                    "email": self.loginTextField.text ?? "",
-                    "name": self.nameTextField.text ?? "",
-                    "password": self.passwordTextField.text ?? "",
-                    "id": result?.user.uid ?? ""
-                ])
-                
+        
+        let email = loginTextField.text ?? ""
+        let password = passwordTextField.text ?? ""
+        let name = nameTextField.text ?? ""
+        
+        viewModel.createNewUser(withEmail: email, password: password, name: name)
+
                 let tab = TabBarViewController()
                 tab.modalPresentationStyle = .fullScreen
                 self.present(tab, animated: true)
                 return
             }
-        }
-    }
 
 
 // MARK: Layout

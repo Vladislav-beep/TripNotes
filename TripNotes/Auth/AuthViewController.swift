@@ -128,22 +128,36 @@ class AuthViewController: UIViewController {
     
     @objc func showTabbar() {
         
-        guard let email = loginTextField.text, let password = passwordTextField.text, email != "", password != "" else {
+        guard let email = loginTextField.text,
+              let password = passwordTextField.text,
+              email != "",
+              password != "" else {
             return
         }
-        Auth.auth().signIn(withEmail: email, password: password) { [weak self] (user, error) in
-            if error != nil {
-                print(error?.localizedDescription)
-                return
-            }
-            if user != nil {
-                let tab = TabBarViewController()
-                tab.modalPresentationStyle = .fullScreen
-                self?.present(tab, animated: true)
-                return
-            }
-            print(error?.localizedDescription)
+        
+        viewModel.signIn(withEmail: email, password: password) {
+            let tab = TabBarViewController()
+            tab.modalPresentationStyle = .fullScreen
+            self.present(tab, animated: true)
         }
+        
+        
+        
+        
+        
+//        Auth.auth().signIn(withEmail: email, password: password) { [weak self] (user, error) in
+//            if error != nil {
+//                print(error?.localizedDescription)
+//                return
+//            }
+//            if user != nil {
+//                let tab = TabBarViewController()
+//                tab.modalPresentationStyle = .fullScreen
+//                self?.present(tab, animated: true)
+//                return
+//            }
+//            print(error?.localizedDescription)
+//        }
         
     }
     
