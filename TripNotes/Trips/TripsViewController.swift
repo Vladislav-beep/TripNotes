@@ -96,7 +96,6 @@ class TripsViewController: UIViewController {
         super.viewWillAppear(animated)
         addTripButton.isHidden = false
         addNoteButton.isHidden = true
-        
     }
     
     // MARK: Actions

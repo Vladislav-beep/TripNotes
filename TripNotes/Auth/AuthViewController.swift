@@ -137,7 +137,9 @@ class AuthViewController: UIViewController {
                 return
             }
             if user != nil {
-                self?.present(TabBarViewController(), animated: true)
+                let tab = TabBarViewController()
+                tab.modalPresentationStyle = .fullScreen
+                self?.present(tab, animated: true)
                 return
             }
             print(error?.localizedDescription)
