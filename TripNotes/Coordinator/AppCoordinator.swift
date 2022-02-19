@@ -28,7 +28,7 @@ class AppCoordinator: Coordinator {
     }
     
     func showLogin() {
-        let authVM = AuthViewModel(keyboardService: keyboardService)
+        let authVM = AuthViewModel()
         let auth = AuthViewController(viewModel: authVM)
         auth.coordinator = self
         navigationController.pushViewController(auth, animated: true)

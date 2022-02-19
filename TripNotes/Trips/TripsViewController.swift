@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 class TripsViewController: UIViewController {
     
@@ -64,9 +65,9 @@ class TripsViewController: UIViewController {
         return addNoteButton
     }()
     
-    private lazy var settingsButton: UIBarButtonItem = {
+    private lazy var signOutButton: UIBarButtonItem = {
         let button = UIBarButtonItem.customButton(self,
-                                                  action: #selector(addTapped),
+                                                  action: #selector(signOutTapped),
                                                   imageName: "gear",
                                                   widthAndHeight: 40)
         // TODO:  function for selector
@@ -100,12 +101,19 @@ class TripsViewController: UIViewController {
     
     // MARK: Actions
     
-    @objc func addTapped() {
-        // TODO settings screen
-//        let vieM = AuthViewModel()
-//        let authVC = AuthViewController(viewModel: vieM)
-//        present(authVC, animated: true)
+    @objc func signOutTapped() {
+        do {
+            try Auth.auth().signOut()
+            print("40")
+        } catch {
+            print("\(error.localizedDescription) - error")
+        }
+        dismiss(animated: true)
         print("sc")
+    }
+    
+    deinit {
+         print("deinit")
     }
     
     @objc func addTrip() {
@@ -125,7 +133,7 @@ class TripsViewController: UIViewController {
     
     private func setupNavigationBar() {
         navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.leftBarButtonItems = [settingsButton]
+        navigationItem.leftBarButtonItems = [signOutButton]
         navigationController?.navigationBar.tintColor = .tripWhite
         
         let navBarAppearance = UINavigationBarAppearance()

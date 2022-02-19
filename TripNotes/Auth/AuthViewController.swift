@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 class AuthViewController: UIViewController {
     
@@ -123,13 +124,29 @@ class AuthViewController: UIViewController {
     
     @objc func createNewAccount() {
         coordinator?.showAccount()
-//        let newAccountViewModel = NewAccountViewModel()
-//        let newAccountVC = NewAccountViewController(viewModel: newAccountViewModel)
-//        present(newAccountVC, animated: true)
     }
     
     @objc func showTabbar() {
-        coordinator?.showTabBar()
+        
+        guard let email = loginTextField.text, let password = passwordTextField.text, email != "", password != "" else {
+            return
+        }
+        Auth.auth().signIn(withEmail: email, password: password) { [weak self] (user, error) in
+            if error != nil {
+                print(error?.localizedDescription)
+                return
+            }
+            if user != nil {
+                self?.present(TabBarViewController(), animated: true)
+                return
+            }
+            print(error?.localizedDescription)
+        }
+        
+    }
+    
+    deinit {
+        print("auth deinit")
     }
     
     // MARK: Layout

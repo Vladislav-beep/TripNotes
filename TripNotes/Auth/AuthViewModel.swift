@@ -6,27 +6,16 @@
 //
 
 import Foundation
+import Firebase
 
 protocol AuthViewModelProtocol {
-    func registerKeyboardNotification()
-    func removeKeyboardNotification()
+
 }
 
 
 class AuthViewModel: AuthViewModelProtocol {
     
-    var keyboardService: KeyboardService
     
-    init(keyboardService: KeyboardService) {
-        self.keyboardService = keyboardService
-    }
     
-    func registerKeyboardNotification() {
-  //      keyboardService.registerKeyBoardNotification(scrollView: <#UIScrollView#>)
-    }
-    
-    func removeKeyboardNotification() {
-        keyboardService.removeKeyboardNotification()
-    }
     
 }
