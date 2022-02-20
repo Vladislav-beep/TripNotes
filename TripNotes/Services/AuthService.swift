@@ -8,7 +8,12 @@
 import Foundation
 import Firebase
 
-class AuthService {
+protocol AuthServiceProtocol {
+    func createNewUser(withEmail email: String, password: String, name: String)
+    func signIn(withEmail email: String, password: String, completion: @escaping () -> ())
+}
+
+class AuthService: AuthServiceProtocol {
     
     let db = Firestore.firestore()
     

@@ -13,6 +13,6 @@ struct TripNote: Hashable {
     let price: Double
     let date: Date
     let description: String?
-    let isFavoutite: Bool
+    let isFavourite: Bool
     let adress: String?
 }

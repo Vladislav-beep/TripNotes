@@ -107,6 +107,9 @@ class AuthViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupConstraints()
+        let fire = FireBaseService(userId: "NUXiX5zSMiwYxmtCBpzO")
+        fire.listenToTrips()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -140,27 +143,8 @@ class AuthViewController: UIViewController {
             tab.modalPresentationStyle = .fullScreen
             self.present(tab, animated: true)
         }
-        
-        
-        
-        
-        
-//        Auth.auth().signIn(withEmail: email, password: password) { [weak self] (user, error) in
-//            if error != nil {
-//                print(error?.localizedDescription)
-//                return
-//            }
-//            if user != nil {
-//                let tab = TabBarViewController()
-//                tab.modalPresentationStyle = .fullScreen
-//                self?.present(tab, animated: true)
-//                return
-//            }
-//            print(error?.localizedDescription)
-//        }
-        
     }
-    
+        
     deinit {
         print("auth deinit")
     }

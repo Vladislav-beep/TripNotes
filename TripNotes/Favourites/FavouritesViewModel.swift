@@ -40,7 +40,7 @@ class FavouritesViewModel: FavouritesViewModelProtocol {
         var notesArray: [TripNote] = []
         for trip in getTrips() {
             for note in trip.tripNotes {
-                if note.isFavoutite {
+                if note.isFavourite {
                     notesArray.append(note)
                 }
             }
