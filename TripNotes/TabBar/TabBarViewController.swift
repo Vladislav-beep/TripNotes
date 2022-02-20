@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 class TabBarViewController: UITabBarController {
     
@@ -13,6 +14,8 @@ class TabBarViewController: UITabBarController {
     
     var coordinator: AppCoordinator?
     
+    var user: User!
+
     // MARK: Overriden
     
     override var selectedIndex: Int { // Mark 1
@@ -41,12 +44,17 @@ class TabBarViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        guard let currentUser = Auth.auth().currentUser else { return }
+        user = User(user: currentUser)
+
+       
+        
         tabBar.unselectedItemTintColor = .tripBlue
         tabBar.tintColor = .tripRed
         
       //  let firstViewController = TripsViewController()
        // let secondViewController = FavouritesViewController(notesViewModel: FavouritesViewModel())
-        let firstViewController = UINavigationController(rootViewController: TripsViewController())
+        let firstViewController = UINavigationController(rootViewController: TripsViewController(viewModel: TripsViewModel(userId: user.uid)))
         let secondViewController = UINavigationController(rootViewController: FavouritesViewController(notesViewModel: FavouritesViewModel()))
         
         firstViewController.tabBarItem.title = "Trips"

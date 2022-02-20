@@ -23,6 +23,12 @@ class TripsViewModel: TripsViewModelProtocol {
     // MARK: Properties
     
     var trips: [Trip] = []
+    let userId: String
+    
+    
+    init(userId: String) {
+        self.userId = userId
+    }
     
     // MARK: Methods
     

@@ -12,14 +12,7 @@ class TripsViewController: UIViewController {
     
     // MARK: Dependencies
     
-    private var viewModel: TripsViewModelProtocol! {
-        didSet {
-            viewModel.getTrips { [weak self] in
-                self?.tableView.reloadData()
-            }
-        }
-    }
-    
+    private var viewModel: TripsViewModelProtocol
     var coordinator: AppCoordinator?
 
     // MARK: UI
@@ -79,11 +72,25 @@ class TripsViewController: UIViewController {
     
     // MARK: Life Time
     
+    init(viewModel: TripsViewModelProtocol) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        viewModel.getTrips { [weak self] in
+            self?.tableView.reloadData()
+        }
+        
         title = "Trips"
         setupNavigationBar()
-        viewModel = TripsViewModel()
+       // viewModel = TripsViewModel()
         
         setupTableContraints()
         setupAddButtonConstraints()

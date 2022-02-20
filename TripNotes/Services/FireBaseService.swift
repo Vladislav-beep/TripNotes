@@ -9,24 +9,18 @@ import Foundation
 import Firebase
 
 protocol FireBaseServiceProtocol {
-    var userId: String { get }
-    init(userId: String)
-    func listenToTrips()
+    func listenToTrips(forUser userId: String)
 }
 
 class FireBaseService: FireBaseServiceProtocol {
     
-    var userId: String
     var tripsArray = [Trip]()
     
     private lazy var db = Firestore.firestore()
-    private lazy var tripsRef = db.collection("users").document(userId).collection("trips")
     
-    required init(userId: String) {
-        self.userId = userId
-    }
-    
-    func listenToTrips() {
+        
+    func listenToTrips(forUser userId: String) {
+        let tripsRef = db.collection("users").document(userId).collection("trips")
         tripsRef.addSnapshotListener { (snapshot, error) in
             if let error = error {
                 print(error.localizedDescription)

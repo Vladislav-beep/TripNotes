@@ -46,12 +46,6 @@ class AppCoordinator: Coordinator {
         navigationController.pushViewController(tabBar, animated: true)
     }
     
-    func showTrips() {
-        let tripsVC = TripsViewController()
-        tripsVC.coordinator = self
-        navigationController.pushViewController(tripsVC, animated: true)
-    }
-    
     func showNotes() {
         let notesVM = NotesViewModel(trip: nil)
         let notesVC = NotesViewController(notesViewModel: notesVM)
