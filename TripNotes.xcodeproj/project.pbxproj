@@ -76,6 +76,7 @@
 		B9AA39D927BACF9B00CD48E9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91E813C2767A88E00D0748B /* AppDelegate.swift */; };
 		B9AA39DF27BAD08A00CD48E9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B9AA39DE27BAD08A00CD48E9 /* GoogleService-Info.plist */; };
 		B9AA39E027BAD08A00CD48E9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B9AA39DE27BAD08A00CD48E9 /* GoogleService-Info.plist */; };
+		B9D9C8AF27C3EDF70003D34C /* FireBaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9863ABA27C1371F00BE6337 /* FireBaseService.swift */; };
 		B9D9FC11278F390B007710B4 /* NewNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9FD6C07278E040900311EF1 /* NewNoteViewController.swift */; };
 		B9D9FC14278F4E1D007710B4 /* SelectionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A0EF6A2774DDCE00DE65E2 /* SelectionButton.swift */; };
 		B9DCF135276BAFF8007B0320 /* TripsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DCF134276BAFF8007B0320 /* TripsViewModel.swift */; };
@@ -664,6 +665,7 @@
 				B90632F227AFCF0900F0C2A5 /* NoteCellVewModel.swift in Sources */,
 				B97374C227AC5CF8000B208D /* FavouritesViewModel.swift in Sources */,
 				B90DB45A276FB39E00F1A544 /* NotesViewModel.swift in Sources */,
+				B9D9C8AF27C3EDF70003D34C /* FireBaseService.swift in Sources */,
 				B90632FE27AFE47F00F0C2A5 /* DetailNoteViewController.swift in Sources */,
 				B93DD4BD279F1BCC00D91A08 /* AuthViewModel.swift in Sources */,
 				B95F0BBF27B986FC008BCAF6 /* Animator.swift in Sources */,

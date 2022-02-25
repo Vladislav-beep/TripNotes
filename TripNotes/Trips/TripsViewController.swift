@@ -75,6 +75,7 @@ class TripsViewController: UIViewController {
     init(viewModel: TripsViewModelProtocol) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
+         
     }
     
     required init?(coder: NSCoder) {
@@ -83,20 +84,25 @@ class TripsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        viewModel.getTrips { [weak self] in
-            self?.tableView.reloadData()
-        }
-        
         title = "Trips"
+        
         setupNavigationBar()
-       // viewModel = TripsViewModel()
+        
+        setupViewModelBindings()
+        viewModel.getTrips()
         
         setupTableContraints()
         setupAddButtonConstraints()
         setupAddNoteButtonConstraints()
         tableView.delegate = self
         tableView.dataSource = self
+    }
+    
+    func setupViewModelBindings() {
+        viewModel.firstCompletion = { [weak self] in
+            self?.tableView.reloadData()
+            print("tableView")
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

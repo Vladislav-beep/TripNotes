@@ -107,8 +107,6 @@ class AuthViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupConstraints()
-        let fire = FireBaseService()
-        fire.listenToTrips(forUser: "NUXiX5zSMiwYxmtCBpzO")
     }
     
     override func viewWillAppear(_ animated: Bool) {

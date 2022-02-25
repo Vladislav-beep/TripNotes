@@ -6,36 +6,70 @@
 //
 
 import Foundation
+import Firebase
 
 protocol TripsViewModelProtocol: class {
     var trips: [Trip] { get set }
-    func getTrips(completion: @escaping() -> Void)
+    func getTrips()
     func numberOfRows(section: Int) -> Int
     func titleForHeaderInSection(section: Int) -> String
     func tripCellViewModel(for indexPath: IndexPath) -> TripTableViewCellViewModelProtocol?
     func viewModelForSelectedRow(at indexPAth: IndexPath) -> NotesViewModelProtocol
     func newTripViewModel() -> NewTripViewModelProtocol
     func newNoteViewModel() -> NewNoteViewModelProtocol
+    var firstCompletion: (() -> Void)? { get set }
+    
 }
 
 class TripsViewModel: TripsViewModelProtocol {
+    
+    let fire = FireBaseService()
     
     // MARK: Properties
     
     var trips: [Trip] = []
     let userId: String
     
-    
     init(userId: String) {
-        self.userId = userId
+        self.userId = "NUXiX5zSMiwYxmtCBpzO"
+        //getTrips()
     }
     
     // MARK: Methods
     
-    func getTrips(completion: @escaping () -> Void) {
-        trips = Trip.getData()
-        completion()
+//    func getTrips(completion: @escaping () -> Void) {
+//        trips = Trip.getData()
+//        completion()
+//    }
+    
+    func getTrips() {
+        fire.listenToTrips(forUser: "", completion: { (result: Result<[Trip], Error>) in
+            switch result {
+            case .success(let tripss):
+                self.trips = tripss
+                self.firstCompletion?()
+                print("\(self.trips) - from viewmodel")
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        })
     }
+    
+//    func getTrips(completion: @escaping () -> Void) {
+//           fire.listenToTrips(forUser: "", completion: { [weak self] (result: Result<[Trip], Error>) in
+//               switch result {
+//               case .success(let tripss):
+//                self?.trips = tripss
+//                print("\(self?.trips) - from viewmodel")
+//               case .failure(let error):
+//                   print(error.localizedDescription)
+//               }
+//           })
+//
+//       }
+    
+    
+    var firstCompletion: (() -> Void)?
     
     func numberOfRows(section: Int) -> Int {
         var plannedCount = 0
