@@ -10,6 +10,8 @@ import Foundation
 protocol NotesViewModelProtocol {
     init(trip: Trip?)
     var text: String { get }
+    var noteCompletion: (() -> Void)? { get set }
+    func getNotes()
     func numberOfCells() -> Int
     func noteCellViewModel(for indexPath: IndexPath) -> NoteCellViewModelProtocol?
     func viewModelForSelectedRow(at indexpath: IndexPath) -> NoteCellViewModel
@@ -17,13 +19,18 @@ protocol NotesViewModelProtocol {
 
 class NotesViewModel: NotesViewModelProtocol {
     
+    let fire = FireBaseService()
+    
     // MARK: Properties
     
     var text: String {
         trip?.country ?? ""
     }
     
+    var notes: [TripNote] = []
     var trip: Trip?
+    
+    var noteCompletion: (() -> Void)?
     
     // MARK: Life time
     
@@ -33,23 +40,32 @@ class NotesViewModel: NotesViewModelProtocol {
     
     // MARK: Methods
     
-    func getNotes() -> [TripNote] {
-        return trip?.tripNotes ?? []
+    func getNotes() {
+        fire.listenToNotes(forUser: "", completion: { (result: Result<[TripNote], Error>) in
+            switch result {
+            case .success(let notess):
+                self.notes = notess
+                self.noteCompletion?()
+                print("\(self.notes) - from viewmodel")
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        })
     }
     
     func numberOfCells() -> Int {
-        trip?.tripNotes.count ?? 0
+        notes.count
     }
     
     func noteCellViewModel(for indexPath: IndexPath) -> NoteCellViewModelProtocol? {
-        let note = getNotes()[indexPath.item]
-        let currency = trip?.currency ?? .dollar
+        let note = notes[indexPath.item]
+        let currency = trip?.currency ?? "ruble"
         return NoteCellViewModel(tripNote: note, currency: currency)
     }
     
     func viewModelForSelectedRow(at indexpath: IndexPath) -> NoteCellViewModel {
-        let note = getNotes()[indexpath.item]
-        return NoteCellViewModel(tripNote: note, currency: trip?.currency ?? .dollar)
+        let note = notes[indexpath.item]
+        return NoteCellViewModel(tripNote: note, currency: trip?.currency ?? "ruble")
     }
 
 }

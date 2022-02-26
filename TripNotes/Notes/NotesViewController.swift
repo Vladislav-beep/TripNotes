@@ -38,6 +38,16 @@ class NotesViewController: UIViewController, UICollectionViewDelegate {
     override func viewDidLoad() {
         collectionView.dataSource = self
         collectionView.delegate = self
+        
+        setupViewModelBundings()
+        viewModel.getNotes()
+    }
+    
+    private func setupViewModelBundings() {
+        viewModel.noteCompletion = { [weak self] in
+            self?.collectionView.reloadData()
+            print("collectionView")
+        }
     }
     
     // MARK: Layout

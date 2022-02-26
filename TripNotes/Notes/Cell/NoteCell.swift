@@ -18,7 +18,7 @@ class NoteCell: UICollectionViewCell {
             cityLabel.text = viewModel.city
             dateLabel.text = viewModel.date
             sumLabel.text = viewModel.price
-            categoryImageView.image = setImage(for: viewModel.imageCategory)
+            categoryImageView.image = setImage(for: viewModel.category)
         }
     }
     
@@ -102,20 +102,22 @@ class NoteCell: UICollectionViewCell {
         setupSumLabelConstraints()
     }
     
-    private func setImage(for category: Category) -> UIImage {
+    private func setImage(for category: String) -> UIImage {
         switch category {
-        case .hotels:
+        case "Hotels":
             return UIImage(systemName: "building.fill") ?? UIImage()
-        case .tranport:
+        case "Transport":
             return UIImage(systemName: "tram.tunnel.fill") ?? UIImage()
-        case .foodAndRestaurants:
+        case "FoodAndRestaurants":
             return UIImage(systemName: "hourglass.tophalf.fill") ?? UIImage()
-        case .activity:
+        case "Activity":
             return UIImage(systemName: "camera.on.rectangle.fill") ?? UIImage()
-        case .purchases:
+        case "Purchases":
             return UIImage(systemName: "creditcard.fill") ?? UIImage()
-        case .other:
+        case "Other":
             return UIImage(systemName: "square.3.stack.3d.bottom.fill") ?? UIImage()
+        default:
+            return UIImage(systemName: "square") ?? UIImage()
         }
     }
     

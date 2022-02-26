@@ -24,7 +24,7 @@ class AppCoordinator: Coordinator {
     }
     
     func start() {
-        showLogin() 
+        showTabBar()
     }
     
     func showLogin() {

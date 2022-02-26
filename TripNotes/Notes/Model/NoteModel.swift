@@ -9,7 +9,7 @@ import Foundation
 
 struct TripNote: Hashable {
     let city: String
-    let category: Category
+    let category: String
     let price: Double
     let date: Date
     let description: String?

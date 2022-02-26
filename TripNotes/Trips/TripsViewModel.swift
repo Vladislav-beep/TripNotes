@@ -32,15 +32,9 @@ class TripsViewModel: TripsViewModelProtocol {
     
     init(userId: String) {
         self.userId = "NUXiX5zSMiwYxmtCBpzO"
-        //getTrips()
     }
     
     // MARK: Methods
-    
-//    func getTrips(completion: @escaping () -> Void) {
-//        trips = Trip.getData()
-//        completion()
-//    }
     
     func getTrips() {
         fire.listenToTrips(forUser: "", completion: { (result: Result<[Trip], Error>) in
@@ -54,20 +48,6 @@ class TripsViewModel: TripsViewModelProtocol {
             }
         })
     }
-    
-//    func getTrips(completion: @escaping () -> Void) {
-//           fire.listenToTrips(forUser: "", completion: { [weak self] (result: Result<[Trip], Error>) in
-//               switch result {
-//               case .success(let tripss):
-//                self?.trips = tripss
-//                print("\(self?.trips) - from viewmodel")
-//               case .failure(let error):
-//                   print(error.localizedDescription)
-//               }
-//           })
-//
-//       }
-    
     
     var firstCompletion: (() -> Void)?
     

@@ -98,6 +98,7 @@
 		B9F296C8278964CE00844D6C /* NoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F296C027895C4300844D6C /* NoteCell.swift */; };
 		B9F39E052767D28600DAFB4C /* TripTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F39E042767D28600DAFB4C /* TripTableViewCell.swift */; };
 		B9F39E082767D47A00DAFB4C /* Extension + UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F39E072767D47A00DAFB4C /* Extension + UIColor.swift */; };
+		B9F63C5C27CA29F00021F02F /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9863ABE27C1374100BE6337 /* AuthService.swift */; };
 		B9FB61182772336700126A59 /* NewTripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9FB61172772336700126A59 /* NewTripViewController.swift */; };
 		B9FB611C2772339500126A59 /* NewTripViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9FB611B2772339500126A59 /* NewTripViewModel.swift */; };
 		B9FB611F277236B400126A59 /* NewTripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9FB61172772336700126A59 /* NewTripViewController.swift */; };
@@ -642,6 +643,7 @@
 				B98282D327A07BF3006EFED8 /* SignInButton.swift in Sources */,
 				B9DE0D562768FDAB00805E4C /* TripTableViewCell.swift in Sources */,
 				B93DD4BA279F1BCA00D91A08 /* AuthViewController.swift in Sources */,
+				B9F63C5C27CA29F00021F02F /* AuthService.swift in Sources */,
 				B966487E2799D66900F527E8 /* MapViewController.swift in Sources */,
 				B90DB459276FB39200F1A544 /* TripTableViewCellViewModel.swift in Sources */,
 				B912CFF227ADB66B00AE1FCE /* NotesCollectionView.swift in Sources */,

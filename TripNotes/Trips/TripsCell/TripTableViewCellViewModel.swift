@@ -54,12 +54,12 @@ class TripTableViewCellViewModel: TripTableViewCellViewModelProtocol {
     func getTotalSum() -> String {
         var totalSum: Double = 0
         
-        for note in trip.tripNotes {
-            totalSum += Double(note.price)
-        }
-        
-        let formattedTotalSum = totalSum.formattedWithSeparator
-        let returnTotalSum = "\(formattedTotalSum) \(trip.currency.rawValue)"
-        return returnTotalSum
+//        for note in trip.tripNotes {
+//            totalSum += Double(note.price)
+//        }
+//
+//        let formattedTotalSum = totalSum.formattedWithSeparator
+    //    let returnTotalSum = "\(formattedTotalSum) \(trip.currency)"
+        return "9 dollar"
     }
 }

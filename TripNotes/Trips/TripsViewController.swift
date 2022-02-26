@@ -63,10 +63,6 @@ class TripsViewController: UIViewController {
                                                   action: #selector(signOutTapped),
                                                   imageName: "gear",
                                                   widthAndHeight: 40)
-        // TODO:  function for selector
-        
-      
-        
         return button
     }()
     
@@ -89,7 +85,7 @@ class TripsViewController: UIViewController {
         setupNavigationBar()
         
         setupViewModelBindings()
-        viewModel.getTrips()
+      //  viewModel.getTrips()
         
         setupTableContraints()
         setupAddButtonConstraints()
@@ -109,6 +105,7 @@ class TripsViewController: UIViewController {
         super.viewWillAppear(animated)
         addTripButton.isHidden = false
         addNoteButton.isHidden = true
+        viewModel.getTrips()
     }
     
     // MARK: Actions

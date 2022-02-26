@@ -19,41 +19,24 @@ class FavouritesViewModel: FavouritesViewModelProtocol {
         getNotes().count
     }
     
-    func getTrips() -> [Trip] {
-        return Trip.getData()
-    }
-    
-//    func getNotes() -> [TripNote: Currency] {
-//        var notesArray: [TripNote: Currency] = [:]
-//        var currency: Currency
+    func getNotes() -> [TripNote] {
+        var notesArray: [TripNote] = []
 //        for trip in getTrips() {
-//            currency = trip.currency
 //            for note in trip.tripNotes {
-//                if note.isFavoutite == true {
-//                    notesArray[note] = currency
+//                if note.isFavourite {
+//                    notesArray.append(note)
 //                }
 //            }
 //        }
-//    }
-    
-    func getNotes() -> [TripNote] {
-        var notesArray: [TripNote] = []
-        for trip in getTrips() {
-            for note in trip.tripNotes {
-                if note.isFavourite {
-                    notesArray.append(note)
-                }
-            }
-        }
         return notesArray
     }
     
-    func getCurrency() -> [Currency] {
-        var currencyArray: [Currency] = []
+    func getCurrency() -> [String] {
+        var currencyArray: [String] = []
         
-        for trip in getTrips() {
-            currencyArray.append(trip.currency)
-        }
+//        for trip in getTrips() {
+//            currencyArray.append(trip.currency)
+//        }
         return currencyArray
     }
     

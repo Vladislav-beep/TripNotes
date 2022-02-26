@@ -13,8 +13,7 @@ protocol NoteCellViewModelProtocol {
     var description: String { get }
     var date: String { get }
     var price: String { get }
-    var imageCategory: Category { get }
-    init(tripNote: TripNote, currency: Currency)
+    init(tripNote: TripNote, currency: String)
 }
 
 class NoteCellViewModel: NoteCellViewModelProtocol {
@@ -29,12 +28,8 @@ class NoteCellViewModel: NoteCellViewModelProtocol {
         "\(tripNote.date)"
     }
     
-    var imageCategory: Category {
-        tripNote.category
-    }
-    
     var category: String {
-        tripNote.category.rawValue
+        tripNote.category
     }
     
     var city: String {
@@ -42,17 +37,17 @@ class NoteCellViewModel: NoteCellViewModelProtocol {
     }
     
     var price: String {
-        String(tripNote.price) + " " + currency.rawValue
+        String(tripNote.price) + " " + currency
     }
     
     // MARK: Private properties
     
     private let tripNote: TripNote
-    private let currency: Currency
+    private let currency: String
     
     // MARK: Life Time
     
-    required init(tripNote: TripNote, currency: Currency) {
+    required init(tripNote: TripNote, currency: String) {
         self.tripNote = tripNote
         self.currency = currency
     }
