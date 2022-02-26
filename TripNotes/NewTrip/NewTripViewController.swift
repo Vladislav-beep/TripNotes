@@ -139,6 +139,7 @@ class NewTripViewController: UIViewController {
         addNewTripButton.layer.shadowRadius = 4
         addNewTripButton.layer.shadowOpacity = 0.4
         addNewTripButton.layer.shadowOffset = CGSize(width: 0, height: 5)
+        addNewTripButton.addTarget(self, action: #selector(addTrip), for: .touchUpInside)
         addNewTripButton.translatesAutoresizingMaskIntoConstraints = false
         return addNewTripButton
     }()
@@ -179,6 +180,26 @@ class NewTripViewController: UIViewController {
     
     deinit {
         removeKeyboardNotification()
+    }
+    
+    @objc func addTrip() {
+        
+//        guard let country = countryTextField.text,
+//              country.isEmpty,
+//
+//        else { return }
+        
+        let dateformatter = DateFormatter()
+        dateformatter.dateStyle = .medium
+        
+        let bdate = dateformatter.date(from: beginDateTextField.text ?? "")
+        let fdate = dateformatter.date(from: finishDateTextField.text ?? "")
+        
+        guard let country = countryTextField.text else { return }
+        guard let description = descriptionTextField.text else { return }
+       // let beginningDate = beginDateTextField.text
+        viewModel?.addTrip(country: country, currency: "$", description: description, beginningDate: bdate ?? Date(), finishingDate: fdate ?? Date())
+        dismiss(animated: true)
     }
     
     // MARK: Actions
@@ -325,7 +346,7 @@ class NewTripViewController: UIViewController {
     private func setupBackButtonConstraints() {
         lowerView.addSubview(backButton)
         NSLayoutConstraint.activate([
-            backButton.topAnchor.constraint(equalTo: lowerView.topAnchor, constant: 10),
+            backButton.topAnchor.constraint(equalTo: lowerView.topAnchor, constant: 30),
             backButton.leadingAnchor.constraint(equalTo: lowerView.leadingAnchor, constant: 27),
             backButton.heightAnchor.constraint(equalToConstant: 26),
             backButton.widthAnchor.constraint(equalToConstant: 26)

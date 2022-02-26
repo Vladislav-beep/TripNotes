@@ -128,6 +128,7 @@ class TripsViewController: UIViewController {
     @objc func addTrip() {
         let newTripViewModel = viewModel.newTripViewModel
         let newTripVC = NewTripViewController(viewModel: newTripViewModel())
+        newTripVC.modalPresentationStyle = .fullScreen
         present(newTripVC, animated: true)
     }
     

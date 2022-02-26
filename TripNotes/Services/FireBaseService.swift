@@ -46,19 +46,24 @@ class FireBaseService {
         }
     }
     
-//    func addTrip(completion: @escaping (Result <[Trip], Error>) -> Void) {
-//
-//        db.collection("users").document("NUXiX5zSMiwYxmtCBpzO").collection("trips").addDocument(data: [
-//            "id":,
-//            "country": "Japan"
-//        ]) { err in
-//            if let err = err {
-//                print("Error adding document: \(err)")
-//            } else {
-//                print("Document added with ID: \(ref!.documentID)")
-//            }
-//        }
-//    }
+    func addTrip(country: String, currency: String, description: String, beginningDate: Date, finishingDate: Date) {
+        
+        let newTripRef = db.collection("users").document("NUXiX5zSMiwYxmtCBpzO").collection("trips").document()
+        newTripRef.setData([
+            "id": newTripRef.documentID,
+            "country": country,
+            "currency": currency,
+            "description": description,
+            "beginningDate": beginningDate,
+            "finishingDate": finishingDate
+        ]) { err in
+            if let err = err {
+                print("Error adding document: \(err)")
+            } else {
+                print("Document added with ID: \(newTripRef.documentID)")
+            }
+        }
+    }
     
     
     func listenToNotes(forTrip tripId: String, completion: @escaping (Result <[TripNote], Error>) -> Void) {

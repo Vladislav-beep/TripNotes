@@ -32,7 +32,12 @@ class TripTableViewCellViewModel: TripTableViewCellViewModelProtocol {
     }
     
     var date: String {
-        "\(trip.beginningDate) - \(trip.finishingDate)"
+        let dateformatter = DateFormatter()
+        dateformatter.dateStyle = .medium
+        
+        let bdate = dateformatter.string(from: trip.beginningDate)
+        let fdate = dateformatter.string(from: trip.finishingDate)
+        return "\(bdate) - \(fdate)"
     }
     
     var country: String {
