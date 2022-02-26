@@ -47,7 +47,7 @@ class TabBarViewController: UITabBarController {
         tabBar.unselectedItemTintColor = .tripBlue
         tabBar.tintColor = .tripRed
 
-        let firstViewController = UINavigationController(rootViewController: TripsViewController(viewModel: TripsViewModel(userId: "")))
+        let firstViewController = UINavigationController(rootViewController: TripsViewController(viewModel: TripsViewModel(userId: "NUXiX5zSMiwYxmtCBpzO")))
         let secondViewController = UINavigationController(rootViewController: FavouritesViewController(notesViewModel: FavouritesViewModel()))
 
         firstViewController.tabBarItem.title = "Trips"

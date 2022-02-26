@@ -41,12 +41,14 @@ class NotesViewModel: NotesViewModelProtocol {
     // MARK: Methods
     
     func getNotes() {
-        fire.listenToNotes(forUser: "", completion: { (result: Result<[TripNote], Error>) in
+        fire.listenToNotes(forTrip: trip?.id ?? "", completion: { (result: Result<[TripNote], Error>) in
+            print("\(self.trip) - trip from viemodel AAA")
+            print("\(self.trip?.id) - AAAAAAAAA" )
             switch result {
             case .success(let notess):
                 self.notes = notess
                 self.noteCompletion?()
-                print("\(self.notes) - from viewmodel")
+                print("\(self.notes) - from viewmodel notes")
             case .failure(let error):
                 print(error.localizedDescription)
             }

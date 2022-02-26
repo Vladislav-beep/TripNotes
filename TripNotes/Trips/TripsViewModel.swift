@@ -31,13 +31,13 @@ class TripsViewModel: TripsViewModelProtocol {
     let userId: String
     
     init(userId: String) {
-        self.userId = "NUXiX5zSMiwYxmtCBpzO"
+        self.userId = userId
     }
     
     // MARK: Methods
     
     func getTrips() {
-        fire.listenToTrips(forUser: "", completion: { (result: Result<[Trip], Error>) in
+        fire.listenToTrips(forUser: userId, completion: { (result: Result<[Trip], Error>) in
             switch result {
             case .success(let tripss):
                 self.trips = tripss
