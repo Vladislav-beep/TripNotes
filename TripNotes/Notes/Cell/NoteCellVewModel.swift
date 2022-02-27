@@ -25,7 +25,11 @@ class NoteCellViewModel: NoteCellViewModelProtocol {
     }
     
     var date: String {
-        "\(tripNote.date)"
+        let dateformatter = DateFormatter()
+        dateformatter.dateFormat = "HH:mm, dd.MM.yy"
+        
+        let date = dateformatter.string(from: tripNote.date)
+        return "\(date)"
     }
     
     var category: String {
