@@ -13,6 +13,7 @@ protocol NoteCellViewModelProtocol {
     var description: String { get }
     var date: String { get }
     var price: String { get }
+    var isFavourite: Bool { get }
     init(tripNote: TripNote, currency: String)
 }
 
@@ -42,6 +43,10 @@ class NoteCellViewModel: NoteCellViewModelProtocol {
     
     var price: String {
         String(tripNote.price) + " " + currency
+    }
+    
+    var isFavourite: Bool {
+        tripNote.isFavourite
     }
     
     // MARK: Private properties

@@ -63,7 +63,7 @@ class TripsViewController: UIViewController {
     private lazy var signOutButton: UIBarButtonItem = {
         let button = UIBarButtonItem.customButton(self,
                                                   action: #selector(signOutTapped),
-                                                  imageName: "gear",
+                                                  imageName: "square.and.arrow.up",
                                                   widthAndHeight: 40)
         return button
     }()
@@ -99,7 +99,6 @@ class TripsViewController: UIViewController {
     func setupViewModelBindings() {
         viewModel.firstCompletion = { [weak self] in
             self?.tableView.reloadData()
-            print("tableView")
         }
     }
     

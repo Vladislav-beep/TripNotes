@@ -51,7 +51,6 @@ class NotesViewController: UIViewController, UICollectionViewDelegate {
     private func setupViewModelBundings() {
         viewModel.noteCompletion = { [weak self] in
             self?.collectionView.reloadData()
-            print("collectionView")
         }
     }
     

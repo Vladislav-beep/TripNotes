@@ -51,7 +51,7 @@ class TabBarViewController: UITabBarController {
         let secondViewController = UINavigationController(rootViewController: FavouritesViewController(notesViewModel: FavouritesViewModel()))
 
         firstViewController.tabBarItem.title = "Trips"
-        firstViewController.tabBarItem.image = UIImage(named: "tabBarTrip")
+        firstViewController.tabBarItem.image = UIImage(systemName: "arrow.triangle.swap")
 
         secondViewController.tabBarItem.title = "Favourites"
         secondViewController.tabBarItem.image = UIImage(systemName: "heart.fill")

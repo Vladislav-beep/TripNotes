@@ -19,6 +19,11 @@ class NoteCell: UICollectionViewCell {
             dateLabel.text = viewModel.date
             sumLabel.text = viewModel.price
             categoryImageView.image = setImage(for: viewModel.category)
+            
+            if viewModel.isFavourite {
+                lowerView.layer.borderWidth = 3.5
+                lowerView.layer.borderColor = UIColor.tripRed.cgColor
+            }
         }
     }
     
