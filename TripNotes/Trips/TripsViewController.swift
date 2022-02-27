@@ -13,6 +13,8 @@ class TripsViewController: UIViewController {
     // MARK: Dependencies
     
     private var viewModel: TripsViewModelProtocol
+    
+    private var newNoteViewModel: NewNoteViewModelProtocol?
     var coordinator: AppCoordinator?
 
     // MARK: UI
@@ -133,8 +135,10 @@ class TripsViewController: UIViewController {
     }
     
     @objc func addNote() {
-        let newNoteViewModel = viewModel.newNoteViewModel()
-        let newNoteVC = NewNoteViewController(viewModel: newNoteViewModel)
+        
+        let newNoteVC = NewNoteViewController(viewModel: self.newNoteViewModel!)
+        newNoteViewModel?.printAA()
+        newNoteVC.modalPresentationStyle = .fullScreen
         parent?.present(newNoteVC, animated: true)
       //  present(newNoteVC, animated: true)
     }
@@ -261,6 +265,12 @@ extension TripsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let notesViewModel = viewModel.viewModelForSelectedRow(at: indexPath)
+        
+        //
+        let newNoteViewModel = viewModel.newNoteViewModel(at: indexPath)
+        self.newNoteViewModel = newNoteViewModel
+        
+        //
         addTripButton.isHidden = true
         addNoteButton.isHidden = false
         navigationController?.pushViewController(NotesViewController(notesViewModel: notesViewModel), animated: true)

@@ -39,9 +39,7 @@ class FireBaseService {
                     tripArray.append(trip)
                     
                 }
-                
                 completion(.success(tripArray))
-                print("\(tripArray) - from service")
             }
         }
     }
@@ -88,9 +86,31 @@ class FireBaseService {
 
                 }
                 completion(.success(noteArray))
-                print("\(noteArray) - from service note")
             }
         }
     }
+    
+    
+    func addNote(tripId: String, category: String, city: String, price: Double, isFavourite: Bool, description: String) {
+        
+        let newNoteRef = db.collection("users").document("NUXiX5zSMiwYxmtCBpzO").collection("trips").document(tripId).collection("tripNotes").document()
+        newNoteRef.setData([
+            "id": newNoteRef.documentID,
+            "city": city,
+            "category": category,
+            "description": description,
+            "price": price,
+            "isFavourite": isFavourite,
+            "date": Date()
+        ]) { err in
+            if let err = err {
+                print("Error adding document: \(err)")
+            } else {
+                print("Document added with ID: \(newNoteRef.documentID)")
+            }
+        }
+    }
+    
+    
 }
 

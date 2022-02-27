@@ -40,6 +40,11 @@ class NotesViewController: UIViewController, UICollectionViewDelegate {
         collectionView.delegate = self
         
         setupViewModelBundings()
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         viewModel.getNotes()
     }
     

@@ -16,7 +16,7 @@ protocol TripsViewModelProtocol: class {
     func tripCellViewModel(for indexPath: IndexPath) -> TripTableViewCellViewModelProtocol?
     func viewModelForSelectedRow(at indexPAth: IndexPath) -> NotesViewModelProtocol
     func newTripViewModel() -> NewTripViewModelProtocol
-    func newNoteViewModel() -> NewNoteViewModelProtocol
+    func newNoteViewModel(at indexPath: IndexPath) -> NewNoteViewModelProtocol
     var firstCompletion: (() -> Void)? { get set }
     
 }
@@ -42,7 +42,6 @@ class TripsViewModel: TripsViewModelProtocol {
             case .success(let tripss):
                 self.trips = tripss
                 self.firstCompletion?()
-                print("\(self.trips) - from viewmodel")
             case .failure(let error):
                 print(error.localizedDescription)
             }
@@ -111,7 +110,15 @@ class TripsViewModel: TripsViewModelProtocol {
         return NewTripViewModel()
     }
     
-    func newNoteViewModel() -> NewNoteViewModelProtocol {
-        return NewNoteViewModel()
+    func newNoteViewModel(at indexPath: IndexPath) -> NewNoteViewModelProtocol {
+        if indexPath.section == 0 {
+            let tr =  trips.filter { $0.finishingDate > Date() }
+            let trip = tr[indexPath.row]
+            return NewNoteViewModel(trip: trip)
+        } else {
+            let tr = trips.filter { $0.finishingDate < Date() }
+            let trip = tr[indexPath.row]
+            return NewNoteViewModel(trip: trip)
+        }
     }
 }

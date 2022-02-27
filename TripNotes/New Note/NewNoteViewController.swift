@@ -250,6 +250,7 @@ class NewNoteViewController: UIViewController {
         addNoteTripButton.layer.shadowRadius = 4
         addNoteTripButton.layer.shadowOpacity = 0.4
         addNoteTripButton.layer.shadowOffset = CGSize(width: 0, height: 5)
+        addNoteTripButton.addTarget(self, action: #selector(addNote), for: .touchUpInside)
         addNoteTripButton.translatesAutoresizingMaskIntoConstraints = false
         return addNoteTripButton
     }()
@@ -272,6 +273,13 @@ class NewNoteViewController: UIViewController {
     }
     
     // MARK: Actions
+    
+    @objc func addNote() {
+        let city = cityTextField.text ?? ""
+        let price = Double(priceTextField.text ?? "") ?? 0.0
+        let description = descruptionTextView.text ?? ""
+        viewModel?.addNote(category: "Hotels", city: city, price: price, isFavourite: false, description: description)
+    }
     
     @objc func backButtonPressed() {
         dismiss(animated: true)
@@ -339,7 +347,7 @@ class NewNoteViewController: UIViewController {
     private func setupBackButtonConstraints() {
         lowerView.addSubview(backButton)
         NSLayoutConstraint.activate([
-            backButton.topAnchor.constraint(equalTo: lowerView.topAnchor, constant: 10),
+            backButton.topAnchor.constraint(equalTo: lowerView.topAnchor, constant: 30),
             backButton.leadingAnchor.constraint(equalTo: lowerView.leadingAnchor, constant: 10),
             backButton.heightAnchor.constraint(equalToConstant: 26),
             backButton.widthAnchor.constraint(equalToConstant: 26)

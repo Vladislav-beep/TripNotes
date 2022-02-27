@@ -42,13 +42,10 @@ class NotesViewModel: NotesViewModelProtocol {
     
     func getNotes() {
         fire.listenToNotes(forTrip: trip?.id ?? "", completion: { (result: Result<[TripNote], Error>) in
-            print("\(self.trip) - trip from viemodel AAA")
-            print("\(self.trip?.id) - AAAAAAAAA" )
             switch result {
             case .success(let notess):
                 self.notes = notess
                 self.noteCompletion?()
-                print("\(self.notes) - from viewmodel notes")
             case .failure(let error):
                 print(error.localizedDescription)
             }
@@ -61,13 +58,13 @@ class NotesViewModel: NotesViewModelProtocol {
     
     func noteCellViewModel(for indexPath: IndexPath) -> NoteCellViewModelProtocol? {
         let note = notes[indexPath.item]
-        let currency = trip?.currency ?? "ruble"
+        let currency = trip?.currency ?? "$"
         return NoteCellViewModel(tripNote: note, currency: currency)
     }
     
     func viewModelForSelectedRow(at indexpath: IndexPath) -> NoteCellViewModel {
         let note = notes[indexpath.item]
-        return NoteCellViewModel(tripNote: note, currency: trip?.currency ?? "ruble")
+        return NoteCellViewModel(tripNote: note, currency: trip?.currency ?? "$")
     }
 
 }
