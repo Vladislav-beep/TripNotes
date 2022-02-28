@@ -142,7 +142,7 @@ class NoteCell: UICollectionViewCell {
         contentView.addSubview(categoryImageView)
         NSLayoutConstraint.activate([
             categoryImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
-            categoryImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
+            categoryImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
             categoryImageView.widthAnchor.constraint(equalTo: categoryImageView.heightAnchor),
             categoryImageView.heightAnchor.constraint(equalToConstant: 40)
         ])
@@ -152,7 +152,7 @@ class NoteCell: UICollectionViewCell {
         contentView.addSubview(labelStackView)
         NSLayoutConstraint.activate([
             labelStackView.topAnchor.constraint(equalTo: categoryImageView.bottomAnchor, constant: 5),
-            labelStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
+            labelStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
             labelStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5),
             labelStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -30)
         ])

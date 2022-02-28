@@ -144,6 +144,16 @@ class NewTripViewController: UIViewController {
         return addNewTripButton
     }()
     
+    private lazy var warningLabel: UILabel = {
+        let warningLabel = UILabel()
+        warningLabel.text = ""
+        warningLabel.font = UIFont.systemFont(ofSize: 16, weight: .heavy)
+        warningLabel.textColor = .tripRed
+        warningLabel.textAlignment = .center
+        warningLabel.translatesAutoresizingMaskIntoConstraints = false
+        return warningLabel
+    }()
+    
     private lazy var tapGestureRecognizer: UITapGestureRecognizer = {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self,
                                                           action: #selector(setAvatarImage(_:)))
@@ -184,21 +194,66 @@ class NewTripViewController: UIViewController {
     
     @objc func addTrip() {
         
-//        guard let country = countryTextField.text,
-//              country.isEmpty,
-//
-//        else { return }
+        guard let country = countryTextField.text,
+              country != "",
+              let description = descriptionTextField.text,
+              description != "",
+              let beginningDateText = beginDateTextField.text,
+              beginningDateText != "",
+              let finishingDateText = finishDateTextField.text,
+              finishingDateText != ""
+        else {
+            
+            UIView.transition(with: warningLabel,
+                              duration: 0.25,
+                              options: .transitionCrossDissolve,
+                              animations: { [weak self] in
+                                self?.warningLabel.text = "None of fields can be empty"
+                              }, completion: {_ in
+                                
+                                UIView.transition(with: self.warningLabel,
+                                                  duration: 3.5,
+                                                  options: .transitionCrossDissolve,
+                                                  animations: { [weak self] in
+                                                    self?.warningLabel.text = ""
+                                                  }, completion: nil)
+                              })
+            return
+        }
+        
+        var currency = ""
+        for button in buttonArray {
+            if button.backgroundColor == UIColor.tripRed {
+                currency = button.titleLabel?.text ?? "$"
+                
+            }
+        }
+        
+        guard currency != "" else {
+            UIView.transition(with: warningLabel,
+                              duration: 0.25,
+                              options: .transitionCrossDissolve,
+                              animations: { [weak self] in
+                                self?.warningLabel.text = "Choose currency"
+                              }, completion: {_ in
+                                
+                                UIView.transition(with: self.warningLabel,
+                                                  duration: 3.5,
+                                                  options: .transitionCrossDissolve,
+                                                  animations: { [weak self] in
+                                                    self?.warningLabel.text = ""
+                                                  }, completion: nil)
+                              })
+            return
+        }
         
         let dateformatter = DateFormatter()
         dateformatter.dateStyle = .medium
         
-        let bdate = dateformatter.date(from: beginDateTextField.text ?? "")
-        let fdate = dateformatter.date(from: finishDateTextField.text ?? "")
+        let bdate = dateformatter.date(from: beginningDateText)
+        let fdate = dateformatter.date(from: finishingDateText)
         
-        guard let country = countryTextField.text else { return }
-        guard let description = descriptionTextField.text else { return }
-       // let beginningDate = beginDateTextField.text
-        viewModel?.addTrip(country: country, currency: "$", description: description, beginningDate: bdate ?? Date(), finishingDate: fdate ?? Date())
+        viewModel?.addTrip(country: country, currency: currency, description: description, beginningDate: bdate ?? Date(), finishingDate: fdate ?? Date())
         dismiss(animated: true)
     }
     
@@ -234,28 +289,28 @@ class NewTripViewController: UIViewController {
         descriptionTextField.becomeFirstResponder()
     }
     
-//    @objc func tapDone2(_ sender: CustomTextField) {
-//        if let inputView = sender.inputView {
-//            let dateformatter = DateFormatter()
-//            dateformatter.dateStyle = .medium
-//            var datePicker = UIDatePicker()
-//            for subview in inputView.subviews {
-//                if subview is UIDatePicker {
-//                    datePicker = subview as? UIDatePicker ?? UIDatePicker()
-//                }
-//            }
-//            sender.text = dateformatter.string(from: datePicker.date)
-//        }
-//        switch sender {
-//        case beginDateTextField:
-//            finishDateTextField.becomeFirstResponder()
-//        case finishDateTextField:
-//            descriptionTextField.becomeFirstResponder()
-//        default:
-//            finishDateTextField.becomeFirstResponder()
-//        }
-//        descriptionTextField.becomeFirstResponder()
-//    }
+    //    @objc func tapDone2(_ sender: CustomTextField) {
+    //        if let inputView = sender.inputView {
+    //            let dateformatter = DateFormatter()
+    //            dateformatter.dateStyle = .medium
+    //            var datePicker = UIDatePicker()
+    //            for subview in inputView.subviews {
+    //                if subview is UIDatePicker {
+    //                    datePicker = subview as? UIDatePicker ?? UIDatePicker()
+    //                }
+    //            }
+    //            sender.text = dateformatter.string(from: datePicker.date)
+    //        }
+    //        switch sender {
+    //        case beginDateTextField:
+    //            finishDateTextField.becomeFirstResponder()
+    //        case finishDateTextField:
+    //            descriptionTextField.becomeFirstResponder()
+    //        default:
+    //            finishDateTextField.becomeFirstResponder()
+    //        }
+    //        descriptionTextField.becomeFirstResponder()
+    //    }
     
     @objc func backButtonPressed() {
         dismiss(animated: true)
@@ -299,6 +354,7 @@ class NewTripViewController: UIViewController {
         setupRedViewConstraints()
         setupBackButtonConstraints()
         setupTextFieldsStackViewConstraints()
+        setupWarningLabelConstraints()
         setupAddNewTripButtonConstraints()
         setupCurrencyButtonsConstraints()
     }
@@ -330,6 +386,16 @@ class NewTripViewController: UIViewController {
             avatarImageView.leadingAnchor.constraint(equalTo: lowerView.leadingAnchor, constant: 0),
             avatarImageView.trailingAnchor.constraint(equalTo: lowerView.trailingAnchor, constant: 0),
             avatarImageView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height / 4)
+        ])
+    }
+    
+    private func setupWarningLabelConstraints() {
+        lowerView.addSubview(warningLabel)
+        NSLayoutConstraint.activate([
+            warningLabel.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 5),
+            warningLabel.leadingAnchor.constraint(equalTo: lowerView.leadingAnchor, constant: 20),
+            warningLabel.trailingAnchor.constraint(equalTo: lowerView.trailingAnchor, constant: -20),
+            warningLabel.bottomAnchor.constraint(equalTo: textFieldsStackView.topAnchor, constant: -5),
         ])
     }
     

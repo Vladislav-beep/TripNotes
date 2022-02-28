@@ -64,7 +64,7 @@ class TripTableViewCellViewModel: TripTableViewCellViewModelProtocol {
 //        }
 //
 //        let formattedTotalSum = totalSum.formattedWithSeparator
-    //    let returnTotalSum = "\(formattedTotalSum) \(trip.currency)"
-        return "9 dollar"
+        let returnTotalSum = "\(88) \(trip.currency)"
+        return returnTotalSum
     }
 }
