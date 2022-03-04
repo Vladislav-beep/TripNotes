@@ -75,7 +75,8 @@ class FireBaseService {
                     let data = document.data()
                     let date = (data["date"] as? Timestamp)?.dateValue()
                    
-                    let note = TripNote(city: data["city"] as? String ?? "",
+                    let note = TripNote(id: data["id"] as? String ?? "",
+                                        city: data["city"] as? String ?? "",
                                         category: data["category"] as? String ?? "",
                                         price: data["price"] as? Double ?? 0.0,
                                         date: date ?? Date(),
@@ -111,6 +112,11 @@ class FireBaseService {
         }
     }
     
+    func toggleFavourite(tripId: String, noteId: String, isFavourite: Bool) {
+        let noteRef = db.collection("users").document("NUXiX5zSMiwYxmtCBpzO").collection("trips").document(tripId).collection("tripNotes").document(noteId)
+        
+        noteRef.updateData(["isFavourite" : isFavourite])
+    }
     
 }
 

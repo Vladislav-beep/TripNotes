@@ -8,6 +8,7 @@
 import Foundation
 
 struct TripNote: Hashable {
+    let id: String
     let city: String
     let category: String
     let price: Double

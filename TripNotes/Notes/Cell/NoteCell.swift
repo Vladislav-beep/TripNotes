@@ -23,6 +23,8 @@ class NoteCell: UICollectionViewCell {
             if viewModel.isFavourite {
                 lowerView.layer.borderWidth = 3.5
                 lowerView.layer.borderColor = UIColor.tripRed.cgColor
+            } else {
+                lowerView.layer.borderWidth = 0
             }
         }
     }

@@ -11,6 +11,8 @@ class DetailNoteViewController: UIViewController {
     
     private var viewModel: NoteCellViewModel
     
+    var isFavourite = false
+    
     lazy var contraint = heartImageView.heightAnchor.constraint(equalToConstant: 0)
     
     private lazy var scrollView: UIScrollView = {
@@ -151,6 +153,10 @@ class DetailNoteViewController: UIViewController {
         sumLabel.text = viewModel.price
         categoryImageView.image = setImage(for: viewModel.category)
         
+        if viewModel.isFavourite {
+            likeButton.tintColor = .tripRed
+        }
+        
         setupAllConstraints()
     }
     
@@ -160,8 +166,17 @@ class DetailNoteViewController: UIViewController {
     
     @objc func toggleFavourite() {
         
-        animator.animate { [weak self] in
-            self?.likeButton.tintColor = .tripRed
+        if likeButton.tintColor == .tripGrey {
+            
+            animator.animate { [weak self] in
+                self?.likeButton.tintColor = .tripRed
+            }
+            isFavourite = true
+            viewModel.toggleFavourite(isFavourite: isFavourite)
+        } else {
+            likeButton.tintColor = .tripGrey
+            isFavourite = false
+            viewModel.toggleFavourite(isFavourite: isFavourite)
         }
     }
     

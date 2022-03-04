@@ -8,18 +8,25 @@
 import Foundation
 
 protocol NoteCellViewModelProtocol {
+    var id: String { get }
     var category: String { get }
     var city: String { get }
     var description: String { get }
     var date: String { get }
     var price: String { get }
     var isFavourite: Bool { get }
-    init(tripNote: TripNote, currency: String)
+    init(tripNote: TripNote, currency: String, tripId: String)
 }
 
 class NoteCellViewModel: NoteCellViewModelProtocol {
     
+    let fire = FireBaseService()
+    
     // MARK: Properties
+    
+    var id: String {
+        tripNote.id
+    }
    
     var description: String {
         tripNote.description ?? ""
@@ -53,11 +60,17 @@ class NoteCellViewModel: NoteCellViewModelProtocol {
     
     private let tripNote: TripNote
     private let currency: String
+    private let tripId: String
     
     // MARK: Life Time
     
-    required init(tripNote: TripNote, currency: String) {
+    required init(tripNote: TripNote, currency: String, tripId: String) {
         self.tripNote = tripNote
         self.currency = currency
+        self.tripId = tripId
+    }
+    
+    func toggleFavourite(isFavourite: Bool) {
+        fire.toggleFavourite(tripId: tripId, noteId: tripNote.id, isFavourite: isFavourite)
     }
 }
