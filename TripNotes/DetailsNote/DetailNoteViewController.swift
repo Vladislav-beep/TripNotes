@@ -87,6 +87,20 @@ class DetailNoteViewController: UIViewController {
         return descriptionLabel
     }()
     
+    private lazy var deleteButton: UIButton = {
+        let deleteButton = UIButton()
+        deleteButton.setTitle("Delete", for: .normal)
+        deleteButton.backgroundColor = .tripBlue
+        deleteButton.layer.cornerRadius = 4
+        deleteButton.addTarget(self, action: #selector(deleteNote), for: .touchUpInside)
+        deleteButton.layer.shadowColor = UIColor.darkGray.cgColor
+        deleteButton.layer.shadowRadius = 5
+        deleteButton.layer.shadowOffset = CGSize(width: 0, height: 5)
+        deleteButton.layer.shadowOpacity = 0.5
+        deleteButton.translatesAutoresizingMaskIntoConstraints = false
+        return deleteButton
+    }()
+    
     private lazy var dateLabel: NoteLabel = {
         let dateLabel = NoteLabel(fontSize: 14, fontWeight: .regular)
         dateLabel.adjustsFontSizeToFitWidth = true
@@ -95,7 +109,7 @@ class DetailNoteViewController: UIViewController {
     }()
     
     private lazy var labelStackView: UIStackView = {
-        let labelStackView = UIStackView(arrangedSubviews: [categoryLabel, cityLabel, descriptionLabel, dateSumStack],
+        let labelStackView = UIStackView(arrangedSubviews: [categoryLabel, cityLabel, descriptionLabel],
                                          axis: .vertical,
                                          spacing: 8,
                                          distribution: .fillProportionally)
@@ -144,7 +158,7 @@ class DetailNoteViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .clear
+        view.backgroundColor = .white
 
         cityLabel.text = viewModel.city
         categoryLabel.text = viewModel.category
@@ -157,6 +171,7 @@ class DetailNoteViewController: UIViewController {
             likeButton.tintColor = .tripRed
         }
         
+        
         setupAllConstraints()
     }
     
@@ -164,10 +179,14 @@ class DetailNoteViewController: UIViewController {
         dismiss(animated: true)
     }
     
+    @objc func deleteNote() {
+        viewModel.deleteNote()
+        dismiss(animated: true)
+    }
+    
     @objc func toggleFavourite() {
         
         if likeButton.tintColor == .tripGrey {
-            
             animator.animate { [weak self] in
                 self?.likeButton.tintColor = .tripRed
             }
@@ -186,9 +205,11 @@ class DetailNoteViewController: UIViewController {
         setupRedView()
         setupCloseButtonConstraints()
         setupLikeButtonConstraints()
-        
-        setupStackViewConstraints()
         setupHeartImageViewConstraints()
+        setupSumLabelConstraints()
+        setupDeleteButtonConsytaints()
+        setupStackViewConstraints()
+        setupLabelStackConstraints()
     }
     
     private func setImage(for category: String) -> UIImage {
@@ -233,10 +254,10 @@ class DetailNoteViewController: UIViewController {
     private func setupRedView() {
         view.addSubview(redView)
         NSLayoutConstraint.activate([
-            redView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -35),
+            redView.topAnchor.constraint(equalTo: view.topAnchor, constant: 70),
             redView.heightAnchor.constraint(equalToConstant: 400),
-            redView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
-            redView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10)
+            redView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
+            redView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15)
         ])
     }
 
@@ -268,16 +289,37 @@ class DetailNoteViewController: UIViewController {
             categoryImageView.widthAnchor.constraint(equalToConstant: 50),
             categoryImageView.centerXAnchor.constraint(equalTo: redView.centerXAnchor, constant: 0)
         ])
-
+    }
+    
+    private func setupLabelStackConstraints() {
         redView.addSubview(labelStackView)
         NSLayoutConstraint.activate([
             categoryLabel.heightAnchor.constraint(equalToConstant: 20),
             cityLabel.heightAnchor.constraint(equalToConstant: 20),
-            dateLabel.heightAnchor.constraint(equalToConstant: 20),
             labelStackView.topAnchor.constraint(equalTo: categoryImageView.bottomAnchor, constant: 8),
-            labelStackView.bottomAnchor.constraint(equalTo: redView.bottomAnchor, constant: -8),
+            labelStackView.bottomAnchor.constraint(equalTo: deleteButton.topAnchor, constant: -8),
             labelStackView.trailingAnchor.constraint(equalTo: redView.trailingAnchor, constant: -10),
             labelStackView.leadingAnchor.constraint(equalTo: redView.leadingAnchor, constant: 10)
+        ])
+    }
+    
+    private func setupSumLabelConstraints() {
+        redView.addSubview(dateSumStack)
+        NSLayoutConstraint.activate([
+            dateSumStack.bottomAnchor.constraint(equalTo: redView.bottomAnchor, constant: -8),
+            dateSumStack.leadingAnchor.constraint(equalTo: redView.leadingAnchor, constant: 10),
+            dateSumStack.trailingAnchor.constraint(equalTo: redView.trailingAnchor, constant: -10),
+            dateSumStack.heightAnchor.constraint(equalToConstant: 30)
+        ])
+    }
+    
+    private func setupDeleteButtonConsytaints() {
+        redView.addSubview(deleteButton)
+        NSLayoutConstraint.activate([
+            deleteButton.bottomAnchor.constraint(equalTo: dateSumStack.topAnchor, constant: -10),
+            deleteButton.leadingAnchor.constraint(equalTo: redView.leadingAnchor, constant: 10),
+            deleteButton.heightAnchor.constraint(equalToConstant: 40),
+            deleteButton.widthAnchor.constraint(equalToConstant: 100)
         ])
     }
     

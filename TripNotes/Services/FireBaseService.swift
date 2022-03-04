@@ -118,5 +118,10 @@ class FireBaseService {
         noteRef.updateData(["isFavourite" : isFavourite])
     }
     
+    func deleteNote(tripId: String, noteId: String) {
+        let noteRef = db.collection("users").document("NUXiX5zSMiwYxmtCBpzO").collection("trips").document(tripId).collection("tripNotes").document(noteId)
+        noteRef.delete()
+    }
+    
 }
 

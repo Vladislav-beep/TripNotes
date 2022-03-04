@@ -38,7 +38,7 @@ class NewNoteViewController: UIViewController {
     private lazy var backButton: UIButton = {
         let backButton = UIButton()
         let image = UIImage(systemName: "chevron.compact.left")
-        backButton.tintColor = .tripWhite
+        backButton.tintColor = .tripBlue
         backButton.setBackgroundImage(image, for: .normal)
         backButton.addTarget(self, action: #selector(backButtonPressed), for: .touchUpInside)
         backButton.translatesAutoresizingMaskIntoConstraints = false
@@ -263,8 +263,9 @@ class NewNoteViewController: UIViewController {
     
     private lazy var warningLabel: UILabel = {
         let warningLabel = UILabel()
-        warningLabel.text = "jfjfjfj jfjfjfj fjfjfjfjf fjfjfjjf"
+        warningLabel.text = ""
         warningLabel.font = UIFont.systemFont(ofSize: 16, weight: .heavy)
+        warningLabel.adjustsFontSizeToFitWidth = true
         warningLabel.textColor = .tripRed
         warningLabel.textAlignment = .center
         warningLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -304,7 +305,7 @@ class NewNoteViewController: UIViewController {
                               duration: 0.25,
                               options: .transitionCrossDissolve,
                               animations: { [weak self] in
-                                self?.warningLabel.text = "None of fields can be empty"
+                                self?.warningLabel.text = "Fill all of fields or write correct price"
                               }, completion: {_ in
                                 
                                 UIView.transition(with: self.warningLabel,

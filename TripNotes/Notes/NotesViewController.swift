@@ -46,7 +46,6 @@ class NotesViewController: UIViewController, UICollectionViewDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel.getNotes()
-      //  collectionView.reloadData()
     }
     
     private func setupViewModelBundings() {
@@ -70,7 +69,7 @@ class NotesViewController: UIViewController, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let noteVM = viewModel.viewModelForSelectedRow(at: indexPath)
         let noteVC = DetailNoteViewController(viewModel: noteVM)
-        //noteVC.modalPresentationStyle = .fullScreen
+        noteVC.modalPresentationStyle = .fullScreen
         present(noteVC, animated: true)
     }
 }

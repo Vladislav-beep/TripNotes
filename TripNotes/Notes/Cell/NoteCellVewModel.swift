@@ -15,6 +15,8 @@ protocol NoteCellViewModelProtocol {
     var date: String { get }
     var price: String { get }
     var isFavourite: Bool { get }
+    func deleteNote()
+    func toggleFavourite(isFavourite: Bool)
     init(tripNote: TripNote, currency: String, tripId: String)
 }
 
@@ -72,5 +74,9 @@ class NoteCellViewModel: NoteCellViewModelProtocol {
     
     func toggleFavourite(isFavourite: Bool) {
         fire.toggleFavourite(tripId: tripId, noteId: tripNote.id, isFavourite: isFavourite)
+    }
+    
+    func deleteNote() {
+        fire.deleteNote(tripId: tripId, noteId: tripNote.id)
     }
 }
