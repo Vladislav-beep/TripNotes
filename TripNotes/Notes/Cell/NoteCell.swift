@@ -113,9 +113,9 @@ class NoteCell: UICollectionViewCell {
             return UIImage(systemName: "building.fill") ?? UIImage()
         case "Transport":
             return UIImage(systemName: "tram.tunnel.fill") ?? UIImage()
-        case "FoodAndRestaurants":
+        case "Food":
             return UIImage(systemName: "hourglass.tophalf.fill") ?? UIImage()
-        case "Activity":
+        case "Activities":
             return UIImage(systemName: "camera.on.rectangle.fill") ?? UIImage()
         case "Purchases":
             return UIImage(systemName: "creditcard.fill") ?? UIImage()

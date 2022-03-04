@@ -82,6 +82,7 @@ class NewNoteViewController: UIViewController {
     
     private lazy var transportButton: SelectionButton = {
         let transportButton = SelectionButton()
+        transportButton.tag = 1
         transportButton.setImage(imageName: "tram.tunnel.fill")
         transportButton.addTarget(self, action: #selector(selectCategory(_:)), for: .touchUpInside)
         return transportButton
@@ -89,6 +90,7 @@ class NewNoteViewController: UIViewController {
     
     private lazy var hotelsButton: SelectionButton = {
         let hotelsButton = SelectionButton()
+        hotelsButton.tag = 2
         hotelsButton.setImage(imageName: "building.fill")
         hotelsButton.addTarget(self, action: #selector(selectCategory(_:)), for: .touchUpInside)
         return hotelsButton
@@ -96,6 +98,7 @@ class NewNoteViewController: UIViewController {
     
     private lazy var foodButton: SelectionButton = {
         let foodButton = SelectionButton()
+        foodButton.tag = 3
         foodButton.setImage(imageName: "hourglass.tophalf.fill")
         foodButton.addTarget(self, action: #selector(selectCategory(_:)), for: .touchUpInside)
         return foodButton
@@ -103,6 +106,7 @@ class NewNoteViewController: UIViewController {
     
     private lazy var activityButton: SelectionButton = {
         let activityButton = SelectionButton()
+        activityButton.tag = 4
         activityButton.setImage(imageName: "camera.on.rectangle.fill")
         activityButton.addTarget(self, action: #selector(selectCategory(_:)), for: .touchUpInside)
         return activityButton
@@ -110,6 +114,7 @@ class NewNoteViewController: UIViewController {
     
     private lazy var perchaseButton: SelectionButton = {
         let purchaseButton = SelectionButton()
+        purchaseButton.tag = 5
         purchaseButton.setImage(imageName: "creditcard.fill")
         purchaseButton.addTarget(self, action: #selector(selectCategory(_:)), for: .touchUpInside)
         return purchaseButton
@@ -117,6 +122,7 @@ class NewNoteViewController: UIViewController {
     
     private lazy var otherButton: SelectionButton = {
         let otherButton = SelectionButton()
+        otherButton.tag = 6
         otherButton.setImage(imageName: "square.3.stack.3d.bottom.fill")
         otherButton.addTarget(self, action: #selector(selectCategory(_:)), for: .touchUpInside)
         return otherButton
@@ -255,6 +261,16 @@ class NewNoteViewController: UIViewController {
         return addNoteTripButton
     }()
     
+    private lazy var warningLabel: UILabel = {
+        let warningLabel = UILabel()
+        warningLabel.text = "jfjfjfj jfjfjfj fjfjfjfjf fjfjfjjf"
+        warningLabel.font = UIFont.systemFont(ofSize: 16, weight: .heavy)
+        warningLabel.textColor = .tripRed
+        warningLabel.textAlignment = .center
+        warningLabel.translatesAutoresizingMaskIntoConstraints = false
+        return warningLabel
+    }()
+    
     // MARK: Life Time
     
     init(viewModel: NewNoteViewModelProtocol) {
@@ -275,10 +291,75 @@ class NewNoteViewController: UIViewController {
     // MARK: Actions
     
     @objc func addNote() {
-        let city = cityTextField.text ?? ""
-        let price = Double(priceTextField.text ?? "") ?? 0.0
-        let description = descruptionTextView.text ?? ""
-        viewModel?.addNote(category: "Hotels", city: city, price: price, isFavourite: false, description: description)
+        
+        guard let city = cityTextField.text,
+              city != "",
+              let description = descruptionTextView.text,
+              description != "",
+              let price = priceTextField.text,
+              let priceDouble = Double(price)
+        else {
+            
+            UIView.transition(with: warningLabel,
+                              duration: 0.25,
+                              options: .transitionCrossDissolve,
+                              animations: { [weak self] in
+                                self?.warningLabel.text = "None of fields can be empty"
+                              }, completion: {_ in
+                                
+                                UIView.transition(with: self.warningLabel,
+                                                  duration: 3.5,
+                                                  options: .transitionCrossDissolve,
+                                                  animations: { [weak self] in
+                                                    self?.warningLabel.text = ""
+                                                  }, completion: nil)
+                              })
+            return
+        }
+        
+        var category = ""
+        for button in buttonArray {
+            if button.backgroundColor == UIColor.tripRed {
+                switch button.tag {
+                case 1:
+                    category = "Transport"
+                case 2:
+                    category = "Hotels"
+                case 3:
+                    category = "Food"
+                case 4:
+                    category = "Activities"
+                case 5:
+                    category = "Purchases"
+                case 6:
+                    category = "Other"
+                default:
+                    category = "Other"
+                }
+            }
+        }
+        
+        guard category != "" else {
+            UIView.transition(with: warningLabel,
+                              duration: 0.25,
+                              options: .transitionCrossDissolve,
+                              animations: { [weak self] in
+                                self?.warningLabel.text = "Choose category"
+                              }, completion: {_ in
+                                
+                                UIView.transition(with: self.warningLabel,
+                                                  duration: 3.5,
+                                                  options: .transitionCrossDissolve,
+                                                  animations: { [weak self] in
+                                                    self?.warningLabel.text = ""
+                                                  }, completion: nil)
+                              })
+            return
+            
+            
+        }
+        viewModel?.addNote(category: category, city: city, price: priceDouble, isFavourite: false, description: description)
+        dismiss(animated: true)
     }
     
     @objc func backButtonPressed() {
@@ -312,6 +393,7 @@ class NewNoteViewController: UIViewController {
         setupOtherStackViewConstraints()
         setupDescriptionStackViewConstraints()
         setupAdressButtonConstraints()
+        setupWarningLabelConstraints()
     }
     
     private func setupScrollViewConstraints() {
@@ -419,6 +501,16 @@ class NewNoteViewController: UIViewController {
             addNoteTripButton.leadingAnchor.constraint(equalTo: lowerView.leadingAnchor, constant: 20),
             addNoteTripButton.trailingAnchor.constraint(equalTo: lowerView.trailingAnchor, constant: -20),
             addNoteTripButton.heightAnchor.constraint(equalToConstant: 58)
+        ])
+    }
+    
+    private func setupWarningLabelConstraints() {
+        lowerView.addSubview(warningLabel)
+        NSLayoutConstraint.activate([
+            warningLabel.topAnchor.constraint(equalTo: categoryTwoStackView.bottomAnchor, constant: 20),
+            warningLabel.trailingAnchor.constraint(equalTo: lowerView.trailingAnchor, constant: -30),
+            warningLabel.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width * 2 / 3),
+            warningLabel.heightAnchor.constraint(equalToConstant: 20)
         ])
     }
 }
