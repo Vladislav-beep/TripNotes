@@ -127,8 +127,8 @@ class TripsViewController: UIViewController {
     }
     
     @objc func addTrip() {
-        let newTripViewModel = viewModel.newTripViewModel
-        let newTripVC = NewTripViewController(viewModel: newTripViewModel())
+        let newTripViewModel = viewModel.newTripViewModel()
+        let newTripVC = NewTripViewController(viewModel: newTripViewModel, isEdited: false)
         newTripVC.modalPresentationStyle = .fullScreen
         present(newTripVC, animated: true)
     }
@@ -160,7 +160,15 @@ class TripsViewController: UIViewController {
     
     private func editAction(at indexPath: IndexPath) -> UIContextualAction {
         let editAction = UIContextualAction(style: .normal, title: "Edit Trip") { (action, view, complition) in
+
+            //
+            let newTripViewModel = self.viewModel.newTripViewModelEdited(for: indexPath)
+            let newTripVC = NewTripViewController(viewModel: newTripViewModel, isEdited: true)
+            newTripVC.isEdited = true
+            newTripVC.modalPresentationStyle = .fullScreen
+            self.present(newTripVC, animated: true)
             
+            //
            //: TODO переход на экран добавления трипа
             complition(true)
         }
@@ -170,8 +178,10 @@ class TripsViewController: UIViewController {
     }
     
     private func deleteAction(at indexPath: IndexPath) -> UIContextualAction {
-        let action = UIContextualAction(style: .destructive, title: "Delete") { (action, view, complition) in
-            
+        let action = UIContextualAction(style: .destructive, title: "Delete") { [weak self] (action, view, complition) in
+            self?.viewModel.deleteRow(at: indexPath)
+            self?.tableView.deleteRows(at: [indexPath], with: .automatic)
+            print("1")
            // self.tableView.deleteRows(at: [indexPath], with: .automatic)
             complition(true)
         }
@@ -275,14 +285,20 @@ extension TripsViewController: UITableViewDelegate {
         navigationController?.pushViewController(NotesViewController(notesViewModel: notesViewModel), animated: true)
     }
     
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+         return true
+    }
+
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-         
+            viewModel.deleteRow(at: indexPath)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
         }
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let done = deleteAction(at: indexPath)
+        
         // TODO - delete row
         return UISwipeActionsConfiguration(actions: [done])
     }

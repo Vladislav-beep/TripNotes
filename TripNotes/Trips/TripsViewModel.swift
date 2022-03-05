@@ -15,8 +15,10 @@ protocol TripsViewModelProtocol: class {
     func titleForHeaderInSection(section: Int) -> String
     func tripCellViewModel(for indexPath: IndexPath) -> TripTableViewCellViewModelProtocol?
     func viewModelForSelectedRow(at indexPAth: IndexPath) -> NotesViewModelProtocol
-    func newTripViewModel() -> NewTripViewModelProtocol
+    func newTripViewModelEdited(for indexPath: IndexPath?) -> NewTripViewModelProtocol
+    func newTripViewModel() -> NewTripViewModelProtocol 
     func newNoteViewModel(at indexPath: IndexPath) -> NewNoteViewModelProtocol
+    func deleteRow(at indexPath: IndexPath)
     var firstCompletion: (() -> Void)? { get set }
     
 }
@@ -29,6 +31,9 @@ class TripsViewModel: TripsViewModelProtocol {
     
     var trips: [Trip] = []
     let userId: String
+    
+ //   var plannedCount = 0
+  //  var finishedCount = 0
     
     init(userId: String) {
         self.userId = userId
@@ -51,16 +56,9 @@ class TripsViewModel: TripsViewModelProtocol {
     var firstCompletion: (() -> Void)?
     
     func numberOfRows(section: Int) -> Int {
-        var plannedCount = 0
-        var finishedCount = 0
+        let plannedCount = trips.filter { $0.finishingDate > Date() }.count
+        let finishedCount = trips.count - plannedCount
         
-        for trip in trips {
-            if trip.finishingDate > Date() {
-                plannedCount += 1
-            } else {
-                finishedCount += 1
-            }
-        }
         switch section {
         case 0:
             return plannedCount
@@ -84,7 +82,7 @@ class TripsViewModel: TripsViewModelProtocol {
     
     func tripCellViewModel(for indexPath: IndexPath) -> TripTableViewCellViewModelProtocol? {
         if indexPath.section == 0 {
-            let tr =  trips.filter { $0.finishingDate > Date() }
+            let tr = trips.filter { $0.finishingDate > Date() }
             let trip = tr[indexPath.row]
             return TripTableViewCellViewModel(trip: trip)
         } else {
@@ -106,8 +104,13 @@ class TripsViewModel: TripsViewModelProtocol {
         }
     }
     
+    func newTripViewModelEdited(for indexPath: IndexPath?) -> NewTripViewModelProtocol {
+        let tripId = getTripId(for: indexPath ?? IndexPath())
+        return NewTripViewModel(tripId: tripId)
+    }
+    
     func newTripViewModel() -> NewTripViewModelProtocol {
-        return NewTripViewModel()
+        return NewTripViewModel(tripId: "")
     }
     
     func newNoteViewModel(at indexPath: IndexPath) -> NewNoteViewModelProtocol {
@@ -119,6 +122,34 @@ class TripsViewModel: TripsViewModelProtocol {
             let tr = trips.filter { $0.finishingDate < Date() }
             let trip = tr[indexPath.row]
             return NewNoteViewModel(trip: trip)
+        }
+    }
+    
+    func deleteRow(at indexPath: IndexPath) {
+        if indexPath.section == 0 {
+          //  trips.filter { $0.finishingDate > Date() }.remove(at: indexPath.row)
+          //  plannedCount -= 1
+          //  tr.remove(at: indexPath.row)
+            print("\(indexPath)- DDDDDDDDD")
+        } else {
+            var tr = trips.filter { $0.finishingDate < Date() }
+           // let trip = tr[indexPath.row]
+// finishedCount -= 1
+            print("\(indexPath)- DDDDDDDDD")
+            tr.remove(at: indexPath.row)
+        }
+    }
+    
+    func getTripId(for indexPath: IndexPath?) -> String {
+       
+        if indexPath?.section == 0 {
+            let tr =  trips.filter { $0.finishingDate > Date() }
+            let trip = tr[indexPath?.row ?? 0]
+            return trip.id
+        } else {
+            let tr = trips.filter { $0.finishingDate < Date() }
+            let trip = tr[indexPath?.row ?? 0]
+            return trip.id
         }
     }
 }

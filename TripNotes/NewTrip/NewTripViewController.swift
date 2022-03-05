@@ -14,6 +14,8 @@ class NewTripViewController: UIViewController {
     
     var viewModel: NewTripViewModelProtocol?
     
+    var isEdited: Bool?
+    
     // MARK: UI
     
     private lazy var scrollView: UIScrollView = {
@@ -167,9 +169,10 @@ class NewTripViewController: UIViewController {
     
     // MARK: Life Time
     
-    init(viewModel: NewTripViewModelProtocol) {
+    init(viewModel: NewTripViewModelProtocol, isEdited: Bool) {
         super.init(nibName: nil, bundle: nil)
         self.viewModel = viewModel
+        self.isEdited = isEdited
         setupConstraints()
         registerKeyBoardNotification()
     }
@@ -186,10 +189,45 @@ class NewTripViewController: UIViewController {
         descriptionTextField.delegate = self
         
         view.addGestureRecognizer(endEditingGestureRecognizer)
+        
+        print(viewModel?.tripId)
+        
+        setupViewModelBindings()
+        
+        if isEdited ?? false {
+            addNewTripButton.backgroundColor = .tripBlue
+            addNewTripButton.setTitle("Edit Trip", for: .normal)
+            redView.backgroundColor = .tripBlue
+            viewModel?.downloadTrip()
+        }
     }
     
     deinit {
         removeKeyboardNotification()
+    }
+    
+    func setupViewModelBindings() {
+        viewModel?.tripCompletion = { [weak self] in
+            self?.countryTextField.text = self?.viewModel?.country
+            self?.beginDateTextField.text = self?.viewModel?.beginningDate
+            self?.finishDateTextField.text = self?.viewModel?.finishingDate
+            self?.descriptionTextField.text = self?.viewModel?.description
+            
+            let currency = self?.viewModel?.currency
+            switch currency {
+            case "$":
+                self?.dollarButton.pulsate()
+                self?.dollarButton.backgroundColor = .tripRed
+            case "€":
+                self?.euroButton.pulsate()
+                self?.euroButton.backgroundColor = .tripRed
+            case "₽":
+                self?.rubleButton.pulsate()
+                self?.rubleButton.backgroundColor = .tripRed
+            default:
+                break
+            }
+        }
     }
     
     @objc func addTrip() {
@@ -253,7 +291,12 @@ class NewTripViewController: UIViewController {
         let bdate = dateformatter.date(from: beginningDateText)
         let fdate = dateformatter.date(from: finishingDateText)
         
+        if isEdited ?? false {
+            viewModel?.updateTrip(country: country, currency: currency, description: description, beginningDate: bdate ?? Date(), finishingDate: fdate ?? Date())
+        } else {
         viewModel?.addTrip(country: country, currency: currency, description: description, beginningDate: bdate ?? Date(), finishingDate: fdate ?? Date())
+        }
+        
         dismiss(animated: true)
     }
     

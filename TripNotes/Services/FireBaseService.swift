@@ -15,7 +15,7 @@ protocol FireBaseServiceProtocol {
 class FireBaseService {
     
     
-    var tripsArray = [Trip]()
+  //  var tripsArray = [Trip]()
     private lazy var db = Firestore.firestore()
     
     func listenToTrips(forUser id: String, completion: @escaping (Result <[Trip], Error>) -> Void) {
@@ -62,6 +62,46 @@ class FireBaseService {
             }
         }
     }
+    
+    func downloadTrip(tripId: String, completion: @escaping (Result <Trip, Error>) -> Void) {
+        let tripRef = db.collection("users").document("NUXiX5zSMiwYxmtCBpzO").collection("trips").document(tripId)
+        tripRef.getDocument { (document, error) in
+            if let document = document, document.exists {
+                let data = document.data()
+                let beginningDate = (data?["beginningDate"] as? Timestamp)?.dateValue()
+                let finishingDate = (data?["finishingDate"] as? Timestamp)?.dateValue()
+                let trip = Trip(id: data?["id"] as? String ?? "",
+                                country: data?["country"] as? String ?? "",
+                                beginningDate: beginningDate ?? Date(),
+                                finishingDate: finishingDate ?? Date(),
+                                description: data?["description"] as? String ?? "",
+                                currency: data?["currency"] as? String ?? "")
+                completion(.success(trip))
+               } else {
+                completion(.failure(error?.localizedDescription as! Error))
+                print("errrrrrrrrrrrrrrr")
+               }
+        }
+    }
+    
+    func updateTrip(tripId: String, country: String, currency: String, description: String, beginningDate: Date, finishingDate: Date) {
+        let tripRef = db.collection("users").document("NUXiX5zSMiwYxmtCBpzO").collection("trips").document(tripId)
+        tripRef.updateData([
+            "country": country,
+            "beginningDate": beginningDate,
+            "finishingDate": finishingDate,
+            "description": description,
+            "currency": currency
+        ]) { err in
+            if let err = err {
+                print("Error updating document: \(err)")
+            } else {
+                print("Document successfully updated")
+            }
+        }
+    }
+        
+    
     
     
     func listenToNotes(forTrip tripId: String, completion: @escaping (Result <[TripNote], Error>) -> Void) {
