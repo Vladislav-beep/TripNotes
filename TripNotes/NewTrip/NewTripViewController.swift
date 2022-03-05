@@ -64,27 +64,27 @@ class NewTripViewController: UIViewController {
     }()
     
     private lazy var countryTextField: CustomTextField = {
-        let countryTextField = CustomTextField(imageName: "flag")
+        let countryTextField = CustomTextField(imageName: "flag-edit")
         countryTextField.placeholder = "Country"
         return countryTextField
     }()
     
     private lazy var beginDateTextField: CustomTextField = {
-        let beginDateTextField = CustomTextField(imageName: "calendar")
+        let beginDateTextField = CustomTextField(imageName: "calendar-edit")
         beginDateTextField.placeholder = "Date when trip begins"
         beginDateTextField.setInputViewDatePicker(target: self, selector: #selector(tapDone))
         return beginDateTextField
     }()
     
     private lazy var finishDateTextField: CustomTextField = {
-        let finishDateTextField = CustomTextField(imageName: "calendar")
+        let finishDateTextField = CustomTextField(imageName: "calendar-edit")
         finishDateTextField.placeholder = "Date when trip ends"
         finishDateTextField.setInputViewDatePicker(target: self, selector: #selector(tapDone3))
         return finishDateTextField
     }()
     
     private lazy var descriptionTextField: CustomTextField = {
-        let descriptionTextField = CustomTextField(imageName: "pencil.and.outline")
+        let descriptionTextField = CustomTextField(imageName: "pencil-edit")
         descriptionTextField.placeholder = "Describe your trip shortly"
         return descriptionTextField
     }()
@@ -189,14 +189,14 @@ class NewTripViewController: UIViewController {
         descriptionTextField.delegate = self
         
         view.addGestureRecognizer(endEditingGestureRecognizer)
-        
-        print(viewModel?.tripId)
-        
+   
         setupViewModelBindings()
         
         if isEdited ?? false {
             addNewTripButton.backgroundColor = .tripBlue
-            addNewTripButton.setTitle("Edit Trip", for: .normal)
+            addNewTripButton.setTitle(" Edit Trip", for: .normal)
+            addNewTripButton.tintColor = .tripWhite
+            addNewTripButton.setImage(UIImage(systemName: "square.and.pencil"), for: .normal)
             redView.backgroundColor = .tripBlue
             viewModel?.downloadTrip()
         }

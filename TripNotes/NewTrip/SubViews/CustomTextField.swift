@@ -27,7 +27,7 @@ class CustomTextField: UITextField {
         layer.shadowOffset = CGSize(width: 0, height: 5)
         
         let imageView = UIImageView(frame: CGRect(x: 6.0, y: 6.0, width: 28.0, height: 28.0))
-        let image = UIImage(systemName: imageName)
+        let image = UIImage(named: imageName)
         imageView.image = image
         imageView.contentMode = .scaleAspectFit
         imageView.tintColor = .tripRed

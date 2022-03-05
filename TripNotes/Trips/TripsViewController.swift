@@ -63,7 +63,7 @@ class TripsViewController: UIViewController {
     private lazy var signOutButton: UIBarButtonItem = {
         let button = UIBarButtonItem.customButton(self,
                                                   action: #selector(signOutTapped),
-                                                  imageName: "square.and.arrow.up",
+                                                  imageName: "arrowshape.turn.up.left.2.fill",
                                                   widthAndHeight: 40)
         return button
     }()
@@ -114,12 +114,10 @@ class TripsViewController: UIViewController {
     @objc func signOutTapped() {
         do {
             try Auth.auth().signOut()
-            print("40")
         } catch {
             print("\(error.localizedDescription) - error")
         }
         dismiss(animated: true)
-        print("sc")
     }
     
     deinit {

@@ -139,7 +139,7 @@ class DetailNoteViewController: UIViewController {
     
     private lazy var heartImageView: UIImageView = {
         let heartImageView = UIImageView()
-        heartImageView.image = UIImage(systemName: "heart.fill")
+        heartImageView.image = UIImage(named: "heart-color1")
         heartImageView.tintColor = .tripRed
         heartImageView.translatesAutoresizingMaskIntoConstraints = false
         return heartImageView
