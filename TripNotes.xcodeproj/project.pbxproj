@@ -72,7 +72,7 @@
 		B9A0EF6B2774DDCE00DE65E2 /* SelectionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A0EF6A2774DDCE00DE65E2 /* SelectionButton.swift */; };
 		B9AA39D227BAC96800CD48E9 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = B9AA39D127BAC96800CD48E9 /* FirebaseAnalytics */; };
 		B9AA39D427BAC96800CD48E9 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = B9AA39D327BAC96800CD48E9 /* FirebaseAuth */; };
-		B9AA39D627BAC96800CD48E9 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = B9AA39D527BAC96800CD48E9 /* FirebaseFirestore */; };
+		B9AA39D627BAC96800CD48E9 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = B9AA39D527BAC96800CD48E9 /* FirebaseFirestore */; settings = {ATTRIBUTES = (Required, ); }; };
 		B9AA39D927BACF9B00CD48E9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91E813C2767A88E00D0748B /* AppDelegate.swift */; };
 		B9AA39DF27BAD08A00CD48E9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B9AA39DE27BAD08A00CD48E9 /* GoogleService-Info.plist */; };
 		B9AA39E027BAD08A00CD48E9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B9AA39DE27BAD08A00CD48E9 /* GoogleService-Info.plist */; };
@@ -734,8 +734,10 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = Y994MRWU9A;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -795,8 +797,10 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = Y994MRWU9A;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
