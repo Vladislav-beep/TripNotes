@@ -53,7 +53,9 @@ class NoteCellViewModel: NoteCellViewModelProtocol {
     }
     
     var price: String {
-        String(tripNote.price) + " " + currency
+        let formattedPrice = tripNote.price.formattedWithSeparator
+        let returnPrice = "\(formattedPrice) \(currency)"
+        return returnPrice
     }
     
     var isFavourite: Bool {
@@ -65,8 +67,6 @@ class NoteCellViewModel: NoteCellViewModelProtocol {
     private var tripNote: TripNote
     private let currency: String
     private let tripId: String
-    
-   
     
     // MARK: Life Time
     
@@ -91,5 +91,4 @@ class NoteCellViewModel: NoteCellViewModelProtocol {
     func getNoteId() -> String {
         return tripNote.id
     }
-    
 }

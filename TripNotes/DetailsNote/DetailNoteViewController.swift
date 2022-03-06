@@ -102,17 +102,25 @@ class DetailNoteViewController: UIViewController {
     }()
     
     private lazy var editButton: UIButton = {
-        let deleteButton = UIButton()
-        deleteButton.setTitle("Edit", for: .normal)
-        deleteButton.backgroundColor = .tripRed
-        deleteButton.layer.cornerRadius = 4
-        deleteButton.addTarget(self, action: #selector(editNote), for: .touchUpInside)
-        deleteButton.layer.shadowColor = UIColor.darkGray.cgColor
-        deleteButton.layer.shadowRadius = 5
-        deleteButton.layer.shadowOffset = CGSize(width: 0, height: 5)
-        deleteButton.layer.shadowOpacity = 0.5
-        deleteButton.translatesAutoresizingMaskIntoConstraints = false
-        return deleteButton
+        let editButton = UIButton()
+        editButton.setTitle("Edit", for: .normal)
+        editButton.backgroundColor = .tripBlue
+        editButton.layer.cornerRadius = 4
+        editButton.addTarget(self, action: #selector(editNote), for: .touchUpInside)
+        editButton.layer.shadowColor = UIColor.darkGray.cgColor
+        editButton.layer.shadowRadius = 5
+        editButton.layer.shadowOffset = CGSize(width: 0, height: 5)
+        editButton.layer.shadowOpacity = 0.5
+        editButton.translatesAutoresizingMaskIntoConstraints = false
+        return editButton
+    }()
+    
+    private lazy var editDeleteButtonStack: UIStackView = {
+        let stack = UIStackView(arrangedSubviews: [deleteButton, editButton],
+                                axis: .horizontal,
+                                spacing: 25,
+                                distribution: .fillEqually)
+        return stack
     }()
     
     private lazy var dateLabel: NoteLabel = {
@@ -185,9 +193,9 @@ class DetailNoteViewController: UIViewController {
             likeButton.tintColor = .tripRed
         }
         
-        
         setupAllConstraints()
     }
+    
     
     @objc func closeScreen() {
         dismiss(animated: true)
@@ -199,14 +207,13 @@ class DetailNoteViewController: UIViewController {
         dismiss(animated: true)
     }
     
-    @objc func editNote() {        
-        let tripId = self.viewModel.getTripId()
-        let noteId = self.viewModel.getNoteId()
+    @objc func editNote() {
+        let tripId = viewModel.getTripId()
+        let noteId = viewModel.getNoteId()
         let newVm = NewNoteViewModel(tripId: tripId, noteId: noteId)
         let newNoteVC = NewNoteViewController(viewModel: newVm, isEdited: true)
         newNoteVC.modalPresentationStyle = .fullScreen
-        self.present(newNoteVC, animated: true)
-        
+        present(newNoteVC, animated: true)
     }
     
     @objc func toggleFavourite() {
@@ -235,7 +242,8 @@ class DetailNoteViewController: UIViewController {
         setupDeleteButtonConsytaints()
         setupStackViewConstraints()
         setupLabelStackConstraints()
-        setupEditButtonConsytaints()
+        //setupEditButtonConsytaints()
+        setupDeleteButtonConsytaints()
     }
     
     private func setImage(for category: String) -> UIImage {
@@ -340,24 +348,24 @@ class DetailNoteViewController: UIViewController {
     }
     
     private func setupDeleteButtonConsytaints() {
-        redView.addSubview(deleteButton)
+        redView.addSubview(editDeleteButtonStack)
         NSLayoutConstraint.activate([
-            deleteButton.bottomAnchor.constraint(equalTo: dateSumStack.topAnchor, constant: -10),
-            deleteButton.leadingAnchor.constraint(equalTo: redView.leadingAnchor, constant: 10),
-            deleteButton.heightAnchor.constraint(equalToConstant: 40),
-            deleteButton.widthAnchor.constraint(equalToConstant: 100)
+            editDeleteButtonStack.bottomAnchor.constraint(equalTo: dateSumStack.topAnchor, constant: -10),
+            editDeleteButtonStack.leadingAnchor.constraint(equalTo: redView.leadingAnchor, constant: 30),
+            editDeleteButtonStack.trailingAnchor.constraint(equalTo: redView.trailingAnchor, constant: -30),
+            editDeleteButtonStack.heightAnchor.constraint(equalToConstant: 40),
         ])
     }
     
-    private func setupEditButtonConsytaints() {
-        redView.addSubview(editButton)
-        NSLayoutConstraint.activate([
-            editButton.bottomAnchor.constraint(equalTo: dateSumStack.topAnchor, constant: -10),
-            editButton.leadingAnchor.constraint(equalTo: deleteButton.leadingAnchor, constant: 10),
-            editButton.heightAnchor.constraint(equalToConstant: 40),
-            editButton.widthAnchor.constraint(equalToConstant: 100)
-        ])
-    }
+//    private func setupEditButtonConsytaints() {
+//        redView.addSubview(editButton)
+//        NSLayoutConstraint.activate([
+//            editButton.bottomAnchor.constraint(equalTo: dateSumStack.topAnchor, constant: -10),
+//            editButton.leadingAnchor.constraint(equalTo: deleteButton.leadingAnchor, constant: 10),
+//            editButton.heightAnchor.constraint(equalToConstant: 40),
+//            editButton.widthAnchor.constraint(equalToConstant: 100)
+//        ])
+//    }
     
     private func setupHeartImageViewConstraints() {
         redView.addSubview(heartImageView)
