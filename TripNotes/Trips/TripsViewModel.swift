@@ -30,6 +30,7 @@ class TripsViewModel: TripsViewModelProtocol {
     // MARK: Properties
     
     var trips: [Trip] = []
+
     let userId: String
     
  //   var plannedCount = 0
@@ -79,8 +80,11 @@ class TripsViewModel: TripsViewModelProtocol {
             return ""
         }
     }
-    
+  
     func tripCellViewModel(for indexPath: IndexPath) -> TripTableViewCellViewModelProtocol? {
+        let serialQueue = DispatchQueue(label: "serial")
+        var sum = 0.0
+        
         if indexPath.section == 0 {
             let tr = trips.filter { $0.finishingDate > Date() }
             let trip = tr[indexPath.row]
@@ -94,7 +98,7 @@ class TripsViewModel: TripsViewModelProtocol {
     
     func viewModelForSelectedRow(at indexPath: IndexPath) -> NotesViewModelProtocol {
         if indexPath.section == 0 {
-            let tr =  trips.filter { $0.finishingDate > Date() }
+            let tr = trips.filter { $0.finishingDate > Date() }
             let trip = tr[indexPath.row]
             return NotesViewModel(trip: trip)
         } else {
@@ -117,11 +121,11 @@ class TripsViewModel: TripsViewModelProtocol {
         if indexPath.section == 0 {
             let tr =  trips.filter { $0.finishingDate > Date() }
             let trip = tr[indexPath.row]
-            return NewNoteViewModel(trip: trip)
+            return NewNoteViewModel(tripId: trip.id, noteId: "")
         } else {
             let tr = trips.filter { $0.finishingDate < Date() }
             let trip = tr[indexPath.row]
-            return NewNoteViewModel(trip: trip)
+            return NewNoteViewModel(tripId: trip.id, noteId: "")
         }
     }
     
@@ -152,4 +156,5 @@ class TripsViewModel: TripsViewModelProtocol {
             return trip.id
         }
     }
+    
 }

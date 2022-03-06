@@ -11,12 +11,12 @@ import UIKit
     
     // MARK: Dependencies
     
-    var viewModel: TripTableViewCellViewModelProtocol! {
+    var viewModel: TripTableViewCellViewModelProtocol? {
         didSet {
-            countryLabel.text = viewModel.country
-            descriptionLabel.text = viewModel.description
-            dateLabel.text = viewModel.date
-            totalSumLabel.text = viewModel.getTotalSum()
+            countryLabel.text = viewModel?.country
+            descriptionLabel.text = viewModel?.description
+            dateLabel.text = viewModel?.date
+            totalSumLabel.text = viewModel?.getTotalSum()
         }
     }
     
@@ -107,11 +107,27 @@ import UIKit
         setupTotalSumLabelConstraints()
         descriptionLabelConstraints()
         setupInfoStackViewConstraints()
+        
+//        setupViewModelBindings()
+//        viewModel?.downloadNotes()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+//    func setViewModel(viewmodel: TripTableViewCellViewModelProtocol?) {
+//        self.viewModel = viewmodel
+//    }
+    
+//    private func setupViewModelBindings() {
+//        viewModel?.notesCompletion = { [weak self] in
+//            self?.totalSumLabel.text = self?.viewModel?.getTotalSum()
+//            self?.countryLabel.text = self?.viewModel?.country
+//            self?.descriptionLabel.text = self?.viewModel?.description
+//            self?.dateLabel.text = self?.viewModel?.date
+//        }
+//    }
     
     // MARK: Layout
     

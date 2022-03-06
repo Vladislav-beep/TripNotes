@@ -23,7 +23,7 @@ protocol NewTripViewModelProtocol {
 }
 
 class NewTripViewModel: NewTripViewModelProtocol {
-    
+      
     let fire = FireBaseService()
     
     var tripId: String
@@ -56,6 +56,7 @@ class NewTripViewModel: NewTripViewModelProtocol {
     }
     
     var tripCompletion: (() -> Void)?
+  
     
     required init(tripId: String) {
         self.tripId = tripId

@@ -49,6 +49,20 @@ class NoteCell: UICollectionViewCell {
         return categoryImageView
     }()
     
+    private lazy var editButton: UIButton = {
+        let deleteButton = UIButton()
+        deleteButton.setTitle("Edit", for: .normal)
+        deleteButton.backgroundColor = .tripBlue
+        deleteButton.layer.cornerRadius = 4
+        deleteButton.addTarget(self, action: #selector(editNote), for: .touchUpInside)
+        deleteButton.layer.shadowColor = UIColor.darkGray.cgColor
+        deleteButton.layer.shadowRadius = 5
+        deleteButton.layer.shadowOffset = CGSize(width: 0, height: 5)
+        deleteButton.layer.shadowOpacity = 0.5
+        deleteButton.translatesAutoresizingMaskIntoConstraints = false
+        return deleteButton
+    }()
+    
     private lazy var categoryLabel: NoteLabel = {
         let categoryLabel = NoteLabel(fontSize: 17, fontWeight: .heavy)
         return categoryLabel
@@ -100,6 +114,12 @@ class NoteCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    @objc func editNote() {
+        let tripID = viewModel.getTripId()
+        let noteId = viewModel.getNoteId()
+        let editNoteVM = NewNoteViewModel(tripId: tripID, noteId: noteId)
+            }
+    
     // MARK: Private methods
     
     private func setupAllConstraints() {
@@ -107,6 +127,7 @@ class NoteCell: UICollectionViewCell {
         setupCategoryImageViewConstraints()
         setupLabelStackViewConstraints()
         setupSumLabelConstraints()
+        setupEditButtonConstraints()
     }
     
     private func setImage(for category: String) -> UIImage {
@@ -147,6 +168,16 @@ class NoteCell: UICollectionViewCell {
             categoryImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
             categoryImageView.widthAnchor.constraint(equalTo: categoryImageView.heightAnchor),
             categoryImageView.heightAnchor.constraint(equalToConstant: 40)
+        ])
+    }
+    
+    private func setupEditButtonConstraints() {
+        contentView.addSubview(editButton)
+        NSLayoutConstraint.activate([
+            editButton.heightAnchor.constraint(equalToConstant: 40),
+            editButton.widthAnchor.constraint(equalToConstant: 40),
+            editButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
+            editButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 5)
         ])
     }
     

@@ -90,9 +90,23 @@ class DetailNoteViewController: UIViewController {
     private lazy var deleteButton: UIButton = {
         let deleteButton = UIButton()
         deleteButton.setTitle("Delete", for: .normal)
-        deleteButton.backgroundColor = .tripBlue
+        deleteButton.backgroundColor = .tripRed
         deleteButton.layer.cornerRadius = 4
         deleteButton.addTarget(self, action: #selector(deleteNote), for: .touchUpInside)
+        deleteButton.layer.shadowColor = UIColor.darkGray.cgColor
+        deleteButton.layer.shadowRadius = 5
+        deleteButton.layer.shadowOffset = CGSize(width: 0, height: 5)
+        deleteButton.layer.shadowOpacity = 0.5
+        deleteButton.translatesAutoresizingMaskIntoConstraints = false
+        return deleteButton
+    }()
+    
+    private lazy var editButton: UIButton = {
+        let deleteButton = UIButton()
+        deleteButton.setTitle("Edit", for: .normal)
+        deleteButton.backgroundColor = .tripRed
+        deleteButton.layer.cornerRadius = 4
+        deleteButton.addTarget(self, action: #selector(editNote), for: .touchUpInside)
         deleteButton.layer.shadowColor = UIColor.darkGray.cgColor
         deleteButton.layer.shadowRadius = 5
         deleteButton.layer.shadowOffset = CGSize(width: 0, height: 5)
@@ -179,9 +193,20 @@ class DetailNoteViewController: UIViewController {
         dismiss(animated: true)
     }
     
+    
     @objc func deleteNote() {
         viewModel.deleteNote()
         dismiss(animated: true)
+    }
+    
+    @objc func editNote() {        
+        let tripId = self.viewModel.getTripId()
+        let noteId = self.viewModel.getNoteId()
+        let newVm = NewNoteViewModel(tripId: tripId, noteId: noteId)
+        let newNoteVC = NewNoteViewController(viewModel: newVm, isEdited: true)
+        newNoteVC.modalPresentationStyle = .fullScreen
+        self.present(newNoteVC, animated: true)
+        
     }
     
     @objc func toggleFavourite() {
@@ -210,6 +235,7 @@ class DetailNoteViewController: UIViewController {
         setupDeleteButtonConsytaints()
         setupStackViewConstraints()
         setupLabelStackConstraints()
+        setupEditButtonConsytaints()
     }
     
     private func setImage(for category: String) -> UIImage {
@@ -320,6 +346,16 @@ class DetailNoteViewController: UIViewController {
             deleteButton.leadingAnchor.constraint(equalTo: redView.leadingAnchor, constant: 10),
             deleteButton.heightAnchor.constraint(equalToConstant: 40),
             deleteButton.widthAnchor.constraint(equalToConstant: 100)
+        ])
+    }
+    
+    private func setupEditButtonConsytaints() {
+        redView.addSubview(editButton)
+        NSLayoutConstraint.activate([
+            editButton.bottomAnchor.constraint(equalTo: dateSumStack.topAnchor, constant: -10),
+            editButton.leadingAnchor.constraint(equalTo: deleteButton.leadingAnchor, constant: 10),
+            editButton.heightAnchor.constraint(equalToConstant: 40),
+            editButton.widthAnchor.constraint(equalToConstant: 100)
         ])
     }
     

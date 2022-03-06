@@ -13,6 +13,8 @@ class NewNoteViewController: UIViewController {
     
     var viewModel: NewNoteViewModelProtocol?
     
+    var isEdited: Bool
+    
     // MARK: UI
     
     private lazy var scrollView: UIScrollView = {
@@ -200,7 +202,7 @@ class NewNoteViewController: UIViewController {
         return label
     }()
     
-    private lazy var descruptionTextView: UITextView = {
+    private lazy var descriptionTextView: UITextView = {
         let textView = UITextView()
         textView.backgroundColor = .tripGrey
         textView.layer.cornerRadius = 10
@@ -224,7 +226,7 @@ class NewNoteViewController: UIViewController {
     }()
     
     private lazy var descriptionStack: UIStackView = {
-        let stack = UIStackView(arrangedSubviews: [descriptionLabel, descruptionTextView], axis: .vertical, spacing: 6, distribution: .fill)
+        let stack = UIStackView(arrangedSubviews: [descriptionLabel, descriptionTextView], axis: .vertical, spacing: 6, distribution: .fill)
         return stack
     }()
     
@@ -246,7 +248,7 @@ class NewNoteViewController: UIViewController {
         return button
     }()
     
-    private lazy var addNoteTripButton: UIButton = {
+    private lazy var addNewNoteButton: UIButton = {
         let addNoteTripButton = UIButton()
         addNoteTripButton.backgroundColor = .tripRed
         addNoteTripButton.layer.cornerRadius = 10
@@ -274,9 +276,11 @@ class NewNoteViewController: UIViewController {
     
     // MARK: Life Time
     
-    init(viewModel: NewNoteViewModelProtocol) {
+    init(viewModel: NewNoteViewModelProtocol, isEdited: Bool) {
+        self.isEdited = isEdited
         super.init(nibName: nil, bundle: nil)
         self.viewModel = viewModel
+        
         setupConstraints()
     }
     
@@ -287,15 +291,55 @@ class NewNoteViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        
+        setupViewModelBindings()
+        
+        if isEdited {
+            addNewNoteButton.backgroundColor = .tripBlue
+            addNewNoteButton.setTitle("Edit Note", for: .normal)
+            viewModel?.downloadNote()
+        }
     }
     
     // MARK: Actions
+    
+    func setupViewModelBindings() {
+        viewModel?.noteCompletion = { [weak self] in
+            self?.cityTextField.text = self?.viewModel?.city
+            self?.priceTextField.text = self?.viewModel?.price
+            self?.descriptionTextView.text = self?.viewModel?.description
+
+            let category = self?.viewModel?.category
+            switch category {
+            case "Transport":
+                self?.transportButton.pulsate()
+                self?.transportButton.backgroundColor = .tripRed
+            case "Hotels":
+                self?.hotelsButton.pulsate()
+                self?.hotelsButton.backgroundColor = .tripRed
+            case "Food":
+                self?.foodButton.pulsate()
+                self?.foodButton.backgroundColor = .tripRed
+            case "Activities":
+                self?.activityButton.pulsate()
+                self?.activityButton.backgroundColor = .tripRed
+            case "Purchases":
+                self?.perchaseButton.pulsate()
+                self?.perchaseButton.backgroundColor = .tripRed
+            case "Other":
+                self?.otherButton.pulsate()
+                self?.otherButton.backgroundColor = .tripRed
+            default:
+                break
+            }
+        }
+    }
     
     @objc func addNote() {
         
         guard let city = cityTextField.text,
               city != "",
-              let description = descruptionTextView.text,
+              let description = descriptionTextView.text,
               description != "",
               let price = priceTextField.text,
               let priceDouble = Double(price)
@@ -359,7 +403,12 @@ class NewNoteViewController: UIViewController {
             
             
         }
+        
+        if isEdited {
+            viewModel?.updateNote(city: city, category: category, description: description, price: priceDouble)
+        } else {
         viewModel?.addNote(category: category, city: city, price: priceDouble, isFavourite: false, description: description)
+        }
         dismiss(animated: true)
     }
     
@@ -481,7 +530,7 @@ class NewNoteViewController: UIViewController {
             descriptionStack.topAnchor.constraint(equalTo: stack.bottomAnchor, constant: 20),
             descriptionStack.leadingAnchor.constraint(equalTo: lowerView.leadingAnchor, constant: 10),
             descriptionStack.trailingAnchor.constraint(equalTo: lowerView.trailingAnchor, constant: -10),
-            descriptionStack.bottomAnchor.constraint(equalTo: addNoteTripButton.topAnchor, constant: -10)
+            descriptionStack.bottomAnchor.constraint(equalTo: addNewNoteButton.topAnchor, constant: -10)
         ])
     }
     
@@ -496,12 +545,12 @@ class NewNoteViewController: UIViewController {
     }
     
     private func setupAddNewTripButtonConstraints() {
-        lowerView.addSubview(addNoteTripButton)
+        lowerView.addSubview(addNewNoteButton)
         NSLayoutConstraint.activate([
-            addNoteTripButton.bottomAnchor.constraint(equalTo: lowerView.bottomAnchor, constant: -35),
-            addNoteTripButton.leadingAnchor.constraint(equalTo: lowerView.leadingAnchor, constant: 20),
-            addNoteTripButton.trailingAnchor.constraint(equalTo: lowerView.trailingAnchor, constant: -20),
-            addNoteTripButton.heightAnchor.constraint(equalToConstant: 58)
+            addNewNoteButton.bottomAnchor.constraint(equalTo: lowerView.bottomAnchor, constant: -35),
+            addNewNoteButton.leadingAnchor.constraint(equalTo: lowerView.leadingAnchor, constant: 20),
+            addNewNoteButton.trailingAnchor.constraint(equalTo: lowerView.trailingAnchor, constant: -20),
+            addNewNoteButton.heightAnchor.constraint(equalToConstant: 58)
         ])
     }
     

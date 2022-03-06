@@ -44,6 +44,10 @@ class FireBaseService {
         }
     }
     
+    func getTotalSumOfNotes() {
+        
+    }
+    
     func addTrip(country: String, currency: String, description: String, beginningDate: Date, finishingDate: Date) {
         
         let newTripRef = db.collection("users").document("NUXiX5zSMiwYxmtCBpzO").collection("trips").document()
@@ -128,6 +132,45 @@ class FireBaseService {
                 }
                 completion(.success(noteArray))
             }
+        }
+    }
+    
+    func updateNote(tripId: String, noteId: String, city: String, category: String, description: String, price: Double) {
+        let noteRef = db.collection("users").document("NUXiX5zSMiwYxmtCBpzO").collection("trips").document(tripId).collection("tripNotes").document(noteId)
+        noteRef.updateData([
+            "city": city,
+            "price": price,
+            "description": description,
+            "category": category
+        ]) { err in
+            if let err = err {
+                print("Error updating document: \(err)")
+            } else {
+                print("Document successfully updated")
+            }
+        }
+    }
+    
+    func downloadNote(tripId: String, noteId: String, completion: @escaping (Result <TripNote, Error>) -> Void) {
+        let noteRef = db.collection("users").document("NUXiX5zSMiwYxmtCBpzO").collection("trips").document(tripId).collection("tripNotes").document(noteId)
+        noteRef.getDocument { (document, error) in
+            if let document = document, document.exists {
+                let data = document.data()
+                let date = (data?["date"] as? Timestamp)?.dateValue()
+               
+                let note = TripNote(id: data?["id"] as? String ?? "",
+                                    city: data?["city"] as? String ?? "",
+                                    category: data?["category"] as? String ?? "",
+                                    price: data?["price"] as? Double ?? 0.0,
+                                    date: date ?? Date(),
+                                    description: data?["description"] as? String ?? "",
+                                    isFavourite: data?["isFavourite"] as? Bool ?? false,
+                                    adress: data?["adress"] as? String ?? "")
+                completion(.success(note))
+               } else {
+                completion(.failure(error?.localizedDescription as! Error))
+                print("errrrrrrrrrrrrrrr")
+               }
         }
     }
     

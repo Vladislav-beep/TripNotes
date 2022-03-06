@@ -11,21 +11,20 @@ protocol TripTableViewCellViewModelProtocol {
     var country: String { get }
     var description: String { get }
     var date: String { get }
-    var avatarTrip: Data? { get }
     func getTotalSum() -> String
+   // func downloadNotes()
+    var notesCompletion: (() -> Void)? { get set }
     init(trip: Trip)
 }
 
 
 class TripTableViewCellViewModel: TripTableViewCellViewModelProtocol {
-    
+
     // MARK: Properties
     
-    let image = "placeHolder1"
+    let fire = FireBaseService()
     
-    var avatarTrip: Data? {
-        nil
-    }
+    let image = "placeHolder1"
     
     var description: String {
         trip.description
@@ -44,6 +43,8 @@ class TripTableViewCellViewModel: TripTableViewCellViewModelProtocol {
         trip.country
     }
     
+    var notesCompletion: (() -> Void)?
+    
     // MARK: Private properties
     
     private let trip: Trip
@@ -56,15 +57,30 @@ class TripTableViewCellViewModel: TripTableViewCellViewModelProtocol {
     
     // MARK: Methods
     
+//    func downloadNotes() {
+//        fire.listenToNotes(forTrip: trip.id, completion: { (result: Result<[TripNote], Error>) in
+//            switch result {
+//            case .success(let notess):
+//                self.notes = notess
+//                self.notesCompletion?()
+//
+//            case .failure(let error):
+//                print(error.localizedDescription)
+//            }
+//        })
+//    }
+    
+    
     func getTotalSum() -> String {
-        var totalSum: Double = 0
-        
-//        for note in trip.tripNotes {
+        let totalSum: Double = 0.0
+        let stringTotal = String(totalSum)
+//        for note in notes {
 //            totalSum += Double(note.price)
+//            print(notes)
 //        }
 //
 //        let formattedTotalSum = totalSum.formattedWithSeparator
-        let returnTotalSum = "\(88) \(trip.currency)"
-        return returnTotalSum
+//        let returnTotalSum = "\(formattedTotalSum) \(trip.currency)"
+        return stringTotal
     }
 }

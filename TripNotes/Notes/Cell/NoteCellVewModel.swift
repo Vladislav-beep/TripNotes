@@ -17,6 +17,8 @@ protocol NoteCellViewModelProtocol {
     var isFavourite: Bool { get }
     func deleteNote()
     func toggleFavourite(isFavourite: Bool)
+    func getTripId() -> String
+    func getNoteId() -> String 
     init(tripNote: TripNote, currency: String, tripId: String)
 }
 
@@ -60,9 +62,11 @@ class NoteCellViewModel: NoteCellViewModelProtocol {
     
     // MARK: Private properties
     
-    private let tripNote: TripNote
+    private var tripNote: TripNote
     private let currency: String
     private let tripId: String
+    
+   
     
     // MARK: Life Time
     
@@ -79,4 +83,13 @@ class NoteCellViewModel: NoteCellViewModelProtocol {
     func deleteNote() {
         fire.deleteNote(tripId: tripId, noteId: tripNote.id)
     }
+    
+    func getTripId() -> String {
+        return tripId
+    }
+    
+    func getNoteId() -> String {
+        return tripNote.id
+    }
+    
 }

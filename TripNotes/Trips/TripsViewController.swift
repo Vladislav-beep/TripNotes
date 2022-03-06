@@ -133,7 +133,7 @@ class TripsViewController: UIViewController {
     
     @objc func addNote() {
         
-        let newNoteVC = NewNoteViewController(viewModel: self.newNoteViewModel!)
+        let newNoteVC = NewNoteViewController(viewModel: self.newNoteViewModel!, isEdited: false)
         newNoteViewModel?.printAA()
         newNoteVC.modalPresentationStyle = .fullScreen
         parent?.present(newNoteVC, animated: true)
@@ -256,7 +256,11 @@ extension TripsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellIdentifiers.tripTableViewCellId.rawValue) as? TripTableViewCell
    
+        
+        
         cell?.viewModel = viewModel.tripCellViewModel(for: indexPath)
+        
+        
         return cell ?? UITableViewCell()
     }
 }
