@@ -13,6 +13,8 @@ class NewNoteViewController: UIViewController {
     
     var viewModel: NewNoteViewModelProtocol?
     
+    // MARK: Properties
+    
     var isEdited: Bool
     
     // MARK: UI
@@ -30,21 +32,17 @@ class NewNoteViewController: UIViewController {
         return lowerView
     }()
     
-    private lazy var redView: UIView = {
-        let redView = UIView()
-        redView.backgroundColor = .tripRed
-        redView.translatesAutoresizingMaskIntoConstraints = false
-        return redView
-    }()
-    
     private lazy var backButton: UIButton = {
-        let backButton = UIButton()
-        let image = UIImage(systemName: "chevron.compact.left")
-        backButton.tintColor = .tripBlue
-        backButton.setBackgroundImage(image, for: .normal)
-        backButton.addTarget(self, action: #selector(backButtonPressed), for: .touchUpInside)
-        backButton.translatesAutoresizingMaskIntoConstraints = false
-        return backButton
+        let button = UIButton()
+        button.setBackgroundImage(UIImage(systemName: "xmark.circle.fill"), for: .normal)
+        button.tintColor = .tripBlue
+        button.addTarget(self, action: #selector(backButtonPressed), for: .touchUpInside)
+        button.layer.shadowColor = UIColor.darkGray.cgColor
+        button.layer.shadowRadius = 5
+        button.layer.shadowOffset = CGSize(width: 0, height: 5)
+        button.layer.shadowOpacity = 0.5
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
     }()
     
     private lazy var categoryLabel: UILabel = {
@@ -181,7 +179,7 @@ class NewNoteViewController: UIViewController {
     }()
     
     private lazy var cityTextField: CustomTextField = {
-        let textField = CustomTextField(imageName: "building.2.fill")
+        let textField = CustomTextField(imageName: "buildings")
         textField.placeholder = "Enter city"
         return textField
     }()
@@ -192,7 +190,7 @@ class NewNoteViewController: UIViewController {
     }()
     
     private lazy var priceTextField: CustomTextField = {
-        let textField = CustomTextField(imageName: "eurosign.square")
+        let textField = CustomTextField(imageName: "money3")
         textField.placeholder = "Enter price"
         return textField
     }()
@@ -206,6 +204,7 @@ class NewNoteViewController: UIViewController {
         let textView = UITextView()
         textView.backgroundColor = .tripGrey
         textView.layer.cornerRadius = 10
+        textView.font = UIFont.systemFont(ofSize: 18)
         textView.translatesAutoresizingMaskIntoConstraints = false
         return textView
     }()
@@ -435,7 +434,6 @@ class NewNoteViewController: UIViewController {
     private func setupConstraints() {
         setupScrollViewConstraints()
         setupLowerViewConstraints()
-        setupRedViewConstraints()
         setupBackButtonConstraints()
         setupAddNewTripButtonConstraints()
         setupCategoryLabelConstraints()
@@ -466,30 +464,20 @@ class NewNoteViewController: UIViewController {
         ])
     }
     
-    private func setupRedViewConstraints() {
-        lowerView.addSubview(redView)
-        NSLayoutConstraint.activate([
-            redView.topAnchor.constraint(equalTo: lowerView.topAnchor, constant: 0),
-            redView.leadingAnchor.constraint(equalTo: lowerView.leadingAnchor, constant: 0),
-            redView.trailingAnchor.constraint(equalTo: lowerView.trailingAnchor, constant: 0),
-            redView.heightAnchor.constraint(equalToConstant: 42)
-        ])
-    }
-    
     private func setupBackButtonConstraints() {
         lowerView.addSubview(backButton)
         NSLayoutConstraint.activate([
-            backButton.topAnchor.constraint(equalTo: lowerView.topAnchor, constant: 30),
+            backButton.topAnchor.constraint(equalTo: lowerView.topAnchor, constant: 40),
             backButton.leadingAnchor.constraint(equalTo: lowerView.leadingAnchor, constant: 10),
-            backButton.heightAnchor.constraint(equalToConstant: 26),
-            backButton.widthAnchor.constraint(equalToConstant: 26)
+            backButton.heightAnchor.constraint(equalToConstant: 35),
+            backButton.widthAnchor.constraint(equalTo: backButton.heightAnchor)
         ])
     }
     
     private func setupCategoryLabelConstraints() {
         lowerView.addSubview(categoryLabel)
         NSLayoutConstraint.activate([
-            categoryLabel.topAnchor.constraint(equalTo: redView.bottomAnchor, constant: 10),
+            categoryLabel.topAnchor.constraint(equalTo: backButton.bottomAnchor, constant: 10),
             categoryLabel.leadingAnchor.constraint(equalTo: lowerView.leadingAnchor, constant: 10),
             categoryLabel.trailingAnchor.constraint(equalTo: lowerView.trailingAnchor, constant: -10),
             categoryLabel.heightAnchor.constraint(equalToConstant: 25)

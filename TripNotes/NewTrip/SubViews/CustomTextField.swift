@@ -18,6 +18,7 @@ class CustomTextField: UITextField {
         
         borderStyle = .none
         backgroundColor = .tripGrey
+        font = UIFont.systemFont(ofSize: 18)
         layer.cornerRadius = 16
         layer.borderWidth = 1
         layer.borderColor = UIColor.tripGrey.cgColor

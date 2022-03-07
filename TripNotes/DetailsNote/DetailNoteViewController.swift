@@ -208,12 +208,14 @@ class DetailNoteViewController: UIViewController {
     }
     
     @objc func editNote() {
+        dismiss(animated: true)
         let tripId = viewModel.getTripId()
         let noteId = viewModel.getNoteId()
         let newVm = NewNoteViewModel(tripId: tripId, noteId: noteId)
         let newNoteVC = NewNoteViewController(viewModel: newVm, isEdited: true)
         newNoteVC.modalPresentationStyle = .fullScreen
-        present(newNoteVC, animated: true)
+       // present(newNoteVC, animated: true)
+        presentingViewController?.present(newNoteVC, animated: true, completion: nil)
     }
     
     @objc func toggleFavourite() {
@@ -356,16 +358,6 @@ class DetailNoteViewController: UIViewController {
             editDeleteButtonStack.heightAnchor.constraint(equalToConstant: 40),
         ])
     }
-    
-//    private func setupEditButtonConsytaints() {
-//        redView.addSubview(editButton)
-//        NSLayoutConstraint.activate([
-//            editButton.bottomAnchor.constraint(equalTo: dateSumStack.topAnchor, constant: -10),
-//            editButton.leadingAnchor.constraint(equalTo: deleteButton.leadingAnchor, constant: 10),
-//            editButton.heightAnchor.constraint(equalToConstant: 40),
-//            editButton.widthAnchor.constraint(equalToConstant: 100)
-//        ])
-//    }
     
     private func setupHeartImageViewConstraints() {
         redView.addSubview(heartImageView)
