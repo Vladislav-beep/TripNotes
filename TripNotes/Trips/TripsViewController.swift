@@ -68,6 +68,14 @@ class TripsViewController: UIViewController {
         return button
     }()
     
+    private lazy var weatherButton: UIBarButtonItem = {
+        let button = UIBarButtonItem.customButton(self,
+                                                  action: #selector(showWeather),
+                                                  imageName: "cloud.rain.fill",
+                                                  widthAndHeight: 40)
+        return button
+    }()
+    
     // MARK: Life Time
     
     init(viewModel: TripsViewModelProtocol) {
@@ -140,11 +148,16 @@ class TripsViewController: UIViewController {
       //  present(newNoteVC, animated: true)
     }
     
+    @objc func showWeather() {
+        
+    }
+    
     // MARK: Private methods
     
     private func setupNavigationBar() {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.leftBarButtonItems = [signOutButton]
+        navigationItem.rightBarButtonItems = [weatherButton]
         navigationController?.navigationBar.tintColor = .tripWhite
         
         let navBarAppearance = UINavigationBarAppearance()
@@ -158,16 +171,13 @@ class TripsViewController: UIViewController {
     
     private func editAction(at indexPath: IndexPath) -> UIContextualAction {
         let editAction = UIContextualAction(style: .normal, title: "Edit Trip") { (action, view, complition) in
-
             //
             let newTripViewModel = self.viewModel.newTripViewModelEdited(for: indexPath)
             let newTripVC = NewTripViewController(viewModel: newTripViewModel, isEdited: true)
             newTripVC.isEdited = true
             newTripVC.modalPresentationStyle = .fullScreen
             self.present(newTripVC, animated: true)
-            
             //
-           //: TODO переход на экран добавления трипа
             complition(true)
         }
         editAction.backgroundColor = .tripBlue
