@@ -296,6 +296,9 @@ class NewNoteViewController: UIViewController {
         if isEdited {
             addNewNoteButton.backgroundColor = .tripBlue
             addNewNoteButton.setTitle("Edit Note", for: .normal)
+            cityLabel.textColor = .tripBlue
+            priceLabel.textColor = .tripBlue
+            descriptionLabel.textColor = .tripBlue
             viewModel?.downloadNote()
         }
     }

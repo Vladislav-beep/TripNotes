@@ -89,7 +89,9 @@ class DetailNoteViewController: UIViewController {
     
     private lazy var deleteButton: UIButton = {
         let deleteButton = UIButton()
-        deleteButton.setTitle("Delete", for: .normal)
+        deleteButton.setTitle(" Delete", for: .normal)
+        deleteButton.setImage(UIImage(systemName: "trash"), for: .normal)
+        deleteButton.tintColor = .tripWhite
         deleteButton.backgroundColor = .tripRed
         deleteButton.layer.cornerRadius = 4
         deleteButton.addTarget(self, action: #selector(deleteNote), for: .touchUpInside)
@@ -103,7 +105,9 @@ class DetailNoteViewController: UIViewController {
     
     private lazy var editButton: UIButton = {
         let editButton = UIButton()
-        editButton.setTitle("Edit", for: .normal)
+        editButton.setTitle(" Edit", for: .normal)
+        editButton.setImage(UIImage(systemName: "square.and.pencil"), for: .normal)
+        editButton.tintColor = .tripWhite
         editButton.backgroundColor = .tripBlue
         editButton.layer.cornerRadius = 4
         editButton.addTarget(self, action: #selector(editNote), for: .touchUpInside)
@@ -266,26 +270,6 @@ class DetailNoteViewController: UIViewController {
             return UIImage(systemName: "square") ?? UIImage()
         }
     }
-    
-//    private func setupScrollViewConstraints() {
-//        view.addSubview(scrollView)
-//        NSLayoutConstraint.activate([
-//            scrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
-//            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
-//            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
-//            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
-//        ])
-//    }
-    
-//    private func setupLowerViewConstraints() {
-//        scrollView.addSubview(lowerView)
-//        NSLayoutConstraint.activate([
-//            lowerView.centerYAnchor.constraint(equalTo: scrollView.centerYAnchor),
-//            lowerView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
-//            lowerView.heightAnchor.constraint(equalTo: view.heightAnchor),
-//            lowerView.widthAnchor.constraint(equalTo: view.widthAnchor)
-//        ])
-//    }
     
     private func setupRedView() {
         view.addSubview(redView)
