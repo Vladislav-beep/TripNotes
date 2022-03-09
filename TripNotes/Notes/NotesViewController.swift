@@ -12,6 +12,7 @@ class NotesViewController: UIViewController, UICollectionViewDelegate {
     // MARK: Dependencies
     
     private var viewModel: NotesViewModelProtocol
+    lazy var slideInTransitioningDelegate = SlideInPresentationManager()
     var coordinator: AppCoordinator?
     
     // MARK: UI
@@ -69,8 +70,14 @@ class NotesViewController: UIViewController, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let noteVM = viewModel.viewModelForSelectedRow(at: indexPath)
         let noteVC = DetailNoteViewController(viewModel: noteVM)
-        noteVC.modalPresentationStyle = .fullScreen
+        slideInTransitioningDelegate.direction = .bottom
+        noteVC.transitioningDelegate = slideInTransitioningDelegate
+        noteVC.modalPresentationStyle = .custom
         present(noteVC, animated: true)
+//        let noteVM = viewModel.viewModelForSelectedRow(at: indexPath)
+//        let noteVC = DetailNoteViewController(viewModel: noteVM)
+//        noteVC.modalPresentationStyle = .fullScreen
+//        present(noteVC, animated: true)
     }
 }
 

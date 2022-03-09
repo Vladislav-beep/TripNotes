@@ -94,9 +94,7 @@ class TripsViewController: UIViewController {
         title = "Trips"
         
         setupNavigationBar()
-        
         setupViewModelBindings()
-      //  viewModel.getTrips()
         
         setupTableContraints()
         setupAddButtonConstraints()
@@ -141,7 +139,6 @@ class TripsViewController: UIViewController {
     }
     
     @objc func addNote() {
-        
         let newNoteVC = NewNoteViewController(viewModel: self.newNoteViewModel!, isEdited: false)
         newNoteViewModel?.printAA()
         newNoteVC.modalPresentationStyle = .fullScreen
@@ -156,10 +153,6 @@ class TripsViewController: UIViewController {
         weatherVC.transitioningDelegate = slideInTransitioningDelegate
         weatherVC.modalPresentationStyle = .custom
         present(weatherVC, animated: true)
-        
-//        let weatherVM = WeatherViewModel()
-//        let weatherVC = WeatherViewController(viewModel: weatherVM)
-//        present(weatherVC, animated: true)
     }
     
     // MARK: Private methods

@@ -28,8 +28,6 @@ enum NetworkError: Error {
 
 class NetworkWeatherManager {
     
-    var onCompletion: ((CurrentWeather) -> Void)?
-    
     func fetchCurrentWeather(forCoordinates longitude: CLLocationDegrees, latitude: CLLocationDegrees, comletion: @escaping (Result<CurrentWeather, NetworkError>) -> Void) {
         let apiKey = Constants.ApiKeys.weatherKey.rawValue
         let urlString = Constants.URLs.weatherURL.rawValue + "lat=\(latitude)&lon=\(longitude)&apikey=\(apiKey)&units=metric"

@@ -184,7 +184,8 @@ class DetailNoteViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = .tripGrey
+        view.layer.cornerRadius = 20
 
         cityLabel.text = viewModel.city
         categoryLabel.text = viewModel.category
@@ -274,10 +275,10 @@ class DetailNoteViewController: UIViewController {
     private func setupRedView() {
         view.addSubview(redView)
         NSLayoutConstraint.activate([
-            redView.topAnchor.constraint(equalTo: view.topAnchor, constant: 70),
-            redView.heightAnchor.constraint(equalToConstant: 400),
-            redView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
-            redView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15)
+            redView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
+            redView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
+            redView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
+            redView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0)
         ])
     }
 
@@ -326,9 +327,9 @@ class DetailNoteViewController: UIViewController {
     private func setupSumLabelConstraints() {
         redView.addSubview(dateSumStack)
         NSLayoutConstraint.activate([
-            dateSumStack.bottomAnchor.constraint(equalTo: redView.bottomAnchor, constant: -8),
-            dateSumStack.leadingAnchor.constraint(equalTo: redView.leadingAnchor, constant: 10),
-            dateSumStack.trailingAnchor.constraint(equalTo: redView.trailingAnchor, constant: -10),
+            dateSumStack.bottomAnchor.constraint(equalTo: redView.bottomAnchor, constant: -16),
+            dateSumStack.leadingAnchor.constraint(equalTo: redView.leadingAnchor, constant: 20),
+            dateSumStack.trailingAnchor.constraint(equalTo: redView.trailingAnchor, constant: -20),
             dateSumStack.heightAnchor.constraint(equalToConstant: 30)
         ])
     }
@@ -336,7 +337,7 @@ class DetailNoteViewController: UIViewController {
     private func setupDeleteButtonConsytaints() {
         redView.addSubview(editDeleteButtonStack)
         NSLayoutConstraint.activate([
-            editDeleteButtonStack.bottomAnchor.constraint(equalTo: dateSumStack.topAnchor, constant: -10),
+            editDeleteButtonStack.bottomAnchor.constraint(equalTo: dateSumStack.topAnchor, constant: -20),
             editDeleteButtonStack.leadingAnchor.constraint(equalTo: redView.leadingAnchor, constant: 30),
             editDeleteButtonStack.trailingAnchor.constraint(equalTo: redView.trailingAnchor, constant: -30),
             editDeleteButtonStack.heightAnchor.constraint(equalToConstant: 40),
