@@ -273,6 +273,14 @@ class NewNoteViewController: UIViewController {
         return warningLabel
     }()
     
+    private lazy var countLabel: UILabel = {
+        let countLabel = UILabel()
+        countLabel.text = "0/600"
+        countLabel.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
+        countLabel.translatesAutoresizingMaskIntoConstraints = false
+        return countLabel
+    }()
+    
     // MARK: Life Time
     
     init(viewModel: NewNoteViewModelProtocol, isEdited: Bool) {
@@ -290,6 +298,7 @@ class NewNoteViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        descriptionTextView.delegate = self
         
         setupViewModelBindings()
         
@@ -445,6 +454,7 @@ class NewNoteViewController: UIViewController {
         setupDescriptionStackViewConstraints()
         setupAdressButtonConstraints()
         setupWarningLabelConstraints()
+        setupCountLabelConstraints()
     }
     
     private func setupScrollViewConstraints() {
@@ -553,6 +563,23 @@ class NewNoteViewController: UIViewController {
             warningLabel.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width * 2 / 3),
             warningLabel.heightAnchor.constraint(equalToConstant: 20)
         ])
+    }
+    
+    private func setupCountLabelConstraints() {
+        lowerView.addSubview(countLabel)
+        NSLayoutConstraint.activate([
+            countLabel.centerYAnchor.constraint(equalTo: adressButton.centerYAnchor, constant: 0),
+            countLabel.widthAnchor.constraint(equalToConstant: 100),
+            countLabel.trailingAnchor.constraint(equalTo: adressButton.leadingAnchor, constant: -10),
+            countLabel.heightAnchor.constraint(equalToConstant: 25)
+        ])
+    }
+}
+
+extension NewNoteViewController: UITextViewDelegate {
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        countLabel.text = "\(textView.text.count)/360"
+        return textView.text.count + (text.count - range.length) <= 360
     }
 }
 

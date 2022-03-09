@@ -14,20 +14,9 @@ class DetailNoteViewController: UIViewController {
     var isFavourite = false
     
     lazy var contraint = heartImageView.heightAnchor.constraint(equalToConstant: 0)
-    
-    private lazy var scrollView: UIScrollView = {
-        let scrollView = UIScrollView()
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        return scrollView
-    }()
-    
-    private lazy var lowerView: UIView = {
-        let lowerView = UIView()
-        lowerView.translatesAutoresizingMaskIntoConstraints = false
-        return lowerView
-    }()
-    
-    private lazy var redView: UIView = {
+    lazy var animator = Animator(layoutConstraint: contraint, container: view)
+        
+    private lazy var yellowView: UIView = {
         let redView = UIView()
         redView.backgroundColor = .tripYellow
         redView.layer.cornerRadius = 20
@@ -171,8 +160,6 @@ class DetailNoteViewController: UIViewController {
         return heartImageView
     }()
     
-    lazy var animator = Animator(layoutConstraint: contraint, container: view)
-    
     init(viewModel: NoteCellViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -224,7 +211,6 @@ class DetailNoteViewController: UIViewController {
     }
     
     @objc func toggleFavourite() {
-        
         if likeButton.tintColor == .tripGrey {
             animator.animate { [weak self] in
                 self?.likeButton.tintColor = .tripRed
@@ -239,18 +225,15 @@ class DetailNoteViewController: UIViewController {
     }
     
     private func setupAllConstraints() {
-    //    setupScrollViewConstraints()
-      //  setupLowerViewConstraints()
-        setupRedView()
+        setupYellowViewConstraints()
         setupCloseButtonConstraints()
         setupLikeButtonConstraints()
-        setupHeartImageViewConstraints()
         setupSumLabelConstraints()
         setupDeleteButtonConsytaints()
         setupStackViewConstraints()
         setupLabelStackConstraints()
-        //setupEditButtonConsytaints()
         setupDeleteButtonConsytaints()
+        setupHeartImageViewConstraints()
     }
     
     private func setImage(for category: String) -> UIImage {
@@ -272,83 +255,83 @@ class DetailNoteViewController: UIViewController {
         }
     }
     
-    private func setupRedView() {
-        view.addSubview(redView)
+    private func setupYellowViewConstraints() {
+        view.addSubview(yellowView)
         NSLayoutConstraint.activate([
-            redView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
-            redView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
-            redView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
-            redView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0)
+            yellowView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
+            yellowView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
+            yellowView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
+            yellowView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0)
         ])
     }
 
     private func setupCloseButtonConstraints() {
-        redView.addSubview(closeButton)
+        yellowView.addSubview(closeButton)
         NSLayoutConstraint.activate([
             closeButton.heightAnchor.constraint(equalToConstant: 35),
             closeButton.widthAnchor.constraint(equalTo: closeButton.heightAnchor),
-            closeButton.topAnchor.constraint(equalTo: redView.topAnchor, constant: 8),
-            closeButton.leadingAnchor.constraint(equalTo: redView.leadingAnchor, constant: 8),
+            closeButton.topAnchor.constraint(equalTo: yellowView.topAnchor, constant: 8),
+            closeButton.leadingAnchor.constraint(equalTo: yellowView.leadingAnchor, constant: 8),
         ])
     }
     
     private func setupLikeButtonConstraints() {
-        redView.addSubview(likeButton)
+        yellowView.addSubview(likeButton)
         NSLayoutConstraint.activate([
             likeButton.heightAnchor.constraint(equalToConstant: 35),
             likeButton.widthAnchor.constraint(equalTo: closeButton.heightAnchor),
-            likeButton.trailingAnchor.constraint(equalTo: redView.trailingAnchor, constant: -8),
-            likeButton.topAnchor.constraint(equalTo: redView.topAnchor, constant: 8)
+            likeButton.trailingAnchor.constraint(equalTo: yellowView.trailingAnchor, constant: -8),
+            likeButton.topAnchor.constraint(equalTo: yellowView.topAnchor, constant: 8)
         ])
     }
         
     private func setupStackViewConstraints() {
-        redView.addSubview(categoryImageView)
+        yellowView.addSubview(categoryImageView)
         NSLayoutConstraint.activate([
-            categoryImageView.topAnchor.constraint(equalTo: redView.topAnchor, constant: 8),
+            categoryImageView.topAnchor.constraint(equalTo: yellowView.topAnchor, constant: 8),
             categoryImageView.heightAnchor.constraint(equalToConstant: 50),
             categoryImageView.widthAnchor.constraint(equalToConstant: 50),
-            categoryImageView.centerXAnchor.constraint(equalTo: redView.centerXAnchor, constant: 0)
+            categoryImageView.centerXAnchor.constraint(equalTo: yellowView.centerXAnchor, constant: 0)
         ])
     }
     
     private func setupLabelStackConstraints() {
-        redView.addSubview(labelStackView)
+        yellowView.addSubview(labelStackView)
         NSLayoutConstraint.activate([
             categoryLabel.heightAnchor.constraint(equalToConstant: 20),
             cityLabel.heightAnchor.constraint(equalToConstant: 20),
             labelStackView.topAnchor.constraint(equalTo: categoryImageView.bottomAnchor, constant: 8),
             labelStackView.bottomAnchor.constraint(equalTo: deleteButton.topAnchor, constant: -8),
-            labelStackView.trailingAnchor.constraint(equalTo: redView.trailingAnchor, constant: -10),
-            labelStackView.leadingAnchor.constraint(equalTo: redView.leadingAnchor, constant: 10)
+            labelStackView.trailingAnchor.constraint(equalTo: yellowView.trailingAnchor, constant: -10),
+            labelStackView.leadingAnchor.constraint(equalTo: yellowView.leadingAnchor, constant: 10)
         ])
     }
     
     private func setupSumLabelConstraints() {
-        redView.addSubview(dateSumStack)
+        yellowView.addSubview(dateSumStack)
         NSLayoutConstraint.activate([
-            dateSumStack.bottomAnchor.constraint(equalTo: redView.bottomAnchor, constant: -16),
-            dateSumStack.leadingAnchor.constraint(equalTo: redView.leadingAnchor, constant: 20),
-            dateSumStack.trailingAnchor.constraint(equalTo: redView.trailingAnchor, constant: -20),
+            dateSumStack.bottomAnchor.constraint(equalTo: yellowView.bottomAnchor, constant: -20),
+            dateSumStack.leadingAnchor.constraint(equalTo: yellowView.leadingAnchor, constant: 20),
+            dateSumStack.trailingAnchor.constraint(equalTo: yellowView.trailingAnchor, constant: -20),
             dateSumStack.heightAnchor.constraint(equalToConstant: 30)
         ])
     }
     
     private func setupDeleteButtonConsytaints() {
-        redView.addSubview(editDeleteButtonStack)
+        yellowView.addSubview(editDeleteButtonStack)
         NSLayoutConstraint.activate([
             editDeleteButtonStack.bottomAnchor.constraint(equalTo: dateSumStack.topAnchor, constant: -20),
-            editDeleteButtonStack.leadingAnchor.constraint(equalTo: redView.leadingAnchor, constant: 30),
-            editDeleteButtonStack.trailingAnchor.constraint(equalTo: redView.trailingAnchor, constant: -30),
+            editDeleteButtonStack.leadingAnchor.constraint(equalTo: yellowView.leadingAnchor, constant: 30),
+            editDeleteButtonStack.trailingAnchor.constraint(equalTo: yellowView.trailingAnchor, constant: -30),
             editDeleteButtonStack.heightAnchor.constraint(equalToConstant: 40),
         ])
     }
     
     private func setupHeartImageViewConstraints() {
-        redView.addSubview(heartImageView)
+        labelStackView.addSubview(heartImageView)
         NSLayoutConstraint.activate([
-            heartImageView.centerXAnchor.constraint(equalTo: redView.centerXAnchor, constant: 0),
-            heartImageView.centerYAnchor.constraint(equalTo: redView.centerYAnchor, constant: 0),
+            heartImageView.centerXAnchor.constraint(equalTo: labelStackView.centerXAnchor, constant: 0),
+            heartImageView.centerYAnchor.constraint(equalTo: labelStackView.centerYAnchor, constant: 0),
             contraint,
             heartImageView.widthAnchor.constraint(equalTo: heartImageView.heightAnchor)
         ])

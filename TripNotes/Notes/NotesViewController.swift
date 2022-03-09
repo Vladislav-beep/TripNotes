@@ -39,9 +39,7 @@ class NotesViewController: UIViewController, UICollectionViewDelegate {
     override func viewDidLoad() {
         collectionView.dataSource = self
         collectionView.delegate = self
-        
         setupViewModelBundings()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
