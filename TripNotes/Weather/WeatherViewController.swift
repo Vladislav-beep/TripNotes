@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 class WeatherViewController: UIViewController {
     
@@ -32,7 +33,6 @@ class WeatherViewController: UIViewController {
     
     private lazy var cityLabel: UILabel = {
         let cityLabel = UILabel()
-        cityLabel.text = "Berlin"
         cityLabel.textAlignment = .right
         cityLabel.font = UIFont.systemFont(ofSize: 24, weight: .medium)
         cityLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -41,18 +41,17 @@ class WeatherViewController: UIViewController {
     
     private lazy var temperatureLabel: UILabel = {
         let temperatureLabel = UILabel()
-        temperatureLabel.text = "25 C"
         temperatureLabel.textColor = .tripBlue
         temperatureLabel.font = UIFont.systemFont(ofSize: 70, weight: .heavy)
         temperatureLabel.textAlignment = .center
+        temperatureLabel.adjustsFontSizeToFitWidth = true
         temperatureLabel.translatesAutoresizingMaskIntoConstraints = false
         return temperatureLabel
     }()
     
     private lazy var feelsLikeTemperatureLabel: UILabel = {
         let feelsLikeTemperatureLabel = UILabel()
-        feelsLikeTemperatureLabel.text = "Feels like 23 C"
-        feelsLikeTemperatureLabel.font = UIFont.systemFont(ofSize: 20, weight: .regular)
+        feelsLikeTemperatureLabel.font = UIFont.systemFont(ofSize: 20, weight: .heavy)
         feelsLikeTemperatureLabel.textAlignment = .right
         feelsLikeTemperatureLabel.textColor = .tripRed
         feelsLikeTemperatureLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -75,6 +74,14 @@ class WeatherViewController: UIViewController {
         return stack
     }()
     
+    private lazy var locationManager: CLLocationManager = {
+        let lm = CLLocationManager()
+        lm.delegate = self
+        lm.desiredAccuracy = kCLLocationAccuracyKilometer
+        lm.requestWhenInUseAuthorization()
+        return lm
+    }()
+    
     // MARK: Life Time
     
     init(viewModel: WeatherViewModelProtocol) {
@@ -91,6 +98,9 @@ class WeatherViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .tripGrey
         view.layer.cornerRadius = 30
+        
+        setupViewModelBindings()
+        requestLocation()
     }
     
     // MARK: Actions
@@ -101,20 +111,47 @@ class WeatherViewController: UIViewController {
     
     // MARK: Private methods
     
+    private func requestLocation() {
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.requestLocation()
+        }
+    }
+    
+    private func setupViewModelBindings() {
+        viewModel.weatherCompletion = { [weak self] in
+            DispatchQueue.main.async {
+                self?.cityLabel.text = self?.viewModel.cityName
+                self?.temperatureLabel.text = self?.viewModel.temperature
+                self?.feelsLikeTemperatureLabel.text = self?.viewModel.feelsLikeTemperature
+                self?.weatherIconImageView.image = UIImage(systemName: self?.viewModel.IconName ?? "cloud")
+            }
+        }
+    }
+    
     private func setupAllConstraints() {
+        setupCloseButtonConstraints()
         setupCityLabelConstraints()
         setupWeatherIconImageViewConstraints()
         setupTemperatureStackConstraints()
     }
     
-    private func setupCityLabelConstraints() {
-        view.addSubview(cityCloseStack)
+    private func setupCloseButtonConstraints() {
+        view.addSubview(closeButton)
         NSLayoutConstraint.activate([
-            cityCloseStack.topAnchor.constraint(equalTo: view.topAnchor, constant: 15),
-            cityCloseStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            cityCloseStack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            cityCloseStack.heightAnchor.constraint(equalToConstant: 40),
-            closeButton.widthAnchor.constraint(equalTo: cityCloseStack.heightAnchor)
+            closeButton.widthAnchor.constraint(equalToConstant: 40),
+            closeButton.heightAnchor.constraint(equalTo: closeButton.widthAnchor),
+            closeButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 15),
+            closeButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20)
+        ])
+    }
+    
+    private func setupCityLabelConstraints() {
+        view.addSubview(cityLabel)
+        NSLayoutConstraint.activate([
+            cityLabel.centerYAnchor.constraint(equalTo: closeButton.centerYAnchor, constant: 0),
+            cityLabel.heightAnchor.constraint(equalToConstant: 40),
+            cityLabel.leadingAnchor.constraint(equalTo: closeButton.trailingAnchor, constant: 10),
+            cityLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
         ])
     }
     
@@ -138,3 +175,18 @@ class WeatherViewController: UIViewController {
         ])
     }
 }
+
+extension WeatherViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let location = locations.last else { return }
+        let latitude = location.coordinate.latitude
+        let longitude = location.coordinate.longitude
+        
+        viewModel.fetchWeather(longitude: longitude, latitude: latitude)
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print(error.localizedDescription)
+    }
+}
+

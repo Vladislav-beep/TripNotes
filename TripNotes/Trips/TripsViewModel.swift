@@ -82,9 +82,6 @@ class TripsViewModel: TripsViewModelProtocol {
     }
   
     func tripCellViewModel(for indexPath: IndexPath) -> TripTableViewCellViewModelProtocol? {
-        let serialQueue = DispatchQueue(label: "serial")
-        var sum = 0.0
-        
         if indexPath.section == 0 {
             let tr = trips.filter { $0.finishingDate > Date() }
             let trip = tr[indexPath.row]
