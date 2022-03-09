@@ -313,22 +313,22 @@ class NewNoteViewController: UIViewController {
 
             let category = self?.viewModel?.category
             switch category {
-            case "Transport":
+            case Category.tranport.rawValue:
                 self?.transportButton.pulsate()
                 self?.transportButton.backgroundColor = .tripRed
-            case "Hotels":
+            case Category.hotels.rawValue:
                 self?.hotelsButton.pulsate()
                 self?.hotelsButton.backgroundColor = .tripRed
-            case "Food":
+            case Category.foodAndRestaurants.rawValue:
                 self?.foodButton.pulsate()
                 self?.foodButton.backgroundColor = .tripRed
-            case "Activities":
+            case Category.activity.rawValue:
                 self?.activityButton.pulsate()
                 self?.activityButton.backgroundColor = .tripRed
-            case "Purchases":
+            case Category.purchases.rawValue:
                 self?.perchaseButton.pulsate()
                 self?.perchaseButton.backgroundColor = .tripRed
-            case "Other":
+            case Category.other.rawValue:
                 self?.otherButton.pulsate()
                 self?.otherButton.backgroundColor = .tripRed
             default:

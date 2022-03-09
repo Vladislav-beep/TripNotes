@@ -149,7 +149,9 @@ class TripsViewController: UIViewController {
     }
     
     @objc func showWeather() {
-        
+        let weatherVM = WeatherViewModel()
+        let weatherVC = WeatherViewController(viewModel: weatherVM)
+        present(weatherVC, animated: true)
     }
     
     // MARK: Private methods
