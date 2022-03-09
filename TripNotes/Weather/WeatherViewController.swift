@@ -89,7 +89,8 @@ class WeatherViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = .tripGrey
+        view.layer.cornerRadius = 30
     }
     
     // MARK: Actions
@@ -109,7 +110,7 @@ class WeatherViewController: UIViewController {
     private func setupCityLabelConstraints() {
         view.addSubview(cityCloseStack)
         NSLayoutConstraint.activate([
-            cityCloseStack.topAnchor.constraint(equalTo: view.topAnchor, constant: 40),
+            cityCloseStack.topAnchor.constraint(equalTo: view.topAnchor, constant: 15),
             cityCloseStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             cityCloseStack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             cityCloseStack.heightAnchor.constraint(equalToConstant: 40),

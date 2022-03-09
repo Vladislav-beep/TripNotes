@@ -12,8 +12,9 @@ class TripsViewController: UIViewController {
     
     // MARK: Dependencies
     
+    lazy var slideInTransitioningDelegate = SlideInPresentationManager()
+
     private var viewModel: TripsViewModelProtocol
-    
     private var newNoteViewModel: NewNoteViewModelProtocol?
     var coordinator: AppCoordinator?
 
@@ -151,7 +152,14 @@ class TripsViewController: UIViewController {
     @objc func showWeather() {
         let weatherVM = WeatherViewModel()
         let weatherVC = WeatherViewController(viewModel: weatherVM)
+        slideInTransitioningDelegate.direction = .bottom
+        weatherVC.transitioningDelegate = slideInTransitioningDelegate
+        weatherVC.modalPresentationStyle = .custom
         present(weatherVC, animated: true)
+        
+//        let weatherVM = WeatherViewModel()
+//        let weatherVC = WeatherViewController(viewModel: weatherVM)
+//        present(weatherVC, animated: true)
     }
     
     // MARK: Private methods

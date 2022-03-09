@@ -57,6 +57,11 @@
 		B95FBCD927D7D76F006FF5A8 /* WeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95FBCD027D7D6D5006FF5A8 /* WeatherViewModel.swift */; };
 		B95FBCDD27D89050006FF5A8 /* CloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95FBCDC27D89050006FF5A8 /* CloseButton.swift */; };
 		B95FBCE327D893FC006FF5A8 /* CloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95FBCDC27D89050006FF5A8 /* CloseButton.swift */; };
+		B95FBCE927D89857006FF5A8 /* SlideInPresentationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95FBCE827D89857006FF5A8 /* SlideInPresentationManager.swift */; };
+		B95FBCED27D89B13006FF5A8 /* SlideInPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95FBCEC27D89B13006FF5A8 /* SlideInPresentationController.swift */; };
+		B95FBCF327D8ACA6006FF5A8 /* SlideInPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95FBCEC27D89B13006FF5A8 /* SlideInPresentationController.swift */; };
+		B95FBCF827D8B686006FF5A8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90DB43B276F2D1500F1A544 /* Constants.swift */; };
+		B95FBCFC27D8B709006FF5A8 /* NetworkWeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95FBCFB27D8B709006FF5A8 /* NetworkWeatherManager.swift */; };
 		B961212827934BDE00B7B81E /* NoteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90DB425276F134B00F1A544 /* NoteModel.swift */; };
 		B961212D279351FB00B7B81E /* SelectionLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B961212C279351FB00B7B81E /* SelectionLabel.swift */; };
 		B96648792799D65F00F527E8 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96648782799D65F00F527E8 /* MapViewController.swift */; };
@@ -159,6 +164,9 @@
 		B95FBCC627D7D58F006FF5A8 /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
 		B95FBCD027D7D6D5006FF5A8 /* WeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewModel.swift; sourceTree = "<group>"; };
 		B95FBCDC27D89050006FF5A8 /* CloseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseButton.swift; sourceTree = "<group>"; };
+		B95FBCE827D89857006FF5A8 /* SlideInPresentationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInPresentationManager.swift; sourceTree = "<group>"; };
+		B95FBCEC27D89B13006FF5A8 /* SlideInPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInPresentationController.swift; sourceTree = "<group>"; };
+		B95FBCFB27D8B709006FF5A8 /* NetworkWeatherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkWeatherManager.swift; sourceTree = "<group>"; };
 		B961212C279351FB00B7B81E /* SelectionLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionLabel.swift; sourceTree = "<group>"; };
 		B96648782799D65F00F527E8 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		B9698F22279C4689005FB438 /* LocationSevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSevice.swift; sourceTree = "<group>"; };
@@ -304,6 +312,7 @@
 				B96648772799D63100F527E8 /* Map */,
 				B95FBCCA27D7D599006FF5A8 /* Weather */,
 				B9DCF13A276BB6F0007B0320 /* TabBar */,
+				B95FBCF027D8ABD1006FF5A8 /* Presentation */,
 				B90DB436276F147000F1A544 /* Services */,
 				B9F39E0A2767D47F00DAFB4C /* Extensions */,
 				B95FBCE027D89354006FF5A8 /* SubViews */,
@@ -312,6 +321,7 @@
 				B91E814A2767A88F00D0748B /* Info.plist */,
 				B9AA39DE27BAD08A00CD48E9 /* GoogleService-Info.plist */,
 				B90DB43B276F2D1500F1A544 /* Constants.swift */,
+				B95FBCFB27D8B709006FF5A8 /* NetworkWeatherManager.swift */,
 			);
 			path = TripNotes;
 			sourceTree = "<group>";
@@ -367,6 +377,15 @@
 				B95FBCDC27D89050006FF5A8 /* CloseButton.swift */,
 			);
 			path = SubViews;
+			sourceTree = "<group>";
+		};
+		B95FBCF027D8ABD1006FF5A8 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				B95FBCE827D89857006FF5A8 /* SlideInPresentationManager.swift */,
+				B95FBCEC27D89B13006FF5A8 /* SlideInPresentationController.swift */,
+			);
+			path = Presentation;
 			sourceTree = "<group>";
 		};
 		B961212B279351E300B7B81E /* Views */ = {
@@ -625,6 +644,8 @@
 				B909AFDD277E3135006EFC38 /* Extension + UITextField.swift in Sources */,
 				B90DB42E276F139700F1A544 /* Currency.swift in Sources */,
 				B9FD6C0C278E043600311EF1 /* NewNoteViewModel.swift in Sources */,
+				B95FBCE927D89857006FF5A8 /* SlideInPresentationManager.swift in Sources */,
+				B95FBCFC27D8B709006FF5A8 /* NetworkWeatherManager.swift in Sources */,
 				B9863ABF27C1374100BE6337 /* AuthService.swift in Sources */,
 				B90632F927AFE47E00F0C2A5 /* DetailNoteViewController.swift in Sources */,
 				B91E81412767A88E00D0748B /* TripsViewController.swift in Sources */,
@@ -641,6 +662,7 @@
 				B9E85C3D276E6468004FD1D8 /* Extension + UIStackView.swift in Sources */,
 				B9F296C127895C4300844D6C /* NoteCell.swift in Sources */,
 				B9FD6C08278E040900311EF1 /* NewNoteViewController.swift in Sources */,
+				B95FBCED27D89B13006FF5A8 /* SlideInPresentationController.swift in Sources */,
 				B98282D827A07C84006EFED8 /* NewAccountViewController.swift in Sources */,
 				B961212D279351FB00B7B81E /* SelectionLabel.swift in Sources */,
 				B95FBCD127D7D6D5006FF5A8 /* WeatherViewModel.swift in Sources */,
@@ -677,6 +699,7 @@
 				B95FBCE327D893FC006FF5A8 /* CloseButton.swift in Sources */,
 				B9F63C5C27CA29F00021F02F /* AuthService.swift in Sources */,
 				B966487E2799D66900F527E8 /* MapViewController.swift in Sources */,
+				B95FBCF327D8ACA6006FF5A8 /* SlideInPresentationController.swift in Sources */,
 				B90DB459276FB39200F1A544 /* TripTableViewCellViewModel.swift in Sources */,
 				B912CFF227ADB66B00AE1FCE /* NotesCollectionView.swift in Sources */,
 				B9D9FC14278F4E1D007710B4 /* SelectionButton.swift in Sources */,
@@ -701,6 +724,7 @@
 				B97374C227AC5CF8000B208D /* FavouritesViewModel.swift in Sources */,
 				B95FBCD927D7D76F006FF5A8 /* WeatherViewModel.swift in Sources */,
 				B90DB45A276FB39E00F1A544 /* NotesViewModel.swift in Sources */,
+				B95FBCF827D8B686006FF5A8 /* Constants.swift in Sources */,
 				B9D9C8AF27C3EDF70003D34C /* FireBaseService.swift in Sources */,
 				B90632FE27AFE47F00F0C2A5 /* DetailNoteViewController.swift in Sources */,
 				B93DD4BD279F1BCC00D91A08 /* AuthViewModel.swift in Sources */,
