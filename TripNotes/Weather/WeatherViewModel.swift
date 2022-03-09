@@ -14,6 +14,7 @@ protocol WeatherViewModelProtocol {
     var feelsLikeTemperature: String { get }
     var IconName: String { get }
     var weatherCompletion: (() -> Void)? { get set }
+    var errorCompletion: ((String) -> Void)? { get set }
     func fetchWeather(longitude: CLLocationDegrees, latitude: CLLocationDegrees)
 }
 
@@ -24,6 +25,7 @@ class WeatherViewModel: WeatherViewModelProtocol {
     var weather: CurrentWeather?
     
     var weatherCompletion: (() -> Void)?
+    var errorCompletion: ((String) -> Void)?
     
     var cityName: String {
         weather?.cityName ?? ""
@@ -44,12 +46,13 @@ class WeatherViewModel: WeatherViewModelProtocol {
     }
     
     func fetchWeather(longitude: CLLocationDegrees, latitude: CLLocationDegrees) {
-        networkManager.fetchCurrentWeather(forCoordinates: longitude, latitude: latitude) { (result: Result<CurrentWeather, Error>) in
+        networkManager.fetchCurrentWeather(forCoordinates: longitude, latitude: latitude) { (result: Result<CurrentWeather, NetworkError>) in
             switch result {
             case .success(let weather):
                 self.weather = weather
                 self.weatherCompletion?()
             case .failure(let error):
+                self.errorCompletion?(error.errorDescription ?? "")
                 print(error.localizedDescription)
             }
         }

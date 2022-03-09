@@ -126,6 +126,27 @@ class WeatherViewController: UIViewController {
                 self?.weatherIconImageView.image = UIImage(systemName: self?.viewModel.IconName ?? "cloud")
             }
         }
+        ///////////
+        
+        viewModel.errorCompletion = { [weak self] error in
+            DispatchQueue.main.async {
+                self?.dismiss(animated: true)
+                let alert = UIAlertController(title: "Lalala", message: error.description, preferredStyle: .alert)
+                let cancel = UIAlertAction(title: "cancel", style: .destructive, handler: nil)
+                alert.addAction(cancel)
+                self?.present(alert, animated: true)
+            }
+        }
+//        viewModel.errorCompletion = { [weak self] error in
+//            DispatchQueue.main.async {
+//            let alert = UIAlertController(title: "Lalala", message: "Dodododod", preferredStyle: .alert)
+//            let cancel = UIAlertAction(title: "cancel", style: .destructive, handler: nil)
+//            alert.addAction(cancel)
+//            self?.present(alert, animated: true)
+//            }
+//        }
+        
+        ////////
     }
     
     private func setupAllConstraints() {

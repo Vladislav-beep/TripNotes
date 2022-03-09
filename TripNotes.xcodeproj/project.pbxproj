@@ -66,6 +66,7 @@
 		B95FBD0427D8B8D1006FF5A8 /* CurrentWeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95FBD0327D8B8D1006FF5A8 /* CurrentWeatherData.swift */; };
 		B95FBD0827D8BAD1006FF5A8 /* CurrentWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95FBCFF27D8B8AD006FF5A8 /* CurrentWeather.swift */; };
 		B95FBD0D27D8BAD6006FF5A8 /* CurrentWeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95FBD0327D8B8D1006FF5A8 /* CurrentWeatherData.swift */; };
+		B95FBD1227D90D5E006FF5A8 /* NetworkWeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95FBCFB27D8B709006FF5A8 /* NetworkWeatherManager.swift */; };
 		B961212827934BDE00B7B81E /* NoteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90DB425276F134B00F1A544 /* NoteModel.swift */; };
 		B961212D279351FB00B7B81E /* SelectionLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B961212C279351FB00B7B81E /* SelectionLabel.swift */; };
 		B96648792799D65F00F527E8 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96648782799D65F00F527E8 /* MapViewController.swift */; };
@@ -734,6 +735,7 @@
 				B961212827934BDE00B7B81E /* NoteModel.swift in Sources */,
 				B95FBD0D27D8BAD6006FF5A8 /* CurrentWeatherData.swift in Sources */,
 				B9D9FC11278F390B007710B4 /* NewNoteViewController.swift in Sources */,
+				B95FBD1227D90D5E006FF5A8 /* NetworkWeatherManager.swift in Sources */,
 				B949FB1E27AEF38800590F0E /* AppCoordinator.swift in Sources */,
 				B90DB456276FB38D00F1A544 /* NotesViewController.swift in Sources */,
 				B95FBCD627D7D76C006FF5A8 /* WeatherViewController.swift in Sources */,
