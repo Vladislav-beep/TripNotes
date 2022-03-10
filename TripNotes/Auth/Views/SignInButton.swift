@@ -9,9 +9,26 @@ import UIKit
 
 class SignInButton: UIButton {
     
-    init() {
+    // MARK: Properties
+    
+    var title: String
+    
+    // MARK: Life Time
+    
+    init(title: String) {
+        self.title = title
         super.init(frame: .zero)
-        setTitle("Sign in", for: .normal)
+        initialize()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: Private methods
+    
+    private func initialize() {
+        setTitle(title, for: .normal)
         titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .heavy)
         backgroundColor = .tripRed
         layer.cornerRadius = 12
@@ -19,9 +36,5 @@ class SignInButton: UIButton {
         layer.shadowOpacity = 0.4
         layer.shadowOffset = CGSize(width: 0, height: 3)
         translatesAutoresizingMaskIntoConstraints = false
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }

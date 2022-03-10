@@ -30,34 +30,15 @@ class TripsViewController: UIViewController {
         return tableView
     }()
     
-    private lazy var addTripButton: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = .tripRed
-        let image = UIImage(systemName: "plus")
-        button.setImage(image, for: .normal)
-        button.layer.cornerRadius = 25
-        button.layer.shadowColor = UIColor.darkGray.cgColor
-        button.layer.shadowRadius = 5
-        button.layer.shadowOffset = CGSize(width: 0, height: 5)
-        button.layer.shadowOpacity = 0.5
-        button.layer.shouldRasterize = true
+    private lazy var addTripButton: AddButton = {
+        let button = AddButton(imageName: "plus", title: nil, cornerRadius: 25)
         button.addTarget(self, action: #selector(addTrip), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
-    private lazy var addNoteButton: UIButton = {
-        let addNoteButton = UIButton()
-        addNoteButton.setTitle("Add Note", for: .normal)
-        addNoteButton.layer.cornerRadius = 8
-        addNoteButton.layer.shadowColor = UIColor.darkGray.cgColor
-        addNoteButton.layer.shadowRadius = 5
-        addNoteButton.layer.shadowOffset = CGSize(width: 0, height: 5)
-        addNoteButton.layer.shadowOpacity = 0.5
-        addNoteButton.layer.shouldRasterize = true
+    private lazy var addNoteButton: AddButton = {
+        let addNoteButton = AddButton(imageName: nil, title: "+ Add Note", cornerRadius: 8)
         addNoteButton.addTarget(self, action: #selector(addNote), for: .touchUpInside)
-        addNoteButton.translatesAutoresizingMaskIntoConstraints = false
-        addNoteButton.backgroundColor = .tripRed
         return addNoteButton
     }()
     
@@ -91,22 +72,13 @@ class TripsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Trips"
         
+        title = "Trips"
         setupNavigationBar()
         setupViewModelBindings()
-        
-        setupTableContraints()
-        setupAddButtonConstraints()
-        setupAddNoteButtonConstraints()
+        setupAllConstraints()
         tableView.delegate = self
         tableView.dataSource = self
-    }
-    
-    func setupViewModelBindings() {
-        viewModel.firstCompletion = { [weak self] in
-            self?.tableView.reloadData()
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -122,16 +94,11 @@ class TripsViewController: UIViewController {
         do {
             try Auth.auth().signOut()
             viewModel.setLoggedOutStatus()
-          //  UserDefaults.standard.set(false, forKey: "loggedIn")
             dismiss(animated: true)
         } catch {
             print("\(error.localizedDescription) - error")
         }
        // dismiss(animated: true)
-    }
-    
-    deinit {
-         print("deinit")
     }
     
     @objc func addTrip() {
@@ -146,7 +113,6 @@ class TripsViewController: UIViewController {
         newNoteViewModel?.printAA()
         newNoteVC.modalPresentationStyle = .fullScreen
         parent?.present(newNoteVC, animated: true)
-      //  present(newNoteVC, animated: true)
     }
     
     @objc func showWeather() {
@@ -159,6 +125,12 @@ class TripsViewController: UIViewController {
     }
     
     // MARK: Private methods
+    
+    private func setupViewModelBindings() {
+        viewModel.firstCompletion = { [weak self] in
+            self?.tableView.reloadData()
+        }
+    }
     
     private func setupNavigationBar() {
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -178,6 +150,9 @@ class TripsViewController: UIViewController {
     private func editAction(at indexPath: IndexPath) -> UIContextualAction {
         let editAction = UIContextualAction(style: .normal, title: "Edit Trip") { (action, view, complition) in
             //
+//            let tripId = self.viewModel.getTripId(for: indexPath)
+//            self.coordinator?.showNewTrip(tripId: tripId, isEdited: true)
+//
             let newTripViewModel = self.viewModel.newTripViewModelEdited(for: indexPath)
             let newTripVC = NewTripViewController(viewModel: newTripViewModel, isEdited: true)
             newTripVC.isEdited = true
@@ -206,6 +181,12 @@ class TripsViewController: UIViewController {
     
     // MARK: Layout
     
+    private func setupAllConstraints() {
+        setupTableContraints()
+        setupAddButtonConstraints()
+        setupAddNoteButtonConstraints()
+    }
+    
     private func setupTableContraints() {
         view.addSubview(tableView)
         NSLayoutConstraint.activate([
@@ -231,7 +212,7 @@ class TripsViewController: UIViewController {
         NSLayoutConstraint.activate([
             addNoteButton.centerXAnchor.constraint(equalTo: navigationController?.view.centerXAnchor ?? NSLayoutXAxisAnchor(), constant: 0),
             addNoteButton.bottomAnchor.constraint(equalTo: navigationController?.view.bottomAnchor ?? NSLayoutYAxisAnchor(), constant: -UIScreen.main.bounds.height / 7.5),
-            addNoteButton.widthAnchor.constraint(equalToConstant: 100),
+            addNoteButton.widthAnchor.constraint(equalToConstant: 120),
             addNoteButton.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
@@ -255,28 +236,24 @@ extension TripsViewController: UITableViewDataSource {
         let returnedView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 35))
         returnedView.backgroundColor = .clear
         
-        let kview = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width / 2 - 20, height: 25))
-        kview.layer.cornerRadius = 2
-        kview.layer.opacity = 0.6
-        kview.backgroundColor = .tripYellow
+        let yellowView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width / 2 - 20, height: 25))
+        yellowView.layer.cornerRadius = 2
+        yellowView.layer.opacity = 0.6
+        yellowView.backgroundColor = .tripYellow
         
-        let label = UILabel(frame: CGRect(x: 10, y: 0, width: view.frame.size.width, height: 25))
-        label.font = UIFont.boldSystemFont(ofSize: 22)
-        label.text = viewModel.titleForHeaderInSection(section: section)
-        label.textColor = .tripBlue
-        returnedView.addSubview(kview)
-        returnedView.addSubview(label)
+        let sectionNameLabel = UILabel(frame: CGRect(x: 10, y: 0, width: view.frame.size.width, height: 25))
+        sectionNameLabel.font = UIFont.boldSystemFont(ofSize: 22)
+        sectionNameLabel.text = viewModel.titleForHeaderInSection(section: section)
+        sectionNameLabel.textColor = .tripBlue
+        returnedView.addSubview(yellowView)
+        returnedView.addSubview(sectionNameLabel)
         return returnedView
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellIdentifiers.tripTableViewCellId.rawValue) as? TripTableViewCell
    
-        
-        
         cell?.viewModel = viewModel.tripCellViewModel(for: indexPath)
-        
-        
         return cell ?? UITableViewCell()
     }
 }
@@ -315,15 +292,12 @@ extension TripsViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let done = deleteAction(at: indexPath)
-        
-        // TODO - delete row
-        return UISwipeActionsConfiguration(actions: [done])
+        let delete = deleteAction(at: indexPath)
+        return UISwipeActionsConfiguration(actions: [delete])
     }
     
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let edit = editAction(at: indexPath)
-        
         return UISwipeActionsConfiguration(actions: [edit])
     }
 }

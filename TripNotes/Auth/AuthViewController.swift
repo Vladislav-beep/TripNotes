@@ -6,13 +6,13 @@
 //
 
 import UIKit
-import Firebase
 
 class AuthViewController: UIViewController {
     
     // MARK: Dependencies
     
     private var viewModel: AuthViewModelProtocol
+    lazy var animator = Animator(container: view)
     var coordinator: AppCoordinator?
     
     // MARK: UI
@@ -30,20 +30,13 @@ class AuthViewController: UIViewController {
         return lowerView
     }()
     
-    private lazy var welcomeLabel: UILabel = {
-        let welcomeLabel = UILabel()
-        welcomeLabel.numberOfLines = 2
-        welcomeLabel.text = "Welcome to \n TripNotes"
-        welcomeLabel.textAlignment = .center
-        welcomeLabel.textColor = .tripBlue
-        welcomeLabel.adjustsFontSizeToFitWidth = true
-        welcomeLabel.font = UIFont.systemFont(ofSize: 30, weight: .regular)
-        welcomeLabel.translatesAutoresizingMaskIntoConstraints = false
+    private lazy var welcomeLabel: WelcomeLabel = {
+        let welcomeLabel = WelcomeLabel()
         return welcomeLabel
     }()
     
     private lazy var loginTextField: AuthTextField = {
-        let loginTextField = AuthTextField(placeHolder: "Login")
+        let loginTextField = AuthTextField(placeHolder: "Email")
         return loginTextField
     }()
     
@@ -53,7 +46,7 @@ class AuthViewController: UIViewController {
     }()
     
     private let signInButton: SignInButton = {
-        let signInButton = SignInButton()
+        let signInButton = SignInButton(title: "Sign in")
         signInButton.addTarget(self, action: #selector(showTabbar), for: .touchUpInside)
         return signInButton
     }()
@@ -66,30 +59,27 @@ class AuthViewController: UIViewController {
         return textFieldStack
     }()
     
-    private lazy var createLabel: UILabel = {
-        let createLabel = UILabel()
-        createLabel.text = "I don't have an account"
-        createLabel.textAlignment = .center
-        createLabel.textColor = .tripBlue
-        createLabel.layer.opacity = 0.5
-        createLabel.translatesAutoresizingMaskIntoConstraints = false
+    private lazy var warningLabel: WarningLabel = {
+        let warningLabel = WarningLabel(fontSize: 20)
+        return warningLabel
+    }()
+    
+    private lazy var createLabel: CreateLabel = {
+        let createLabel = CreateLabel()
         return createLabel
     }()
     
-    private lazy var createButton: UIButton = {
-        let createButton = UIButton()
-        createButton.setTitle("Create new account", for: .normal)
-        createButton.setTitleColor(.tripBlue, for: .normal)
+    private lazy var createButton: CreateButton = {
+        let createButton = CreateButton()
         createButton.addTarget(self, action: #selector(createNewAccount), for: .touchUpInside)
-        createButton.translatesAutoresizingMaskIntoConstraints = false
         return createButton
     }()
     
     private lazy var createStack: UIStackView = {
         let createStack = UIStackView(arrangedSubviews: [createLabel, createButton],
-                                         axis: .vertical,
-                                         spacing: 8,
-                                         distribution: .fillEqually)
+                                      axis: .vertical,
+                                      spacing: 8,
+                                      distribution: .fillEqually)
         return createStack
     }()
     
@@ -98,15 +88,11 @@ class AuthViewController: UIViewController {
     init(viewModel: AuthViewModelProtocol) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
+        setupConstraints()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupConstraints()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -127,7 +113,6 @@ class AuthViewController: UIViewController {
     }
     
     @objc func showTabbar() {
-        
         guard let email = loginTextField.text,
               let password = passwordTextField.text,
               email != "",
@@ -135,17 +120,13 @@ class AuthViewController: UIViewController {
             return
         }
         
-        viewModel.signIn(withEmail: email, password: password) {
-            let tab = TabBarViewController()
-            tab.modalPresentationStyle = .fullScreen
-            self.present(tab, animated: true)
-            
-            self.viewModel.setLoggedInStatus()
+        viewModel.signIn(withEmail: email, password: password) { [weak self] in
+            self?.coordinator?.showTabBar()
+            self?.viewModel.setLoggedInStatus()
+        } errorComletion: {
+            let warningText = "Incorrect login or password"
+            self.animator.animateWarningLabel(warningLabel: self.warningLabel, withText: warningText)
         }
-    }
-        
-    deinit {
-        print("auth deinit")
     }
     
     // MARK: Layout
@@ -156,6 +137,7 @@ class AuthViewController: UIViewController {
         setupWelcomeLabelConstraints()
         setupTextFieldStackConstraints()
         setupSignInButtonConstraints()
+        setupWarningLabelConstraints()
         setupCreateButtonConstraints()
     }
     
@@ -206,6 +188,16 @@ class AuthViewController: UIViewController {
             signInButton.leadingAnchor.constraint(equalTo: lowerView.leadingAnchor, constant: 10),
             signInButton.trailingAnchor.constraint(equalTo: lowerView.trailingAnchor, constant: -10),
             signInButton.heightAnchor.constraint(equalToConstant: 60)
+        ])
+    }
+    
+    private func setupWarningLabelConstraints() {
+        lowerView.addSubview(warningLabel)
+        NSLayoutConstraint.activate([
+            warningLabel.topAnchor.constraint(equalTo: signInButton.bottomAnchor, constant: 40),
+            warningLabel.leadingAnchor.constraint(equalTo: lowerView.leadingAnchor, constant: 20),
+            warningLabel.trailingAnchor.constraint(equalTo: lowerView.trailingAnchor, constant: -20),
+            warningLabel.heightAnchor.constraint(equalToConstant: 40)
         ])
     }
     

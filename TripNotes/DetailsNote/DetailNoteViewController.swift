@@ -14,7 +14,7 @@ class DetailNoteViewController: UIViewController {
     var isFavourite = false
     
     lazy var contraint = heartImageView.heightAnchor.constraint(equalToConstant: 0)
-    lazy var animator = Animator(layoutConstraint: contraint, container: view)
+    lazy var animator = Animator(container: view)
         
     private lazy var yellowView: UIView = {
         let redView = UIView()
@@ -212,7 +212,7 @@ class DetailNoteViewController: UIViewController {
     
     @objc func toggleFavourite() {
         if likeButton.tintColor == .tripGrey {
-            animator.animate { [weak self] in
+            animator.animate(layoutConstraint: contraint) { [weak self] in
                 self?.likeButton.tintColor = .tripRed
             }
             isFavourite = true

@@ -8,15 +8,13 @@
 import UIKit
 
 class Animator {
-    let layoutConstraint: NSLayoutConstraint
     let container: UIView
     
-    init(layoutConstraint: NSLayoutConstraint, container: UIView) {
-        self.layoutConstraint = layoutConstraint
+    init(container: UIView) {
         self.container = container
     }
     
-    func animate(completion: @escaping () -> Void) {
+    func animate(layoutConstraint: NSLayoutConstraint, completion: @escaping () -> Void) {
         layoutConstraint.constant = 70
          
         UIView.animate(withDuration: 0.7,
@@ -30,7 +28,7 @@ class Animator {
                         
                        }) { [weak self] (_) in
             
-            self?.layoutConstraint.constant = 0
+            layoutConstraint.constant = 0
             
             UIView.animate(withDuration: 0.3, animations: {
                 self?.container.layoutIfNeeded()
@@ -38,5 +36,22 @@ class Animator {
                 completion()
             })
         }
+    }
+    
+    func animateWarningLabel(warningLabel: UILabel, withText text: String) {
+        UIView.transition(with: warningLabel,
+                          duration: 0.25,
+                          options: .transitionCrossDissolve,
+                          animations: {
+                            warningLabel.text = text
+                          }, completion: { _ in
+                            
+                            UIView.transition(with: warningLabel,
+                                              duration: 3.5,
+                                              options: .transitionCrossDissolve,
+                                              animations: {
+                                                warningLabel.text = ""
+                                              }, completion: nil)
+                          })
     }
 }

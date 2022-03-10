@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Firebase
 
 class NewAccountViewController: UIViewController {
     
@@ -30,16 +29,9 @@ class NewAccountViewController: UIViewController {
         return lowerView
     }()
     
-    private lazy var createNewAccountLabel: UILabel = {
-        let welcomeLabel = UILabel()
-        welcomeLabel.numberOfLines = 1
-        welcomeLabel.text = "Create new account"
-        welcomeLabel.textAlignment = .center
-        welcomeLabel.textColor = .tripBlue
-        welcomeLabel.adjustsFontSizeToFitWidth = true
-        welcomeLabel.font = UIFont.systemFont(ofSize: 30, weight: .regular)
-        welcomeLabel.translatesAutoresizingMaskIntoConstraints = false
-        return welcomeLabel
+    private lazy var createNewAccountLabel: CreateNewAccountLabel = {
+        let createNewAccountLabel = CreateNewAccountLabel()
+        return createNewAccountLabel
     }()
     
     private lazy var nameTextField: AuthTextField = {
@@ -48,7 +40,7 @@ class NewAccountViewController: UIViewController {
     }()
     
     private lazy var loginTextField: AuthTextField = {
-        let loginTextField = AuthTextField(placeHolder: "Login")
+        let loginTextField = AuthTextField(placeHolder: "Email")
         return loginTextField
     }()
     
@@ -58,7 +50,7 @@ class NewAccountViewController: UIViewController {
     }()
     
     private let signUpButton: SignInButton = {
-        let signInButton = SignInButton()
+        let signInButton = SignInButton(title: "Sign up")
         signInButton.addTarget(self, action: #selector(signUpTapped), for: .touchUpInside)
         return signInButton
     }()
@@ -127,10 +119,6 @@ class NewAccountViewController: UIViewController {
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
-    deinit {
-        print("1")
-    }
-    
     // MARK: Actions
     
     @objc func logInTapped() {
@@ -138,88 +126,100 @@ class NewAccountViewController: UIViewController {
     }
     
     @objc func signUpTapped() {
-        
         let email = loginTextField.text ?? ""
         let password = passwordTextField.text ?? ""
         let name = nameTextField.text ?? ""
         
-        viewModel.createNewUser(withEmail: email, password: password, name: name)
-
-                let tab = TabBarViewController()
-                tab.modalPresentationStyle = .fullScreen
-                self.present(tab, animated: true)
-                return
-            }
-
-
-// MARK: Layout
-
-private func setupConstraints() {
-    setupScrollViewConstraints()
-    setupLowerViewConstraints()
-    setupCreateNewAccountLabelConstraints()
-    setupTextFieldStackConstraints()
-    setupSignUpButtonConstraints()
-    setupLogInConstraints()
+        viewModel.createNewUser(withEmail: email, password: password, name: name) { [weak self] in
+            self?.coordinator?.showTabBar()
+        } errorCompletion: {
+            self.showAlert()
+        }
+        return
+    }
+    
+    // MARK: Layout
+    
+    private func setupConstraints() {
+        setupScrollViewConstraints()
+        setupLowerViewConstraints()
+        setupCreateNewAccountLabelConstraints()
+        setupTextFieldStackConstraints()
+        setupSignUpButtonConstraints()
+        setupLogInConstraints()
+    }
+    
+    private func setupScrollViewConstraints() {
+        view.addSubview(scrollView)
+        NSLayoutConstraint.activate([
+            scrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
+        ])
+    }
+    
+    private func setupLowerViewConstraints() {
+        scrollView.addSubview(lowerView)
+        NSLayoutConstraint.activate([
+            lowerView.centerYAnchor.constraint(equalTo: scrollView.centerYAnchor),
+            lowerView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
+            lowerView.heightAnchor.constraint(equalTo: view.heightAnchor),
+            lowerView.widthAnchor.constraint(equalTo: view.widthAnchor)
+        ])
+    }
+    
+    private func setupCreateNewAccountLabelConstraints() {
+        lowerView.addSubview(createNewAccountLabel)
+        NSLayoutConstraint.activate([
+            createNewAccountLabel.topAnchor.constraint(equalTo: lowerView.topAnchor, constant: 60),
+            createNewAccountLabel.leadingAnchor.constraint(equalTo: lowerView.leadingAnchor, constant: 20),
+            createNewAccountLabel.trailingAnchor.constraint(equalTo: lowerView.trailingAnchor, constant: -20),
+            createNewAccountLabel.heightAnchor.constraint(equalToConstant: 70)
+        ])
+    }
+    
+    private func setupTextFieldStackConstraints() {
+        lowerView.addSubview(textFieldStack)
+        NSLayoutConstraint.activate([
+            textFieldStack.topAnchor.constraint(equalTo: createNewAccountLabel.bottomAnchor, constant: 65),
+            textFieldStack.leadingAnchor.constraint(equalTo: lowerView.leadingAnchor, constant: 10),
+            textFieldStack.trailingAnchor.constraint(equalTo: lowerView.trailingAnchor, constant: -10),
+            textFieldStack.heightAnchor.constraint(equalToConstant: 218)
+        ])
+    }
+    
+    private func setupSignUpButtonConstraints() {
+        lowerView.addSubview(signUpButton)
+        NSLayoutConstraint.activate([
+            signUpButton.topAnchor.constraint(equalTo: textFieldStack.bottomAnchor, constant: 22),
+            signUpButton.leadingAnchor.constraint(equalTo: lowerView.leadingAnchor, constant: 10),
+            signUpButton.trailingAnchor.constraint(equalTo: lowerView.trailingAnchor, constant: -10),
+            signUpButton.heightAnchor.constraint(equalToConstant: 60)
+        ])
+    }
+    
+    private func setupLogInConstraints() {
+        lowerView.addSubview(logInStack)
+        NSLayoutConstraint.activate([
+            logInStack.bottomAnchor.constraint(equalTo: lowerView.bottomAnchor, constant: -100),
+            logInStack.centerXAnchor.constraint(equalTo: lowerView.centerXAnchor, constant: 0),
+            logInStack.heightAnchor.constraint(equalToConstant: 55),
+            logInStack.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width / 2)
+        ])
+    }
 }
 
-private func setupScrollViewConstraints() {
-    view.addSubview(scrollView)
-    NSLayoutConstraint.activate([
-        scrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
-        scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
-        scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
-        scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
-    ])
-}
-
-private func setupLowerViewConstraints() {
-    scrollView.addSubview(lowerView)
-    NSLayoutConstraint.activate([
-        lowerView.centerYAnchor.constraint(equalTo: scrollView.centerYAnchor),
-        lowerView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
-        lowerView.heightAnchor.constraint(equalTo: view.heightAnchor),
-        lowerView.widthAnchor.constraint(equalTo: view.widthAnchor)
-    ])
-}
-
-private func setupCreateNewAccountLabelConstraints() {
-    lowerView.addSubview(createNewAccountLabel)
-    NSLayoutConstraint.activate([
-        createNewAccountLabel.topAnchor.constraint(equalTo: lowerView.topAnchor, constant: 60),
-        createNewAccountLabel.leadingAnchor.constraint(equalTo: lowerView.leadingAnchor, constant: 20),
-        createNewAccountLabel.trailingAnchor.constraint(equalTo: lowerView.trailingAnchor, constant: -20),
-        createNewAccountLabel.heightAnchor.constraint(equalToConstant: 70)
-    ])
-}
-
-private func setupTextFieldStackConstraints() {
-    lowerView.addSubview(textFieldStack)
-    NSLayoutConstraint.activate([
-        textFieldStack.topAnchor.constraint(equalTo: createNewAccountLabel.bottomAnchor, constant: 65),
-        textFieldStack.leadingAnchor.constraint(equalTo: lowerView.leadingAnchor, constant: 10),
-        textFieldStack.trailingAnchor.constraint(equalTo: lowerView.trailingAnchor, constant: -10),
-        textFieldStack.heightAnchor.constraint(equalToConstant: 218)
-    ])
-}
-
-private func setupSignUpButtonConstraints() {
-    lowerView.addSubview(signUpButton)
-    NSLayoutConstraint.activate([
-        signUpButton.topAnchor.constraint(equalTo: textFieldStack.bottomAnchor, constant: 22),
-        signUpButton.leadingAnchor.constraint(equalTo: lowerView.leadingAnchor, constant: 10),
-        signUpButton.trailingAnchor.constraint(equalTo: lowerView.trailingAnchor, constant: -10),
-        signUpButton.heightAnchor.constraint(equalToConstant: 60)
-    ])
-}
-
-private func setupLogInConstraints() {
-    lowerView.addSubview(logInStack)
-    NSLayoutConstraint.activate([
-        logInStack.bottomAnchor.constraint(equalTo: lowerView.bottomAnchor, constant: -100),
-        logInStack.centerXAnchor.constraint(equalTo: lowerView.centerXAnchor, constant: 0),
-        logInStack.heightAnchor.constraint(equalToConstant: 55),
-        logInStack.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width / 2)
-    ])
-}
+extension NewAccountViewController {
+    
+    // MARK: Alert
+    
+    private func showAlert() {
+        let alert = UIAlertController(title: "Error",
+                                      message: "Check your internet connection",
+                                      preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(okAction)
+        present(alert, animated: true)
+    }
 }

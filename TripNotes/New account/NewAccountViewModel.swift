@@ -8,14 +8,18 @@
 import Foundation
 
 protocol NewAccountViewModelProtocol {
-    func createNewUser(withEmail email: String, password: String, name: String)
+    func createNewUser(withEmail email: String, password: String, name: String, completion: @escaping () -> (), errorCompletion: @escaping () -> ())
 }
 
 class NewAccountViewModel: NewAccountViewModelProtocol {
     
     let fire = AuthService()
     
-    func createNewUser(withEmail email: String, password: String, name: String) {
-        fire.createNewUser(withEmail: email, password: password, name: name)
+    func createNewUser(withEmail email: String,
+                       password: String,
+                       name: String,
+                       completion: @escaping () -> (),
+                       errorCompletion: @escaping () -> ()) {
+        fire.createNewUser(withEmail: email, password: password, name: name, completion: completion, errorCompletion: errorCompletion)
     }
 }

@@ -7,7 +7,7 @@
 
 import UIKit
 
- class TripTableViewCell: UITableViewCell {
+class TripTableViewCell: UITableViewCell {
     
     // MARK: Dependencies
     
@@ -34,21 +34,13 @@ import UIKit
         return tripImageView
     }()
     
-    private lazy var countryLabel: UILabel = {
-        let countryLabel = UILabel()
-        countryLabel.textColor = .tripWhite
-        countryLabel.numberOfLines = 1
-        countryLabel.font = UIFont.boldSystemFont(ofSize: 22)
-        countryLabel.translatesAutoresizingMaskIntoConstraints = false
+    private lazy var countryLabel: TripCellLabel = {
+        let countryLabel = TripCellLabel(lineNumber: 1, fontSize: 22)
         return countryLabel
     }()
     
-    private lazy var descriptionLabel: UILabel = {
-        let descriptionLabel = UILabel()
-        descriptionLabel.textColor = .tripWhite
-        descriptionLabel.numberOfLines = 2
-        descriptionLabel.font = UIFont.systemFont(ofSize: 15)
-        descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
+    private lazy var descriptionLabel: TripCellLabel = {
+        let descriptionLabel = TripCellLabel(lineNumber: 2, fontSize: 15)
         return descriptionLabel
     }()
     
@@ -59,24 +51,13 @@ import UIKit
         return view
     }()
     
-    private lazy var dateLabel: UILabel = {
-        let dateLabel = UILabel()
-        dateLabel.textColor = .tripWhite
-        dateLabel.numberOfLines = 1
-        dateLabel.font = UIFont.boldSystemFont(ofSize: 17)
-        dateLabel.translatesAutoresizingMaskIntoConstraints = false
+    private lazy var dateLabel: TripCellLabel = {
+        let dateLabel = TripCellLabel(lineNumber: 1, fontSize: 17)
         return dateLabel
     }()
     
-    private lazy var totalSumLabel: UILabel = {
-        let totalSumLabel = UILabel()
-        totalSumLabel.textColor = .tripBlue
-        totalSumLabel.numberOfLines = 1
-        totalSumLabel.font = UIFont.boldSystemFont(ofSize: 40)
-        totalSumLabel.textAlignment = .right
-        totalSumLabel.adjustsFontSizeToFitWidth = true
-        totalSumLabel.minimumScaleFactor = 0.2
-        totalSumLabel.translatesAutoresizingMaskIntoConstraints = false
+    private lazy var totalSumLabel: TotalSumLabel = {
+        let totalSumLabel = TotalSumLabel(fontSize: 40)
         return totalSumLabel
     }()
     
@@ -102,34 +83,22 @@ import UIKit
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setupTripImageConstraints()
-        setupTextViewConstraints()
-        setupTotalSumLabelConstraints()
-        descriptionLabelConstraints()
-        setupInfoStackViewConstraints()
-        
-//        setupViewModelBindings()
-//        viewModel?.downloadNotes()
+        setupAllConstraints()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-//    func setViewModel(viewmodel: TripTableViewCellViewModelProtocol?) {
-//        self.viewModel = viewmodel
-//    }
-    
-//    private func setupViewModelBindings() {
-//        viewModel?.notesCompletion = { [weak self] in
-//            self?.totalSumLabel.text = self?.viewModel?.getTotalSum()
-//            self?.countryLabel.text = self?.viewModel?.country
-//            self?.descriptionLabel.text = self?.viewModel?.description
-//            self?.dateLabel.text = self?.viewModel?.date
-//        }
-//    }
-    
     // MARK: Layout
+    
+    private func setupAllConstraints() {
+        setupTripImageConstraints()
+        setupTextViewConstraints()
+        setupTotalSumLabelConstraints()
+        descriptionLabelConstraints()
+        setupInfoStackViewConstraints()
+    }
     
     private func setupTripImageConstraints() {
         contentView.addSubview(tripImageView)
@@ -179,7 +148,7 @@ import UIKit
             infoStackView.leadingAnchor.constraint(equalTo: textView.leadingAnchor, constant: 28),
             infoStackView.trailingAnchor.constraint(equalTo: textView.trailingAnchor, constant: 0),
             infoStackView.bottomAnchor.constraint(equalTo: textView.bottomAnchor, constant: 0),
-        
+            
         ])
     }
 }

@@ -21,8 +21,9 @@ class AppCoordinator: Coordinator {
     }
     
     func start() {
-        
+        //
         if UserDefaults.standard.bool(forKey: "loggedIn") {
+            //
             showTabBar()
         } else {
             showLogin()
@@ -61,6 +62,13 @@ class AppCoordinator: Coordinator {
         let favVc = FavouritesViewController(notesViewModel: favVM)
         favVc.coordinator = self
         navigationController.pushViewController(favVc, animated: true)
+    }
+    
+    func showNewTrip(tripId: String, isEdited: Bool) {
+        let newTripViewModel = NewTripViewModel(tripId: tripId)
+        let newTripVC = NewTripViewController(viewModel: newTripViewModel, isEdited: isEdited)
+        newTripVC.coordinator = self
+        navigationController.pushViewController(newTripVC, animated: true)
     }
     
 }

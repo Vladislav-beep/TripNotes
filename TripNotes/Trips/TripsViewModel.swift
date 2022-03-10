@@ -21,6 +21,7 @@ protocol TripsViewModelProtocol: class {
     func deleteRow(at indexPath: IndexPath)
     func setLoggedOutStatus()
     var firstCompletion: (() -> Void)? { get set }
+    func getTripId(for indexPath: IndexPath?) -> String
     
 }
 

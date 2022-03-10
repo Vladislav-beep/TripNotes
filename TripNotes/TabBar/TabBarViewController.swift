@@ -15,6 +15,8 @@ class TabBarViewController: UITabBarController {
     var coordinator: AppCoordinator?
     
     var user: User!
+    
+    var userId: String?
 
     // MARK: Overriden
     
@@ -43,23 +45,42 @@ class TabBarViewController: UITabBarController {
             
     override func viewDidLoad() {
         super.viewDidLoad()
-               
+        
         tabBar.unselectedItemTintColor = .tripBlue
         tabBar.tintColor = .tripRed
-
+        
         let firstViewController = UINavigationController(rootViewController: TripsViewController(viewModel: TripsViewModel(userId: "NUXiX5zSMiwYxmtCBpzO")))
         let secondViewController = UINavigationController(rootViewController: FavouritesViewController(notesViewModel: FavouritesViewModel()))
 
         firstViewController.tabBarItem.title = "Trips"
         firstViewController.tabBarItem.image = UIImage(systemName: "arrow.triangle.swap")
-
+        
         secondViewController.tabBarItem.title = "Favourites"
         secondViewController.tabBarItem.image = UIImage(systemName: "heart.fill")
-
+        
         viewControllers = [firstViewController, secondViewController]
         let auth = AuthService()
-        print("\(auth.getUserId())- useID")
+        
+        
+        
+        auth.completion = { [weak self] id in
+            self?.userId = id
+            print("\(self?.userId) - from tabbar")
+        }
+        
+        auth.getUserId()
+//        auth.getUserId { (result: Result<String, Error>) in
+//            switch result {
+//            case .success(let id):
+//                self.userId = id
+//                print("\(self.userId) - from tabbar")
+//            case .failure(let error):
+//                print(error.localizedDescription)
+//            }
+//        }
+        print("\(userId) - from tabbarAAAAA")
     }
+
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

@@ -23,12 +23,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //        window.makeKeyAndVisible()
      
         
-    
-   
-        
-       
-        
-        
         let nav = UINavigationController()
         coordinatior = AppCoordinator(navigationController: nav)
 

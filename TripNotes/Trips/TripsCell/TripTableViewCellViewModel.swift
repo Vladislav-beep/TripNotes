@@ -11,10 +11,10 @@ protocol TripTableViewCellViewModelProtocol {
     var country: String { get }
     var description: String { get }
     var date: String { get }
-    func getTotalSum() -> String
-   // func downloadNotes()
     var notesCompletion: (() -> Void)? { get set }
     init(trip: Trip)
+    func getTotalSum() -> String
+   // func downloadNotes()
 }
 
 

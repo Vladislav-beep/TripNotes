@@ -13,8 +13,11 @@ class NewTripViewController: UIViewController {
     // MARK: Dependencies
     
     var viewModel: NewTripViewModelProtocol?
+    var coordinator: AppCoordinator?
     
     var isEdited: Bool?
+    
+    lazy var animator = Animator(container: view)
     
     // MARK: UI
     
@@ -231,7 +234,6 @@ class NewTripViewController: UIViewController {
     }
     
     @objc func addTrip() {
-        
         guard let country = countryTextField.text,
               country != "",
               let description = descriptionTextField.text,
@@ -241,21 +243,8 @@ class NewTripViewController: UIViewController {
               let finishingDateText = finishDateTextField.text,
               finishingDateText != ""
         else {
-            
-            UIView.transition(with: warningLabel,
-                              duration: 0.25,
-                              options: .transitionCrossDissolve,
-                              animations: { [weak self] in
-                                self?.warningLabel.text = "None of fields can be empty"
-                              }, completion: {_ in
-                                
-                                UIView.transition(with: self.warningLabel,
-                                                  duration: 3.5,
-                                                  options: .transitionCrossDissolve,
-                                                  animations: { [weak self] in
-                                                    self?.warningLabel.text = ""
-                                                  }, completion: nil)
-                              })
+            let warningText = "None of fields can be empty"
+            animator.animateWarningLabel(warningLabel: warningLabel, withText: warningText)
             return
         }
         
@@ -263,25 +252,12 @@ class NewTripViewController: UIViewController {
         for button in buttonArray {
             if button.backgroundColor == UIColor.tripRed {
                 currency = button.titleLabel?.text ?? "$"
-                
             }
         }
         
         guard currency != "" else {
-            UIView.transition(with: warningLabel,
-                              duration: 0.25,
-                              options: .transitionCrossDissolve,
-                              animations: { [weak self] in
-                                self?.warningLabel.text = "Choose currency"
-                              }, completion: {_ in
-                                
-                                UIView.transition(with: self.warningLabel,
-                                                  duration: 3.5,
-                                                  options: .transitionCrossDissolve,
-                                                  animations: { [weak self] in
-                                                    self?.warningLabel.text = ""
-                                                  }, completion: nil)
-                              })
+            let currencyWarningText = "Choose currency"
+            animator.animateWarningLabel(warningLabel: warningLabel, withText: currencyWarningText)
             return
         }
         
@@ -294,9 +270,8 @@ class NewTripViewController: UIViewController {
         if isEdited ?? false {
             viewModel?.updateTrip(country: country, currency: currency, description: description, beginningDate: bdate ?? Date(), finishingDate: fdate ?? Date())
         } else {
-        viewModel?.addTrip(country: country, currency: currency, description: description, beginningDate: bdate ?? Date(), finishingDate: fdate ?? Date())
+            viewModel?.addTrip(country: country, currency: currency, description: description, beginningDate: bdate ?? Date(), finishingDate: fdate ?? Date())
         }
-        
         dismiss(animated: true)
     }
     
