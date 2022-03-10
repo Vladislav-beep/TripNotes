@@ -30,8 +30,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         
         let nav = UINavigationController()
-        let key = KeyboardService()
-        coordinatior = AppCoordinator(navigationController: nav, keyboardService: key)
+        coordinatior = AppCoordinator(navigationController: nav)
 
         window.rootViewController = nav
 

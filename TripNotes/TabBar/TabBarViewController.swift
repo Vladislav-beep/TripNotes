@@ -18,14 +18,14 @@ class TabBarViewController: UITabBarController {
 
     // MARK: Overriden
     
-    override var selectedIndex: Int { // Mark 1
+    override var selectedIndex: Int {
         didSet {
             guard let selectedViewController = viewControllers?[selectedIndex] else { return }
             selectedViewController.tabBarItem.setTitleTextAttributes([.font: UIFont.boldSystemFont(ofSize: 14)], for: .normal)
         }
     }
     
-    override var selectedViewController: UIViewController? { // Mark 2
+    override var selectedViewController: UIViewController? {
         didSet {
             guard let viewControllers = viewControllers else { return }
             
@@ -57,6 +57,8 @@ class TabBarViewController: UITabBarController {
         secondViewController.tabBarItem.image = UIImage(systemName: "heart.fill")
 
         viewControllers = [firstViewController, secondViewController]
+        let auth = AuthService()
+        print("\(auth.getUserId())- useID")
     }
     
     override func viewWillAppear(_ animated: Bool) {

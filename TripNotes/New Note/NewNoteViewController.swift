@@ -275,8 +275,9 @@ class NewNoteViewController: UIViewController {
     
     private lazy var countLabel: UILabel = {
         let countLabel = UILabel()
-        countLabel.text = "0/600"
+        countLabel.text = "0/360"
         countLabel.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
+        countLabel.textColor = .tripBlue
         countLabel.translatesAutoresizingMaskIntoConstraints = false
         return countLabel
     }()
@@ -578,8 +579,11 @@ class NewNoteViewController: UIViewController {
 
 extension NewNoteViewController: UITextViewDelegate {
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        countLabel.text = "\(textView.text.count)/360"
         return textView.text.count + (text.count - range.length) <= 360
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        countLabel.text = "\(textView.text.count)/360"
     }
 }
 

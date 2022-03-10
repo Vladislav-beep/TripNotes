@@ -19,6 +19,7 @@ protocol TripsViewModelProtocol: class {
     func newTripViewModel() -> NewTripViewModelProtocol 
     func newNoteViewModel(at indexPath: IndexPath) -> NewNoteViewModelProtocol
     func deleteRow(at indexPath: IndexPath)
+    func setLoggedOutStatus()
     var firstCompletion: (() -> Void)? { get set }
     
 }
@@ -26,6 +27,7 @@ protocol TripsViewModelProtocol: class {
 class TripsViewModel: TripsViewModelProtocol {
     
     let fire = FireBaseService()
+    let userDefaults = UserDefaltsService()
     
     // MARK: Properties
     
@@ -41,6 +43,10 @@ class TripsViewModel: TripsViewModelProtocol {
     }
     
     // MARK: Methods
+    
+    func setLoggedOutStatus() {
+        userDefaults.setLoggedOutStatus()
+    }
     
     func getTrips() {
         fire.listenToTrips(forUser: userId, completion: { (result: Result<[Trip], Error>) in

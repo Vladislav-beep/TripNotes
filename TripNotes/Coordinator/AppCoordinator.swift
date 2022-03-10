@@ -15,16 +15,18 @@ protocol Coordinator {
 class AppCoordinator: Coordinator {
     var navigationController: UINavigationController
     
-    var keyboardService: KeyboardService
     
-    init(navigationController: UINavigationController,
-         keyboardService: KeyboardService) {
+    init(navigationController: UINavigationController) {
         self.navigationController = navigationController
-        self.keyboardService = keyboardService
     }
     
     func start() {
-        showTabBar()
+        
+        if UserDefaults.standard.bool(forKey: "loggedIn") {
+            showTabBar()
+        } else {
+            showLogin()
+        }
     }
     
     func showLogin() {

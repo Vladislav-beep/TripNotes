@@ -139,6 +139,8 @@ class AuthViewController: UIViewController {
             let tab = TabBarViewController()
             tab.modalPresentationStyle = .fullScreen
             self.present(tab, animated: true)
+            
+            self.viewModel.setLoggedInStatus()
         }
     }
         

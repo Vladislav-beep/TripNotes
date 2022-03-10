@@ -121,10 +121,13 @@ class TripsViewController: UIViewController {
     @objc func signOutTapped() {
         do {
             try Auth.auth().signOut()
+            viewModel.setLoggedOutStatus()
+          //  UserDefaults.standard.set(false, forKey: "loggedIn")
+            dismiss(animated: true)
         } catch {
             print("\(error.localizedDescription) - error")
         }
-        dismiss(animated: true)
+       // dismiss(animated: true)
     }
     
     deinit {

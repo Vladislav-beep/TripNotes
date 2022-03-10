@@ -14,8 +14,6 @@ protocol FireBaseServiceProtocol {
 
 class FireBaseService {
     
-    
-  //  var tripsArray = [Trip]()
     private lazy var db = Firestore.firestore()
     
     func listenToTrips(forUser id: String, completion: @escaping (Result <[Trip], Error>) -> Void) {

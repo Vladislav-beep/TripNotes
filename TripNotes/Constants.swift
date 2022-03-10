@@ -32,4 +32,8 @@ struct Constants {
         case tripTableViewCellId = "tripTableViewCell"
         case noteCollectionViewCellId = "noteCollectionViewCell"
     }
+    
+    enum UserDefaults: String {
+        case loggedIn = "loggedIn"
+    }
 }

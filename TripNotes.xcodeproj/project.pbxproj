@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B90251AB27DA01A200788065 /* UserDefaltsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90251AA27DA01A200788065 /* UserDefaltsService.swift */; };
 		B905759B279458BB001EA8D1 /* SectionLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B905759A279458BB001EA8D1 /* SectionLabel.swift */; };
 		B90632EC27AFB86000F0C2A5 /* KeyboardService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90632EB27AFB86000F0C2A5 /* KeyboardService.swift */; };
 		B90632EF27AFBB4900F0C2A5 /* KeyboardService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90632EB27AFB86000F0C2A5 /* KeyboardService.swift */; };
@@ -135,6 +136,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B90251AA27DA01A200788065 /* UserDefaltsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaltsService.swift; sourceTree = "<group>"; };
 		B905759A279458BB001EA8D1 /* SectionLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionLabel.swift; sourceTree = "<group>"; };
 		B90632EB27AFB86000F0C2A5 /* KeyboardService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardService.swift; sourceTree = "<group>"; };
 		B90632F827AFE47E00F0C2A5 /* DetailNoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailNoteViewController.swift; sourceTree = "<group>"; };
@@ -263,6 +265,7 @@
 				B94439D727B84E09000DF640 /* Animator.swift */,
 				B9863ABA27C1371F00BE6337 /* FireBaseService.swift */,
 				B9863ABE27C1374100BE6337 /* AuthService.swift */,
+				B90251AA27DA01A200788065 /* UserDefaltsService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -653,6 +656,7 @@
 				B9FB61182772336700126A59 /* NewTripViewController.swift in Sources */,
 				B91E81532767A9AC00D0748B /* TabBarViewController.swift in Sources */,
 				B9DE0D412768FD6400805E4C /* TripModel.swift in Sources */,
+				B90251AB27DA01A200788065 /* UserDefaltsService.swift in Sources */,
 				B9698F2D279C5691005FB438 /* mapViewModel.swift in Sources */,
 				B9DCF13E276BBE29007B0320 /* Extension + UIBarButtonItem.swift in Sources */,
 				B90DB426276F134B00F1A544 /* NoteModel.swift in Sources */,
