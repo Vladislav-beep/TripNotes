@@ -52,6 +52,7 @@
 		B91E81532767A9AC00D0748B /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91E81522767A9AC00D0748B /* TabBarViewController.swift */; };
 		B91E81562767AA4F00D0748B /* FavouritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91E81552767AA4F00D0748B /* FavouritesViewController.swift */; };
 		B938B1F127DB463D00E205C6 /* AdressButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B938B1F027DB463D00E205C6 /* AdressButton.swift */; };
+		B938B1F527DB50B400E205C6 /* FileStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B938B1F427DB50B400E205C6 /* FileStorageService.swift */; };
 		B93DD4B3279F186C00D91A08 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93DD4B2279F186C00D91A08 /* AuthViewController.swift */; };
 		B93DD4B7279F19F400D91A08 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93DD4B6279F19F400D91A08 /* AuthViewModel.swift */; };
 		B93DD4BA279F1BCA00D91A08 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93DD4B2279F186C00D91A08 /* AuthViewController.swift */; };
@@ -186,6 +187,7 @@
 		B91E81522767A9AC00D0748B /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		B91E81552767AA4F00D0748B /* FavouritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewController.swift; sourceTree = "<group>"; };
 		B938B1F027DB463D00E205C6 /* AdressButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdressButton.swift; sourceTree = "<group>"; };
+		B938B1F427DB50B400E205C6 /* FileStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileStorageService.swift; sourceTree = "<group>"; };
 		B93DD4B2279F186C00D91A08 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		B93DD4B6279F19F400D91A08 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		B93DD4C1279F23DA00D91A08 /* AuthTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTextField.swift; sourceTree = "<group>"; };
@@ -291,6 +293,7 @@
 				B9863ABA27C1371F00BE6337 /* FireBaseService.swift */,
 				B9863ABE27C1374100BE6337 /* AuthService.swift */,
 				B90251AA27DA01A200788065 /* UserDefaltsService.swift */,
+				B938B1F427DB50B400E205C6 /* FileStorageService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -678,6 +681,7 @@
 				B90632F927AFE47E00F0C2A5 /* DetailNoteViewController.swift in Sources */,
 				B90251AF27DA1EB700788065 /* WelcomeLabel.swift in Sources */,
 				B91E81412767A88E00D0748B /* TripsViewController.swift in Sources */,
+				B938B1F527DB50B400E205C6 /* FileStorageService.swift in Sources */,
 				B9F39E082767D47A00DAFB4C /* Extension + UIColor.swift in Sources */,
 				B9A0EF6B2774DDCE00DE65E2 /* SelectionButton.swift in Sources */,
 				B9F296C527895C7F00844D6C /* NoteCellVewModel.swift in Sources */,

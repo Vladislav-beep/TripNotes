@@ -14,11 +14,14 @@ protocol TripTableViewCellViewModelProtocol {
     var notesCompletion: (() -> Void)? { get set }
     init(trip: Trip)
     func getTotalSum() -> String
+    func getId() -> String 
    // func downloadNotes()
 }
 
 
 class TripTableViewCellViewModel: TripTableViewCellViewModelProtocol {
+    
+    let file = FileStorageService()
 
     // MARK: Properties
     
@@ -70,6 +73,9 @@ class TripTableViewCellViewModel: TripTableViewCellViewModelProtocol {
 //        })
 //    }
     
+    func getId() -> String {
+        trip.id
+    }
     
     func getTotalSum() -> String {
         let totalSum: Double = 0.0

@@ -138,8 +138,6 @@ class NewTripViewController: UIViewController {
         return addNewTripButton
     }()
     
-    
-    
     private lazy var warningLabel: WarningLabel = {
         let warningLabel = WarningLabel(fontSize: 16)
         return warningLabel
@@ -217,13 +215,17 @@ class NewTripViewController: UIViewController {
         
         let bdate = dateformatter.date(from: beginningDateText)
         let fdate = dateformatter.date(from: finishingDateText)
-        
-        if isEdited ?? false {
-            viewModel?.updateTrip(country: country, currency: currency, description: description, beginningDate: bdate ?? Date(), finishingDate: fdate ?? Date())
+
+        if self.isEdited ?? false {
+            self.viewModel?.updateTrip(country: country, currency: currency, description: description, beginningDate: bdate ?? Date(), finishingDate: fdate ?? Date())
         } else {
-            viewModel?.addTrip(country: country, currency: currency, description: description, beginningDate: bdate ?? Date(), finishingDate: fdate ?? Date())
+            self.viewModel?.addTrip(country: country, currency: currency, description: description, beginningDate: bdate ?? Date(), finishingDate: fdate ?? Date(), completion: { docId in
+                
+                let imageData = self.avatarImageView.image?.pngData()
+                self.viewModel?.saveImage(data: imageData ?? Data(), key: docId)
+                self.dismiss(animated: true)
+            })
         }
-        dismiss(animated: true)
     }
     
     @objc func tapDone() {

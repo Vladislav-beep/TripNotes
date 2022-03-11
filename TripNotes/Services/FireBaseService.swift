@@ -46,7 +46,7 @@ class FireBaseService {
         
     }
     
-    func addTrip(country: String, currency: String, description: String, beginningDate: Date, finishingDate: Date) {
+    func addTrip(country: String, currency: String, description: String, beginningDate: Date, finishingDate: Date, completion: @escaping (String) -> Void) {
         
         let newTripRef = db.collection("users").document("NUXiX5zSMiwYxmtCBpzO").collection("trips").document()
         newTripRef.setData([
@@ -60,6 +60,7 @@ class FireBaseService {
             if let err = err {
                 print("Error adding document: \(err)")
             } else {
+                completion(newTripRef.documentID)
                 print("Document added with ID: \(newTripRef.documentID)")
             }
         }

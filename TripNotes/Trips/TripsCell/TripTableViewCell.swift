@@ -17,8 +17,22 @@ class TripTableViewCell: UITableViewCell {
             descriptionLabel.text = viewModel?.description
             dateLabel.text = viewModel?.date
             totalSumLabel.text = viewModel?.getTotalSum()
+            
+            let file = FileStorageService()
+            
+
+                let imageData = file.retrieveImage(forKey: self.viewModel?.getId() ?? "")
+                if imageData == nil {
+     
+                        self.tripImageView.image = UIImage(named: Constants.ImageNames.tripPlaceHolderImage.rawValue)
+                    
+                } else {
+       
+                        self.tripImageView.image = UIImage(data: imageData ?? Data())
+                    
+                }
+            }
         }
-    }
     
     // MARK: UI
     
@@ -28,7 +42,7 @@ class TripTableViewCell: UITableViewCell {
         tripImageView.clipsToBounds = true
         tripImageView.contentMode = .scaleAspectFill
         tripImageView.image = UIImage(named: Constants.ImageNames.tripPlaceHolderImage.rawValue)
-        tripImageView.layer.opacity = 0.65
+        tripImageView.layer.opacity = 0.75
         tripImageView.backgroundColor = .tripRed
         tripImageView.translatesAutoresizingMaskIntoConstraints = false
         return tripImageView
@@ -94,7 +108,7 @@ class TripTableViewCell: UITableViewCell {
     
     private func setupAllConstraints() {
         setupTripImageConstraints()
-        setupTextViewConstraints()
+      //  setupTextViewConstraints()
         setupTotalSumLabelConstraints()
         descriptionLabelConstraints()
         setupInfoStackViewConstraints()
@@ -130,25 +144,24 @@ class TripTableViewCell: UITableViewCell {
         ])
     }
     
-    private func setupTextViewConstraints() {
-        contentView.addSubview(textView)
-        NSLayoutConstraint.activate([
-            textView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
-            textView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: -10),
-            textView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -30),
-            textView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -44),
-        ])
-    }
+ //   private func setupTextViewConstraints() {
+       // contentView.addSubview(textView)
+//        NSLayoutConstraint.activate([
+//            textView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+//            textView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: -10),
+//            textView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -30),
+//            textView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -44),
+//        ])
+ //   }
     
     private func setupInfoStackViewConstraints() {
         descriptionLabelConstraints()
         contentView.addSubview(infoStackView)
         NSLayoutConstraint.activate([
-            infoStackView.topAnchor.constraint(equalTo: textView.topAnchor, constant: 0),
-            infoStackView.leadingAnchor.constraint(equalTo: textView.leadingAnchor, constant: 28),
-            infoStackView.trailingAnchor.constraint(equalTo: textView.trailingAnchor, constant: 0),
-            infoStackView.bottomAnchor.constraint(equalTo: textView.bottomAnchor, constant: 0),
-            
+            infoStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            infoStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 18),
+            infoStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -30),
+            infoStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -44),
         ])
     }
 }

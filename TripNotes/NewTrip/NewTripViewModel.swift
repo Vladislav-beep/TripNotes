@@ -16,7 +16,8 @@ protocol NewTripViewModelProtocol {
     var currency: String { get }
     var tripCompletion: (() -> Void)? { get set }
     init(tripId: String)
-    func addTrip(country: String, currency: String, description: String, beginningDate: Date, finishingDate: Date)
+    func saveImage(data: Data, key: String)
+    func addTrip(country: String, currency: String, description: String, beginningDate: Date, finishingDate: Date, completion: @escaping (String) -> Void)
     func updateTrip(country: String, currency: String, description: String, beginningDate: Date, finishingDate: Date)
     func downloadTrip()
 }
@@ -24,6 +25,7 @@ protocol NewTripViewModelProtocol {
 class NewTripViewModel: NewTripViewModelProtocol {
     
     let fire = FireBaseService()
+    let store = FileStorageService()
     
     // MARK: Private proaperties
     
@@ -69,8 +71,12 @@ class NewTripViewModel: NewTripViewModelProtocol {
     
     // MARK: Methods
     
-    func addTrip(country: String, currency: String, description: String, beginningDate: Date, finishingDate: Date) {
-        fire.addTrip(country: country, currency: currency, description: description, beginningDate: beginningDate, finishingDate: finishingDate)
+    func saveImage(data: Data, key: String) {
+        store.store(image: data, forKey: key)
+    }
+    
+    func addTrip(country: String, currency: String, description: String, beginningDate: Date, finishingDate: Date, completion: @escaping (String) -> Void) {
+        fire.addTrip(country: country, currency: currency, description: description, beginningDate: beginningDate, finishingDate: finishingDate, completion: completion)
     }
     
     func downloadTrip() {
