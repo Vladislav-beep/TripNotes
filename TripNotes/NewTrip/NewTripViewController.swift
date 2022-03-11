@@ -183,14 +183,10 @@ class NewTripViewController: UIViewController {
     // MARK: Actions
     
     @objc func addTrip() {
-        guard let country = countryTextField.text,
-              country != "",
-              let description = descriptionTextField.text,
-              description != "",
-              let beginningDateText = beginDateTextField.text,
-              beginningDateText != "",
-              let finishingDateText = finishDateTextField.text,
-              finishingDateText != ""
+        guard let country = countryTextField.text, country != "",
+              let description = descriptionTextField.text, description != "",
+              let beginningDateText = beginDateTextField.text, beginningDateText != "",
+              let finishingDateText = finishDateTextField.text, finishingDateText != ""
         else {
             let warningText = "None of fields can be empty"
             animator.animateWarningLabel(warningLabel: warningLabel, withText: warningText)
@@ -217,13 +213,12 @@ class NewTripViewController: UIViewController {
         let fdate = dateformatter.date(from: finishingDateText)
 
         if self.isEdited ?? false {
-            self.viewModel?.updateTrip(country: country, currency: currency, description: description, beginningDate: bdate ?? Date(), finishingDate: fdate ?? Date())
+            self.viewModel?.updateTrip(country: country, currency: currency, description: description, beginningDate: bdate ?? Date(), finishingDate: fdate ?? Date(), completion: { docId in
+                self.updateImageAndCloseScreen(forKey: docId)
+            })
         } else {
             self.viewModel?.addTrip(country: country, currency: currency, description: description, beginningDate: bdate ?? Date(), finishingDate: fdate ?? Date(), completion: { docId in
-                
-                let imageData = self.avatarImageView.image?.pngData()
-                self.viewModel?.saveImage(data: imageData ?? Data(), key: docId)
-                self.dismiss(animated: true)
+                self.updateImageAndCloseScreen(forKey: docId)
             })
         }
     }
@@ -329,6 +324,8 @@ class NewTripViewController: UIViewController {
             addNewTripButton.setTitle(" Edit Trip", for: .normal)
             addNewTripButton.setImage(UIImage(systemName: "square.and.pencil"), for: .normal)
             redView.backgroundColor = .tripBlue
+            let imageData = viewModel?.retrieveImage()
+            avatarImageView.image = UIImage(data: imageData ?? Data())
             viewModel?.downloadTrip()
         }
     }
@@ -355,6 +352,12 @@ class NewTripViewController: UIViewController {
                 break
             }
         }
+    }
+    
+    private func updateImageAndCloseScreen(forKey key: String) {
+        let imageData = self.avatarImageView.image?.pngData()
+        self.viewModel?.saveImage(data: imageData ?? Data(), key: key)
+        self.dismiss(animated: true)
     }
     
     // MARK: Layout

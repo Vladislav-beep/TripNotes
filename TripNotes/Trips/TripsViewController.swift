@@ -58,12 +58,16 @@ class TripsViewController: UIViewController {
         return button
     }()
     
+    private lazy var noLabel: NoLabel = {
+        let noLabel = NoLabel(title: "No Trips yet")
+        return noLabel
+    }()
+    
     // MARK: Life Time
     
     init(viewModel: TripsViewModelProtocol) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
-         
     }
     
     required init?(coder: NSCoder) {
@@ -72,7 +76,6 @@ class TripsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         title = "Trips"
         setupNavigationBar()
         setupViewModelBindings()
@@ -128,6 +131,15 @@ class TripsViewController: UIViewController {
     private func setupViewModelBindings() {
         viewModel.firstCompletion = { [weak self] in
             self?.tableView.reloadData()
+            self?.setupUI()
+        }
+    }
+    
+    private func setupUI() {
+        if viewModel.numberOfRows(section: 0) == 0 && viewModel.numberOfRows(section: 1) == 0 {
+            noLabel.isHidden = false
+        } else {
+            noLabel.isHidden = true
         }
     }
     
@@ -183,6 +195,7 @@ class TripsViewController: UIViewController {
         setupTableContraints()
         setupAddButtonConstraints()
         setupAddNoteButtonConstraints()
+        setupNoLabelConstraints()
     }
     
     private func setupTableContraints() {
@@ -212,6 +225,16 @@ class TripsViewController: UIViewController {
             addNoteButton.bottomAnchor.constraint(equalTo: navigationController?.view.bottomAnchor ?? NSLayoutYAxisAnchor(), constant: -UIScreen.main.bounds.height / 7.5),
             addNoteButton.widthAnchor.constraint(equalToConstant: 120),
             addNoteButton.heightAnchor.constraint(equalToConstant: 50)
+        ])
+    }
+    
+    private func setupNoLabelConstraints() {
+        view.addSubview(noLabel)
+        NSLayoutConstraint.activate([
+            noLabel.centerXAnchor.constraint(equalTo: tableView.centerXAnchor, constant: 0),
+            noLabel.centerYAnchor.constraint(equalTo: tableView.centerYAnchor, constant: 0),
+            noLabel.heightAnchor.constraint(equalToConstant: 60),
+            noLabel.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width / 1.2)
         ])
     }
 }

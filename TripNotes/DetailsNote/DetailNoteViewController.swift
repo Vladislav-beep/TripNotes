@@ -160,6 +160,7 @@ class DetailNoteViewController: UIViewController {
     
     @objc func deleteNote() {
         viewModel.deleteNote()
+        postNotification()
         dismiss(animated: true)
     }
     
@@ -185,6 +186,7 @@ class DetailNoteViewController: UIViewController {
             isFavourite = false
             viewModel.toggleFavourite(isFavourite: isFavourite)
         }
+        postNotification()
     }
     
     // MARK: Private methods
@@ -202,6 +204,10 @@ class DetailNoteViewController: UIViewController {
         if viewModel.isFavourite {
             likeButton.tintColor = .tripRed
         }
+    }
+    
+    private func postNotification() {
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "newDataNotif"), object: nil)
     }
     
     private func setImage(for category: String) -> UIImage {

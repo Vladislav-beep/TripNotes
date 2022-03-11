@@ -87,7 +87,7 @@ class FireBaseService {
         }
     }
     
-    func updateTrip(tripId: String, country: String, currency: String, description: String, beginningDate: Date, finishingDate: Date) {
+    func updateTrip(tripId: String, country: String, currency: String, description: String, beginningDate: Date, finishingDate: Date, completion: @escaping (String) -> Void) {
         let tripRef = db.collection("users").document("NUXiX5zSMiwYxmtCBpzO").collection("trips").document(tripId)
         tripRef.updateData([
             "country": country,
@@ -99,14 +99,12 @@ class FireBaseService {
             if let err = err {
                 print("Error updating document: \(err)")
             } else {
+                completion(tripRef.documentID)
                 print("Document successfully updated")
             }
         }
     }
         
-    
-    
-    
     func listenToNotes(forTrip tripId: String, completion: @escaping (Result <[TripNote], Error>) -> Void) {
         db.collection("users").document("NUXiX5zSMiwYxmtCBpzO").collection("trips").document(tripId).collection("tripNotes").getDocuments { (querySnapshot, err) in
             if let err = err {

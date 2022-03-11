@@ -53,6 +53,7 @@
 		B91E81562767AA4F00D0748B /* FavouritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91E81552767AA4F00D0748B /* FavouritesViewController.swift */; };
 		B938B1F127DB463D00E205C6 /* AdressButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B938B1F027DB463D00E205C6 /* AdressButton.swift */; };
 		B938B1F527DB50B400E205C6 /* FileStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B938B1F427DB50B400E205C6 /* FileStorageService.swift */; };
+		B938B1F927DB91C500E205C6 /* NoLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B938B1F827DB91C400E205C6 /* NoLabel.swift */; };
 		B93DD4B3279F186C00D91A08 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93DD4B2279F186C00D91A08 /* AuthViewController.swift */; };
 		B93DD4B7279F19F400D91A08 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93DD4B6279F19F400D91A08 /* AuthViewModel.swift */; };
 		B93DD4BA279F1BCA00D91A08 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93DD4B2279F186C00D91A08 /* AuthViewController.swift */; };
@@ -188,6 +189,7 @@
 		B91E81552767AA4F00D0748B /* FavouritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewController.swift; sourceTree = "<group>"; };
 		B938B1F027DB463D00E205C6 /* AdressButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdressButton.swift; sourceTree = "<group>"; };
 		B938B1F427DB50B400E205C6 /* FileStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileStorageService.swift; sourceTree = "<group>"; };
+		B938B1F827DB91C400E205C6 /* NoLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoLabel.swift; sourceTree = "<group>"; };
 		B93DD4B2279F186C00D91A08 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		B93DD4B6279F19F400D91A08 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		B93DD4C1279F23DA00D91A08 /* AuthTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTextField.swift; sourceTree = "<group>"; };
@@ -416,6 +418,7 @@
 				B90251D727DB3AE500788065 /* LikeButton.swift */,
 				B90251DD27DB3D7C00788065 /* BackButton.swift */,
 				B938B1F027DB463D00E205C6 /* AdressButton.swift */,
+				B938B1F827DB91C400E205C6 /* NoLabel.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -657,6 +660,7 @@
 				B90B9A0C276D015A008DD627 /* TripTableViewCellViewModel.swift in Sources */,
 				B98282DE27A07CB2006EFED8 /* NewAccountViewModel.swift in Sources */,
 				B949FB0D27AEE4C700590F0E /* NoteLabel.swift in Sources */,
+				B938B1F927DB91C500E205C6 /* NoLabel.swift in Sources */,
 				B94439D827B84E09000DF640 /* Animator.swift in Sources */,
 				B90DB444276F326000F1A544 /* Extension + Numeric.swift in Sources */,
 				B949FB1927AEF0AE00590F0E /* AppCoordinator.swift in Sources */,

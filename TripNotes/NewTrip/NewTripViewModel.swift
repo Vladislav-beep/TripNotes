@@ -17,8 +17,9 @@ protocol NewTripViewModelProtocol {
     var tripCompletion: (() -> Void)? { get set }
     init(tripId: String)
     func saveImage(data: Data, key: String)
+    func retrieveImage() -> Data
     func addTrip(country: String, currency: String, description: String, beginningDate: Date, finishingDate: Date, completion: @escaping (String) -> Void)
-    func updateTrip(country: String, currency: String, description: String, beginningDate: Date, finishingDate: Date)
+    func updateTrip(country: String, currency: String, description: String, beginningDate: Date, finishingDate: Date, completion: @escaping (String) -> Void)
     func downloadTrip()
 }
 
@@ -75,6 +76,10 @@ class NewTripViewModel: NewTripViewModelProtocol {
         store.store(image: data, forKey: key)
     }
     
+    func retrieveImage() -> Data {
+        store.retrieveImage(forKey: tripId) ?? Data()
+    }
+    
     func addTrip(country: String, currency: String, description: String, beginningDate: Date, finishingDate: Date, completion: @escaping (String) -> Void) {
         fire.addTrip(country: country, currency: currency, description: description, beginningDate: beginningDate, finishingDate: finishingDate, completion: completion)
     }
@@ -92,8 +97,8 @@ class NewTripViewModel: NewTripViewModelProtocol {
         }
     }
     
-    func updateTrip(country: String, currency: String, description: String, beginningDate: Date, finishingDate: Date) {
-        fire.updateTrip(tripId: tripId, country: country, currency: currency, description: description, beginningDate: beginningDate, finishingDate: finishingDate)
+    func updateTrip(country: String, currency: String, description: String, beginningDate: Date, finishingDate: Date, completion: @escaping (String) -> Void) {
+        fire.updateTrip(tripId: tripId, country: country, currency: currency, description: description, beginningDate: beginningDate, finishingDate: finishingDate, completion: completion)
     }
 }
 

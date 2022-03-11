@@ -7,7 +7,7 @@
 
 import UIKit
 
-class NotesViewController: UIViewController, UICollectionViewDelegate {
+class NotesViewController: UIViewController {
     
     // MARK: Dependencies
     
@@ -22,12 +22,18 @@ class NotesViewController: UIViewController, UICollectionViewDelegate {
         return collectionView
     }()
     
+    private lazy var noLabel: NoLabel = {
+        let noLabel = NoLabel(title: "No Notes yet")
+        return noLabel
+    }()
+    
     // MARK: Life Time
     
     init(notesViewModel: NotesViewModelProtocol) {
         self.viewModel = notesViewModel
         super.init(nibName: nil, bundle: nil)
         setupCollectionViewConstraints()
+        setupNoLabelConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -39,6 +45,13 @@ class NotesViewController: UIViewController, UICollectionViewDelegate {
         collectionView.dataSource = self
         collectionView.delegate = self
         setupViewModelBundings()
+        NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: NSNotification.Name(rawValue: "newDataNotif"), object: nil)
+    }
+    
+    @objc func refresh() {
+        viewModel.getNotes()
+        collectionView.reloadData()
+        print("refresh table")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -47,10 +60,19 @@ class NotesViewController: UIViewController, UICollectionViewDelegate {
     }
     
     // MARK: Private methods
-    
+
     private func setupViewModelBundings() {
         viewModel.noteCompletion = { [weak self] in
             self?.collectionView.reloadData()
+            self?.setupUI()
+        }
+    }
+    
+    private func setupUI() {
+        if viewModel.numberOfCells() == 0 {
+            noLabel.isHidden = false
+        } else {
+            noLabel.isHidden = true
         }
     }
     
@@ -65,6 +87,19 @@ class NotesViewController: UIViewController, UICollectionViewDelegate {
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
         ])
     }
+    
+    private func setupNoLabelConstraints() {
+        view.addSubview(noLabel)
+        NSLayoutConstraint.activate([
+            noLabel.centerXAnchor.constraint(equalTo: collectionView.centerXAnchor, constant: 0),
+            noLabel.centerYAnchor.constraint(equalTo: collectionView.centerYAnchor, constant: 0),
+            noLabel.heightAnchor.constraint(equalToConstant: 60),
+            noLabel.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width / 1.2)
+        ])
+    }
+}
+    
+extension NotesViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let noteVM = viewModel.viewModelForSelectedRow(at: indexPath)
