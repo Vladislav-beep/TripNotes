@@ -13,17 +13,16 @@ protocol Coordinator {
 }
 
 class AppCoordinator: Coordinator {
-    var navigationController: UINavigationController
     
+    var navigationController: UINavigationController
+    let userDefaults = UserDefaltsService()
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
     
     func start() {
-        //
-        if UserDefaults.standard.bool(forKey: "loggedIn") {
-            //
+        if userDefaults.getLoggedStatus() {
             showTabBar()
         } else {
             showLogin()

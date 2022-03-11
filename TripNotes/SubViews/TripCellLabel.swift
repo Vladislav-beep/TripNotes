@@ -9,10 +9,10 @@ import UIKit
 
 class TripCellLabel: UILabel {
     
-    // MARK: Properties
+    // MARK: Private properties
     
-    let lineNumber: Int
-    let fontSize: CGFloat
+    private let lineNumber: Int
+    private let fontSize: CGFloat
     
     // MARK: Life time
     

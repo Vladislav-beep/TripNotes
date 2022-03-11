@@ -8,27 +8,28 @@
 import Foundation
 
 protocol NewNoteViewModelProtocol {
-    func printAA()
-    func addNote(category: String, city: String, price: Double, isFavourite: Bool, description: String)
-    func updateNote(city: String, category: String, description: String, price: Double)
-    func downloadNote()
-    var noteCompletion: (() -> Void)? { get set }
     var category: String { get }
     var city: String { get }
     var price: String { get }
     var description: String { get }
+    var noteCompletion: (() -> Void)? { get set }
     init(tripId: String, noteId: String)
+    func addNote(category: String, city: String, price: Double, isFavourite: Bool, description: String)
+    func updateNote(city: String, category: String, description: String, price: Double)
+    func downloadNote()
 }
 
 class NewNoteViewModel: NewNoteViewModelProtocol {
-    
-    
-    
+
     let fire = FireBaseService()
     
-    //var trip: Trip
+    // MARK: Private properties
+    
+    private var note: TripNote?
+    
+    // MARK: Properties
+    
     var tripId: String
-    var note: TripNote?
     var noteId: String
     var noteCompletion: (() -> Void)?
     
@@ -48,14 +49,14 @@ class NewNoteViewModel: NewNoteViewModelProtocol {
         note?.description ?? ""
     }
     
+    // MARK: Life Time
+    
     required init(tripId: String, noteId: String) {
         self.tripId = tripId
         self.noteId = noteId
     }
     
-    func printAA() {
-        //print("\(trip.id) - BBBBBBBB")
-    }
+    // MARK: Methods
     
     func addNote(category: String, city: String, price: Double, isFavourite: Bool, description: String) {
         fire.addNote(tripId: tripId, category: category, city: city, price: price, isFavourite: isFavourite, description: description)

@@ -15,11 +15,11 @@ protocol NoteCellViewModelProtocol {
     var date: String { get }
     var price: String { get }
     var isFavourite: Bool { get }
+    init(tripNote: TripNote, currency: String, tripId: String)
     func deleteNote()
     func toggleFavourite(isFavourite: Bool)
     func getTripId() -> String
-    func getNoteId() -> String 
-    init(tripNote: TripNote, currency: String, tripId: String)
+    func getNoteId() -> String
 }
 
 class NoteCellViewModel: NoteCellViewModelProtocol {
@@ -75,6 +75,8 @@ class NoteCellViewModel: NoteCellViewModelProtocol {
         self.currency = currency
         self.tripId = tripId
     }
+    
+    // MARK: Methods
     
     func toggleFavourite(isFavourite: Bool) {
         fire.toggleFavourite(tripId: tripId, noteId: tripNote.id, isFavourite: isFavourite)

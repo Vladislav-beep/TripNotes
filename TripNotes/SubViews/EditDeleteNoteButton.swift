@@ -1,26 +1,26 @@
 //
-//  AddButton.swift
+//  EditDeleteNoteButton.swift
 //  TripNotes
 //
-//  Created by Владислав Сизонов on 10.03.2022.
+//  Created by Владислав Сизонов on 11.03.2022.
 //
 
 import UIKit
 
-class AddButton: UIButton {
+class EditDeleteNoteButton: UIButton {
     
-    // MARK: Properties
+    // MARK: Private Properties
     
-    var imageName: String?
-    var title: String?
-    var cornerRadius: CGFloat
+    private let title: String
+    private let imageName: String
+    private let backgroud: UIColor
     
-    // MARK: Life time
+    // MARK: Life Time
     
-    init(imageName: String?, title: String?, cornerRadius: CGFloat) {
-        self.imageName = imageName
+    init(title: String, imageName: String, backgroud: UIColor) {
         self.title = title
-        self.cornerRadius = cornerRadius
+        self.imageName = imageName
+        self.backgroud = backgroud
         super.init(frame: .zero)
         initialize()
     }
@@ -33,15 +33,15 @@ class AddButton: UIButton {
     
     private func initialize() {
         setTitle(title, for: .normal)
-        setImage(UIImage(systemName: imageName ?? ""), for: .normal)
+        setImage(UIImage(systemName: imageName), for: .normal)
         tintColor = .tripWhite
-        layer.cornerRadius = cornerRadius
-        backgroundColor = .tripRed
+        backgroundColor = backgroud
+        layer.cornerRadius = 4
         layer.shadowColor = UIColor.darkGray.cgColor
         layer.shadowRadius = 5
         layer.shadowOffset = CGSize(width: 0, height: 5)
         layer.shadowOpacity = 0.5
-        layer.shouldRasterize = true
         translatesAutoresizingMaskIntoConstraints = false
     }
+    
 }

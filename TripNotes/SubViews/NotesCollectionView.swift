@@ -9,6 +9,8 @@ import UIKit
 
 class NotesCollectionView: UICollectionView {
     
+    // MARK: Life Time
+    
     init() {
         super.init(frame: .zero, collectionViewLayout: UICollectionViewLayout())
         backgroundColor = .white
@@ -23,6 +25,7 @@ class NotesCollectionView: UICollectionView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: Private methods
     
     private func createLayout() -> UICollectionViewLayout {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),

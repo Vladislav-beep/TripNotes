@@ -11,7 +11,8 @@ class NewNoteViewController: UIViewController {
     
     // MARK: Dependencies
     
-    var viewModel: NewNoteViewModelProtocol?
+    private var viewModel: NewNoteViewModelProtocol?
+    private lazy var animator = Animator(container: view)
     
     // MARK: Properties
     
@@ -32,52 +33,45 @@ class NewNoteViewController: UIViewController {
         return lowerView
     }()
     
-    private lazy var backButton: UIButton = {
-        let button = UIButton()
-        button.setBackgroundImage(UIImage(systemName: "xmark.circle.fill"), for: .normal)
-        button.tintColor = .tripBlue
+    private lazy var closeButton: CloseButton = {
+        let button = CloseButton()
         button.addTarget(self, action: #selector(backButtonPressed), for: .touchUpInside)
-        button.layer.shadowColor = UIColor.darkGray.cgColor
-        button.layer.shadowRadius = 5
-        button.layer.shadowOffset = CGSize(width: 0, height: 5)
-        button.layer.shadowOpacity = 0.5
-        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
     private lazy var categoryLabel: UILabel = {
-        let label = SectionLabel(labelText: "Category")
-        return label
+        let categoryLabel = SectionLabel(labelText: "Category")
+        return categoryLabel
     }()
     
     private lazy var transportLabel: UILabel = {
-        let lb = SelectionLabel(labelText: "Transport")
-        return lb
+        let transportLabel = SelectionLabel(labelText: "Transport")
+        return transportLabel
     }()
     
     private lazy var hotelLabel: UILabel = {
-        let lb = SelectionLabel(labelText: "Hotels")
-        return lb
+        let hotelLabel = SelectionLabel(labelText: "Hotels")
+        return hotelLabel
     }()
     
     private lazy var foodLabel: UILabel = {
-        let lb = SelectionLabel(labelText: "Restaurants")
-        return lb
+        let foodLabel = SelectionLabel(labelText: "Restaurants")
+        return foodLabel
     }()
     
     private lazy var activityLabel: UILabel = {
-        let lb = SelectionLabel(labelText: "Activities")
-        return lb
+        let activityLabel = SelectionLabel(labelText: "Activities")
+        return activityLabel
     }()
     
     private lazy var perhaseLabel: UILabel = {
-        let lb = SelectionLabel(labelText: "Perhases")
-        return lb
+        let perhaseLabel = SelectionLabel(labelText: "Perhases")
+        return perhaseLabel
     }()
     
     private lazy var otherLabel: SelectionLabel = {
-        let lb = SelectionLabel(labelText: "Other")
-        return lb
+        let otherLabel = SelectionLabel(labelText: "Other")
+        return otherLabel
     }()
     
     private lazy var transportButton: SelectionButton = {
@@ -229,47 +223,21 @@ class NewNoteViewController: UIViewController {
         return stack
     }()
     
-    private lazy var adressButton: UIButton = {
-        let button = UIButton()
-        button.setTitle(" Adress", for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .heavy)
-        button.tintColor = .tripBlue
-        button.setTitleColor(.tripBlue, for: .normal)
-        button.backgroundColor = .tripGrey
-        button.setImage(UIImage(systemName: "magnifyingglass"), for: .normal)
-        button.layer.cornerRadius = 6
-        button.layer.shadowColor = UIColor.darkGray.cgColor
-        button.layer.shadowRadius = 4
-        button.layer.shadowOpacity = 0.4
-        button.layer.shadowOffset = CGSize(width: 0, height: 5)
-        button.addTarget(self, action: #selector(getAdress), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
+    private lazy var adressButton: AdressButton = {
+        let adressButton = AdressButton()
+        adressButton.addTarget(self, action: #selector(getAdress), for: .touchUpInside)
+        return adressButton
     }()
     
-    private lazy var addNewNoteButton: UIButton = {
-        let addNoteTripButton = UIButton()
-        addNoteTripButton.backgroundColor = .tripRed
-        addNoteTripButton.layer.cornerRadius = 10
-        addNoteTripButton.setTitle("+ Add Note", for: .normal)
-        addNoteTripButton.titleLabel?.font = .systemFont(ofSize: 20, weight: .regular)
-        addNoteTripButton.layer.shadowColor = UIColor.darkGray.cgColor
-        addNoteTripButton.layer.shadowRadius = 4
-        addNoteTripButton.layer.shadowOpacity = 0.4
-        addNoteTripButton.layer.shadowOffset = CGSize(width: 0, height: 5)
+    private lazy var addNewNoteButton: AddButton = {
+        let addNoteTripButton = AddButton(imageName: nil, title: "+ Add Note", cornerRadius: 10)
         addNoteTripButton.addTarget(self, action: #selector(addNote), for: .touchUpInside)
-        addNoteTripButton.translatesAutoresizingMaskIntoConstraints = false
         return addNoteTripButton
     }()
     
-    private lazy var warningLabel: UILabel = {
-        let warningLabel = UILabel()
-        warningLabel.text = ""
-        warningLabel.font = UIFont.systemFont(ofSize: 16, weight: .heavy)
+    private lazy var warningLabel: WarningLabel = {
+        let warningLabel = WarningLabel(fontSize: 16)
         warningLabel.adjustsFontSizeToFitWidth = true
-        warningLabel.textColor = .tripRed
-        warningLabel.textAlignment = .center
-        warningLabel.translatesAutoresizingMaskIntoConstraints = false
         return warningLabel
     }()
     
@@ -288,7 +256,6 @@ class NewNoteViewController: UIViewController {
         self.isEdited = isEdited
         super.init(nibName: nil, bundle: nil)
         self.viewModel = viewModel
-        
         setupConstraints()
     }
     
@@ -298,19 +265,8 @@ class NewNoteViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
-        descriptionTextView.delegate = self
-        
+        setupUI()
         setupViewModelBindings()
-        
-        if isEdited {
-            addNewNoteButton.backgroundColor = .tripBlue
-            addNewNoteButton.setTitle("Edit Note", for: .normal)
-            cityLabel.textColor = .tripBlue
-            priceLabel.textColor = .tripBlue
-            descriptionLabel.textColor = .tripBlue
-            viewModel?.downloadNote()
-        }
     }
     
     // MARK: Actions
@@ -320,16 +276,18 @@ class NewNoteViewController: UIViewController {
             self?.cityTextField.text = self?.viewModel?.city
             self?.priceTextField.text = self?.viewModel?.price
             self?.descriptionTextView.text = self?.viewModel?.description
-
+            let countCharacters = self?.descriptionTextView.text.count ?? 0
+            self?.countLabel.text = "\(countCharacters)/360"
+            
             let category = self?.viewModel?.category
             switch category {
-            case Category.tranport.rawValue:
+            case Category.transport.rawValue:
                 self?.transportButton.pulsate()
                 self?.transportButton.backgroundColor = .tripRed
             case Category.hotels.rawValue:
                 self?.hotelsButton.pulsate()
                 self?.hotelsButton.backgroundColor = .tripRed
-            case Category.foodAndRestaurants.rawValue:
+            case Category.food.rawValue:
                 self?.foodButton.pulsate()
                 self?.foodButton.backgroundColor = .tripRed
             case Category.activity.rawValue:
@@ -348,7 +306,6 @@ class NewNoteViewController: UIViewController {
     }
     
     @objc func addNote() {
-        
         guard let city = cityTextField.text,
               city != "",
               let description = descriptionTextView.text,
@@ -356,21 +313,8 @@ class NewNoteViewController: UIViewController {
               let price = priceTextField.text,
               let priceDouble = Double(price)
         else {
-            
-            UIView.transition(with: warningLabel,
-                              duration: 0.25,
-                              options: .transitionCrossDissolve,
-                              animations: { [weak self] in
-                                self?.warningLabel.text = "Fill all of fields or write correct price"
-                              }, completion: {_ in
-                                
-                                UIView.transition(with: self.warningLabel,
-                                                  duration: 3.5,
-                                                  options: .transitionCrossDissolve,
-                                                  animations: { [weak self] in
-                                                    self?.warningLabel.text = ""
-                                                  }, completion: nil)
-                              })
+            let warningText = "Fill all of fields or write correct price"
+            animator.animateWarningLabel(warningLabel: warningLabel, withText: warningText)
             return
         }
         
@@ -397,29 +341,15 @@ class NewNoteViewController: UIViewController {
         }
         
         guard category != "" else {
-            UIView.transition(with: warningLabel,
-                              duration: 0.25,
-                              options: .transitionCrossDissolve,
-                              animations: { [weak self] in
-                                self?.warningLabel.text = "Choose category"
-                              }, completion: {_ in
-                                
-                                UIView.transition(with: self.warningLabel,
-                                                  duration: 3.5,
-                                                  options: .transitionCrossDissolve,
-                                                  animations: { [weak self] in
-                                                    self?.warningLabel.text = ""
-                                                  }, completion: nil)
-                              })
+            let categoryWarningText = "Choose category"
+            animator.animateWarningLabel(warningLabel: warningLabel, withText: categoryWarningText)
             return
-            
-            
         }
         
         if isEdited {
             viewModel?.updateNote(city: city, category: category, description: description, price: priceDouble)
         } else {
-        viewModel?.addNote(category: category, city: city, price: priceDouble, isFavourite: false, description: description)
+            viewModel?.addNote(category: category, city: city, price: priceDouble, isFavourite: false, description: description)
         }
         dismiss(animated: true)
     }
@@ -440,6 +370,23 @@ class NewNoteViewController: UIViewController {
     @objc func getAdress() {
         let mapVC = MapViewController()
         present(mapVC, animated: true)
+    }
+    
+    // MARK: Private methods
+    
+    private func setupUI() {
+        view.backgroundColor = .white
+        descriptionTextView.delegate = self
+        
+        if isEdited {
+            addNewNoteButton.backgroundColor = .tripBlue
+            addNewNoteButton.setTitle(" Edit Note", for: .normal)
+            addNewNoteButton.setImage(UIImage(systemName: "square.and.pencil"), for: .normal)
+            cityLabel.textColor = .tripBlue
+            priceLabel.textColor = .tripBlue
+            descriptionLabel.textColor = .tripBlue
+            viewModel?.downloadNote()
+        }
     }
     
     // MARK: Layout
@@ -479,19 +426,19 @@ class NewNoteViewController: UIViewController {
     }
     
     private func setupBackButtonConstraints() {
-        lowerView.addSubview(backButton)
+        lowerView.addSubview(closeButton)
         NSLayoutConstraint.activate([
-            backButton.topAnchor.constraint(equalTo: lowerView.topAnchor, constant: 40),
-            backButton.leadingAnchor.constraint(equalTo: lowerView.leadingAnchor, constant: 10),
-            backButton.heightAnchor.constraint(equalToConstant: 35),
-            backButton.widthAnchor.constraint(equalTo: backButton.heightAnchor)
+            closeButton.topAnchor.constraint(equalTo: lowerView.topAnchor, constant: 40),
+            closeButton.leadingAnchor.constraint(equalTo: lowerView.leadingAnchor, constant: 10),
+            closeButton.heightAnchor.constraint(equalToConstant: 35),
+            closeButton.widthAnchor.constraint(equalTo: closeButton.heightAnchor)
         ])
     }
     
     private func setupCategoryLabelConstraints() {
         lowerView.addSubview(categoryLabel)
         NSLayoutConstraint.activate([
-            categoryLabel.topAnchor.constraint(equalTo: backButton.bottomAnchor, constant: 10),
+            categoryLabel.topAnchor.constraint(equalTo: closeButton.bottomAnchor, constant: 10),
             categoryLabel.leadingAnchor.constraint(equalTo: lowerView.leadingAnchor, constant: 10),
             categoryLabel.trailingAnchor.constraint(equalTo: lowerView.trailingAnchor, constant: -10),
             categoryLabel.heightAnchor.constraint(equalToConstant: 25)

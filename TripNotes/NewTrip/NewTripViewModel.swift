@@ -8,26 +8,30 @@
 import Foundation
 
 protocol NewTripViewModelProtocol {
-    func addTrip(country: String, currency: String, description: String, beginningDate: Date, finishingDate: Date)
-    func updateTrip(country: String, currency: String, description: String, beginningDate: Date, finishingDate: Date)
-    func downloadTrip()
     var tripId: String { get }
-    var trip: Trip? { get }
-    var tripCompletion: (() -> Void)? { get set }
     var country: String { get }
     var beginningDate: String { get }
     var finishingDate: String { get }
     var description: String { get }
     var currency: String { get }
+    var tripCompletion: (() -> Void)? { get set }
     init(tripId: String)
+    func addTrip(country: String, currency: String, description: String, beginningDate: Date, finishingDate: Date)
+    func updateTrip(country: String, currency: String, description: String, beginningDate: Date, finishingDate: Date)
+    func downloadTrip()
 }
 
 class NewTripViewModel: NewTripViewModelProtocol {
-      
+    
     let fire = FireBaseService()
     
+    // MARK: Private proaperties
+    
+    private var trip: Trip?
+    
+    // MARK: Properties
+    
     var tripId: String
-    var trip: Trip?
     
     var country: String {
         trip?.country ?? ""
@@ -56,11 +60,14 @@ class NewTripViewModel: NewTripViewModelProtocol {
     }
     
     var tripCompletion: (() -> Void)?
-  
+    
+    // MARK: Life Time
     
     required init(tripId: String) {
         self.tripId = tripId
     }
+    
+    // MARK: Methods
     
     func addTrip(country: String, currency: String, description: String, beginningDate: Date, finishingDate: Date) {
         fire.addTrip(country: country, currency: currency, description: description, beginningDate: beginningDate, finishingDate: finishingDate)
@@ -72,7 +79,6 @@ class NewTripViewModel: NewTripViewModelProtocol {
             case .success(let tripp):
                 self.trip = tripp
                 self.tripCompletion?()
-                print("AAAAAAAAAAAAA")
             case .failure(let error):
                 print("\(error.localizedDescription) - JJJJJJJJJJJ")
                 return

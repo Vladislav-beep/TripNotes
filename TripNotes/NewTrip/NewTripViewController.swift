@@ -12,12 +12,13 @@ class NewTripViewController: UIViewController {
     
     // MARK: Dependencies
     
-    var viewModel: NewTripViewModelProtocol?
+    private var viewModel: NewTripViewModelProtocol?
     var coordinator: AppCoordinator?
+    lazy var animator = Animator(container: view)
+    
+    // MARK: Properties
     
     var isEdited: Bool?
-    
-    lazy var animator = Animator(container: view)
     
     // MARK: UI
     
@@ -56,13 +57,9 @@ class NewTripViewController: UIViewController {
         return redView
     }()
     
-    private lazy var backButton: UIButton = {
-        let backButton = UIButton()
-        let image = UIImage(systemName: "chevron.compact.left")
-        backButton.tintColor = .tripWhite
-        backButton.setBackgroundImage(image, for: .normal)
+    private lazy var backButton: BackButton = {
+        let backButton = BackButton()
         backButton.addTarget(self, action: #selector(backButtonPressed), for: .touchUpInside)
-        backButton.translatesAutoresizingMaskIntoConstraints = false
         return backButton
     }()
     
@@ -134,28 +131,17 @@ class NewTripViewController: UIViewController {
         return buttonStack
     }()
     
-    private lazy var addNewTripButton: UIButton = {
-        let addNewTripButton = UIButton()
-        addNewTripButton.backgroundColor = .tripRed
-        addNewTripButton.layer.cornerRadius = 10
-        addNewTripButton.setTitle("+ Add Trip", for: .normal)
+    private lazy var addNewTripButton: AddButton = {
+        let addNewTripButton = AddButton(imageName: nil, title: "+ Add Trip", cornerRadius: 10)
         addNewTripButton.titleLabel?.font = .systemFont(ofSize: 20, weight: .regular)
-        addNewTripButton.layer.shadowColor = UIColor.darkGray.cgColor
-        addNewTripButton.layer.shadowRadius = 4
-        addNewTripButton.layer.shadowOpacity = 0.4
-        addNewTripButton.layer.shadowOffset = CGSize(width: 0, height: 5)
         addNewTripButton.addTarget(self, action: #selector(addTrip), for: .touchUpInside)
-        addNewTripButton.translatesAutoresizingMaskIntoConstraints = false
         return addNewTripButton
     }()
     
-    private lazy var warningLabel: UILabel = {
-        let warningLabel = UILabel()
-        warningLabel.text = ""
-        warningLabel.font = UIFont.systemFont(ofSize: 16, weight: .heavy)
-        warningLabel.textColor = .tripRed
-        warningLabel.textAlignment = .center
-        warningLabel.translatesAutoresizingMaskIntoConstraints = false
+    
+    
+    private lazy var warningLabel: WarningLabel = {
+        let warningLabel = WarningLabel(fontSize: 16)
         return warningLabel
     }()
     
@@ -186,52 +172,17 @@ class NewTripViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        countryTextField.delegate = self
-        beginDateTextField.delegate = self
-        finishDateTextField.delegate = self
-        descriptionTextField.delegate = self
-        
-        view.addGestureRecognizer(endEditingGestureRecognizer)
-   
+        setupDelegates()
         setupViewModelBindings()
-        
-        if isEdited ?? false {
-            addNewTripButton.backgroundColor = .tripBlue
-            addNewTripButton.setTitle(" Edit Trip", for: .normal)
-            addNewTripButton.tintColor = .tripWhite
-            addNewTripButton.setImage(UIImage(systemName: "square.and.pencil"), for: .normal)
-            redView.backgroundColor = .tripBlue
-            viewModel?.downloadTrip()
-        }
+        setupUI()
+        view.addGestureRecognizer(endEditingGestureRecognizer)
     }
     
     deinit {
         removeKeyboardNotification()
     }
     
-    func setupViewModelBindings() {
-        viewModel?.tripCompletion = { [weak self] in
-            self?.countryTextField.text = self?.viewModel?.country
-            self?.beginDateTextField.text = self?.viewModel?.beginningDate
-            self?.finishDateTextField.text = self?.viewModel?.finishingDate
-            self?.descriptionTextField.text = self?.viewModel?.description
-            
-            let currency = self?.viewModel?.currency
-            switch currency {
-            case "$":
-                self?.dollarButton.pulsate()
-                self?.dollarButton.backgroundColor = .tripRed
-            case "€":
-                self?.euroButton.pulsate()
-                self?.euroButton.backgroundColor = .tripRed
-            case "₽":
-                self?.rubleButton.pulsate()
-                self?.rubleButton.backgroundColor = .tripRed
-            default:
-                break
-            }
-        }
-    }
+    // MARK: Actions
     
     @objc func addTrip() {
         guard let country = countryTextField.text,
@@ -274,8 +225,6 @@ class NewTripViewController: UIViewController {
         }
         dismiss(animated: true)
     }
-    
-    // MARK: Actions
     
     @objc func tapDone() {
         if let inputView = beginDateTextField.inputView {
@@ -361,6 +310,49 @@ class NewTripViewController: UIViewController {
         actionSheet.addAction(cancel)
         
         present(actionSheet, animated: true)
+    }
+    
+    // MARK: Private methods
+    
+    private func setupDelegates() {
+        countryTextField.delegate = self
+        beginDateTextField.delegate = self
+        finishDateTextField.delegate = self
+        descriptionTextField.delegate = self
+    }
+    
+    private func setupUI() {
+        if isEdited ?? false {
+            addNewTripButton.backgroundColor = .tripBlue
+            addNewTripButton.setTitle(" Edit Trip", for: .normal)
+            addNewTripButton.setImage(UIImage(systemName: "square.and.pencil"), for: .normal)
+            redView.backgroundColor = .tripBlue
+            viewModel?.downloadTrip()
+        }
+    }
+    
+    private func setupViewModelBindings() {
+        viewModel?.tripCompletion = { [weak self] in
+            self?.countryTextField.text = self?.viewModel?.country
+            self?.beginDateTextField.text = self?.viewModel?.beginningDate
+            self?.finishDateTextField.text = self?.viewModel?.finishingDate
+            self?.descriptionTextField.text = self?.viewModel?.description
+            
+            let currency = self?.viewModel?.currency
+            switch currency {
+            case "$":
+                self?.dollarButton.pulsate()
+                self?.dollarButton.backgroundColor = .tripRed
+            case "€":
+                self?.euroButton.pulsate()
+                self?.euroButton.backgroundColor = .tripRed
+            case "₽":
+                self?.rubleButton.pulsate()
+                self?.rubleButton.backgroundColor = .tripRed
+            default:
+                break
+            }
+        }
     }
     
     // MARK: Layout

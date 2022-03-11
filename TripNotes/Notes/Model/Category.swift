@@ -9,8 +9,8 @@ import Foundation
 
 enum Category: String {
     case hotels = "Hotels"
-    case tranport = "Transport"
-    case foodAndRestaurants = "Food"
+    case transport = "Transport"
+    case food = "Food"
     case activity = "Activities"
     case purchases = "Purchases"
     case other = "Other"

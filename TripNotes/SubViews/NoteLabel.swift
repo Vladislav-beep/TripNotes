@@ -11,8 +11,8 @@ class NoteLabel: UILabel {
     
     // MARK: Private properties
    
-    private var fontSize: CGFloat
-    private var fontWeight: UIFont.Weight
+    private let fontSize: CGFloat
+    private let fontWeight: UIFont.Weight
     
     // MARK: Life Time
     

@@ -8,9 +8,9 @@
 import Foundation
 
 protocol NotesViewModelProtocol {
-    init(trip: Trip?)
     var text: String { get }
     var noteCompletion: (() -> Void)? { get set }
+    init(trip: Trip?)
     func getNotes()
     func numberOfCells() -> Int
     func noteCellViewModel(for indexPath: IndexPath) -> NoteCellViewModelProtocol?

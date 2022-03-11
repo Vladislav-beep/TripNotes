@@ -9,7 +9,11 @@ import Foundation
 
 class UserDefaltsService {
     
-    let userDefaults = UserDefaults.standard
+    private let userDefaults = UserDefaults.standard
+    
+    func getLoggedStatus() -> Bool {
+        return userDefaults.bool(forKey: Constants.UserDefaults.loggedIn.rawValue)
+    }
     
     func setLoggedInStatus() {
         userDefaults.set(true, forKey: Constants.UserDefaults.loggedIn.rawValue)

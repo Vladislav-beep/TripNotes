@@ -17,6 +17,9 @@
 		B90251C627DA3F1000788065 /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90251C227DA3BF100788065 /* AddButton.swift */; };
 		B90251CA27DA44A500788065 /* TripCellLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90251C927DA44A500788065 /* TripCellLabel.swift */; };
 		B90251CE27DA477600788065 /* TotalSumLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90251CD27DA477600788065 /* TotalSumLabel.swift */; };
+		B90251D427DB35E800788065 /* EditDeleteNoteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90251D327DB35E800788065 /* EditDeleteNoteButton.swift */; };
+		B90251D827DB3AE500788065 /* LikeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90251D727DB3AE500788065 /* LikeButton.swift */; };
+		B90251DE27DB3D7C00788065 /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90251DD27DB3D7C00788065 /* BackButton.swift */; };
 		B905759B279458BB001EA8D1 /* SectionLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B905759A279458BB001EA8D1 /* SectionLabel.swift */; };
 		B90632EC27AFB86000F0C2A5 /* KeyboardService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90632EB27AFB86000F0C2A5 /* KeyboardService.swift */; };
 		B90632EF27AFBB4900F0C2A5 /* KeyboardService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90632EB27AFB86000F0C2A5 /* KeyboardService.swift */; };
@@ -48,6 +51,7 @@
 		B91E81492767A88F00D0748B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B91E81472767A88F00D0748B /* LaunchScreen.storyboard */; };
 		B91E81532767A9AC00D0748B /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91E81522767A9AC00D0748B /* TabBarViewController.swift */; };
 		B91E81562767AA4F00D0748B /* FavouritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91E81552767AA4F00D0748B /* FavouritesViewController.swift */; };
+		B938B1F127DB463D00E205C6 /* AdressButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B938B1F027DB463D00E205C6 /* AdressButton.swift */; };
 		B93DD4B3279F186C00D91A08 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93DD4B2279F186C00D91A08 /* AuthViewController.swift */; };
 		B93DD4B7279F19F400D91A08 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93DD4B6279F19F400D91A08 /* AuthViewModel.swift */; };
 		B93DD4BA279F1BCA00D91A08 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93DD4B2279F186C00D91A08 /* AuthViewController.swift */; };
@@ -154,6 +158,9 @@
 		B90251C227DA3BF100788065 /* AddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
 		B90251C927DA44A500788065 /* TripCellLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripCellLabel.swift; sourceTree = "<group>"; };
 		B90251CD27DA477600788065 /* TotalSumLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalSumLabel.swift; sourceTree = "<group>"; };
+		B90251D327DB35E800788065 /* EditDeleteNoteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDeleteNoteButton.swift; sourceTree = "<group>"; };
+		B90251D727DB3AE500788065 /* LikeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeButton.swift; sourceTree = "<group>"; };
+		B90251DD27DB3D7C00788065 /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
 		B905759A279458BB001EA8D1 /* SectionLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionLabel.swift; sourceTree = "<group>"; };
 		B90632EB27AFB86000F0C2A5 /* KeyboardService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardService.swift; sourceTree = "<group>"; };
 		B90632F827AFE47E00F0C2A5 /* DetailNoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailNoteViewController.swift; sourceTree = "<group>"; };
@@ -178,6 +185,7 @@
 		B91E814A2767A88F00D0748B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B91E81522767A9AC00D0748B /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		B91E81552767AA4F00D0748B /* FavouritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewController.swift; sourceTree = "<group>"; };
+		B938B1F027DB463D00E205C6 /* AdressButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdressButton.swift; sourceTree = "<group>"; };
 		B93DD4B2279F186C00D91A08 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		B93DD4B6279F19F400D91A08 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		B93DD4C1279F23DA00D91A08 /* AuthTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTextField.swift; sourceTree = "<group>"; };
@@ -296,14 +304,6 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		B912CFF527ADBDD200AE1FCE /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				B912CFEE27ADB60E00AE1FCE /* NotesCollectionView.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
 		B91E81302767A88E00D0748B = {
 			isa = PBXGroup;
 			children = (
@@ -373,14 +373,6 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		B949FB0B27AEE4B300590F0E /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				B949FB0C27AEE4C600590F0E /* NoteLabel.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
 		B949FB1727AEF05E00590F0E /* Coordinator */ = {
 			isa = PBXGroup;
 			children = (
@@ -402,6 +394,12 @@
 		B95FBCE027D89354006FF5A8 /* SubViews */ = {
 			isa = PBXGroup;
 			children = (
+				B905759A279458BB001EA8D1 /* SectionLabel.swift */,
+				B961212C279351FB00B7B81E /* SelectionLabel.swift */,
+				B9A0EF6A2774DDCE00DE65E2 /* SelectionButton.swift */,
+				B9FB61232772617000126A59 /* CustomTextField.swift */,
+				B912CFEE27ADB60E00AE1FCE /* NotesCollectionView.swift */,
+				B949FB0C27AEE4C600590F0E /* NoteLabel.swift */,
 				B95FBCDC27D89050006FF5A8 /* CloseButton.swift */,
 				B90251AE27DA1EB700788065 /* WelcomeLabel.swift */,
 				B90251B227DA205E00788065 /* CreateButton.swift */,
@@ -411,6 +409,10 @@
 				B90251C227DA3BF100788065 /* AddButton.swift */,
 				B90251C927DA44A500788065 /* TripCellLabel.swift */,
 				B90251CD27DA477600788065 /* TotalSumLabel.swift */,
+				B90251D327DB35E800788065 /* EditDeleteNoteButton.swift */,
+				B90251D727DB3AE500788065 /* LikeButton.swift */,
+				B90251DD27DB3D7C00788065 /* BackButton.swift */,
+				B938B1F027DB463D00E205C6 /* AdressButton.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -431,15 +433,6 @@
 				B95FBD0327D8B8D1006FF5A8 /* CurrentWeatherData.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		B961212B279351E300B7B81E /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				B961212C279351FB00B7B81E /* SelectionLabel.swift */,
-				B905759A279458BB001EA8D1 /* SectionLabel.swift */,
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		B96648772799D63100F527E8 /* Map */ = {
@@ -491,7 +484,6 @@
 		B9DE0D65276900F700805E4C /* Favourites */ = {
 			isa = PBXGroup;
 			children = (
-				B912CFF527ADBDD200AE1FCE /* Views */,
 				B91E81552767AA4F00D0748B /* FavouritesViewController.swift */,
 				B97374BE27AC5CBE000B208D /* FavouritesViewModel.swift */,
 			);
@@ -510,7 +502,6 @@
 		B9F296BF27895C2500844D6C /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				B949FB0B27AEE4B300590F0E /* Views */,
 				B9F296C027895C4300844D6C /* NoteCell.swift */,
 				B9F296C427895C7F00844D6C /* NoteCellVewModel.swift */,
 			);
@@ -536,24 +527,13 @@
 			children = (
 				B9FB61172772336700126A59 /* NewTripViewController.swift */,
 				B9FB611B2772339500126A59 /* NewTripViewModel.swift */,
-				B9FB61222772614500126A59 /* SubViews */,
 			);
 			path = NewTrip;
-			sourceTree = "<group>";
-		};
-		B9FB61222772614500126A59 /* SubViews */ = {
-			isa = PBXGroup;
-			children = (
-				B9FB61232772617000126A59 /* CustomTextField.swift */,
-				B9A0EF6A2774DDCE00DE65E2 /* SelectionButton.swift */,
-			);
-			path = SubViews;
 			sourceTree = "<group>";
 		};
 		B9FD6C0F278E045B00311EF1 /* New Note */ = {
 			isa = PBXGroup;
 			children = (
-				B961212B279351E300B7B81E /* Views */,
 				B9FD6C07278E040900311EF1 /* NewNoteViewController.swift */,
 				B9FD6C0B278E043600311EF1 /* NewNoteViewModel.swift */,
 			);
@@ -701,9 +681,11 @@
 				B9F39E082767D47A00DAFB4C /* Extension + UIColor.swift in Sources */,
 				B9A0EF6B2774DDCE00DE65E2 /* SelectionButton.swift in Sources */,
 				B9F296C527895C7F00844D6C /* NoteCellVewModel.swift in Sources */,
+				B90251DE27DB3D7C00788065 /* BackButton.swift in Sources */,
 				B91E813D2767A88E00D0748B /* AppDelegate.swift in Sources */,
 				B90251B727DA221300788065 /* CreateLabel.swift in Sources */,
 				B90251BF27DA2F0900788065 /* CreateNewAccountLabel.swift in Sources */,
+				B90251D827DB3AE500788065 /* LikeButton.swift in Sources */,
 				B97374BF27AC5CBE000B208D /* FavouritesViewModel.swift in Sources */,
 				B93DD4C2279F23DA00D91A08 /* AuthTextField.swift in Sources */,
 				B91E81562767AA4F00D0748B /* FavouritesViewController.swift in Sources */,
@@ -713,6 +695,8 @@
 				B9DCF135276BAFF8007B0320 /* TripsViewModel.swift in Sources */,
 				B905759B279458BB001EA8D1 /* SectionLabel.swift in Sources */,
 				B9E85C3D276E6468004FD1D8 /* Extension + UIStackView.swift in Sources */,
+				B938B1F127DB463D00E205C6 /* AdressButton.swift in Sources */,
+				B90251D427DB35E800788065 /* EditDeleteNoteButton.swift in Sources */,
 				B9F296C127895C4300844D6C /* NoteCell.swift in Sources */,
 				B9FD6C08278E040900311EF1 /* NewNoteViewController.swift in Sources */,
 				B95FBCED27D89B13006FF5A8 /* SlideInPresentationController.swift in Sources */,

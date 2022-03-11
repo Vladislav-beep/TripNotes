@@ -24,7 +24,7 @@ class TripTableViewCellViewModel: TripTableViewCellViewModelProtocol {
     
     let fire = FireBaseService()
     
-    let image = "placeHolder1"
+   // let image = "placeHolder1"
     
     var description: String {
         trip.description

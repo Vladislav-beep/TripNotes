@@ -9,7 +9,11 @@ import UIKit
 
 class TotalSumLabel: UILabel {
     
-    let fontSize: CGFloat
+    // MARK: Private Properties
+    
+    private let fontSize: CGFloat
+    
+    // MARK: Life Time
     
     init(fontSize: CGFloat) {
         self.fontSize = fontSize
@@ -20,6 +24,8 @@ class TotalSumLabel: UILabel {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: Private methods
     
     private func initialize() {
         textColor = .tripBlue

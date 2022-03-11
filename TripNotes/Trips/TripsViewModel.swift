@@ -10,6 +10,7 @@ import Firebase
 
 protocol TripsViewModelProtocol: class {
     var trips: [Trip] { get set }
+    var firstCompletion: (() -> Void)? { get set }
     func getTrips()
     func numberOfRows(section: Int) -> Int
     func titleForHeaderInSection(section: Int) -> String
@@ -20,7 +21,6 @@ protocol TripsViewModelProtocol: class {
     func newNoteViewModel(at indexPath: IndexPath) -> NewNoteViewModelProtocol
     func deleteRow(at indexPath: IndexPath)
     func setLoggedOutStatus()
-    var firstCompletion: (() -> Void)? { get set }
     func getTripId(for indexPath: IndexPath?) -> String
     
 }
@@ -33,11 +33,13 @@ class TripsViewModel: TripsViewModelProtocol {
     // MARK: Properties
     
     var trips: [Trip] = []
-
     let userId: String
+    var firstCompletion: (() -> Void)?
     
  //   var plannedCount = 0
   //  var finishedCount = 0
+    
+    // MARK: Life Time
     
     init(userId: String) {
         self.userId = userId
@@ -60,8 +62,6 @@ class TripsViewModel: TripsViewModelProtocol {
             }
         })
     }
-    
-    var firstCompletion: (() -> Void)?
     
     func numberOfRows(section: Int) -> Int {
         let plannedCount = trips.filter { $0.finishingDate > Date() }.count

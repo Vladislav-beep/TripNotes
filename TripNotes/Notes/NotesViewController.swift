@@ -27,8 +27,6 @@ class NotesViewController: UIViewController, UICollectionViewDelegate {
     init(notesViewModel: NotesViewModelProtocol) {
         self.viewModel = notesViewModel
         super.init(nibName: nil, bundle: nil)
-        
-        view.backgroundColor = .white
         setupCollectionViewConstraints()
     }
     
@@ -37,6 +35,7 @@ class NotesViewController: UIViewController, UICollectionViewDelegate {
     }
     
     override func viewDidLoad() {
+        view.backgroundColor = .white
         collectionView.dataSource = self
         collectionView.delegate = self
         setupViewModelBundings()
@@ -46,6 +45,8 @@ class NotesViewController: UIViewController, UICollectionViewDelegate {
         super.viewWillAppear(animated)
         viewModel.getNotes()
     }
+    
+    // MARK: Private methods
     
     private func setupViewModelBundings() {
         viewModel.noteCompletion = { [weak self] in
@@ -72,10 +73,6 @@ class NotesViewController: UIViewController, UICollectionViewDelegate {
         noteVC.transitioningDelegate = slideInTransitioningDelegate
         noteVC.modalPresentationStyle = .custom
         present(noteVC, animated: true)
-//        let noteVM = viewModel.viewModelForSelectedRow(at: indexPath)
-//        let noteVC = DetailNoteViewController(viewModel: noteVM)
-//        noteVC.modalPresentationStyle = .fullScreen
-//        present(noteVC, animated: true)
     }
 }
 
@@ -90,8 +87,8 @@ extension NotesViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.CellIdentifiers.noteCollectionViewCellId.rawValue,
                                                       for: indexPath) as? NoteCell
-        cell?.viewModel = viewModel.noteCellViewModel(for: indexPath)
         
+        cell?.viewModel = viewModel.noteCellViewModel(for: indexPath)
         return cell ?? UICollectionViewCell()
     }
 }

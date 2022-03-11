@@ -110,7 +110,6 @@ class TripsViewController: UIViewController {
     
     @objc func addNote() {
         let newNoteVC = NewNoteViewController(viewModel: self.newNoteViewModel!, isEdited: false)
-        newNoteViewModel?.printAA()
         newNoteVC.modalPresentationStyle = .fullScreen
         parent?.present(newNoteVC, animated: true)
     }
@@ -155,7 +154,6 @@ class TripsViewController: UIViewController {
 //
             let newTripViewModel = self.viewModel.newTripViewModelEdited(for: indexPath)
             let newTripVC = NewTripViewController(viewModel: newTripViewModel, isEdited: true)
-            newTripVC.isEdited = true
             newTripVC.modalPresentationStyle = .fullScreen
             self.present(newTripVC, animated: true)
             //

@@ -9,12 +9,17 @@ import UIKit
 
 class DetailNoteViewController: UIViewController {
     
+    // MARK: Dependencies
+    
     private var viewModel: NoteCellViewModel
     
-    var isFavourite = false
+    // MARK: Properties
     
+    var isFavourite = false
     lazy var contraint = heartImageView.heightAnchor.constraint(equalToConstant: 0)
     lazy var animator = Animator(container: view)
+    
+    // MARK: UI
         
     private lazy var yellowView: UIView = {
         let redView = UIView()
@@ -24,29 +29,15 @@ class DetailNoteViewController: UIViewController {
         return redView
     }()
     
-    private lazy var closeButton: UIButton = {
-        let button = UIButton()
-        button.setBackgroundImage(UIImage(systemName: "xmark.circle.fill"), for: .normal)
-        button.tintColor = .tripBlue
-        button.addTarget(self, action: #selector(closeScreen), for: .touchUpInside)
-        button.layer.shadowColor = UIColor.darkGray.cgColor
-        button.layer.shadowRadius = 5
-        button.layer.shadowOffset = CGSize(width: 0, height: 5)
-        button.layer.shadowOpacity = 0.5
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
+    private lazy var closeButton: CloseButton = {
+        let closeButton = CloseButton()
+        closeButton.addTarget(self, action: #selector(closeScreen), for: .touchUpInside)
+        return closeButton
     }()
     
-    private lazy var likeButton: UIButton = {
-        let like = UIButton()
-        like.setBackgroundImage(UIImage(systemName: "heart.fill"), for: .normal)
-        like.tintColor = .tripGrey
-        like.layer.shadowColor = UIColor.darkGray.cgColor
-        like.layer.shadowRadius = 3
-        like.layer.shadowOffset = CGSize(width: 0, height: 2)
-        like.layer.shadowOpacity = 0.3
+    private lazy var likeButton: LikeButton = {
+        let like = LikeButton()
         like.addTarget(self, action: #selector(toggleFavourite), for: .touchUpInside)
-        like.translatesAutoresizingMaskIntoConstraints = false
         return like
     }()
     
@@ -76,38 +67,22 @@ class DetailNoteViewController: UIViewController {
         return descriptionLabel
     }()
     
-    private lazy var deleteButton: UIButton = {
-        let deleteButton = UIButton()
-        deleteButton.setTitle(" Delete", for: .normal)
-        deleteButton.setImage(UIImage(systemName: "trash"), for: .normal)
-        deleteButton.tintColor = .tripWhite
-        deleteButton.backgroundColor = .tripRed
-        deleteButton.layer.cornerRadius = 4
+    private lazy var deleteButton: EditDeleteNoteButton = {
+        let deleteButton = EditDeleteNoteButton(title: " Delete",
+                                                imageName: "trash",
+                                                backgroud: .tripRed)
         deleteButton.addTarget(self, action: #selector(deleteNote), for: .touchUpInside)
-        deleteButton.layer.shadowColor = UIColor.darkGray.cgColor
-        deleteButton.layer.shadowRadius = 5
-        deleteButton.layer.shadowOffset = CGSize(width: 0, height: 5)
-        deleteButton.layer.shadowOpacity = 0.5
-        deleteButton.translatesAutoresizingMaskIntoConstraints = false
         return deleteButton
     }()
     
-    private lazy var editButton: UIButton = {
-        let editButton = UIButton()
-        editButton.setTitle(" Edit", for: .normal)
-        editButton.setImage(UIImage(systemName: "square.and.pencil"), for: .normal)
-        editButton.tintColor = .tripWhite
-        editButton.backgroundColor = .tripBlue
-        editButton.layer.cornerRadius = 4
+    private lazy var editButton: EditDeleteNoteButton = {
+        let editButton = EditDeleteNoteButton(title: " Edit",
+                                              imageName: "square.and.pencil",
+                                              backgroud: .tripBlue)
         editButton.addTarget(self, action: #selector(editNote), for: .touchUpInside)
-        editButton.layer.shadowColor = UIColor.darkGray.cgColor
-        editButton.layer.shadowRadius = 5
-        editButton.layer.shadowOffset = CGSize(width: 0, height: 5)
-        editButton.layer.shadowOpacity = 0.5
-        editButton.translatesAutoresizingMaskIntoConstraints = false
         return editButton
     }()
-    
+
     private lazy var editDeleteButtonStack: UIStackView = {
         let stack = UIStackView(arrangedSubviews: [deleteButton, editButton],
                                 axis: .horizontal,
@@ -160,9 +135,12 @@ class DetailNoteViewController: UIViewController {
         return heartImageView
     }()
     
+    // MARK: Life Time
+    
     init(viewModel: NoteCellViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
+        setupAllConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -171,28 +149,14 @@ class DetailNoteViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .tripGrey
-        view.layer.cornerRadius = 20
-
-        cityLabel.text = viewModel.city
-        categoryLabel.text = viewModel.category
-        descriptionLabel.text = viewModel.description
-        dateLabel.text = viewModel.date
-        sumLabel.text = viewModel.price
-        categoryImageView.image = setImage(for: viewModel.category)
-        
-        if viewModel.isFavourite {
-            likeButton.tintColor = .tripRed
-        }
-        
-        setupAllConstraints()
+        setupUI()
     }
     
+    // MARK: Actions
     
     @objc func closeScreen() {
         dismiss(animated: true)
     }
-    
     
     @objc func deleteNote() {
         viewModel.deleteNote()
@@ -206,7 +170,6 @@ class DetailNoteViewController: UIViewController {
         let newVm = NewNoteViewModel(tripId: tripId, noteId: noteId)
         let newNoteVC = NewNoteViewController(viewModel: newVm, isEdited: true)
         newNoteVC.modalPresentationStyle = .fullScreen
-       // present(newNoteVC, animated: true)
         presentingViewController?.present(newNoteVC, animated: true, completion: nil)
     }
     
@@ -224,6 +187,44 @@ class DetailNoteViewController: UIViewController {
         }
     }
     
+    // MARK: Private methods
+    
+    private func setupUI() {
+        view.backgroundColor = .tripGrey
+        view.layer.cornerRadius = 20
+        cityLabel.text = viewModel.city
+        categoryLabel.text = viewModel.category
+        descriptionLabel.text = viewModel.description
+        dateLabel.text = viewModel.date
+        sumLabel.text = viewModel.price
+        categoryImageView.image = setImage(for: viewModel.category)
+        
+        if viewModel.isFavourite {
+            likeButton.tintColor = .tripRed
+        }
+    }
+    
+    private func setImage(for category: String) -> UIImage {
+        switch category {
+        case Category.hotels.rawValue:
+            return UIImage(systemName: "building.fill") ?? UIImage()
+        case Category.transport.rawValue:
+            return UIImage(systemName: "tram.tunnel.fill") ?? UIImage()
+        case Category.food.rawValue:
+            return UIImage(systemName: "hourglass.tophalf.fill") ?? UIImage()
+        case Category.activity.rawValue:
+            return UIImage(systemName: "camera.on.rectangle.fill") ?? UIImage()
+        case Category.purchases.rawValue:
+            return UIImage(systemName: "creditcard.fill") ?? UIImage()
+        case Category.other.rawValue:
+            return UIImage(systemName: "square.3.stack.3d.bottom.fill") ?? UIImage()
+        default:
+            return UIImage(systemName: "square") ?? UIImage()
+        }
+    }
+    
+    // MARK: Layout
+    
     private func setupAllConstraints() {
         setupYellowViewConstraints()
         setupCloseButtonConstraints()
@@ -234,25 +235,6 @@ class DetailNoteViewController: UIViewController {
         setupLabelStackConstraints()
         setupDeleteButtonConsytaints()
         setupHeartImageViewConstraints()
-    }
-    
-    private func setImage(for category: String) -> UIImage {
-        switch category {
-        case "Hotels":
-            return UIImage(systemName: "building.fill") ?? UIImage()
-        case "Transport":
-            return UIImage(systemName: "tram.tunnel.fill") ?? UIImage()
-        case "Food":
-            return UIImage(systemName: "hourglass.tophalf.fill") ?? UIImage()
-        case "Activities":
-            return UIImage(systemName: "camera.on.rectangle.fill") ?? UIImage()
-        case "Purchases":
-            return UIImage(systemName: "creditcard.fill") ?? UIImage()
-        case "Other":
-            return UIImage(systemName: "square.3.stack.3d.bottom.fill") ?? UIImage()
-        default:
-            return UIImage(systemName: "square") ?? UIImage()
-        }
     }
     
     private func setupYellowViewConstraints() {
@@ -336,6 +318,7 @@ class DetailNoteViewController: UIViewController {
             heartImageView.widthAnchor.constraint(equalTo: heartImageView.heightAnchor)
         ])
     }
+}
     
     
 //    private func setupStackViewConstraints() {
@@ -371,4 +354,3 @@ class DetailNoteViewController: UIViewController {
 //
 //
     
-}
