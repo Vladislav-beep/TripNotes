@@ -104,8 +104,11 @@ class TripsViewController: UIViewController {
         do {
             try Auth.auth().signOut()
             viewModel.setLoggedOutStatus()
+            navigationController?.popViewController(animated: true)
             dismiss(animated: true)
         } catch {
+            navigationController?.popViewController(animated: true)
+            dismiss(animated: true)
             print("\(error.localizedDescription) - error")
         }
        // dismiss(animated: true)

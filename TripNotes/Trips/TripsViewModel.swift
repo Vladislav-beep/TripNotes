@@ -60,7 +60,7 @@ class TripsViewModel: TripsViewModelProtocol {
     }
     
     func fetchTrips() {
-        fire.listenToTrips(forUser: userId, completion: { (result: Result<[Trip], Error>) in
+        fire.fetchTrips(forUser: userId, completion: { (result: Result<[Trip], Error>) in
             switch result {
             case .success(let tripss):
                 self.trips = tripss

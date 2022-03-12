@@ -57,13 +57,13 @@ class NotesViewController: UIViewController {
     }
     
     @objc func refresh() {
-        viewModel.getNotes()
+        viewModel.fetchNotes()
         collectionView.reloadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel.getNotes()
+        viewModel.fetchNotes()
     }
     
     deinit {

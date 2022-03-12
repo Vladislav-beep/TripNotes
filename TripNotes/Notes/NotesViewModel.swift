@@ -11,7 +11,7 @@ protocol NotesViewModelProtocol {
     var text: String { get }
     var noteCompletion: (() -> Void)? { get set }
     init(trip: Trip?)
-    func getNotes()
+    func fetchNotes()
     func numberOfCells() -> Int
     func noteCellViewModel(for indexPath: IndexPath) -> NoteCellViewModelProtocol?
     func viewModelForSelectedRow(at indexpath: IndexPath) -> NoteCellViewModel
@@ -40,11 +40,12 @@ class NotesViewModel: NotesViewModelProtocol {
     
     // MARK: Methods
     
-    func getNotes() {
-        fire.listenToNotes(forTrip: trip?.id ?? "", completion: { (result: Result<[TripNote], Error>) in
+    func fetchNotes() {
+        fire.fetchNotes(forTrip: trip?.id ?? "", completion: { (result: Result<[TripNote], Error>) in
             switch result {
             case .success(let notess):
                 self.notes = notess
+                self.notes.sort(by: { $0.date > $1.date })
                 self.noteCompletion?()
             case .failure(let error):
                 print(error.localizedDescription)

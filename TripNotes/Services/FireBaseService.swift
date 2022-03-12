@@ -15,8 +15,11 @@ protocol FireBaseServiceProtocol {
 class FireBaseService {
     
     private lazy var db = Firestore.firestore()
+    private lazy var usersRef = db.collection("users")
     
-    func listenToTrips(forUser id: String, completion: @escaping (Result <[Trip], Error>) -> Void) {
+    // MARK: Trip methods
+    
+    func fetchTrips(forUser id: String, completion: @escaping (Result <[Trip], Error>) -> Void) {
         
         db.collection("users").document(id).collection("trips").getDocuments() { (querySnapshot, err) in
             if let err = err {
@@ -120,8 +123,10 @@ class FireBaseService {
             }
         }
     }
+    
+    // MARK: Note methods
         
-    func listenToNotes(forTrip tripId: String, completion: @escaping (Result <[TripNote], Error>) -> Void) {
+    func fetchNotes(forTrip tripId: String, completion: @escaping (Result <[TripNote], Error>) -> Void) {
         db.collection("users").document("NUXiX5zSMiwYxmtCBpzO").collection("trips").document(tripId).collection("tripNotes").getDocuments { (querySnapshot, err) in
             if let err = err {
                 completion(.failure(err.localizedDescription as! Error))
@@ -186,7 +191,6 @@ class FireBaseService {
                }
         }
     }
-    
     
     func addNote(tripId: String, category: String, city: String, price: Double, isFavourite: Bool, description: String) {
         

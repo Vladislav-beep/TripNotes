@@ -46,6 +46,7 @@ class NewAccountViewController: UIViewController {
     
     private lazy var passwordTextField: AuthTextField = {
         let passwordTextField = AuthTextField(placeHolder: "Password")
+        passwordTextField.isSecureTextEntry = true
         return passwordTextField
     }()
     
@@ -112,6 +113,8 @@ class NewAccountViewController: UIViewController {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: false)
         navigationController?.view.backgroundColor = UIColor.white
+        
+        passwordTextField.text = ""
     }
     
     override func viewWillDisappear(_ animated: Bool) {

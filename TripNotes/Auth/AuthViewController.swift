@@ -42,6 +42,7 @@ class AuthViewController: UIViewController {
     
     private lazy var passwordTextField: AuthTextField = {
         let passwordTextField = AuthTextField(placeHolder: "Password")
+        passwordTextField.isSecureTextEntry = true
         return passwordTextField
     }()
     
@@ -99,6 +100,8 @@ class AuthViewController: UIViewController {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: true)
         navigationController?.view.backgroundColor = UIColor.white
+        
+        passwordTextField.text = ""
     }
     
     override func viewWillDisappear(_ animated: Bool) {
