@@ -54,6 +54,7 @@
 		B938B1F127DB463D00E205C6 /* AdressButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B938B1F027DB463D00E205C6 /* AdressButton.swift */; };
 		B938B1F527DB50B400E205C6 /* FileStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B938B1F427DB50B400E205C6 /* FileStorageService.swift */; };
 		B938B1F927DB91C500E205C6 /* NoLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B938B1F827DB91C400E205C6 /* NoLabel.swift */; };
+		B938B1FD27DC99B600E205C6 /* Extension + UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B938B1FC27DC99B600E205C6 /* Extension + UIViewController.swift */; };
 		B93DD4B3279F186C00D91A08 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93DD4B2279F186C00D91A08 /* AuthViewController.swift */; };
 		B93DD4B7279F19F400D91A08 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93DD4B6279F19F400D91A08 /* AuthViewModel.swift */; };
 		B93DD4BA279F1BCA00D91A08 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93DD4B2279F186C00D91A08 /* AuthViewController.swift */; };
@@ -190,6 +191,7 @@
 		B938B1F027DB463D00E205C6 /* AdressButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdressButton.swift; sourceTree = "<group>"; };
 		B938B1F427DB50B400E205C6 /* FileStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileStorageService.swift; sourceTree = "<group>"; };
 		B938B1F827DB91C400E205C6 /* NoLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoLabel.swift; sourceTree = "<group>"; };
+		B938B1FC27DC99B600E205C6 /* Extension + UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIViewController.swift"; sourceTree = "<group>"; };
 		B93DD4B2279F186C00D91A08 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		B93DD4B6279F19F400D91A08 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		B93DD4C1279F23DA00D91A08 /* AuthTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTextField.swift; sourceTree = "<group>"; };
@@ -524,6 +526,7 @@
 				B90DB443276F326000F1A544 /* Extension + Numeric.swift */,
 				B9EBFB04277A3EDE00746A0A /* Extension + UIButton.swift */,
 				B909AFDC277E3135006EFC38 /* Extension + UITextField.swift */,
+				B938B1FC27DC99B600E205C6 /* Extension + UIViewController.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -709,6 +712,7 @@
 				B9FD6C08278E040900311EF1 /* NewNoteViewController.swift in Sources */,
 				B95FBCED27D89B13006FF5A8 /* SlideInPresentationController.swift in Sources */,
 				B98282D827A07C84006EFED8 /* NewAccountViewController.swift in Sources */,
+				B938B1FD27DC99B600E205C6 /* Extension + UIViewController.swift in Sources */,
 				B90251C327DA3BF100788065 /* AddButton.swift in Sources */,
 				B961212D279351FB00B7B81E /* SelectionLabel.swift in Sources */,
 				B95FBCD127D7D6D5006FF5A8 /* WeatherViewModel.swift in Sources */,

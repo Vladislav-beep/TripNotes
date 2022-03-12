@@ -14,7 +14,8 @@ protocol TripTableViewCellViewModelProtocol {
     var notesCompletion: (() -> Void)? { get set }
     init(trip: Trip)
     func getTotalSum() -> String
-    func getId() -> String 
+    func getId() -> String
+    func retrieveImage() -> Data
    // func downloadNotes()
 }
 
@@ -75,6 +76,10 @@ class TripTableViewCellViewModel: TripTableViewCellViewModelProtocol {
     
     func getId() -> String {
         trip.id
+    }
+    
+    func retrieveImage() -> Data {
+        return file.retrieveImage(forKey: trip.id) ?? Data()
     }
     
     func getTotalSum() -> String {

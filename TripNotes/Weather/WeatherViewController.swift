@@ -74,6 +74,12 @@ class WeatherViewController: UIViewController {
         return stack
     }()
     
+    private lazy var activityIndicator: UIActivityIndicatorView = {
+        let activityIndicator = UIActivityIndicatorView()
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        return activityIndicator
+    }()
+    
     private lazy var locationManager: CLLocationManager = {
         let lm = CLLocationManager()
         lm.delegate = self
@@ -98,6 +104,7 @@ class WeatherViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .tripGrey
         view.layer.cornerRadius = 30
+        activityIndicator.startAnimating()
         
         setupViewModelBindings()
         requestLocation()
@@ -124,6 +131,8 @@ class WeatherViewController: UIViewController {
                 self?.temperatureLabel.text = self?.viewModel.temperature
                 self?.feelsLikeTemperatureLabel.text = self?.viewModel.feelsLikeTemperature
                 self?.weatherIconImageView.image = UIImage(systemName: self?.viewModel.IconName ?? "cloud")
+                self?.activityIndicator.stopAnimating()
+                self?.activityIndicator.isHidden = true
             }
         }
         ///////////
@@ -131,22 +140,11 @@ class WeatherViewController: UIViewController {
         viewModel.errorCompletion = { [weak self] error in
             DispatchQueue.main.async {
                 self?.dismiss(animated: true)
-                let alert = UIAlertController(title: "Lalala", message: error.description, preferredStyle: .alert)
-                let cancel = UIAlertAction(title: "cancel", style: .destructive, handler: nil)
-                alert.addAction(cancel)
-                self?.present(alert, animated: true)
+                self?.showAlert(title: "Network error", message: error.description)
             }
         }
-//        viewModel.errorCompletion = { [weak self] error in
-//            DispatchQueue.main.async {
-//            let alert = UIAlertController(title: "Lalala", message: "Dodododod", preferredStyle: .alert)
-//            let cancel = UIAlertAction(title: "cancel", style: .destructive, handler: nil)
-//            alert.addAction(cancel)
-//            self?.present(alert, animated: true)
-//            }
-//        }
         
-        ////////
+        ///////
     }
     
     private func setupAllConstraints() {
@@ -154,6 +152,7 @@ class WeatherViewController: UIViewController {
         setupCityLabelConstraints()
         setupWeatherIconImageViewConstraints()
         setupTemperatureStackConstraints()
+        setupActivityIndicatorConstraints()
     }
     
     private func setupCloseButtonConstraints() {
@@ -195,6 +194,14 @@ class WeatherViewController: UIViewController {
             temperetureStack.centerXAnchor.constraint(equalTo: weatherIconImageView.centerXAnchor, constant: 0)
         ])
     }
+    
+    private func setupActivityIndicatorConstraints() {
+        weatherIconImageView.addSubview(activityIndicator)
+        NSLayoutConstraint.activate([
+            activityIndicator.centerYAnchor.constraint(equalTo: weatherIconImageView.centerYAnchor, constant: 0),
+            activityIndicator.centerXAnchor.constraint(equalTo: weatherIconImageView.centerXAnchor, constant: 0)
+        ])
+    }
 }
 
 extension WeatherViewController: CLLocationManagerDelegate {
@@ -210,4 +217,5 @@ extension WeatherViewController: CLLocationManagerDelegate {
         print(error.localizedDescription)
     }
 }
+
 

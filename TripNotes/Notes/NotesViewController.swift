@@ -27,6 +27,12 @@ class NotesViewController: UIViewController {
         return noLabel
     }()
     
+    private lazy var activityIndicator: UIActivityIndicatorView = {
+        let activityIndicator = UIActivityIndicatorView()
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        return activityIndicator
+    }()
+    
     // MARK: Life Time
     
     init(notesViewModel: NotesViewModelProtocol) {
@@ -34,6 +40,7 @@ class NotesViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
         setupCollectionViewConstraints()
         setupNoLabelConstraints()
+        setupActivityIndicatorConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -44,19 +51,23 @@ class NotesViewController: UIViewController {
         view.backgroundColor = .white
         collectionView.dataSource = self
         collectionView.delegate = self
+        activityIndicator.stopAnimating()
         setupViewModelBundings()
-        NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: NSNotification.Name(rawValue: "newDataNotif"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: NSNotification.Name(rawValue: "updateNotes"), object: nil)
     }
     
     @objc func refresh() {
         viewModel.getNotes()
         collectionView.reloadData()
-        print("refresh table")
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel.getNotes()
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "updateNotes"), object: nil)
     }
     
     // MARK: Private methods
@@ -65,6 +76,8 @@ class NotesViewController: UIViewController {
         viewModel.noteCompletion = { [weak self] in
             self?.collectionView.reloadData()
             self?.setupUI()
+            self?.activityIndicator.stopAnimating()
+            self?.activityIndicator.isHidden = true
         }
     }
     
@@ -95,6 +108,14 @@ class NotesViewController: UIViewController {
             noLabel.centerYAnchor.constraint(equalTo: collectionView.centerYAnchor, constant: 0),
             noLabel.heightAnchor.constraint(equalToConstant: 60),
             noLabel.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width / 1.2)
+        ])
+    }
+    
+    private func setupActivityIndicatorConstraints() {
+        view.addSubview(activityIndicator)
+        NSLayoutConstraint.activate([
+            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 0),
+            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0)
         ])
     }
 }

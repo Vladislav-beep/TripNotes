@@ -207,7 +207,7 @@ class DetailNoteViewController: UIViewController {
     }
     
     private func postNotification() {
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "newDataNotif"), object: nil)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateNotes"), object: nil)
     }
     
     private func setImage(for category: String) -> UIImage {

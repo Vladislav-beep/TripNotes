@@ -133,7 +133,8 @@ class NewAccountViewController: UIViewController {
         viewModel.createNewUser(withEmail: email, password: password, name: name) { [weak self] in
             self?.coordinator?.showTabBar()
         } errorCompletion: {
-            self.showAlert()
+            self.showAlert(title: "We have some problems",
+                             message: "Please, check your internet connection")
         }
         return
     }
@@ -207,19 +208,5 @@ class NewAccountViewController: UIViewController {
             logInStack.heightAnchor.constraint(equalToConstant: 55),
             logInStack.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width / 2)
         ])
-    }
-}
-
-extension NewAccountViewController {
-    
-    // MARK: Alert
-    
-    private func showAlert() {
-        let alert = UIAlertController(title: "Error",
-                                      message: "Check your internet connection",
-                                      preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-        alert.addAction(okAction)
-        present(alert, animated: true)
     }
 }

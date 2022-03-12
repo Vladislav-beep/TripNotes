@@ -17,22 +17,9 @@ class TripTableViewCell: UITableViewCell {
             descriptionLabel.text = viewModel?.description
             dateLabel.text = viewModel?.date
             totalSumLabel.text = viewModel?.getTotalSum()
-            
-            let file = FileStorageService()
-            
-
-                let imageData = file.retrieveImage(forKey: self.viewModel?.getId() ?? "")
-                if imageData == nil {
-     
-                        self.tripImageView.image = UIImage(named: Constants.ImageNames.tripPlaceHolderImage.rawValue)
-                    
-                } else {
-       
-                        self.tripImageView.image = UIImage(data: imageData ?? Data())
-                    
-                }
-            }
+            setupAvatarImage()
         }
+    }
     
     // MARK: UI
     
@@ -102,6 +89,17 @@ class TripTableViewCell: UITableViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: Private methods
+    
+    private func setupAvatarImage() {
+        let imageData = viewModel?.retrieveImage()
+        if imageData == nil {
+            self.tripImageView.image = UIImage(named: Constants.ImageNames.tripPlaceHolderImage.rawValue)
+        } else {
+            self.tripImageView.image = UIImage(data: imageData ?? Data())
+        }
     }
     
     // MARK: Layout

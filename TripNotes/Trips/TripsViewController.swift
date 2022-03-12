@@ -58,6 +58,12 @@ class TripsViewController: UIViewController {
         return button
     }()
     
+    private lazy var activityIndicator: UIActivityIndicatorView = {
+        let activityIndicator = UIActivityIndicatorView()
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        return activityIndicator
+    }()
+    
     private lazy var noLabel: NoLabel = {
         let noLabel = NoLabel(title: "No Trips yet")
         return noLabel
@@ -88,6 +94,7 @@ class TripsViewController: UIViewController {
         super.viewWillAppear(animated)
         addTripButton.isHidden = false
         addNoteButton.isHidden = true
+        activityIndicator.startAnimating()
         viewModel.getTrips()
     }
     
@@ -132,6 +139,8 @@ class TripsViewController: UIViewController {
         viewModel.firstCompletion = { [weak self] in
             self?.tableView.reloadData()
             self?.setupUI()
+            self?.activityIndicator.stopAnimating()
+            self?.activityIndicator.isHidden = true
         }
     }
     
@@ -196,6 +205,7 @@ class TripsViewController: UIViewController {
         setupAddButtonConstraints()
         setupAddNoteButtonConstraints()
         setupNoLabelConstraints()
+        setupActivityIndicatorConstraints()
     }
     
     private func setupTableContraints() {
@@ -235,6 +245,14 @@ class TripsViewController: UIViewController {
             noLabel.centerYAnchor.constraint(equalTo: tableView.centerYAnchor, constant: 0),
             noLabel.heightAnchor.constraint(equalToConstant: 60),
             noLabel.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width / 1.2)
+        ])
+    }
+    
+    private func setupActivityIndicatorConstraints() {
+        view.addSubview(activityIndicator)
+        NSLayoutConstraint.activate([
+            activityIndicator.centerXAnchor.constraint(equalTo: tableView.centerXAnchor, constant: 0),
+            activityIndicator.centerYAnchor.constraint(equalTo: tableView.centerYAnchor, constant: 0)
         ])
     }
 }
