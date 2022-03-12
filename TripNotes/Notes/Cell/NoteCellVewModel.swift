@@ -25,6 +25,7 @@ protocol NoteCellViewModelProtocol {
 class NoteCellViewModel: NoteCellViewModelProtocol {
     
     let fire = FireBaseService()
+    let dateFormatter = DateFormatterService()
     
     // MARK: Properties
     
@@ -37,11 +38,7 @@ class NoteCellViewModel: NoteCellViewModelProtocol {
     }
     
     var date: String {
-        let dateformatter = DateFormatter()
-        dateformatter.dateFormat = "HH:mm, dd.MM.yy"
-        
-        let date = dateformatter.string(from: tripNote.date)
-        return "\(date)"
+        "\(dateFormatter.convertNoteDateToString(date: tripNote.date))"
     }
     
     var category: String {
@@ -53,9 +50,7 @@ class NoteCellViewModel: NoteCellViewModelProtocol {
     }
     
     var price: String {
-        let formattedPrice = tripNote.price.formattedWithSeparator
-        let returnPrice = "\(formattedPrice) \(currency)"
-        return returnPrice
+        "\(tripNote.price.formattedWithSeparator) \(currency)"
     }
     
     var isFavourite: Bool {

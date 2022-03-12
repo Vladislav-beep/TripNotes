@@ -104,6 +104,22 @@ class FireBaseService {
             }
         }
     }
+    
+    func deleteTrip(tripId: String) {
+        let tripRef = db.collection("users").document("NUXiX5zSMiwYxmtCBpzO").collection("trips").document(tripId)
+        let noteCollectionRef = db.collection("users").document("NUXiX5zSMiwYxmtCBpzO").collection("trips").document(tripId).collection("tripNotes")
+        tripRef.delete()
+        noteCollectionRef.getDocuments { (snaphot, error) in
+            if let error = error {
+                print(error.localizedDescription)
+            } else {
+                for doc in snaphot!.documents {
+                    let docref = self.db.collection("users").document("NUXiX5zSMiwYxmtCBpzO").collection("trips").document(tripId).collection("tripNotes").document(doc.documentID)
+                    docref.delete()
+                }
+            }
+        }
+    }
         
     func listenToNotes(forTrip tripId: String, completion: @escaping (Result <[TripNote], Error>) -> Void) {
         db.collection("users").document("NUXiX5zSMiwYxmtCBpzO").collection("trips").document(tripId).collection("tripNotes").getDocuments { (querySnapshot, err) in

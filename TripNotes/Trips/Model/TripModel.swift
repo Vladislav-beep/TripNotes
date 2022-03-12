@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Trip {
+struct Trip: Equatable {
     let id: String
     let country: String
     let beginningDate: Date

@@ -95,7 +95,7 @@ class TripsViewController: UIViewController {
         addTripButton.isHidden = false
         addNoteButton.isHidden = true
         activityIndicator.startAnimating()
-        viewModel.getTrips()
+        viewModel.fetchTrips()
     }
     
     // MARK: Actions
@@ -169,10 +169,8 @@ class TripsViewController: UIViewController {
     
     private func editAction(at indexPath: IndexPath) -> UIContextualAction {
         let editAction = UIContextualAction(style: .normal, title: "Edit Trip") { (action, view, complition) in
+
             //
-//            let tripId = self.viewModel.getTripId(for: indexPath)
-//            self.coordinator?.showNewTrip(tripId: tripId, isEdited: true)
-//
             let newTripViewModel = self.viewModel.newTripViewModelEdited(for: indexPath)
             let newTripVC = NewTripViewController(viewModel: newTripViewModel, isEdited: true)
             newTripVC.modalPresentationStyle = .fullScreen
@@ -188,9 +186,10 @@ class TripsViewController: UIViewController {
     private func deleteAction(at indexPath: IndexPath) -> UIContextualAction {
         let action = UIContextualAction(style: .destructive, title: "Delete") { [weak self] (action, view, complition) in
             self?.viewModel.deleteRow(at: indexPath)
+
+            self?.tableView.beginUpdates()
             self?.tableView.deleteRows(at: [indexPath], with: .automatic)
-            print("1")
-           // self.tableView.deleteRows(at: [indexPath], with: .automatic)
+            self?.tableView.endUpdates()
             complition(true)
         }
         action.backgroundColor = .tripRed

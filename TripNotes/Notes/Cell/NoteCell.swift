@@ -20,7 +20,6 @@ class NoteCell: UICollectionViewCell {
             sumLabel.text = viewModel.price
             categoryImageView.image = setImage(for: viewModel.category)
             setupFavouriteUI()
-          //  NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: NSNotification.Name(rawValue: "newDataNotif"), object: nil)
         }
     }
     

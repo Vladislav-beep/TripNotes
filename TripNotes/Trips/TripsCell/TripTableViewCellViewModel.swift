@@ -23,24 +23,19 @@ protocol TripTableViewCellViewModelProtocol {
 class TripTableViewCellViewModel: TripTableViewCellViewModelProtocol {
     
     let file = FileStorageService()
+    let fire = FireBaseService()
+    let dateFormatter = DateFormatterService()
 
     // MARK: Properties
-    
-    let fire = FireBaseService()
-    
-   // let image = "placeHolder1"
     
     var description: String {
         trip.description
     }
     
     var date: String {
-        let dateformatter = DateFormatter()
-        dateformatter.dateStyle = .medium
-        
-        let bdate = dateformatter.string(from: trip.beginningDate)
-        let fdate = dateformatter.string(from: trip.finishingDate)
-        return "\(bdate) - \(fdate)"
+        let beginningDate = dateFormatter.convertTripDateToString(date: trip.beginningDate)
+        let finishingDate = dateFormatter.convertTripDateToString(date: trip.finishingDate)
+        return "\(beginningDate) - \(finishingDate)"
     }
     
     var country: String {

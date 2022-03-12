@@ -178,7 +178,7 @@ class WeatherViewController: UIViewController {
     private func setupWeatherIconImageViewConstraints() {
         view.addSubview(weatherIconImageView)
         NSLayoutConstraint.activate([
-            weatherIconImageView.heightAnchor.constraint(equalToConstant: 170),
+            weatherIconImageView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height * 0.21),
             weatherIconImageView.widthAnchor.constraint(equalTo: weatherIconImageView.heightAnchor),
             weatherIconImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0),
             weatherIconImageView.topAnchor.constraint(equalTo: cityLabel.bottomAnchor, constant: 10)
@@ -189,7 +189,7 @@ class WeatherViewController: UIViewController {
         view.addSubview(temperetureStack)
         NSLayoutConstraint.activate([
             temperetureStack.widthAnchor.constraint(equalTo: weatherIconImageView.widthAnchor),
-            temperetureStack.heightAnchor.constraint(equalToConstant: 100),
+            temperetureStack.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height * 0.12),
             temperetureStack.topAnchor.constraint(equalTo: weatherIconImageView.bottomAnchor, constant: 10),
             temperetureStack.centerXAnchor.constraint(equalTo: weatherIconImageView.centerXAnchor, constant: 0)
         ])

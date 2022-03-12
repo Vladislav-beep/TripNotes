@@ -11,7 +11,7 @@ import Firebase
 protocol TripsViewModelProtocol: class {
     var trips: [Trip] { get set }
     var firstCompletion: (() -> Void)? { get set }
-    func getTrips()
+    func fetchTrips()
     func numberOfRows(section: Int) -> Int
     func titleForHeaderInSection(section: Int) -> String
     func tripCellViewModel(for indexPath: IndexPath) -> TripTableViewCellViewModelProtocol?
@@ -36,13 +36,21 @@ class TripsViewModel: TripsViewModelProtocol {
     let userId: String
     var firstCompletion: (() -> Void)?
     
- //   var plannedCount = 0
-  //  var finishedCount = 0
+    // MARK: Private properties
+    
+    private var tripMore: [Trip]?
+    private var tripLow: [Trip]?
     
     // MARK: Life Time
     
     init(userId: String) {
         self.userId = userId
+    }
+    
+    // MARK: Private methods
+    
+    private func deleteTrip(tripId: String) {
+        fire.deleteTrip(tripId: tripId)
     }
     
     // MARK: Methods
@@ -51,7 +59,7 @@ class TripsViewModel: TripsViewModelProtocol {
         userDefaults.setLoggedOutStatus()
     }
     
-    func getTrips() {
+    func fetchTrips() {
         fire.listenToTrips(forUser: userId, completion: { (result: Result<[Trip], Error>) in
             switch result {
             case .success(let tripss):
@@ -64,8 +72,14 @@ class TripsViewModel: TripsViewModelProtocol {
     }
     
     func numberOfRows(section: Int) -> Int {
-        let plannedCount = trips.filter { $0.finishingDate > Date() }.count
-        let finishedCount = trips.count - plannedCount
+        tripMore = trips
+            .filter { $0.finishingDate > Date() }
+            .sorted(by: { $0.finishingDate > $1.finishingDate })
+        tripLow = trips
+            .filter { $0.finishingDate < Date() }
+            .sorted(by: { $0.finishingDate > $1.finishingDate })
+        let plannedCount = tripMore?.count ?? 0
+        let finishedCount = tripLow?.count ?? 0
         
         switch section {
         case 0:
@@ -87,27 +101,23 @@ class TripsViewModel: TripsViewModelProtocol {
             return ""
         }
     }
-  
+    
     func tripCellViewModel(for indexPath: IndexPath) -> TripTableViewCellViewModelProtocol? {
         if indexPath.section == 0 {
-            let tr = trips.filter { $0.finishingDate > Date() }
-            let trip = tr[indexPath.row]
+            let trip = (tripMore?[indexPath.row]) ?? Trip(id: "", country: "", beginningDate: Date(), finishingDate: Date(), description: "", currency: "")
             return TripTableViewCellViewModel(trip: trip)
         } else {
-            let tr = trips.filter { $0.finishingDate < Date() }
-            let trip = tr[indexPath.row]
+            let trip = tripLow?[indexPath.row] ?? Trip(id: "", country: "", beginningDate: Date(), finishingDate: Date(), description: "", currency: "")
             return TripTableViewCellViewModel(trip: trip)
         }
     }
     
     func viewModelForSelectedRow(at indexPath: IndexPath) -> NotesViewModelProtocol {
         if indexPath.section == 0 {
-            let tr = trips.filter { $0.finishingDate > Date() }
-            let trip = tr[indexPath.row]
+            let trip = (tripMore?[indexPath.row]) ?? Trip(id: "", country: "", beginningDate: Date(), finishingDate: Date(), description: "", currency: "")
             return NotesViewModel(trip: trip)
         } else {
-            let tr = trips.filter { $0.finishingDate < Date() }
-            let trip = tr[indexPath.row]
+            let trip = tripLow?[indexPath.row] ?? Trip(id: "", country: "", beginningDate: Date(), finishingDate: Date(), description: "", currency: "")
             return NotesViewModel(trip: trip)
         }
     }
@@ -123,42 +133,41 @@ class TripsViewModel: TripsViewModelProtocol {
     
     func newNoteViewModel(at indexPath: IndexPath) -> NewNoteViewModelProtocol {
         if indexPath.section == 0 {
-            let tr =  trips.filter { $0.finishingDate > Date() }
-            let trip = tr[indexPath.row]
+            let trip = (tripMore?[indexPath.row]) ?? Trip(id: "", country: "", beginningDate: Date(), finishingDate: Date(), description: "", currency: "")
             return NewNoteViewModel(tripId: trip.id, noteId: "")
         } else {
-            let tr = trips.filter { $0.finishingDate < Date() }
-            let trip = tr[indexPath.row]
+            let trip = tripLow?[indexPath.row] ?? Trip(id: "", country: "", beginningDate: Date(), finishingDate: Date(), description: "", currency: "")
             return NewNoteViewModel(tripId: trip.id, noteId: "")
         }
     }
     
     func deleteRow(at indexPath: IndexPath) {
         if indexPath.section == 0 {
-          //  trips.filter { $0.finishingDate > Date() }.remove(at: indexPath.row)
-          //  plannedCount -= 1
-          //  tr.remove(at: indexPath.row)
-            print("\(indexPath)- DDDDDDDDD")
+            let trip = tripMore?[indexPath.row]
+            for (index, tripp) in trips.enumerated() {
+                if tripp == trip {
+                    trips.remove(at: index)
+                    deleteTrip(tripId: tripp.id)
+                }
+            }
         } else {
-            var tr = trips.filter { $0.finishingDate < Date() }
-           // let trip = tr[indexPath.row]
-// finishedCount -= 1
-            print("\(indexPath)- DDDDDDDDD")
-            tr.remove(at: indexPath.row)
+            let trip = tripLow?[indexPath.row]
+            for (index, tripp) in trips.enumerated() {
+                if tripp == trip {
+                    trips.remove(at: index)
+                    deleteTrip(tripId: tripp.id)
+                }
+            }
         }
     }
     
     func getTripId(for indexPath: IndexPath?) -> String {
-       
         if indexPath?.section == 0 {
-            let tr =  trips.filter { $0.finishingDate > Date() }
-            let trip = tr[indexPath?.row ?? 0]
+            let trip = (tripMore?[indexPath?.row ?? 0]) ?? Trip(id: "", country: "", beginningDate: Date(), finishingDate: Date(), description: "", currency: "")
             return trip.id
         } else {
-            let tr = trips.filter { $0.finishingDate < Date() }
-            let trip = tr[indexPath?.row ?? 0]
+            let trip = tripLow?[indexPath?.row ?? 0] ?? Trip(id: "", country: "", beginningDate: Date(), finishingDate: Date(), description: "", currency: "")
             return trip.id
         }
     }
-    
 }

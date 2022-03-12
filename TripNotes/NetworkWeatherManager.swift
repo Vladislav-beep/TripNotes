@@ -30,7 +30,7 @@ class NetworkWeatherManager {
     
     func fetchCurrentWeather(forCoordinates longitude: CLLocationDegrees, latitude: CLLocationDegrees, comletion: @escaping (Result<CurrentWeather, NetworkError>) -> Void) {
         let apiKey = Constants.ApiKeys.weatherKey.rawValue
-        let urlString = Constants.URLs.weatherURL.rawValue + "lat=\(latitude)&lon=\(longitude)&apike=\(apiKey)&units=metric"
+        let urlString = Constants.URLs.weatherURL.rawValue + "lat=\(latitude)&lon=\(longitude)&apikey=\(apiKey)&units=metric"
         
         guard let url = URL(string: urlString) else {
             comletion(.failure(NetworkError.badURL))
