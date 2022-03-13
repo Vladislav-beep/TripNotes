@@ -209,15 +209,22 @@ class NewTripViewController: UIViewController {
         let dateformatter = DateFormatter()
         dateformatter.dateStyle = .medium
         
-        let bdate = dateformatter.date(from: beginningDateText)
-        let fdate = dateformatter.date(from: finishingDateText)
+        guard let bdate = dateformatter.date(from: beginningDateText) else { return }
+        guard let fdate = dateformatter.date(from: finishingDateText) else { return }
+        
+        guard bdate < fdate else {
+            let dateWarningText = "Beginning date can't be earlier then finishing date"
+            animator.animateWarningLabel(warningLabel: warningLabel, withText: dateWarningText)
+            return
+            
+        }
 
         if self.isEdited ?? false {
-            self.viewModel?.updateTrip(country: country, currency: currency, description: description, beginningDate: bdate ?? Date(), finishingDate: fdate ?? Date(), completion: { docId in
+            self.viewModel?.updateTrip(country: country, currency: currency, description: description, beginningDate: bdate , finishingDate: fdate , completion: { docId in
                 self.updateImageAndCloseScreen(forKey: docId)
             })
         } else {
-            self.viewModel?.addTrip(country: country, currency: currency, description: description, beginningDate: bdate ?? Date(), finishingDate: fdate ?? Date(), completion: { docId in
+            self.viewModel?.addTrip(country: country, currency: currency, description: description, beginningDate: bdate , finishingDate: fdate , completion: { docId in
                 self.updateImageAndCloseScreen(forKey: docId)
             })
         }

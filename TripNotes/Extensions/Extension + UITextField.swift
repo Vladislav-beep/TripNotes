@@ -27,7 +27,10 @@ extension UITextField {
                                      style: .plain,
                                      target: nil,
                                      action: #selector(tapCancel))
-        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: target, action: selector)
+        let doneButton = UIBarButtonItem(title: "Continue",
+                                         style: .plain,
+                                         target: target,
+                                         action: selector)
         toolBar.setItems([cancelButton, flexible, doneButton], animated: true)
         inputAccessoryView = toolBar
         

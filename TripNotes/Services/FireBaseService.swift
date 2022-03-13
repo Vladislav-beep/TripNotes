@@ -20,25 +20,14 @@ class FireBaseService {
     // MARK: Trip methods
     
     func fetchTrips(forUser id: String, completion: @escaping (Result <[Trip], Error>) -> Void) {
-        
         db.collection("users").document(id).collection("trips").getDocuments() { (querySnapshot, err) in
             if let err = err {
                 completion(.failure(err.localizedDescription as! Error))
             } else {
-                
                 var tripArray = [Trip]()
                 for document in querySnapshot!.documents {
-                    let data = document.data()
-                    let beginningDate = (data["beginningDate"] as? Timestamp)?.dateValue()
-                    let finishingDate = (data["finishingDate"] as? Timestamp)?.dateValue()
-                    let trip = Trip(id: document.documentID,
-                                    country: data["country"] as? String ?? "",
-                                    beginningDate: beginningDate ?? Date(),
-                                    finishingDate: finishingDate ?? Date(),
-                                    description: data["description"] as? String ?? "",
-                                    currency: data["currency"] as? String ?? "")
+                    let trip = Trip(snapshot: document)
                     tripArray.append(trip)
-                    
                 }
                 completion(.success(tripArray))
             }
@@ -73,15 +62,16 @@ class FireBaseService {
         let tripRef = db.collection("users").document("NUXiX5zSMiwYxmtCBpzO").collection("trips").document(tripId)
         tripRef.getDocument { (document, error) in
             if let document = document, document.exists {
-                let data = document.data()
-                let beginningDate = (data?["beginningDate"] as? Timestamp)?.dateValue()
-                let finishingDate = (data?["finishingDate"] as? Timestamp)?.dateValue()
-                let trip = Trip(id: data?["id"] as? String ?? "",
-                                country: data?["country"] as? String ?? "",
-                                beginningDate: beginningDate ?? Date(),
-                                finishingDate: finishingDate ?? Date(),
-                                description: data?["description"] as? String ?? "",
-                                currency: data?["currency"] as? String ?? "")
+                let trip = Trip(document: document)
+//                let data = document.data()
+//                let beginningDate = (data?["beginningDate"] as? Timestamp)?.dateValue()
+//                let finishingDate = (data?["finishingDate"] as? Timestamp)?.dateValue()
+//                let trip = Trip(id: data?["id"] as? String ?? "",
+//                                country: data?["country"] as? String ?? "",
+//                                beginningDate: beginningDate ?? Date(),
+//                                finishingDate: finishingDate ?? Date(),
+//                                description: data?["description"] as? String ?? "",
+//                                currency: data?["currency"] as? String ?? "")
                 completion(.success(trip))
                } else {
                 completion(.failure(error?.localizedDescription as! Error))
@@ -131,22 +121,10 @@ class FireBaseService {
             if let err = err {
                 completion(.failure(err.localizedDescription as! Error))
             } else {
-                
                 var noteArray = [TripNote]()
                 for document in querySnapshot!.documents {
-                    let data = document.data()
-                    let date = (data["date"] as? Timestamp)?.dateValue()
-                   
-                    let note = TripNote(id: data["id"] as? String ?? "",
-                                        city: data["city"] as? String ?? "",
-                                        category: data["category"] as? String ?? "",
-                                        price: data["price"] as? Double ?? 0.0,
-                                        date: date ?? Date(),
-                                        description: data["description"] as? String ?? "",
-                                        isFavourite: data["isFavourite"] as? Bool ?? false,
-                                        adress: data["adress"] as? String ?? "")
+                    let note = TripNote(snapshot: document)
                     noteArray.append(note)
-
                 }
                 completion(.success(noteArray))
             }
@@ -173,17 +151,17 @@ class FireBaseService {
         let noteRef = db.collection("users").document("NUXiX5zSMiwYxmtCBpzO").collection("trips").document(tripId).collection("tripNotes").document(noteId)
         noteRef.getDocument { (document, error) in
             if let document = document, document.exists {
-                let data = document.data()
-                let date = (data?["date"] as? Timestamp)?.dateValue()
-               
-                let note = TripNote(id: data?["id"] as? String ?? "",
-                                    city: data?["city"] as? String ?? "",
-                                    category: data?["category"] as? String ?? "",
-                                    price: data?["price"] as? Double ?? 0.0,
-                                    date: date ?? Date(),
-                                    description: data?["description"] as? String ?? "",
-                                    isFavourite: data?["isFavourite"] as? Bool ?? false,
-                                    adress: data?["adress"] as? String ?? "")
+                let note = TripNote(document: document)
+//                let data = document.data()
+//                let date = (data?["date"] as? Timestamp)?.dateValue()
+//                let note = TripNote(id: data?["id"] as? String ?? "",
+//                                    city: data?["city"] as? String ?? "",
+//                                    category: data?["category"] as? String ?? "",
+//                                    price: data?["price"] as? Double ?? 0.0,
+//                                    date: date ?? Date(),
+//                                    description: data?["description"] as? String ?? "",
+//                                    isFavourite: data?["isFavourite"] as? Bool ?? false,
+//                                    adress: data?["adress"] as? String ?? "")
                 completion(.success(note))
                } else {
                 completion(.failure(error?.localizedDescription as! Error))
@@ -222,6 +200,5 @@ class FireBaseService {
         let noteRef = db.collection("users").document("NUXiX5zSMiwYxmtCBpzO").collection("trips").document(tripId).collection("tripNotes").document(noteId)
         noteRef.delete()
     }
-    
 }
 

@@ -96,6 +96,7 @@ class TripsViewController: UIViewController {
         addNoteButton.isHidden = true
         activityIndicator.startAnimating()
         viewModel.fetchTrips()
+        tableView.reloadData()
     }
     
     // MARK: Actions

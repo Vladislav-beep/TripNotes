@@ -32,6 +32,7 @@ class WarningLabel: UILabel {
         font = UIFont.systemFont(ofSize: fontSize, weight: .heavy)
         textColor = .tripRed
         textAlignment = .center
+        adjustsFontSizeToFitWidth = true
         translatesAutoresizingMaskIntoConstraints = false
     }
 }

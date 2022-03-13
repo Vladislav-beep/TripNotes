@@ -15,7 +15,9 @@ protocol NoteCellViewModelProtocol {
     var date: String { get }
     var price: String { get }
     var isFavourite: Bool { get }
-    init(tripNote: TripNote, currency: String, tripId: String)
+    var infoLabel: String { get }
+    var isInfoShown: Bool { get }
+    init(tripNote: TripNote, currency: String, trip: Trip, isInfoShown: Bool)
     func deleteNote()
     func toggleFavourite(isFavourite: Bool)
     func getTripId() -> String
@@ -57,32 +59,38 @@ class NoteCellViewModel: NoteCellViewModelProtocol {
         tripNote.isFavourite
     }
     
+    var infoLabel: String {
+        "\(trip.country) \n \(dateFormatter.convertTripDateToShortString(date: trip.beginningDate)) - \(dateFormatter.convertTripDateToShortString(date: trip.finishingDate))"
+    }
+    
     // MARK: Private properties
     
     private var tripNote: TripNote
     private let currency: String
-    private let tripId: String
+    private let trip: Trip
+    var isInfoShown: Bool
     
     // MARK: Life Time
     
-    required init(tripNote: TripNote, currency: String, tripId: String) {
+    required init(tripNote: TripNote, currency: String, trip: Trip, isInfoShown: Bool) {
         self.tripNote = tripNote
         self.currency = currency
-        self.tripId = tripId
+        self.trip = trip
+        self.isInfoShown = isInfoShown
     }
     
     // MARK: Methods
     
     func toggleFavourite(isFavourite: Bool) {
-        fire.toggleFavourite(tripId: tripId, noteId: tripNote.id, isFavourite: isFavourite)
+        fire.toggleFavourite(tripId: trip.id, noteId: tripNote.id, isFavourite: isFavourite)
     }
     
     func deleteNote() {
-        fire.deleteNote(tripId: tripId, noteId: tripNote.id)
+        fire.deleteNote(tripId: trip.id, noteId: tripNote.id)
     }
     
     func getTripId() -> String {
-        return tripId
+        return trip.id
     }
     
     func getNoteId() -> String {

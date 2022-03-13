@@ -21,6 +21,12 @@ class DateFormatterService {
         return stringDate
     }
     
+    func convertTripDateToShortString(date: Date) -> String {
+        dateFormatter.dateFormat = "dd.MM.yy"
+        let stringDate = dateFormatter.string(from: date)
+        return stringDate
+    }
+    
     func convertNoteDateToString(date: Date) -> String {
         dateFormatter.dateFormat = "HH:mm, dd.MM.yy"
         let stringDate = dateFormatter.string(from: date)

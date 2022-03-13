@@ -19,7 +19,7 @@ class NoteCell: UICollectionViewCell {
             dateLabel.text = viewModel.date
             sumLabel.text = viewModel.price
             categoryImageView.image = setImage(for: viewModel.category)
-            setupFavouriteUI()
+            setupUI()
         }
     }
     
@@ -41,6 +41,17 @@ class NoteCell: UICollectionViewCell {
         categoryImageView.contentMode = .scaleAspectFit
         categoryImageView.translatesAutoresizingMaskIntoConstraints = false
         return categoryImageView
+    }()
+    
+    private lazy var infoLabel: UILabel = {
+        let infoLabel = UILabel()
+        infoLabel.textAlignment = .right
+        infoLabel.textColor = .tripBlue
+        infoLabel.numberOfLines = 2
+        infoLabel.adjustsFontSizeToFitWidth = true
+        infoLabel.isHidden = true
+        infoLabel.translatesAutoresizingMaskIntoConstraints = false
+        return infoLabel
     }()
     
     private lazy var categoryLabel: NoteLabel = {
@@ -97,16 +108,20 @@ class NoteCell: UICollectionViewCell {
     // MARK: Private methods
     
     @objc func refresh() {
-        setupFavouriteUI()
-        print("refresh")
+        setupUI()
     }
     
-    private func setupFavouriteUI() {
+    private func setupUI() {
         if viewModel.isFavourite {
             lowerView.layer.borderWidth = 3.5
             lowerView.layer.borderColor = UIColor.tripRed.cgColor
         } else {
             lowerView.layer.borderWidth = 0
+        }
+        
+        if viewModel.isInfoShown {
+            infoLabel.isHidden = false
+            infoLabel.text = viewModel.infoLabel
         }
     }
     
@@ -134,6 +149,7 @@ class NoteCell: UICollectionViewCell {
     private func setupAllConstraints() {
         setupLowerViewConstraints()
         setupCategoryImageViewConstraints()
+        setupInfoLabelConstraints() 
         setupLabelStackViewConstraints()
         setupSumLabelConstraints()
     }
@@ -155,6 +171,16 @@ class NoteCell: UICollectionViewCell {
             categoryImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
             categoryImageView.widthAnchor.constraint(equalTo: categoryImageView.heightAnchor),
             categoryImageView.heightAnchor.constraint(equalToConstant: 40)
+        ])
+    }
+    
+    private func setupInfoLabelConstraints() {
+        contentView.addSubview(infoLabel)
+        NSLayoutConstraint.activate([
+            infoLabel.centerYAnchor.constraint(equalTo: categoryImageView.centerYAnchor, constant: 0),
+            infoLabel.heightAnchor.constraint(equalTo: categoryImageView.heightAnchor),
+            infoLabel.leadingAnchor.constraint(equalTo: categoryImageView.trailingAnchor, constant: 10),
+            infoLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5)
         ])
     }
     

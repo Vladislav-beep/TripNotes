@@ -54,6 +54,7 @@ class WeatherViewController: UIViewController {
         feelsLikeTemperatureLabel.font = UIFont.systemFont(ofSize: 20, weight: .heavy)
         feelsLikeTemperatureLabel.textAlignment = .right
         feelsLikeTemperatureLabel.textColor = .tripRed
+        feelsLikeTemperatureLabel.adjustsFontSizeToFitWidth = true
         feelsLikeTemperatureLabel.translatesAutoresizingMaskIntoConstraints = false
         return feelsLikeTemperatureLabel
     }()

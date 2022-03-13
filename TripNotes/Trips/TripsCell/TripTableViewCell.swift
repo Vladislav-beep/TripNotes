@@ -17,10 +17,11 @@ class TripTableViewCell: UITableViewCell {
             descriptionLabel.text = viewModel?.description
             dateLabel.text = viewModel?.date
             totalSumLabel.text = viewModel?.getTotalSum()
+           
             setupAvatarImage()
         }
-    }
-    
+        }
+ 
     // MARK: UI
     
     private lazy var tripImageView: UIImageView = {
@@ -74,8 +75,8 @@ class TripTableViewCell: UITableViewCell {
     private lazy var textView: UIView = {
         let textView = UIView()
         textView.backgroundColor = .tripRed
-        textView.layer.opacity = 0.3
-        textView.layer.cornerRadius = 4
+        textView.layer.opacity = 0.45
+        textView.layer.cornerRadius = 8
         textView.translatesAutoresizingMaskIntoConstraints = false
         return textView
     }()
@@ -95,9 +96,7 @@ class TripTableViewCell: UITableViewCell {
     
     private func setupAvatarImage() {
         let imageData = viewModel?.retrieveImage()
-        if imageData == nil {
-            self.tripImageView.image = UIImage(named: Constants.ImageNames.tripPlaceHolderImage.rawValue)
-        } else {
+        if imageData?.count != 0 {
             self.tripImageView.image = UIImage(data: imageData ?? Data())
         }
     }
@@ -106,7 +105,7 @@ class TripTableViewCell: UITableViewCell {
     
     private func setupAllConstraints() {
         setupTripImageConstraints()
-      //  setupTextViewConstraints()
+        setupTextViewConstraints()
         setupTotalSumLabelConstraints()
         descriptionLabelConstraints()
         setupInfoStackViewConstraints()
@@ -142,15 +141,15 @@ class TripTableViewCell: UITableViewCell {
         ])
     }
     
- //   private func setupTextViewConstraints() {
-       // contentView.addSubview(textView)
-//        NSLayoutConstraint.activate([
-//            textView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
-//            textView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: -10),
-//            textView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -30),
-//            textView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -44),
-//        ])
- //   }
+    private func setupTextViewConstraints() {
+        contentView.addSubview(textView)
+        NSLayoutConstraint.activate([
+            textView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            textView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: -10),
+            textView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -30),
+            textView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -44),
+        ])
+    }
     
     private func setupInfoStackViewConstraints() {
         descriptionLabelConstraints()

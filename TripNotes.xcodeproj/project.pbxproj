@@ -363,21 +363,11 @@
 		B93DD4B1279F184F00D91A08 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
-				B93DD4C0279F23C600D91A08 /* Views */,
 				B93DD4B2279F186C00D91A08 /* AuthViewController.swift */,
 				B93DD4B6279F19F400D91A08 /* AuthViewModel.swift */,
 				B9863AB627C100AB00BE6337 /* UserModel.swift */,
 			);
 			path = Auth;
-			sourceTree = "<group>";
-		};
-		B93DD4C0279F23C600D91A08 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				B93DD4C1279F23DA00D91A08 /* AuthTextField.swift */,
-				B93DD4C7279F284300D91A08 /* SignInButton.swift */,
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		B949FB1727AEF05E00590F0E /* Coordinator */ = {
@@ -403,6 +393,8 @@
 			children = (
 				B905759A279458BB001EA8D1 /* SectionLabel.swift */,
 				B961212C279351FB00B7B81E /* SelectionLabel.swift */,
+				B93DD4C7279F284300D91A08 /* SignInButton.swift */,
+				B93DD4C1279F23DA00D91A08 /* AuthTextField.swift */,
 				B9A0EF6A2774DDCE00DE65E2 /* SelectionButton.swift */,
 				B9FB61232772617000126A59 /* CustomTextField.swift */,
 				B912CFEE27ADB60E00AE1FCE /* NotesCollectionView.swift */,

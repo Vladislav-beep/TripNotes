@@ -60,12 +60,12 @@ class NotesViewModel: NotesViewModelProtocol {
     func noteCellViewModel(for indexPath: IndexPath) -> NoteCellViewModelProtocol? {
         let note = notes[indexPath.item]
         let currency = trip?.currency ?? "$"
-        return NoteCellViewModel(tripNote: note, currency: currency, tripId: trip?.id ?? "")
+        return NoteCellViewModel(tripNote: note, currency: currency, trip: trip ?? Trip(id: "", country: "", beginningDate: Date(), finishingDate: Date(), description: "", currency: ""), isInfoShown: false)
     }
     
     func viewModelForSelectedRow(at indexpath: IndexPath) -> NoteCellViewModel {
         let note = notes[indexpath.item]
-        return NoteCellViewModel(tripNote: note, currency: trip?.currency ?? "$", tripId: trip?.id ?? "")
+        return NoteCellViewModel(tripNote: note, currency: trip?.currency ?? "$", trip: trip ?? Trip(id: "", country: "", beginningDate: Date(), finishingDate: Date(), description: "", currency: ""), isInfoShown: false)
     }
 
 }

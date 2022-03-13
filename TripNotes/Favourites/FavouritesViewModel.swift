@@ -43,6 +43,6 @@ class FavouritesViewModel: FavouritesViewModelProtocol {
     func noteCellViewModel(for indexPath: IndexPath) -> NoteCellViewModelProtocol? {
         let note = getNotes()[indexPath.item]
         let currency = getCurrency()[indexPath.item]
-        return NoteCellViewModel(tripNote: note, currency: currency, tripId: "")
+        return NoteCellViewModel(tripNote: note, currency: currency, trip: Trip(id: "", country: "", beginningDate: Date(), finishingDate: Date(), description: "", currency: ""), isInfoShown: false)
     }
 }
