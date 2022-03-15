@@ -241,7 +241,7 @@ extension NewAccountViewController: UITextFieldDelegate {
         case passwordTextField:
             passwordTextField.resignFirstResponder()
         default:
-            textField.resignFirstResponder()
+            loginTextField.becomeFirstResponder()
         }
         return true
     }
@@ -270,8 +270,6 @@ extension NewAccountViewController {
     }
     
     @objc private func keyboardWillHide(notification: Notification) {
-        let userInfo = notification.userInfo
-        let keyboardFrame = (userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
         scrollView.contentOffset = CGPoint.zero
     }
     

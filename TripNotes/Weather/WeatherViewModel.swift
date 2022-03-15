@@ -15,12 +15,13 @@ protocol WeatherViewModelProtocol {
     var IconName: String { get }
     var weatherCompletion: (() -> Void)? { get set }
     var errorCompletion: ((String) -> Void)? { get set }
+    init(networkManager: NetworkWeatherManagerProtocol)
     func fetchWeather(longitude: CLLocationDegrees, latitude: CLLocationDegrees)
 }
 
 class WeatherViewModel: WeatherViewModelProtocol {
     
-    let networkManager = NetworkWeatherManager()
+    let networkManager: NetworkWeatherManagerProtocol
     
     var weather: CurrentWeather?
     
@@ -43,6 +44,10 @@ class WeatherViewModel: WeatherViewModelProtocol {
     
     var IconName: String {
         weather?.systemIconNameString ?? "cloud"
+    }
+    
+    required init(networkManager: NetworkWeatherManagerProtocol) {
+        self.networkManager = networkManager
     }
     
     func fetchWeather(longitude: CLLocationDegrees, latitude: CLLocationDegrees) {

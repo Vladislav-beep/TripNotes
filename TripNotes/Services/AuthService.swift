@@ -23,7 +23,6 @@ class AuthService: AuthServiceProtocol {
     
     var completion: ((String) -> Void)?
     
-
     func getUserId(completion: @escaping (Result<String, Error>) -> Void) {
             guard let currentUser = Auth.auth().currentUser else { return }
     
@@ -46,7 +45,6 @@ class AuthService: AuthServiceProtocol {
         Auth.auth().createUser(withEmail: email, password: password) { [weak self] (result, error) in
             if error != nil {
                 errorCompletion()
-                print(error?.localizedDescription)
             } else {
                 self?.db.collection("users").addDocument(data: [
                     "email": email,
@@ -63,13 +61,11 @@ class AuthService: AuthServiceProtocol {
         Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
             if error != nil {
                 errorCompletion()
-                print(error?.localizedDescription)
                 return
             }
             if user != nil {
                 completion()
             }
-            print(error?.localizedDescription)
         }
     }
     

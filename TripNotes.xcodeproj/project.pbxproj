@@ -64,8 +64,8 @@
 		B94439D827B84E09000DF640 /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94439D727B84E09000DF640 /* Animator.swift */; };
 		B949FB0D27AEE4C700590F0E /* NoteLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B949FB0C27AEE4C600590F0E /* NoteLabel.swift */; };
 		B949FB1027AEE4EA00590F0E /* NoteLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B949FB0C27AEE4C600590F0E /* NoteLabel.swift */; };
-		B949FB1927AEF0AE00590F0E /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B949FB1827AEF0AE00590F0E /* AppCoordinator.swift */; };
-		B949FB1E27AEF38800590F0E /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B949FB1827AEF0AE00590F0E /* AppCoordinator.swift */; };
+		B949FB1927AEF0AE00590F0E /* Configurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B949FB1827AEF0AE00590F0E /* Configurator.swift */; };
+		B949FB1E27AEF38800590F0E /* Configurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B949FB1827AEF0AE00590F0E /* Configurator.swift */; };
 		B949FB2127AF1F7A00590F0E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91E813E2767A88E00D0748B /* SceneDelegate.swift */; };
 		B95F0BBF27B986FC008BCAF6 /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94439D727B84E09000DF640 /* Animator.swift */; };
 		B95FBCC727D7D58F006FF5A8 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95FBCC627D7D58F006FF5A8 /* WeatherViewController.swift */; };
@@ -199,7 +199,7 @@
 		B93DD4C7279F284300D91A08 /* SignInButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInButton.swift; sourceTree = "<group>"; };
 		B94439D727B84E09000DF640 /* Animator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animator.swift; sourceTree = "<group>"; };
 		B949FB0C27AEE4C600590F0E /* NoteLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteLabel.swift; sourceTree = "<group>"; };
-		B949FB1827AEF0AE00590F0E /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		B949FB1827AEF0AE00590F0E /* Configurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configurator.swift; sourceTree = "<group>"; };
 		B95FBCC627D7D58F006FF5A8 /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
 		B95FBCD027D7D6D5006FF5A8 /* WeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewModel.swift; sourceTree = "<group>"; };
 		B95FBCDC27D89050006FF5A8 /* CloseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseButton.swift; sourceTree = "<group>"; };
@@ -375,7 +375,7 @@
 		B949FB1727AEF05E00590F0E /* Coordinator */ = {
 			isa = PBXGroup;
 			children = (
-				B949FB1827AEF0AE00590F0E /* AppCoordinator.swift */,
+				B949FB1827AEF0AE00590F0E /* Configurator.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -661,7 +661,7 @@
 				B938B1F927DB91C500E205C6 /* NoLabel.swift in Sources */,
 				B94439D827B84E09000DF640 /* Animator.swift in Sources */,
 				B90DB444276F326000F1A544 /* Extension + Numeric.swift in Sources */,
-				B949FB1927AEF0AE00590F0E /* AppCoordinator.swift in Sources */,
+				B949FB1927AEF0AE00590F0E /* Configurator.swift in Sources */,
 				B9863AB727C100AB00BE6337 /* UserModel.swift in Sources */,
 				B9FB61182772336700126A59 /* NewTripViewController.swift in Sources */,
 				B91E81532767A9AC00D0748B /* TabBarViewController.swift in Sources */,
@@ -765,7 +765,7 @@
 				B95FBD0D27D8BAD6006FF5A8 /* CurrentWeatherData.swift in Sources */,
 				B9D9FC11278F390B007710B4 /* NewNoteViewController.swift in Sources */,
 				B95FBD1227D90D5E006FF5A8 /* NetworkWeatherManager.swift in Sources */,
-				B949FB1E27AEF38800590F0E /* AppCoordinator.swift in Sources */,
+				B949FB1E27AEF38800590F0E /* Configurator.swift in Sources */,
 				B90DB456276FB38D00F1A544 /* NotesViewController.swift in Sources */,
 				B95FBCD627D7D76C006FF5A8 /* WeatherViewController.swift in Sources */,
 				B9FCE18E279D8A4900E06739 /* mapViewModel.swift in Sources */,

@@ -15,7 +15,7 @@ protocol NewTripViewModelProtocol {
     var description: String { get }
     var currency: String { get }
     var tripCompletion: (() -> Void)? { get set }
-    init(tripId: String)
+    init(tripId: String, userId: String, fireBaseService: FireBaseServiceProtocol, fileStorageService: FileStorageServiceProtocol)
     func saveImage(data: Data, key: String)
     func retrieveImage() -> Data
     func addTrip(country: String, currency: String, description: String, beginningDate: Date, finishingDate: Date, completion: @escaping (String) -> Void)
@@ -24,9 +24,9 @@ protocol NewTripViewModelProtocol {
 }
 
 class NewTripViewModel: NewTripViewModelProtocol {
-    
-    let fire = FireBaseService()
-    let store = FileStorageService()
+        
+    let fireBaseService: FireBaseServiceProtocol
+    let fileStorageService: FileStorageServiceProtocol
     
     // MARK: Private proaperties
     
@@ -35,6 +35,7 @@ class NewTripViewModel: NewTripViewModelProtocol {
     // MARK: Properties
     
     var tripId: String
+    var userId: String
     
     var country: String {
         trip?.country ?? ""
@@ -66,26 +67,29 @@ class NewTripViewModel: NewTripViewModelProtocol {
     
     // MARK: Life Time
     
-    required init(tripId: String) {
+    required init(tripId: String, userId: String, fireBaseService: FireBaseServiceProtocol, fileStorageService: FileStorageServiceProtocol) {
+        self.userId = userId
         self.tripId = tripId
+        self.fireBaseService = fireBaseService
+        self.fileStorageService = fileStorageService
     }
     
     // MARK: Methods
     
     func saveImage(data: Data, key: String) {
-        store.store(image: data, forKey: key)
+        fileStorageService.store(image: data, forKey: key)
     }
     
     func retrieveImage() -> Data {
-        store.retrieveImage(forKey: tripId) ?? Data()
+        fileStorageService.retrieveImage(forKey: tripId) ?? Data()
     }
     
     func addTrip(country: String, currency: String, description: String, beginningDate: Date, finishingDate: Date, completion: @escaping (String) -> Void) {
-        fire.addTrip(country: country, currency: currency, description: description, beginningDate: beginningDate, finishingDate: finishingDate, completion: completion)
+        fireBaseService.addTrip(forUser: userId, country: country, currency: currency, description: description, beginningDate: beginningDate, finishingDate: finishingDate, completion: completion)
     }
     
     func downloadTrip() {
-        fire.downloadTrip(tripId: tripId) { (result: Result<Trip, Error>)  in
+        fireBaseService.downloadTrip(forUser: userId, tripId: tripId) { (result: Result<Trip, Error>)  in
             switch result {
             case .success(let tripp):
                 self.trip = tripp
@@ -98,7 +102,7 @@ class NewTripViewModel: NewTripViewModelProtocol {
     }
     
     func updateTrip(country: String, currency: String, description: String, beginningDate: Date, finishingDate: Date, completion: @escaping (String) -> Void) {
-        fire.updateTrip(tripId: tripId, country: country, currency: currency, description: description, beginningDate: beginningDate, finishingDate: finishingDate, completion: completion)
+        fireBaseService.updateTrip(forUser: userId, tripId: tripId, country: country, currency: currency, description: description, beginningDate: beginningDate, finishingDate: finishingDate, completion: completion)
     }
 }
 

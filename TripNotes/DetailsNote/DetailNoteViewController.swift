@@ -11,7 +11,8 @@ class DetailNoteViewController: UIViewController {
     
     // MARK: Dependencies
     
-    private var viewModel: NoteCellViewModel
+    private var viewModel: NoteCellViewModelProtocol
+    var configurator: Configurator?
     
     // MARK: Properties
     
@@ -137,7 +138,7 @@ class DetailNoteViewController: UIViewController {
     
     // MARK: Life Time
     
-    init(viewModel: NoteCellViewModel) {
+    init(viewModel: NoteCellViewModelProtocol) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
         setupAllConstraints()
@@ -166,11 +167,10 @@ class DetailNoteViewController: UIViewController {
     
     @objc func editNote() {
         dismiss(animated: true)
+        let userId = viewModel.userId
         let tripId = viewModel.getTripId()
         let noteId = viewModel.getNoteId()
-        let newVm = NewNoteViewModel(tripId: tripId, noteId: noteId)
-        let newNoteVC = NewNoteViewController(viewModel: newVm, isEdited: true)
-        newNoteVC.modalPresentationStyle = .fullScreen
+        let newNoteVC = configurator?.configureNewNoteEdited(withUser: userId, tripId: tripId, noteId: noteId) ?? UIViewController()
         presentingViewController?.present(newNoteVC, animated: true, completion: nil)
     }
     

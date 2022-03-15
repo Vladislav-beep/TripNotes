@@ -7,11 +7,13 @@
 
 import Foundation
 
-protocol nameDateFormatterServiceProtocol {
-    func formatTripDate(date: String) -> String
+protocol DateFormatterServiceProtocol {
+    func convertTripDateToString(date: Date) -> String
+    func convertTripDateToShortString(date: Date) -> String
+    func convertNoteDateToString(date: Date) -> String
 }
 
-class DateFormatterService {
+class DateFormatterService: DateFormatterServiceProtocol {
     
     private let dateFormatter = DateFormatter()
     

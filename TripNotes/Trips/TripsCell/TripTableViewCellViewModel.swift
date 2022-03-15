@@ -12,7 +12,9 @@ protocol TripTableViewCellViewModelProtocol {
     var description: String { get }
     var date: String { get }
     var notesCompletion: (() -> Void)? { get set }
-    init(trip: Trip)
+    init(fileStorageService: FileStorageServiceProtocol,
+         dateFormatterService: DateFormatterServiceProtocol,
+         trip: Trip)
     func getTotalSum() -> String
     func getId() -> String
     func retrieveImage() -> Data
@@ -22,9 +24,8 @@ protocol TripTableViewCellViewModelProtocol {
 
 class TripTableViewCellViewModel: TripTableViewCellViewModelProtocol {
     
-    let file = FileStorageService()
-    let fire = FireBaseService()
-    let dateFormatter = DateFormatterService()
+    let fileStorageService: FileStorageServiceProtocol
+    let dateFormatterService: DateFormatterServiceProtocol
 
     // MARK: Properties
     
@@ -33,8 +34,8 @@ class TripTableViewCellViewModel: TripTableViewCellViewModelProtocol {
     }
     
     var date: String {
-        let beginningDate = dateFormatter.convertTripDateToString(date: trip.beginningDate)
-        let finishingDate = dateFormatter.convertTripDateToString(date: trip.finishingDate)
+        let beginningDate = dateFormatterService.convertTripDateToString(date: trip.beginningDate)
+        let finishingDate = dateFormatterService.convertTripDateToString(date: trip.finishingDate)
         return "\(beginningDate) - \(finishingDate)"
     }
     
@@ -50,10 +51,14 @@ class TripTableViewCellViewModel: TripTableViewCellViewModelProtocol {
     
     // MARK: Life Time
     
-    required init(trip: Trip) {
+    required init(fileStorageService: FileStorageServiceProtocol,
+         dateFormatterService: DateFormatterServiceProtocol,
+         trip: Trip) {
+        self.fileStorageService = fileStorageService
+        self.dateFormatterService = dateFormatterService
         self.trip = trip
     }
-    
+
     // MARK: Methods
     
 //    func downloadNotes() {
@@ -74,7 +79,7 @@ class TripTableViewCellViewModel: TripTableViewCellViewModelProtocol {
     }
     
     func retrieveImage() -> Data {
-        return file.retrieveImage(forKey: trip.id) ?? Data()
+        return fileStorageService.retrieveImage(forKey: trip.id) ?? Data()
     }
     
     func getTotalSum() -> String {

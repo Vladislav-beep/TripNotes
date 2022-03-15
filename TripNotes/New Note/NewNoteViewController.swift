@@ -13,6 +13,7 @@ class NewNoteViewController: UIViewController {
     
     private var viewModel: NewNoteViewModelProtocol?
     private lazy var animator = Animator(container: view)
+    var configurator: Configurator?
     
     // MARK: Properties
     
@@ -368,8 +369,12 @@ class NewNoteViewController: UIViewController {
     }
     
     @objc func getAdress() {
+        
+        ///
         let mapVC = MapViewController()
         present(mapVC, animated: true)
+        
+        ////
     }
     
     // MARK: Private methods

@@ -26,7 +26,11 @@ enum NetworkError: Error {
     }
 }
 
-class NetworkWeatherManager {
+protocol NetworkWeatherManagerProtocol {
+    func fetchCurrentWeather(forCoordinates longitude: CLLocationDegrees, latitude: CLLocationDegrees, comletion: @escaping (Result<CurrentWeather, NetworkError>) -> Void)
+}
+
+class NetworkWeatherManager: NetworkWeatherManagerProtocol {
     
     func fetchCurrentWeather(forCoordinates longitude: CLLocationDegrees, latitude: CLLocationDegrees, comletion: @escaping (Result<CurrentWeather, NetworkError>) -> Void) {
         let apiKey = Constants.ApiKeys.weatherKey.rawValue

@@ -13,7 +13,6 @@ class NewTripViewController: UIViewController {
     // MARK: Dependencies
     
     private var viewModel: NewTripViewModelProtocol?
-    var coordinator: AppCoordinator?
     lazy var animator = Animator(container: view)
     
     // MARK: Properties

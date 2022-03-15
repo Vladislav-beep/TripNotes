@@ -9,14 +9,26 @@ import Foundation
 import Firebase
 
 protocol FireBaseServiceProtocol {
-    func listenToTrips() -> [Trip]
+    func fetchTrips(forUser id: String, completion: @escaping (Result <[Trip], Error>) -> Void)
+    func addTrip(forUser userId: String, country: String, currency: String, description: String, beginningDate: Date, finishingDate: Date, completion: @escaping (String) -> Void)
+    func downloadTrip(forUser userId: String, tripId: String, completion: @escaping (Result <Trip, Error>) -> Void)
+    func updateTrip(forUser userId: String, tripId: String, country: String, currency: String, description: String, beginningDate: Date, finishingDate: Date, completion: @escaping (String) -> Void)
+    func deleteTrip(forUser userId: String, tripId: String)
+    
+    func fetchNotes(forUser userId: String, forTrip tripId: String, completion: @escaping (Result <[TripNote], Error>) -> Void)
+    func addNote(forUser userId: String, tripId: String, category: String, city: String, price: Double, isFavourite: Bool, description: String)
+    func downloadNote(forUser userId: String, tripId: String, noteId: String, completion: @escaping (Result <TripNote, Error>) -> Void)
+    func updateNote(forUser userId: String, tripId: String, noteId: String, city: String, category: String, description: String, price: Double)
+    func deleteNote(forUser userId: String, tripId: String, noteId: String)
+    func toggleFavourite(forUser userId: String, tripId: String, noteId: String, isFavourite: Bool)
+    
 }
 
-class FireBaseService {
+class FireBaseService: FireBaseServiceProtocol {
     
     private lazy var db = Firestore.firestore()
     private lazy var usersRef = db.collection("users")
-    
+
     // MARK: Trip methods
     
     func fetchTrips(forUser id: String, completion: @escaping (Result <[Trip], Error>) -> Void) {
@@ -34,13 +46,9 @@ class FireBaseService {
         }
     }
     
-    func getTotalSumOfNotes() {
+    func addTrip(forUser userId: String, country: String, currency: String, description: String, beginningDate: Date, finishingDate: Date, completion: @escaping (String) -> Void) {
         
-    }
-    
-    func addTrip(country: String, currency: String, description: String, beginningDate: Date, finishingDate: Date, completion: @escaping (String) -> Void) {
-        
-        let newTripRef = db.collection("users").document("NUXiX5zSMiwYxmtCBpzO").collection("trips").document()
+        let newTripRef = db.collection("users").document(userId).collection("trips").document()
         newTripRef.setData([
             "id": newTripRef.documentID,
             "country": country,
@@ -58,20 +66,11 @@ class FireBaseService {
         }
     }
     
-    func downloadTrip(tripId: String, completion: @escaping (Result <Trip, Error>) -> Void) {
-        let tripRef = db.collection("users").document("NUXiX5zSMiwYxmtCBpzO").collection("trips").document(tripId)
+    func downloadTrip(forUser userId: String, tripId: String, completion: @escaping (Result <Trip, Error>) -> Void) {
+        let tripRef = db.collection("users").document(userId).collection("trips").document(tripId)
         tripRef.getDocument { (document, error) in
             if let document = document, document.exists {
                 let trip = Trip(document: document)
-//                let data = document.data()
-//                let beginningDate = (data?["beginningDate"] as? Timestamp)?.dateValue()
-//                let finishingDate = (data?["finishingDate"] as? Timestamp)?.dateValue()
-//                let trip = Trip(id: data?["id"] as? String ?? "",
-//                                country: data?["country"] as? String ?? "",
-//                                beginningDate: beginningDate ?? Date(),
-//                                finishingDate: finishingDate ?? Date(),
-//                                description: data?["description"] as? String ?? "",
-//                                currency: data?["currency"] as? String ?? "")
                 completion(.success(trip))
                } else {
                 completion(.failure(error?.localizedDescription as! Error))
@@ -80,8 +79,8 @@ class FireBaseService {
         }
     }
     
-    func updateTrip(tripId: String, country: String, currency: String, description: String, beginningDate: Date, finishingDate: Date, completion: @escaping (String) -> Void) {
-        let tripRef = db.collection("users").document("NUXiX5zSMiwYxmtCBpzO").collection("trips").document(tripId)
+    func updateTrip(forUser userId: String, tripId: String, country: String, currency: String, description: String, beginningDate: Date, finishingDate: Date, completion: @escaping (String) -> Void) {
+        let tripRef = db.collection("users").document(userId).collection("trips").document(tripId)
         tripRef.updateData([
             "country": country,
             "beginningDate": beginningDate,
@@ -98,9 +97,9 @@ class FireBaseService {
         }
     }
     
-    func deleteTrip(tripId: String) {
-        let tripRef = db.collection("users").document("NUXiX5zSMiwYxmtCBpzO").collection("trips").document(tripId)
-        let noteCollectionRef = db.collection("users").document("NUXiX5zSMiwYxmtCBpzO").collection("trips").document(tripId).collection("tripNotes")
+    func deleteTrip(forUser userId: String, tripId: String) {
+        let tripRef = db.collection("users").document(userId).collection("trips").document(tripId)
+        let noteCollectionRef = db.collection("users").document(userId).collection("trips").document(tripId).collection("tripNotes")
         tripRef.delete()
         noteCollectionRef.getDocuments { (snaphot, error) in
             if let error = error {
@@ -116,8 +115,8 @@ class FireBaseService {
     
     // MARK: Note methods
         
-    func fetchNotes(forTrip tripId: String, completion: @escaping (Result <[TripNote], Error>) -> Void) {
-        db.collection("users").document("NUXiX5zSMiwYxmtCBpzO").collection("trips").document(tripId).collection("tripNotes").getDocuments { (querySnapshot, err) in
+    func fetchNotes(forUser userId: String, forTrip tripId: String, completion: @escaping (Result <[TripNote], Error>) -> Void) {
+        db.collection("users").document(userId).collection("trips").document(tripId).collection("tripNotes").getDocuments { (querySnapshot, err) in
             if let err = err {
                 completion(.failure(err.localizedDescription as! Error))
             } else {
@@ -131,48 +130,9 @@ class FireBaseService {
         }
     }
     
-    func updateNote(tripId: String, noteId: String, city: String, category: String, description: String, price: Double) {
-        let noteRef = db.collection("users").document("NUXiX5zSMiwYxmtCBpzO").collection("trips").document(tripId).collection("tripNotes").document(noteId)
-        noteRef.updateData([
-            "city": city,
-            "price": price,
-            "description": description,
-            "category": category
-        ]) { err in
-            if let err = err {
-                print("Error updating document: \(err)")
-            } else {
-                print("Document successfully updated")
-            }
-        }
-    }
-    
-    func downloadNote(tripId: String, noteId: String, completion: @escaping (Result <TripNote, Error>) -> Void) {
-        let noteRef = db.collection("users").document("NUXiX5zSMiwYxmtCBpzO").collection("trips").document(tripId).collection("tripNotes").document(noteId)
-        noteRef.getDocument { (document, error) in
-            if let document = document, document.exists {
-                let note = TripNote(document: document)
-//                let data = document.data()
-//                let date = (data?["date"] as? Timestamp)?.dateValue()
-//                let note = TripNote(id: data?["id"] as? String ?? "",
-//                                    city: data?["city"] as? String ?? "",
-//                                    category: data?["category"] as? String ?? "",
-//                                    price: data?["price"] as? Double ?? 0.0,
-//                                    date: date ?? Date(),
-//                                    description: data?["description"] as? String ?? "",
-//                                    isFavourite: data?["isFavourite"] as? Bool ?? false,
-//                                    adress: data?["adress"] as? String ?? "")
-                completion(.success(note))
-               } else {
-                completion(.failure(error?.localizedDescription as! Error))
-                print("errrrrrrrrrrrrrrr")
-               }
-        }
-    }
-    
-    func addNote(tripId: String, category: String, city: String, price: Double, isFavourite: Bool, description: String) {
+    func addNote(forUser userId: String, tripId: String, category: String, city: String, price: Double, isFavourite: Bool, description: String) {
         
-        let newNoteRef = db.collection("users").document("NUXiX5zSMiwYxmtCBpzO").collection("trips").document(tripId).collection("tripNotes").document()
+        let newNoteRef = db.collection("users").document(userId).collection("trips").document(tripId).collection("tripNotes").document()
         newNoteRef.setData([
             "id": newNoteRef.documentID,
             "city": city,
@@ -190,14 +150,43 @@ class FireBaseService {
         }
     }
     
-    func toggleFavourite(tripId: String, noteId: String, isFavourite: Bool) {
-        let noteRef = db.collection("users").document("NUXiX5zSMiwYxmtCBpzO").collection("trips").document(tripId).collection("tripNotes").document(noteId)
+    func downloadNote(forUser userId: String, tripId: String, noteId: String, completion: @escaping (Result <TripNote, Error>) -> Void) {
+        let noteRef = db.collection("users").document(userId).collection("trips").document(tripId).collection("tripNotes").document(noteId)
+        noteRef.getDocument { (document, error) in
+            if let document = document, document.exists {
+                let note = TripNote(document: document)
+                completion(.success(note))
+               } else {
+                completion(.failure(error?.localizedDescription as! Error))
+                print("errrrrrrrrrrrrrrr")
+               }
+        }
+    }
+    
+    func updateNote(forUser userId: String, tripId: String, noteId: String, city: String, category: String, description: String, price: Double) {
+        let noteRef = db.collection("users").document(userId).collection("trips").document(tripId).collection("tripNotes").document(noteId)
+        noteRef.updateData([
+            "city": city,
+            "price": price,
+            "description": description,
+            "category": category
+        ]) { err in
+            if let err = err {
+                print("Error updating document: \(err)")
+            } else {
+                print("Document successfully updated")
+            }
+        }
+    }
+     
+    func toggleFavourite(forUser userId: String, tripId: String, noteId: String, isFavourite: Bool) {
+        let noteRef = db.collection("users").document(userId).collection("trips").document(tripId).collection("tripNotes").document(noteId)
         
         noteRef.updateData(["isFavourite" : isFavourite])
     }
     
-    func deleteNote(tripId: String, noteId: String) {
-        let noteRef = db.collection("users").document("NUXiX5zSMiwYxmtCBpzO").collection("trips").document(tripId).collection("tripNotes").document(noteId)
+    func deleteNote(forUser userId: String, tripId: String, noteId: String) {
+        let noteRef = db.collection("users").document(userId).collection("trips").document(tripId).collection("tripNotes").document(noteId)
         noteRef.delete()
     }
 }

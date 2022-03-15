@@ -7,7 +7,12 @@
 
 import UIKit
 
-class FileStorageService {
+protocol FileStorageServiceProtocol {
+    func store(image: Data, forKey key: String)
+    func retrieveImage(forKey key: String) -> Data?
+}
+
+class FileStorageService: FileStorageServiceProtocol {
     
     private func filePath(forKey key: String) -> URL? {
         let fileManager = FileManager.default

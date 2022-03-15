@@ -10,7 +10,12 @@ import Firebase
 
 protocol TripsViewModelProtocol: class {
     var trips: [Trip] { get set }
+    var userId: String { get set }
     var firstCompletion: (() -> Void)? { get set }
+    init(fireBaseService: FireBaseServiceProtocol,
+                  userId: String,
+                  fileStorageService: FileStorageServiceProtocol,
+                  dateFormatterService: DateFormatterServiceProtocol)
     func fetchTrips()
     func numberOfRows(section: Int) -> Int
     func titleForHeaderInSection(section: Int) -> String
@@ -20,20 +25,20 @@ protocol TripsViewModelProtocol: class {
     func newTripViewModel() -> NewTripViewModelProtocol 
     func newNoteViewModel(at indexPath: IndexPath) -> NewNoteViewModelProtocol
     func deleteRow(at indexPath: IndexPath)
-    func setLoggedOutStatus()
     func getTripId(for indexPath: IndexPath?) -> String
     
 }
 
 class TripsViewModel: TripsViewModelProtocol {
     
-    let fire = FireBaseService()
-    let userDefaults = UserDefaltsService()
-    
+    let fireBaseService: FireBaseServiceProtocol
+    let fileStorageService: FileStorageServiceProtocol
+    let dateFormatterService: DateFormatterServiceProtocol
+
     // MARK: Properties
     
     var trips: [Trip] = []
-    let userId: String
+    var userId: String
     var firstCompletion: (() -> Void)?
     
     // MARK: Private properties
@@ -43,24 +48,26 @@ class TripsViewModel: TripsViewModelProtocol {
     
     // MARK: Life Time
     
-    init(userId: String) {
+    required init(fireBaseService: FireBaseServiceProtocol,
+                  userId: String,
+                  fileStorageService: FileStorageServiceProtocol,
+                  dateFormatterService: DateFormatterServiceProtocol) {
+        self.fireBaseService = fireBaseService
         self.userId = userId
+        self.fileStorageService = fileStorageService
+        self.dateFormatterService = dateFormatterService
     }
     
     // MARK: Private methods
     
     private func deleteTrip(tripId: String) {
-        fire.deleteTrip(tripId: tripId)
+        fireBaseService.deleteTrip(forUser: userId, tripId: tripId)
     }
     
     // MARK: Methods
     
-    func setLoggedOutStatus() {
-        userDefaults.setLoggedOutStatus()
-    }
-    
     func fetchTrips() {
-        fire.fetchTrips(forUser: userId, completion: { (result: Result<[Trip], Error>) in
+        fireBaseService.fetchTrips(forUser: userId, completion: { (result: Result<[Trip], Error>) in
             switch result {
             case .success(let tripss):
                 self.trips = tripss
@@ -105,39 +112,39 @@ class TripsViewModel: TripsViewModelProtocol {
     func tripCellViewModel(for indexPath: IndexPath) -> TripTableViewCellViewModelProtocol? {
         if indexPath.section == 0 {
             let trip = (tripMore?[indexPath.row]) ?? Trip(id: "", country: "", beginningDate: Date(), finishingDate: Date(), description: "", currency: "")
-            return TripTableViewCellViewModel(trip: trip)
+            return TripTableViewCellViewModel(fileStorageService: fileStorageService, dateFormatterService: dateFormatterService, trip: trip)
         } else {
             let trip = tripLow?[indexPath.row] ?? Trip(id: "", country: "", beginningDate: Date(), finishingDate: Date(), description: "", currency: "")
-            return TripTableViewCellViewModel(trip: trip)
+            return TripTableViewCellViewModel(fileStorageService: fileStorageService, dateFormatterService: dateFormatterService, trip: trip)
         }
     }
     
     func viewModelForSelectedRow(at indexPath: IndexPath) -> NotesViewModelProtocol {
         if indexPath.section == 0 {
             let trip = (tripMore?[indexPath.row]) ?? Trip(id: "", country: "", beginningDate: Date(), finishingDate: Date(), description: "", currency: "")
-            return NotesViewModel(trip: trip)
+            return NotesViewModel(trip: trip, fireBaseService: fireBaseService, dateFormatterService: dateFormatterService, userId: userId)
         } else {
             let trip = tripLow?[indexPath.row] ?? Trip(id: "", country: "", beginningDate: Date(), finishingDate: Date(), description: "", currency: "")
-            return NotesViewModel(trip: trip)
+            return NotesViewModel(trip: trip, fireBaseService: fireBaseService, dateFormatterService: dateFormatterService, userId: userId)
         }
     }
     
     func newTripViewModelEdited(for indexPath: IndexPath?) -> NewTripViewModelProtocol {
         let tripId = getTripId(for: indexPath ?? IndexPath())
-        return NewTripViewModel(tripId: tripId)
+        return NewTripViewModel(tripId: tripId, userId: userId, fireBaseService: fireBaseService, fileStorageService: fileStorageService)
     }
     
     func newTripViewModel() -> NewTripViewModelProtocol {
-        return NewTripViewModel(tripId: "")
+        return NewTripViewModel(tripId: "", userId: userId, fireBaseService: fireBaseService, fileStorageService: fileStorageService)
     }
     
     func newNoteViewModel(at indexPath: IndexPath) -> NewNoteViewModelProtocol {
         if indexPath.section == 0 {
             let trip = (tripMore?[indexPath.row]) ?? Trip(id: "", country: "", beginningDate: Date(), finishingDate: Date(), description: "", currency: "")
-            return NewNoteViewModel(tripId: trip.id, noteId: "")
+            return NewNoteViewModel(userId: userId, tripId: trip.id, noteId: "", fireBaseService: fireBaseService)
         } else {
             let trip = tripLow?[indexPath.row] ?? Trip(id: "", country: "", beginningDate: Date(), finishingDate: Date(), description: "", currency: "")
-            return NewNoteViewModel(tripId: trip.id, noteId: "")
+            return NewNoteViewModel(userId: userId, tripId: trip.id, noteId: "", fireBaseService: fireBaseService)
         }
     }
     

@@ -12,11 +12,11 @@ class TripsViewController: UIViewController {
     
     // MARK: Dependencies
     
-    lazy var slideInTransitioningDelegate = SlideInPresentationManager()
+  //  lazy var slideInTransitioningDelegate = SlideInPresentationManager()
 
     private var viewModel: TripsViewModelProtocol
     private var newNoteViewModel: NewNoteViewModelProtocol?
-    var coordinator: AppCoordinator?
+   // var coordinator: AppCoordinator?
     var configurator: Configurator?
 
     // MARK: UI
@@ -105,37 +105,24 @@ class TripsViewController: UIViewController {
     @objc func signOutTapped() {
         do {
             try Auth.auth().signOut()
-            viewModel.setLoggedOutStatus()
-            navigationController?.popViewController(animated: true)
-           // navigationController?.popViewController(animated: true)
             dismiss(animated: true)
         } catch {
-            navigationController?.popViewController(animated: true)
-            dismiss(animated: true)
-            print("\(error.localizedDescription) - error")
+            showAlert(title: "Could not sign out", message: "Check your network connection")
         }
-       // dismiss(animated: true)
     }
     
     @objc func addTrip() {
-        let newTripViewModel = viewModel.newTripViewModel()
-        let newTripVC = NewTripViewController(viewModel: newTripViewModel, isEdited: false)
-        newTripVC.modalPresentationStyle = .fullScreen
+        let newTripVC = configurator?.configureNewTrip(with: "", userId: viewModel.userId, isEdited: false) ?? UIViewController()
         present(newTripVC, animated: true)
     }
     
     @objc func addNote() {
-        let newNoteVC = NewNoteViewController(viewModel: self.newNoteViewModel!, isEdited: false)
-        newNoteVC.modalPresentationStyle = .fullScreen
+        let newNoteVC = configurator?.configureNewNote(with: self.newNoteViewModel, isEdited: false) ?? UIViewController()
         parent?.present(newNoteVC, animated: true)
     }
     
     @objc func showWeather() {
-        let weatherVM = WeatherViewModel()
-        let weatherVC = WeatherViewController(viewModel: weatherVM)
-        slideInTransitioningDelegate.direction = .bottom
-        weatherVC.transitioningDelegate = slideInTransitioningDelegate
-        weatherVC.modalPresentationStyle = .custom
+        let weatherVC = configurator?.configureWeatherVC() ?? UIViewController()
         present(weatherVC, animated: true)
     }
     
@@ -174,14 +161,11 @@ class TripsViewController: UIViewController {
     }
     
     private func editAction(at indexPath: IndexPath) -> UIContextualAction {
-        let editAction = UIContextualAction(style: .normal, title: "Edit Trip") { (action, view, complition) in
+        let editAction = UIContextualAction(style: .normal, title: "Edit Trip") { [weak self] (action, view, complition) in
+            
 
-            //
-            let newTripViewModel = self.viewModel.newTripViewModelEdited(for: indexPath)
-            let newTripVC = NewTripViewController(viewModel: newTripViewModel, isEdited: true)
-            newTripVC.modalPresentationStyle = .fullScreen
-            self.present(newTripVC, animated: true)
-            //
+            let newTripVC = self?.configurator?.configureNewTrip(with: self?.viewModel.getTripId(for: indexPath) ?? "", userId: self?.viewModel.userId ?? "", isEdited: true) ?? UIViewController()
+            self?.present(newTripVC, animated: true)
             complition(true)
         }
         editAction.backgroundColor = .tripBlue
@@ -313,15 +297,13 @@ extension TripsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let notesViewModel = viewModel.viewModelForSelectedRow(at: indexPath)
-        
-        //
         let newNoteViewModel = viewModel.newNoteViewModel(at: indexPath)
         self.newNoteViewModel = newNoteViewModel
-        
-        //
+     
         addTripButton.isHidden = true
         addNoteButton.isHidden = false
-        navigationController?.pushViewController(NotesViewController(notesViewModel: notesViewModel), animated: true)
+        let notesVC = configurator?.configureNotesVC(with: notesViewModel) ?? UIViewController()
+        navigationController?.pushViewController(notesVC, animated: true)
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

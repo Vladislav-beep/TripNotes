@@ -112,7 +112,6 @@ class AuthViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setupNavBarAppearence()
         passwordTextField.text = ""
     }
     
@@ -120,9 +119,6 @@ class AuthViewController: UIViewController {
     
     @objc func createNewAccount() {
         let newVC = configurator?.configureNewAcc() ?? UIViewController()
-//        let newVM = NewAccountViewModel()
-//        let newVC = NewAccountViewController(viewModel: newVM)
-//        newVC.modalPresentationStyle = .fullScreen
         present(newVC, animated: true)
         
     }
@@ -146,12 +142,6 @@ class AuthViewController: UIViewController {
     }
     
     // MARK: Private methods
-    
-    private func setupNavBarAppearence() {
-        let navBarAppearance = UINavigationBarAppearance()
-        navBarAppearance.backgroundColor = .white
-        navigationController?.navigationBar.standardAppearance = navBarAppearance
-    }
     
     private func checkSignIn() {
         viewModel.checkSignIn {

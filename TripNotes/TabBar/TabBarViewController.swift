@@ -15,10 +15,6 @@ class TabBarViewController: UITabBarController {
     var viewModel: TabBarViewModelProtocol
     var configurator: Configurator?
     
-    // MARK: Private properties
-    
-   private var userId: String?
-    
     // MARK: Overriden properties
     
     override var selectedIndex: Int {
@@ -66,7 +62,7 @@ class TabBarViewController: UITabBarController {
         tabBar.tintColor = .tripRed
         
         let tripVC = configurator?.configureTripVC(with: id) ?? UIViewController()
-        let favVC = configurator?.configureFavoutitesVC() ?? UIViewController()
+        let favVC = configurator?.configureFavoutitesVC(withUser: id) ?? UIViewController()
         
         let firstViewController = UINavigationController(rootViewController: tripVC)
         let secondViewController = UINavigationController(rootViewController: favVC)
@@ -82,8 +78,8 @@ class TabBarViewController: UITabBarController {
     
     private func setupViewModelBindings() {
         viewModel.completion = { [weak self]  id in
-            self?.userId = id
             self?.setupUI(with: id)
+            print("\(id) - from viewModel")
         }
     }
 }

@@ -18,22 +18,22 @@ class AuthViewModel: AuthViewModelProtocol {
     
     // MARK: Dependencies
     
-    let auth: AuthServiceProtocol
+    let authService: AuthServiceProtocol
     
     // MARK: Life Time
     
     required init(authService: AuthServiceProtocol) {
-        self.auth = authService
+        self.authService = authService
     }
     
     // MARK: Methods
     
     func signIn(withEmail email: String, password: String, completion: @escaping () -> (), errorComletion: @escaping () -> ()) {
-        auth.signIn(withEmail: email, password: password, completion: completion, errorCompletion: errorComletion)
+        authService.signIn(withEmail: email, password: password, completion: completion, errorCompletion: errorComletion)
     }
     
     func checkSignIn(completion: @escaping () -> Void) {
-        auth.checkSignIn {
+        authService.checkSignIn {
             completion()
         }
     }

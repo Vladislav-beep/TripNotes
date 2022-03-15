@@ -13,7 +13,6 @@ protocol TabBarViewModelProtocol {
     func fetchUserId() 
 }
 
-
 class TabBarViewModel: TabBarViewModelProtocol {
     
     let auth: AuthService
@@ -25,14 +24,11 @@ class TabBarViewModel: TabBarViewModelProtocol {
         self.auth = authService
     }
     
-    
     func fetchUserId() {
         auth.getUserId(completion: { (result: Result<String, Error>) in
             switch result {
             case .success(let id):
                 self.userId = id
-                print("\(id) - id from viewModel")
-                print("\(self.userId) - userId from viewModel")
                 self.completion?(id)
             case .failure(let error):
                 print(error.localizedDescription)
