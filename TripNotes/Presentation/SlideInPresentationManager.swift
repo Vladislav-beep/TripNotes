@@ -17,8 +17,6 @@ enum PresentationDirection {
 class SlideInPresentationManager: NSObject {
     
     var direction: PresentationDirection = .left
-
-
 }
 
 // MARK: - UIViewControllerTransitioningDelegate

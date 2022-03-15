@@ -9,22 +9,32 @@ import Foundation
 import Firebase
 
 protocol AuthViewModelProtocol {
+    init(authService: AuthServiceProtocol)
     func signIn(withEmail email: String, password: String, completion: @escaping () -> (), errorComletion: @escaping () -> ())
-    func setLoggedInStatus()
+    func checkSignIn(completion: @escaping () -> Void)
 }
-
 
 class AuthViewModel: AuthViewModelProtocol {
     
-    let auth = AuthService()
-    let userDefaults = UserDefaltsService()
+    // MARK: Dependencies
+    
+    let auth: AuthServiceProtocol
+    
+    // MARK: Life Time
+    
+    required init(authService: AuthServiceProtocol) {
+        self.auth = authService
+    }
+    
+    // MARK: Methods
     
     func signIn(withEmail email: String, password: String, completion: @escaping () -> (), errorComletion: @escaping () -> ()) {
         auth.signIn(withEmail: email, password: password, completion: completion, errorCompletion: errorComletion)
     }
     
-    func setLoggedInStatus() {
-        userDefaults.setLoggedInStatus()
+    func checkSignIn(completion: @escaping () -> Void) {
+        auth.checkSignIn {
+            completion()
+        }
     }
-
 }

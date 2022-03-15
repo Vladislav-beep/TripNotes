@@ -109,6 +109,7 @@
 		B9AA39D927BACF9B00CD48E9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91E813C2767A88E00D0748B /* AppDelegate.swift */; };
 		B9AA39DF27BAD08A00CD48E9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B9AA39DE27BAD08A00CD48E9 /* GoogleService-Info.plist */; };
 		B9AA39E027BAD08A00CD48E9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B9AA39DE27BAD08A00CD48E9 /* GoogleService-Info.plist */; };
+		B9C2F1F527E08E9600A38B18 /* TabBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C2F1F427E08E9600A38B18 /* TabBarViewModel.swift */; };
 		B9D9C8AF27C3EDF70003D34C /* FireBaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9863ABA27C1371F00BE6337 /* FireBaseService.swift */; };
 		B9D9FC11278F390B007710B4 /* NewNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9FD6C07278E040900311EF1 /* NewNoteViewController.swift */; };
 		B9D9FC14278F4E1D007710B4 /* SelectionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A0EF6A2774DDCE00DE65E2 /* SelectionButton.swift */; };
@@ -219,6 +220,7 @@
 		B9863ABE27C1374100BE6337 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		B9A0EF6A2774DDCE00DE65E2 /* SelectionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionButton.swift; sourceTree = "<group>"; };
 		B9AA39DE27BAD08A00CD48E9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		B9C2F1F427E08E9600A38B18 /* TabBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewModel.swift; sourceTree = "<group>"; };
 		B9DCF134276BAFF8007B0320 /* TripsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripsViewModel.swift; sourceTree = "<group>"; };
 		B9DCF13D276BBE29007B0320 /* Extension + UIBarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIBarButtonItem.swift"; sourceTree = "<group>"; };
 		B9DE0D402768FD6400805E4C /* TripModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripModel.swift; sourceTree = "<group>"; };
@@ -457,6 +459,7 @@
 			isa = PBXGroup;
 			children = (
 				B91E81522767A9AC00D0748B /* TabBarViewController.swift */,
+				B9C2F1F427E08E9600A38B18 /* TabBarViewModel.swift */,
 			);
 			path = TabBar;
 			sourceTree = "<group>";
@@ -725,6 +728,7 @@
 				B9863ABB27C1371F00BE6337 /* FireBaseService.swift in Sources */,
 				B90DB42A276F137500F1A544 /* Category.swift in Sources */,
 				B9698F23279C4689005FB438 /* LocationSevice.swift in Sources */,
+				B9C2F1F527E08E9600A38B18 /* TabBarViewModel.swift in Sources */,
 				B95FBCC727D7D58F006FF5A8 /* WeatherViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

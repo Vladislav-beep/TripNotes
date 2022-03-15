@@ -13,6 +13,7 @@ class FavouritesViewController: UIViewController {
     
     private var viewModel: FavouritesViewModel
     var coordinator: AppCoordinator?
+    var configurator: Configurator?
     
     // MARK: UI
     

@@ -17,6 +17,7 @@ class TripsViewController: UIViewController {
     private var viewModel: TripsViewModelProtocol
     private var newNoteViewModel: NewNoteViewModelProtocol?
     var coordinator: AppCoordinator?
+    var configurator: Configurator?
 
     // MARK: UI
     
@@ -106,6 +107,7 @@ class TripsViewController: UIViewController {
             try Auth.auth().signOut()
             viewModel.setLoggedOutStatus()
             navigationController?.popViewController(animated: true)
+           // navigationController?.popViewController(animated: true)
             dismiss(animated: true)
         } catch {
             navigationController?.popViewController(animated: true)

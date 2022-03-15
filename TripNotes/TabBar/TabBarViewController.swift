@@ -12,13 +12,14 @@ class TabBarViewController: UITabBarController {
     
     // MARK: Dependencies
     
-    var coordinator: AppCoordinator?
+    var viewModel: TabBarViewModelProtocol
+    var configurator: Configurator?
     
-    var user: User!
+    // MARK: Private properties
     
-    var userId: String?
-
-    // MARK: Overriden
+   private var userId: String?
+    
+    // MARK: Overriden properties
     
     override var selectedIndex: Int {
         didSet {
@@ -42,16 +43,34 @@ class TabBarViewController: UITabBarController {
     }
     
     // MARK: Life Time
-            
+    
+    init(viewModel: TabBarViewModelProtocol) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setupViewModelBindings()
+        viewModel.fetchUserId()
+    }
+    
+    // MARK: Private methods
+    
+    private func setupUI(with id: String) {
         tabBar.unselectedItemTintColor = .tripBlue
         tabBar.tintColor = .tripRed
         
-        let firstViewController = UINavigationController(rootViewController: TripsViewController(viewModel: TripsViewModel(userId: "NUXiX5zSMiwYxmtCBpzO")))
-        let secondViewController = UINavigationController(rootViewController: FavouritesViewController(notesViewModel: FavouritesViewModel()))
-
+        let tripVC = configurator?.configureTripVC(with: id) ?? UIViewController()
+        let favVC = configurator?.configureFavoutitesVC() ?? UIViewController()
+        
+        let firstViewController = UINavigationController(rootViewController: tripVC)
+        let secondViewController = UINavigationController(rootViewController: favVC)
+        
         firstViewController.tabBarItem.title = "Trips"
         firstViewController.tabBarItem.image = UIImage(systemName: "arrow.triangle.swap")
         
@@ -59,38 +78,13 @@ class TabBarViewController: UITabBarController {
         secondViewController.tabBarItem.image = UIImage(systemName: "heart.fill")
         
         viewControllers = [firstViewController, secondViewController]
-        let auth = AuthService()
-        
-        
-        
-        auth.completion = { [weak self] id in
+    }
+    
+    private func setupViewModelBindings() {
+        viewModel.completion = { [weak self]  id in
             self?.userId = id
-            print("\(self?.userId) - from tabbar")
+            self?.setupUI(with: id)
         }
-        
-        auth.getUserId()
-//        auth.getUserId { (result: Result<String, Error>) in
-//            switch result {
-//            case .success(let id):
-//                self.userId = id
-//                print("\(self.userId) - from tabbar")
-//            case .failure(let error):
-//                print(error.localizedDescription)
-//            }
-//        }
-        print("\(userId) - from tabbarAAAAA")
-    }
-
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(true, animated: true)
-        navigationController?.view.backgroundColor = UIColor.white
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        navigationController?.setNavigationBarHidden(false, animated: true)
     }
 }
 

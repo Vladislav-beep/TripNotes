@@ -13,7 +13,7 @@ class AuthViewController: UIViewController {
     
     private var viewModel: AuthViewModelProtocol
     lazy var animator = Animator(container: view)
-    var coordinator: AppCoordinator?
+    var configurator: Configurator?
     
     // MARK: UI
     
@@ -84,51 +84,80 @@ class AuthViewController: UIViewController {
         return createStack
     }()
     
+    private lazy var endEditingGestureRecognizer: UITapGestureRecognizer = {
+        let tap = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
+        return tap
+    }()
+    
     // MARK: Life Time
     
     init(viewModel: AuthViewModelProtocol) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
+        checkSignIn()
         setupConstraints()
+        registerKeyBoardNotification()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(true, animated: true)
-        navigationController?.view.backgroundColor = UIColor.white
-        
-        passwordTextField.text = ""
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.addGestureRecognizer(endEditingGestureRecognizer)
+        loginTextField.delegate = self
+        passwordTextField.delegate = self
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        navigationController?.setNavigationBarHidden(false, animated: true)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setupNavBarAppearence()
+        passwordTextField.text = ""
     }
     
     // MARK: Actions
     
     @objc func createNewAccount() {
-        coordinator?.showAccount()
+        let newVC = configurator?.configureNewAcc() ?? UIViewController()
+//        let newVM = NewAccountViewModel()
+//        let newVC = NewAccountViewController(viewModel: newVM)
+//        newVC.modalPresentationStyle = .fullScreen
+        present(newVC, animated: true)
+        
     }
     
     @objc func showTabbar() {
-        guard let email = loginTextField.text,
-              let password = passwordTextField.text,
-              email != "",
-              password != "" else {
+        guard let email = loginTextField.text, email != "",
+              let password = passwordTextField.text, password != ""
+        else {
+            let warningText = "None of fields can be empty"
+            self.animator.animateWarningLabel(warningLabel: self.warningLabel, withText: warningText)
             return
         }
         
         viewModel.signIn(withEmail: email, password: password) { [weak self] in
-            self?.coordinator?.showTabBar()
-            self?.viewModel.setLoggedInStatus()
+            let tabBar = self?.configurator?.configureTabbar() ?? UIViewController()
+            self?.present(tabBar, animated: true)
         } errorComletion: {
             let warningText = "Incorrect login or password"
             self.animator.animateWarningLabel(warningLabel: self.warningLabel, withText: warningText)
+        }
+    }
+    
+    // MARK: Private methods
+    
+    private func setupNavBarAppearence() {
+        let navBarAppearance = UINavigationBarAppearance()
+        navBarAppearance.backgroundColor = .white
+        navigationController?.navigationBar.standardAppearance = navBarAppearance
+    }
+    
+    private func checkSignIn() {
+        viewModel.checkSignIn {
+            let tabBar = self.configurator?.configureTabbar() ?? UIViewController()
+            tabBar.modalPresentationStyle = .fullScreen
+            self.present(tabBar, animated: true)
         }
     }
     
@@ -207,10 +236,70 @@ class AuthViewController: UIViewController {
     private func setupCreateButtonConstraints() {
         lowerView.addSubview(createStack)
         NSLayoutConstraint.activate([
-            createStack.bottomAnchor.constraint(equalTo: lowerView.bottomAnchor, constant: -100),
+            createStack.bottomAnchor.constraint(equalTo: lowerView.bottomAnchor, constant: -130),
             createStack.centerXAnchor.constraint(equalTo: lowerView.centerXAnchor, constant: 0),
             createStack.heightAnchor.constraint(equalToConstant: 55),
             createStack.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width / 2)
         ])
     }
 }
+
+// MARK: TextFieldDelegate
+
+extension AuthViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        switch textField {
+        case loginTextField:
+            passwordTextField.becomeFirstResponder()
+        case passwordTextField:
+            passwordTextField.resignFirstResponder()
+        default:
+            textField.resignFirstResponder()
+        }
+        return true
+    }
+}
+
+// MARK: Keyboard methods
+
+extension AuthViewController {
+    
+    private func registerKeyBoardNotification() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillShow),
+                                               name: UIResponder.keyboardWillShowNotification,
+                                               object: nil)
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillHide),
+                                               name: UIResponder.keyboardWillHideNotification,
+                                               object: nil)
+    }
+    
+    @objc private func keyboardWillShow(notification: Notification) {
+        let userInfo = notification.userInfo
+        let keyboardFrame = (userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
+        scrollView.contentOffset = CGPoint(x: 0, y: ((keyboardFrame?.height ?? 0) / 2) - 100)
+    }
+    
+    @objc private func keyboardWillHide(notification: Notification) {
+        let userInfo = notification.userInfo
+        let keyboardFrame = (userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
+        scrollView.contentOffset = CGPoint.zero
+    }
+    
+    private func removeKeyboardNotification() {
+        NotificationCenter.default.removeObserver(self,
+                                                  name: UIResponder.keyboardWillShowNotification,
+                                                  object: nil)
+        
+        NotificationCenter.default.removeObserver(self,
+                                                  name: UIResponder.keyboardWillHideNotification,
+                                                  object: nil)
+    }
+}
+
+
+
+

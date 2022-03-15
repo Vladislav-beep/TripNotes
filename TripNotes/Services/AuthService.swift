@@ -9,9 +9,12 @@ import Foundation
 import Firebase
 
 protocol AuthServiceProtocol {
-   // func createNewUser(withEmail email: String, password: String, name: String)
-   // func signIn(withEmail email: String, password: String, completion: @escaping () -> ())
-   // func getUserId(completion: @escaping (Result <String, Error>) -> Void)
+    var completion: ((String) -> Void)? { get set }
+    func getUserId(completion: @escaping (Result<String, Error>) -> Void)
+    func createNewUser(withEmail email: String, password: String, name: String, completion: @escaping () -> (), errorCompletion: @escaping () -> ())
+    func signIn(withEmail email: String, password: String, completion: @escaping () -> (), errorCompletion: @escaping () -> ())
+    func checkSignIn(completion: @escaping () -> Void)
+    
 }
 
 class AuthService: AuthServiceProtocol {
@@ -20,44 +23,24 @@ class AuthService: AuthServiceProtocol {
     
     var completion: ((String) -> Void)?
     
-    func getUserId() {
+
+    func getUserId(completion: @escaping (Result<String, Error>) -> Void) {
             guard let currentUser = Auth.auth().currentUser else { return }
     
             db.collection("users").getDocuments { (snapshot, error) in
                 if let error = error {
-                    print(error.localizedDescription)
+                    completion(.failure(error.localizedDescription as! Error))
                 }
                 for document in snapshot!.documents {
                     let data = document.data()
     
                     if data["id"] as? String == currentUser.uid {
                         print("\(document.documentID) - from AUTH")
-                        self.completion?(document.documentID)
+                        completion(.success(document.documentID))
                     }
                 }
             }
         }
-    
-//    func getUserId(completion: @escaping (Result <String, Error>) -> Void) {
-//        guard let currentUser = Auth.auth().currentUser else {
-//            completion(.failure(Error.self as! Error))
-//            return
-//        }
-//
-//        db.collection("users").getDocuments { (snapshot, error) in
-//            if let error = error {
-//                print(error.localizedDescription)
-//            }
-//            for document in snapshot!.documents {
-//                let data = document.data()
-//
-//                if data["id"] as? String == currentUser.uid {
-//                    print("\(document.documentID) - from AUTH")
-//                    completion(.success(document.documentID))
-//                }
-//            }
-//        }
-//    }
     
     func createNewUser(withEmail email: String, password: String, name: String, completion: @escaping () -> (), errorCompletion: @escaping () -> ()) {
         Auth.auth().createUser(withEmail: email, password: password) { [weak self] (result, error) in
@@ -90,5 +73,12 @@ class AuthService: AuthServiceProtocol {
         }
     }
     
+    func checkSignIn(completion: @escaping () -> Void) {
+        Auth.auth().addStateDidChangeListener { (auth, user) in
+            if user != nil {
+                completion()
+            }
+        }
+    }
     
 }
