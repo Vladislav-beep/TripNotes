@@ -11,12 +11,46 @@ protocol FavouritesViewModelProtocol {
     var completion: (() -> Void)? { get set }
     func numberOfCells() -> Int
     init(fireBaseService: FireBaseServiceProtocol, dateFormatterService: DateFormatterServiceProtocol,  userId: String)
+    func fetchNotes()
+    func noteCellViewModel(for indexPath: IndexPath) -> NoteCellViewModelProtocol?
 }
 
 class FavouritesViewModel: FavouritesViewModelProtocol {
     
-    let fireBaseService: FireBaseServiceProtocol
-    let dateFormatterService: DateFormatterServiceProtocol
+    // MARK: - Dependencies
+    
+    private let fireBaseService: FireBaseServiceProtocol
+    private let dateFormatterService: DateFormatterServiceProtocol
+    
+    // MARK: - Private properties
+    
+    private var tripNotesDict: [TripNote: Trip]?
+    
+    private var notesArray: [TripNote] {
+        let notes = tripNotesDict!.keys
+        var notesArr = [TripNote]()
+        for note in notes {
+            notesArr.append(note)
+        }
+        return notesArr
+    }
+    
+    private var tripsArray: [Trip] {
+        let trips = tripNotesDict!.values
+        
+        var tripsArr = [Trip]()
+        for trip in trips {
+            tripsArr.append(trip)
+        }
+        return tripsArr
+    }
+    
+    // MARK: - Properties
+    
+    var userId: String
+    var completion: (() -> Void)?
+    
+    // MARK: - Life Time
     
     required init(fireBaseService: FireBaseServiceProtocol, dateFormatterService:DateFormatterServiceProtocol, userId: String) {
         self.fireBaseService = fireBaseService
@@ -24,18 +58,12 @@ class FavouritesViewModel: FavouritesViewModelProtocol {
         self.userId = userId
     }
     
-    var userId: String
-    
-    var tripNotesDict: [TripNote: Trip]?
-    var completion: (() -> Void)?
-    
     func fetchNotes() {
         fireBaseService.fetchFavouriteNotes(forUser: userId) { (result: Result<[TripNote: Trip], Error>) in
             switch result {
             case .success(let tripNotesDict):
                 self.tripNotesDict = tripNotesDict
                 self.completion?()
-                print("\(tripNotesDict) - dicnt from favourites")
             case .failure(let error):
                 print(error.localizedDescription)
             }
@@ -46,25 +74,17 @@ class FavouritesViewModel: FavouritesViewModelProtocol {
         tripNotesDict?.keys.count ?? 0
     }
     
-
     func noteCellViewModel(for indexPath: IndexPath) -> NoteCellViewModelProtocol? {
-        let notes = tripNotesDict!.keys
-        var notesArray = [TripNote]()
-        for item in notes {
-            notesArray.append(item)
-        }
         let note = notesArray[indexPath.item]
-        let trips = tripNotesDict!.values
-        
-        var tripsArray = [Trip]()
-        for trip in trips {
-            tripsArray.append(trip)
-        }
-       
         let trip = tripsArray[indexPath.item]
         let currency = tripsArray[indexPath.item].currency
-        
-        return NoteCellViewModel(tripNote: note, currency: currency, trip: trip, isInfoShown: true, fireBaseService: fireBaseService, dateFormatterService: dateFormatterService, userId: userId)
+        return NoteCellViewModel(tripNote: note,
+                                 currency: currency,
+                                 trip: trip,
+                                 isInfoShown: true,
+                                 fireBaseService: fireBaseService,
+                                 dateFormatterService: dateFormatterService,
+                                 userId: userId)
     }
     
   //  func viewModelForSelectedRow(at indexpath: IndexPath) -> NoteCellViewModel {

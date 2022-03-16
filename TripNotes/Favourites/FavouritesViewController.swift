@@ -11,7 +11,7 @@ class FavouritesViewController: UIViewController {
     
     // MARK: - Dependencies
     
-    private var viewModel: FavouritesViewModel
+    private var viewModel: FavouritesViewModelProtocol
     var configurator: Configurator?
     
     // MARK: - UI
@@ -23,9 +23,10 @@ class FavouritesViewController: UIViewController {
     
     // MARK: - Life Time
     
-    init(notesViewModel: FavouritesViewModel) {
-        self.viewModel = notesViewModel
+    init(viewModel: FavouritesViewModelProtocol) {
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
+        setupCollectionViewConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -34,10 +35,8 @@ class FavouritesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Favourites"
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        setupCollectionViewConstraints()
+        setupDelegates()
+        setupNavigationBar()
         setupViewModelBindings()
     }
     
@@ -54,6 +53,25 @@ class FavouritesViewController: UIViewController {
         }
     }
     
+    private func setupDelegates() {
+        collectionView.delegate = self
+        collectionView.dataSource = self
+    }
+    
+    private func setupNavigationBar() {
+        title = "Favourites"
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.tintColor = .tripWhite
+        
+        let navBarAppearance = UINavigationBarAppearance()
+        navBarAppearance.configureWithOpaqueBackground()
+        navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.tripWhite]
+        navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.tripWhite]
+        navBarAppearance.backgroundColor = .tripRed
+        navigationController?.navigationBar.standardAppearance = navBarAppearance
+        navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
+    }
+    
     // MARK: - Layout
     
     private func setupCollectionViewConstraints() {
@@ -67,8 +85,7 @@ class FavouritesViewController: UIViewController {
     }
 }
 
-// MARK: UICollectionViewDataSource
-
+// MARK: - UICollectionViewDataSource
 extension FavouritesViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -83,6 +100,10 @@ extension FavouritesViewController: UICollectionViewDataSource {
     }
 }
 
+// MARK: - UICollectionViewDelegate
 extension FavouritesViewController: UICollectionViewDelegate {
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+    }
 }

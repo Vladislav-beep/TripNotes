@@ -80,7 +80,6 @@ class TripsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Trips"
         setupNavigationBar()
         setupViewModelBindings()
         setupAllConstraints()
@@ -149,6 +148,7 @@ class TripsViewController: UIViewController {
     }
     
     private func setupNavigationBar() {
+        title = "Trips"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.leftBarButtonItems = [signOutButton]
         navigationItem.rightBarButtonItems = [weatherButton]

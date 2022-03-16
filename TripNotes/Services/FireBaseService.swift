@@ -34,33 +34,6 @@ class FireBaseService: FireBaseServiceProtocol {
 
     // MARK: Trip methods
     
-    func fetchFavouriteNotes(forUser userId: String, completion: @escaping (Result <[TripNote: Trip], Error>) -> Void) {
-        usersRef.document(userId).collection("trips").getDocuments { (querySnapshot, err) in
-            if let err = err {
-                completion(.failure(err.localizedDescription as! Error))
-            } else {
-                var tripNoteDict = [TripNote: Trip]()
-                
-                for document in querySnapshot!.documents {
-                    let trip = Trip(snapshot: document)
-                    
-                    self.usersRef.document(userId).collection("trips").document(trip.id).collection("tripNotes").getDocuments { (snapshot, error) in
-                        if let err = error {
-                            completion(.failure(err.localizedDescription as! Error))
-                        } else {
-                            
-                        for document in snapshot!.documents {
-                                let note = TripNote(document: document)
-                                tripNoteDict[note] = trip
-                            }
-                            completion(.success(tripNoteDict))
-                        }
-                    }
-                }  
-            }
-        }
-    }
-    
     func fetchTrips(forUser id: String, completion: @escaping (Result <[Trip], Error>) -> Void) {
         usersRef.document(id).collection("trips").getDocuments() { (querySnapshot, err) in
             if let err = err {
@@ -153,6 +126,33 @@ class FireBaseService: FireBaseServiceProtocol {
                     noteArray.append(note)
                 }
                 completion(.success(noteArray))
+            }
+        }
+    }
+    
+    func fetchFavouriteNotes(forUser userId: String, completion: @escaping (Result <[TripNote: Trip], Error>) -> Void) {
+        usersRef.document(userId).collection("trips").getDocuments { (querySnapshot, err) in
+            if let err = err {
+                completion(.failure(err.localizedDescription as! Error))
+            } else {
+                var tripNoteDict = [TripNote: Trip]()
+                
+                for document in querySnapshot!.documents {
+                    let trip = Trip(snapshot: document)
+                    
+                    self.usersRef.document(userId).collection("trips").document(trip.id).collection("tripNotes").whereField("isFavourite", isEqualTo: true).getDocuments { (snapshot, error) in
+                        if let err = error {
+                            completion(.failure(err.localizedDescription as! Error))
+                        } else {
+                            
+                        for document in snapshot!.documents {
+                                let note = TripNote(document: document)
+                                tripNoteDict[note] = trip
+                            }
+                            completion(.success(tripNoteDict))
+                        }
+                    }
+                }
             }
         }
     }
