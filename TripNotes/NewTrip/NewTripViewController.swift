@@ -222,10 +222,18 @@ class NewTripViewController: UIViewController {
         if self.isEdited ?? false {
             self.viewModel?.updateTrip(country: country, currency: currency, description: description, beginningDate: bdate , finishingDate: fdate , completion: { docId in
                 self.updateImageAndCloseScreen(forKey: docId)
+            }, errorCompletion: {
+                self.showAlert(title: "Unable to update trip",
+                               message: "Please, check your internet connection")
+                return
             })
         } else {
             self.viewModel?.addTrip(country: country, currency: currency, description: description, beginningDate: bdate , finishingDate: fdate , completion: { docId in
                 self.updateImageAndCloseScreen(forKey: docId)
+            }, errorCompletion: {
+                self.showAlert(title: "Unable to add trip",
+                               message: "Please, check your internet connection")
+                return
             })
         }
     }

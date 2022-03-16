@@ -15,11 +15,11 @@ protocol DateFormatterServiceProtocol {
 
 class DateFormatterService: DateFormatterServiceProtocol {
     
-    // MARK: Private properties
+    // MARK: - Private properties
     
     private let dateFormatter = DateFormatter()
     
-    // MARK: Methods
+    // MARK: - Methods
     
     func convertTripDateToString(date: Date) -> String {
         dateFormatter.dateStyle = .medium

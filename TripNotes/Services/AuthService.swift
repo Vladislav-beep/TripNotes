@@ -35,11 +35,11 @@ protocol AuthServiceProtocol {
 
 class AuthService: AuthServiceProtocol {
     
-    // MARK: Private properties
+    // MARK: - Private properties
   
     private let db = Firestore.firestore()
 
-    // MARK: Methods
+    // MARK: - Methods
     
     func getUserId(completion: @escaping (Result<String, AuthError>) -> Void) {
             guard let currentUser = Auth.auth().currentUser else { return }
@@ -48,12 +48,11 @@ class AuthService: AuthServiceProtocol {
                 if error != nil {
                     completion(.failure(AuthError.badURL))
                 }
-                guard let snap = snapshot else { print("KKKKK"); return }
+                guard let snap = snapshot else { return }
                 for document in snap.documents {
                     let data = document.data()
     
                     if data["id"] as? String == currentUser.uid {
-                        print("\(document.documentID) - from AUTH")
                         completion(.success(document.documentID))
                     }
                 }

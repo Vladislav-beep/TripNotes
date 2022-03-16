@@ -18,8 +18,8 @@ protocol NewTripViewModelProtocol {
     init(tripId: String, userId: String, fireBaseService: FireBaseServiceProtocol, fileStorageService: FileStorageServiceProtocol)
     func saveImage(data: Data, key: String)
     func retrieveImage() -> Data
-    func addTrip(country: String, currency: String, description: String, beginningDate: Date, finishingDate: Date, completion: @escaping (String) -> Void)
-    func updateTrip(country: String, currency: String, description: String, beginningDate: Date, finishingDate: Date, completion: @escaping (String) -> Void)
+    func addTrip(country: String, currency: String, description: String, beginningDate: Date, finishingDate: Date, completion: @escaping (String) -> Void, errorCompletion: @escaping () -> Void) 
+    func updateTrip(country: String, currency: String, description: String, beginningDate: Date, finishingDate: Date, completion: @escaping (String) -> Void, errorCompletion: @escaping () -> Void)
     func downloadTrip()
 }
 
@@ -86,8 +86,8 @@ class NewTripViewModel: NewTripViewModelProtocol {
         fileStorageService.retrieveImage(forKey: tripId) ?? Data()
     }
     
-    func addTrip(country: String, currency: String, description: String, beginningDate: Date, finishingDate: Date, completion: @escaping (String) -> Void) {
-        fireBaseService.addTrip(forUser: userId, country: country, currency: currency, description: description, beginningDate: beginningDate, finishingDate: finishingDate, completion: completion)
+    func addTrip(country: String, currency: String, description: String, beginningDate: Date, finishingDate: Date, completion: @escaping (String) -> Void, errorCompletion: @escaping () -> Void) {
+        fireBaseService.addTrip(forUser: userId, country: country, currency: currency, description: description, beginningDate: beginningDate, finishingDate: finishingDate, completion: completion, errorCompletion: errorCompletion)
     }
     
     func downloadTrip() {
@@ -103,8 +103,8 @@ class NewTripViewModel: NewTripViewModelProtocol {
         }
     }
     
-    func updateTrip(country: String, currency: String, description: String, beginningDate: Date, finishingDate: Date, completion: @escaping (String) -> Void) {
-        fireBaseService.updateTrip(forUser: userId, tripId: tripId, country: country, currency: currency, description: description, beginningDate: beginningDate, finishingDate: finishingDate, completion: completion)
+    func updateTrip(country: String, currency: String, description: String, beginningDate: Date, finishingDate: Date, completion: @escaping (String) -> Void, errorCompletion: @escaping () -> Void) {
+        fireBaseService.updateTrip(forUser: userId, tripId: tripId, country: country, currency: currency, description: description, beginningDate: beginningDate, finishingDate: finishingDate, completion: completion, errorCompletion: errorCompletion)
     }
 }
 

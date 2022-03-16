@@ -361,9 +361,16 @@ class NewNoteViewController: UIViewController {
         }
         
         if isEdited {
-            viewModel?.updateNote(city: city, category: category, description: description, price: priceDouble)
+            viewModel?.updateNote(city: city, category: category, description: description, price: priceDouble, errorCompletion: {
+                self.showAlert(title: "Unable to update note",
+                               message: "Please, check internet connection")
+                return
+            })
         } else {
-            viewModel?.addNote(category: category, city: city, price: priceDouble, isFavourite: false, description: description)
+            viewModel?.addNote(category: category, city: city, price: priceDouble, isFavourite: false, description: description, errorCompletion: {
+                self.showAlert(title: "Unable to add note", message: "Please, check internet connection")
+                return
+            })
         }
         dismiss(animated: true)
     }

@@ -31,7 +31,7 @@ protocol NetworkWeatherManagerProtocol {
 
 class NetworkWeatherManager: NetworkWeatherManagerProtocol {
     
-    // MARK: Methods
+    // MARK: - Methods
     
     func fetchCurrentWeather(forCoordinates longitude: CLLocationDegrees, latitude: CLLocationDegrees, comletion: @escaping (Result<CurrentWeather, NetworkError>) -> Void) {
         let apiKey = Constants.ApiKeys.weatherKey.rawValue
