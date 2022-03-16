@@ -9,14 +9,14 @@ import UIKit
 
 class AuthViewController: UIViewController {
     
-    // MARK: Dependencies
+    // MARK: - Dependencies
     
     private var viewModel: AuthViewModelProtocol
     lazy var keyboard = KeyboardHelper(scrollView: scrollView, offSet: 100)
     lazy var animator = Animator(container: view)
     var configurator: Configurator?
     
-    // MARK: UI
+    // MARK: - UI
     
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -90,7 +90,7 @@ class AuthViewController: UIViewController {
         return tap
     }()
     
-    // MARK: Life Time
+    // MARK: - Life Time
     
     init(viewModel: AuthViewModelProtocol) {
         self.viewModel = viewModel
@@ -120,7 +120,7 @@ class AuthViewController: UIViewController {
         keyboard.removeKeyboardNotification()
     }
     
-    // MARK: Actions
+    // MARK: - Actions
     
     @objc func createNewAccount() {
         let newVC = configurator?.configureNewAcc() ?? UIViewController()
@@ -145,7 +145,7 @@ class AuthViewController: UIViewController {
         }
     }
     
-    // MARK: Private methods
+    // MARK: - Private methods
     
     private func checkSignIn() {
         viewModel.checkSignIn {
@@ -155,7 +155,7 @@ class AuthViewController: UIViewController {
         }
     }
     
-    // MARK: Layout
+    // MARK: - Layout
     
     private func setupConstraints() {
         setupScrollViewConstraints()
@@ -238,7 +238,7 @@ class AuthViewController: UIViewController {
     }
 }
 
-// MARK: TextFieldDelegate
+// MARK: - TextFieldDelegate
 
 extension AuthViewController: UITextFieldDelegate {
     

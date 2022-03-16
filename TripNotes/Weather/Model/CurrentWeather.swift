@@ -8,8 +8,10 @@
 import Foundation
 
 struct CurrentWeather {
-    let cityName: String
     
+    // MARK: - Properties
+    
+    let cityName: String
     let temperature: Double
     var temperatureString: String {
         return String(format: "%.0f", temperature)
@@ -33,6 +35,8 @@ struct CurrentWeather {
         default: return "nosign"
         }
     }
+    
+    // MARK: - Life Time
     
     init?(currentWeatherData: CurrentWeatherData) {
         cityName = currentWeatherData.name

@@ -10,17 +10,17 @@ import UIKit
 
 class NewTripViewController: UIViewController {
     
-    // MARK: Dependencies
+    // MARK: - Dependencies
     
     private var viewModel: NewTripViewModelProtocol?
     lazy var keyboard = KeyboardHelper(scrollView: scrollView, offSet: 100)
     lazy var animator = Animator(container: view)
     
-    // MARK: Properties
+    // MARK: - Properties
     
     var isEdited: Bool?
     
-    // MARK: UI
+    // MARK: - UI
     
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -154,7 +154,7 @@ class NewTripViewController: UIViewController {
         return tap
     }()
     
-    // MARK: Life Time
+    // MARK: - Life Time
     
     init(viewModel: NewTripViewModelProtocol, isEdited: Bool) {
         super.init(nibName: nil, bundle: nil)
@@ -180,9 +180,9 @@ class NewTripViewController: UIViewController {
         keyboard.removeKeyboardNotification()
     }
     
-    // MARK: Actions
+    // MARK: - Actions
     
-    @objc func addTrip() {
+    @objc private func addTrip() {
         guard let country = countryTextField.text, country != "",
               let description = descriptionTextField.text, description != "",
               let beginningDateText = beginDateTextField.text, beginningDateText != "",
@@ -230,7 +230,7 @@ class NewTripViewController: UIViewController {
         }
     }
     
-    @objc func tapDone() {
+    @objc private func tapDone() {
         if let inputView = beginDateTextField.inputView {
             let dateformatter = DateFormatter()
             dateformatter.dateStyle = .medium
@@ -283,11 +283,11 @@ class NewTripViewController: UIViewController {
     //        descriptionTextField.becomeFirstResponder()
     //    }
     
-    @objc func backButtonPressed() {
+    @objc private func backButtonPressed() {
         dismiss(animated: true)
     }
     
-    @objc func selectCurrency(_ sender: SelectionButton) {
+    @objc private func selectCurrency(_ sender: SelectionButton) {
         buttonArray.forEach {
             $0.isSelected = false
             $0.stopAnimation()
@@ -296,7 +296,7 @@ class NewTripViewController: UIViewController {
         sender.pulsate()
     }
     
-    @objc func setAvatarImage(_ sender: UITapGestureRecognizer) {
+    @objc private func setAvatarImage(_ sender: UITapGestureRecognizer) {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         let camera = UIAlertAction(title: "Camera", style: .default) { _ in
@@ -316,7 +316,7 @@ class NewTripViewController: UIViewController {
         present(actionSheet, animated: true)
     }
     
-    // MARK: Private methods
+    // MARK: - Private methods
     
     private func setupDelegates() {
         countryTextField.delegate = self
@@ -367,7 +367,7 @@ class NewTripViewController: UIViewController {
         self.dismiss(animated: true)
     }
     
-    // MARK: Layout
+    // MARK: - Layout
     
     private func setupConstraints() {
         setupScrollViewConstraints()
@@ -473,8 +473,7 @@ class NewTripViewController: UIViewController {
     }
 }
 
-// MARK: ImagePicker
-
+// MARK: - ImagePicker
 extension NewTripViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func chooseImagePicker(source: UIImagePickerController.SourceType) {
@@ -497,8 +496,7 @@ extension NewTripViewController: UIImagePickerControllerDelegate, UINavigationCo
     }
 }
 
-// MARK: TextFieldDelegate
-
+// MARK: - TextFieldDelegate
 extension NewTripViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

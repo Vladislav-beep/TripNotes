@@ -19,10 +19,12 @@ protocol NotesViewModelProtocol {
 
 class NotesViewModel: NotesViewModelProtocol {
     
-    let fireBaseService: FireBaseServiceProtocol
-    let dateFormatterService: DateFormatterServiceProtocol
+    // MARK: - Dependencies
     
-    // MARK: Properties
+    private let fireBaseService: FireBaseServiceProtocol
+    private let dateFormatterService: DateFormatterServiceProtocol
+    
+    // MARK: - Properties
     
     var text: String {
         trip?.country ?? ""
@@ -34,7 +36,7 @@ class NotesViewModel: NotesViewModelProtocol {
     
     var noteCompletion: (() -> Void)?
     
-    // MARK: Life time
+    // MARK: - Life time
     
     required init(trip: Trip?, fireBaseService: FireBaseServiceProtocol, dateFormatterService: DateFormatterServiceProtocol, userId: String) {
         self.trip = trip
@@ -43,7 +45,7 @@ class NotesViewModel: NotesViewModelProtocol {
         self.userId = userId
     }
     
-    // MARK: Methods
+    // MARK: - Methods
     
     func fetchNotes() {
         fireBaseService.fetchNotes(forUser: userId, forTrip: trip?.id ?? "", completion: { (result: Result<[TripNote], Error>) in
@@ -72,5 +74,4 @@ class NotesViewModel: NotesViewModelProtocol {
         let note = notes[indexpath.item]
         return NoteCellViewModel(tripNote: note, currency: trip?.currency ?? "$", trip: trip ?? Trip(id: "", country: "", beginningDate: Date(), finishingDate: Date(), description: "", currency: ""), isInfoShown: false, fireBaseService: fireBaseService, dateFormatterService: dateFormatterService, userId: userId)
     }
-
 }

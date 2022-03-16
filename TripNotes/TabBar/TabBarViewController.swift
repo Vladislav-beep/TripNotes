@@ -10,12 +10,12 @@ import Firebase
 
 class TabBarViewController: UITabBarController {
     
-    // MARK: Dependencies
+    // MARK: - Dependencies
     
     var viewModel: TabBarViewModelProtocol
     var configurator: Configurator?
     
-    // MARK: Overriden properties
+    // MARK: - Overriden properties
     
     override var selectedIndex: Int {
         didSet {
@@ -38,7 +38,7 @@ class TabBarViewController: UITabBarController {
         }
     }
     
-    // MARK: Life Time
+    // MARK: - Life Time
     
     init(viewModel: TabBarViewModelProtocol) {
         self.viewModel = viewModel
@@ -55,7 +55,7 @@ class TabBarViewController: UITabBarController {
         viewModel.fetchUserId()
     }
     
-    // MARK: Private methods
+    // MARK: - Private methods
     
     private func setupUI(with id: String) {
         tabBar.unselectedItemTintColor = .tripBlue

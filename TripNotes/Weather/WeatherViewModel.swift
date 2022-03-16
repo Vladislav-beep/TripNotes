@@ -21,10 +21,13 @@ protocol WeatherViewModelProtocol {
 
 class WeatherViewModel: WeatherViewModelProtocol {
     
-    let networkManager: NetworkWeatherManagerProtocol
+    // MARK: - Dependencies
+    
+    private let networkManager: NetworkWeatherManagerProtocol
+    
+    // MARK: - Properties
     
     var weather: CurrentWeather?
-    
     var weatherCompletion: (() -> Void)?
     var errorCompletion: ((String) -> Void)?
     
@@ -46,9 +49,13 @@ class WeatherViewModel: WeatherViewModelProtocol {
         weather?.systemIconNameString ?? "cloud"
     }
     
+    // MARK: - Life Time
+    
     required init(networkManager: NetworkWeatherManagerProtocol) {
         self.networkManager = networkManager
     }
+    
+    // MARK: - Methods
     
     func fetchWeather(longitude: CLLocationDegrees, latitude: CLLocationDegrees) {
         networkManager.fetchCurrentWeather(forCoordinates: longitude, latitude: latitude) { (result: Result<CurrentWeather, NetworkError>) in

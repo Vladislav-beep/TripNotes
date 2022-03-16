@@ -16,17 +16,17 @@ protocol AuthViewModelProtocol {
 
 class AuthViewModel: AuthViewModelProtocol {
     
-    // MARK: Dependencies
+    // MARK: - Dependencies
     
-    let authService: AuthServiceProtocol
+    private let authService: AuthServiceProtocol
     
-    // MARK: Life Time
+    // MARK: - Life Time
     
     required init(authService: AuthServiceProtocol) {
         self.authService = authService
     }
     
-    // MARK: Methods
+    // MARK: - Methods
     
     func signIn(withEmail email: String, password: String, completion: @escaping () -> (), errorComletion: @escaping () -> ()) {
         authService.signIn(withEmail: email, password: password, completion: completion, errorCompletion: errorComletion)

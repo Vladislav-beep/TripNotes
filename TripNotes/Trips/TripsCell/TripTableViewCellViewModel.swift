@@ -24,10 +24,12 @@ protocol TripTableViewCellViewModelProtocol {
 
 class TripTableViewCellViewModel: TripTableViewCellViewModelProtocol {
     
-    let fileStorageService: FileStorageServiceProtocol
-    let dateFormatterService: DateFormatterServiceProtocol
+    // MARK: - Dependencies
+    
+   private let fileStorageService: FileStorageServiceProtocol
+   private let dateFormatterService: DateFormatterServiceProtocol
 
-    // MARK: Properties
+    // MARK: - Properties
     
     var description: String {
         trip.description
@@ -45,11 +47,11 @@ class TripTableViewCellViewModel: TripTableViewCellViewModelProtocol {
     
     var notesCompletion: (() -> Void)?
     
-    // MARK: Private properties
+    // MARK: - Private properties
     
     private let trip: Trip
     
-    // MARK: Life Time
+    // MARK: - Life Time
     
     required init(fileStorageService: FileStorageServiceProtocol,
          dateFormatterService: DateFormatterServiceProtocol,
@@ -59,7 +61,7 @@ class TripTableViewCellViewModel: TripTableViewCellViewModelProtocol {
         self.trip = trip
     }
 
-    // MARK: Methods
+    // MARK: - Methods
     
 //    func downloadNotes() {
 //        fire.listenToNotes(forTrip: trip.id, completion: { (result: Result<[TripNote], Error>) in

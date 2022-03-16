@@ -9,12 +9,17 @@ import Foundation
 import Firebase
 
 struct Trip: Equatable {
+    
+    // MARK: - Properties
+    
     let id: String
     let country: String
     let beginningDate: Date
     let finishingDate: Date
     let description: String
     let currency: String
+    
+    // MARK: - Life Time
     
     init(snapshot: QueryDocumentSnapshot) {
         let snapshotValue = snapshot.data()
@@ -44,9 +49,5 @@ struct Trip: Equatable {
         self.description = description
         self.currency = currency
     }
-    
-//    func convertToDictionary() -> Any {
-//        return ["title": title, "userId": userId, "completed": completed]
-//    }
 }
 

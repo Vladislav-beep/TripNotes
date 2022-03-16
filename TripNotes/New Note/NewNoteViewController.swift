@@ -9,18 +9,18 @@ import UIKit
 
 class NewNoteViewController: UIViewController {
     
-    // MARK: Dependencies
+    // MARK: - Dependencies
     
     private var viewModel: NewNoteViewModelProtocol?
     lazy var keyboard = KeyboardHelper(scrollView: scrollView, offSet: -50)
     private lazy var animator = Animator(container: view)
     var configurator: Configurator?
     
-    // MARK: Properties
+    // MARK: - Properties
     
     var isEdited: Bool
     
-    // MARK: UI
+    // MARK: - UI
     
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -257,7 +257,7 @@ class NewNoteViewController: UIViewController {
         return tap
     }()
     
-    // MARK: Life Time
+    // MARK: - Life Time
     
     init(viewModel: NewNoteViewModelProtocol, isEdited: Bool) {
         self.isEdited = isEdited
@@ -283,7 +283,7 @@ class NewNoteViewController: UIViewController {
         keyboard.removeKeyboardNotification()
     }
     
-    // MARK: Actions
+    // MARK: - Actions
     
     private func setupViewModelBindings() {
         viewModel?.noteCompletion = { [weak self] in
@@ -390,7 +390,7 @@ class NewNoteViewController: UIViewController {
         ////
     }
     
-    // MARK: Private methods
+    // MARK: - Private methods
     
     private func setupUI() {
         view.backgroundColor = .white
@@ -412,7 +412,7 @@ class NewNoteViewController: UIViewController {
         priceTextField.delegate = self
     }
     
-    // MARK: Layout
+    // MARK: - Layout
     
     private func setupConstraints() {
         setupScrollViewConstraints()
@@ -547,8 +547,7 @@ class NewNoteViewController: UIViewController {
     }
 }
 
-// MARK: UITextViewDelegate
-
+// MARK: - UITextViewDelegate
 extension NewNoteViewController: UITextViewDelegate {
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         return textView.text.count + (text.count - range.length) <= 360
@@ -559,8 +558,7 @@ extension NewNoteViewController: UITextViewDelegate {
     }
 }
 
-// MARK: UITextFieldDelegate
-
+// MARK: - UITextFieldDelegate
 extension NewNoteViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

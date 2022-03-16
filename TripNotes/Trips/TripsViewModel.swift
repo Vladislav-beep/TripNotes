@@ -31,9 +31,11 @@ protocol TripsViewModelProtocol: class {
 
 class TripsViewModel: TripsViewModelProtocol {
     
-    let fireBaseService: FireBaseServiceProtocol
-    let fileStorageService: FileStorageServiceProtocol
-    let dateFormatterService: DateFormatterServiceProtocol
+    // MARK: - Dependencies
+    
+    private let fireBaseService: FireBaseServiceProtocol
+    private let fileStorageService: FileStorageServiceProtocol
+    private let dateFormatterService: DateFormatterServiceProtocol
 
     // MARK: Properties
     
@@ -58,13 +60,13 @@ class TripsViewModel: TripsViewModelProtocol {
         self.dateFormatterService = dateFormatterService
     }
     
-    // MARK: Private methods
+    // MARK: - Private methods
     
     private func deleteTrip(tripId: String) {
         fireBaseService.deleteTrip(forUser: userId, tripId: tripId)
     }
     
-    // MARK: Methods
+    // MARK: - Methods
     
     func fetchTrips() {
         fireBaseService.fetchTrips(forUser: userId, completion: { (result: Result<[Trip], Error>) in

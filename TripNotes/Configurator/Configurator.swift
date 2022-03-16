@@ -9,7 +9,7 @@ import UIKit
 
 class Configurator {
     
-    // MARK: Private properties
+    // MARK: - Private properties
     
     private let authService = AuthService()
     private let fireBaseService = FireBaseService()
@@ -18,7 +18,7 @@ class Configurator {
     private let networkManager = NetworkWeatherManager()
     private let slideInTransitioningDelegate = SlideInPresentationManager()
     
-    // MARK: Methods
+    // MARK: - Methods
     
     func cofigureAuth() -> AuthViewController {
         let viewM = AuthViewModel(authService: authService)

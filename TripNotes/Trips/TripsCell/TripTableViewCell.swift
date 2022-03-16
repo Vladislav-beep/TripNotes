@@ -9,7 +9,7 @@ import UIKit
 
 class TripTableViewCell: UITableViewCell {
     
-    // MARK: Dependencies
+    // MARK: - Dependencies
     
     var viewModel: TripTableViewCellViewModelProtocol? {
         didSet {
@@ -17,12 +17,12 @@ class TripTableViewCell: UITableViewCell {
             descriptionLabel.text = viewModel?.description
             dateLabel.text = viewModel?.date
             totalSumLabel.text = viewModel?.getTotalSum()
-           
+            
             setupAvatarImage()
         }
-        }
+    }
  
-    // MARK: UI
+    // MARK: - UI
     
     private lazy var tripImageView: UIImageView = {
         let tripImageView = UIImageView()
@@ -81,7 +81,7 @@ class TripTableViewCell: UITableViewCell {
         return textView
     }()
     
-    // MARK: Life Time
+    // MARK: - Life Time
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -92,7 +92,7 @@ class TripTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: Private methods
+    // MARK: - Private methods
     
     private func setupAvatarImage() {
         let imageData = viewModel?.retrieveImage()
@@ -101,7 +101,7 @@ class TripTableViewCell: UITableViewCell {
         }
     }
     
-    // MARK: Layout
+    // MARK: - Layout
     
     private func setupAllConstraints() {
         setupTripImageConstraints()

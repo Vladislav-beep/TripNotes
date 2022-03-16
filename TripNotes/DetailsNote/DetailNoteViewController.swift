@@ -9,18 +9,18 @@ import UIKit
 
 class DetailNoteViewController: UIViewController {
     
-    // MARK: Dependencies
+    // MARK: - Dependencies
     
     private var viewModel: NoteCellViewModelProtocol
     var configurator: Configurator?
     
-    // MARK: Properties
+    // MARK: - Properties
     
     var isFavourite = false
     lazy var contraint = heartImageView.heightAnchor.constraint(equalToConstant: 0)
     lazy var animator = Animator(container: view)
     
-    // MARK: UI
+    // MARK: - UI
         
     private lazy var yellowView: UIView = {
         let redView = UIView()
@@ -136,7 +136,7 @@ class DetailNoteViewController: UIViewController {
         return heartImageView
     }()
     
-    // MARK: Life Time
+    // MARK: - Life Time
     
     init(viewModel: NoteCellViewModelProtocol) {
         self.viewModel = viewModel
@@ -153,19 +153,19 @@ class DetailNoteViewController: UIViewController {
         setupUI()
     }
     
-    // MARK: Actions
+    // MARK: - Actions
     
-    @objc func closeScreen() {
+    @objc private func closeScreen() {
         dismiss(animated: true)
     }
     
-    @objc func deleteNote() {
+    @objc private func deleteNote() {
         viewModel.deleteNote()
         postNotification()
         dismiss(animated: true)
     }
     
-    @objc func editNote() {
+    @objc private func editNote() {
         dismiss(animated: true)
         let userId = viewModel.userId
         let tripId = viewModel.getTripId()
@@ -174,7 +174,7 @@ class DetailNoteViewController: UIViewController {
         presentingViewController?.present(newNoteVC, animated: true, completion: nil)
     }
     
-    @objc func toggleFavourite() {
+    @objc private func toggleFavourite() {
         if likeButton.tintColor == .tripGrey {
             animator.animate(layoutConstraint: contraint) { [weak self] in
                 self?.likeButton.tintColor = .tripRed
@@ -189,7 +189,7 @@ class DetailNoteViewController: UIViewController {
         postNotification()
     }
     
-    // MARK: Private methods
+    // MARK: - Private methods
     
     private func setupUI() {
         view.backgroundColor = .tripGrey
@@ -210,7 +210,7 @@ class DetailNoteViewController: UIViewController {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateNotes"), object: nil)
     }
         
-    // MARK: Layout
+    // MARK: - Layout
     
     private func setupAllConstraints() {
         setupYellowViewConstraints()
@@ -306,38 +306,3 @@ class DetailNoteViewController: UIViewController {
         ])
     }
 }
-    
-    
-//    private func setupStackViewConstraints() {
-//
-//
-//        lowerView.addSubview(labelStackView)
-//        let k = categoryLabel.heightAnchor.constraint(equalToConstant: 40).constant
-//        let a = cityLabel.heightAnchor.constraint(equalToConstant: 40).constant
-//        let b = dateLabel.heightAnchor.constraint(equalToConstant: 40).constant
-//        let c = descriptionLabel.intrinsicContentSize.height
-//
-//
-//        let h = k + a + b + c
-//        print(descriptionLabel.intrinsicContentSize.height)
-//        print(categoryLabel.heightAnchor.constraint(equalToConstant: 40).constant)
-//        NSLayoutConstraint.activate([
-//         //   categoryLabel.heightAnchor.constraint(equalToConstant: 20),
-//         //   cityLabel.heightAnchor.constraint(equalToConstant: 20),
-//           // dateLabel.heightAnchor.constraint(equalToConstant: 20),
-//            labelStackView.bottomAnchor.constraint(equalTo: lowerView.bottomAnchor, constant: -30),
-//            labelStackView.heightAnchor.constraint(equalToConstant: h),
-//            labelStackView.trailingAnchor.constraint(equalTo: lowerView.trailingAnchor, constant: -10),
-//            labelStackView.leadingAnchor.constraint(equalTo: lowerView.leadingAnchor, constant: 10)
-//        ])
-//
-//        lowerView.addSubview(categoryImageView)
-//        NSLayoutConstraint.activate([
-//            categoryImageView.bottomAnchor.constraint(equalTo: labelStackView.topAnchor, constant: -8),
-//            categoryImageView.heightAnchor.constraint(equalToConstant: 50),
-//            categoryImageView.widthAnchor.constraint(equalToConstant: 50),
-//            categoryImageView.centerXAnchor.constraint(equalTo: lowerView.centerXAnchor, constant: 0)
-//        ])
-//
-//
-    

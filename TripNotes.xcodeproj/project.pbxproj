@@ -96,7 +96,6 @@
 		B98282DE27A07CB2006EFED8 /* NewAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98282DD27A07CB2006EFED8 /* NewAccountViewModel.swift */; };
 		B98282E127A07CDA006EFED8 /* NewAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98282DD27A07CB2006EFED8 /* NewAccountViewModel.swift */; };
 		B98282E427A082CE006EFED8 /* NewAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98282D727A07C84006EFED8 /* NewAccountViewController.swift */; };
-		B9863AB727C100AB00BE6337 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9863AB627C100AB00BE6337 /* UserModel.swift */; };
 		B9863ABB27C1371F00BE6337 /* FireBaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9863ABA27C1371F00BE6337 /* FireBaseService.swift */; };
 		B9863ABF27C1374100BE6337 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9863ABE27C1374100BE6337 /* AuthService.swift */; };
 		B9A0EF6B2774DDCE00DE65E2 /* SelectionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A0EF6A2774DDCE00DE65E2 /* SelectionButton.swift */; };
@@ -211,7 +210,6 @@
 		B97374BE27AC5CBE000B208D /* FavouritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewModel.swift; sourceTree = "<group>"; };
 		B98282D727A07C84006EFED8 /* NewAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAccountViewController.swift; sourceTree = "<group>"; };
 		B98282DD27A07CB2006EFED8 /* NewAccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAccountViewModel.swift; sourceTree = "<group>"; };
-		B9863AB627C100AB00BE6337 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		B9863ABA27C1371F00BE6337 /* FireBaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireBaseService.swift; sourceTree = "<group>"; };
 		B9863ABE27C1374100BE6337 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		B9A0EF6A2774DDCE00DE65E2 /* SelectionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionButton.swift; sourceTree = "<group>"; };
@@ -362,7 +360,6 @@
 			children = (
 				B93DD4B2279F186C00D91A08 /* AuthViewController.swift */,
 				B93DD4B6279F19F400D91A08 /* AuthViewModel.swift */,
-				B9863AB627C100AB00BE6337 /* UserModel.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -666,7 +663,6 @@
 				B94439D827B84E09000DF640 /* Animator.swift in Sources */,
 				B90DB444276F326000F1A544 /* Extension + Numeric.swift in Sources */,
 				B949FB1927AEF0AE00590F0E /* Configurator.swift in Sources */,
-				B9863AB727C100AB00BE6337 /* UserModel.swift in Sources */,
 				B9FB61182772336700126A59 /* NewTripViewController.swift in Sources */,
 				B91E81532767A9AC00D0748B /* TabBarViewController.swift in Sources */,
 				B9DE0D412768FD6400805E4C /* TripModel.swift in Sources */,

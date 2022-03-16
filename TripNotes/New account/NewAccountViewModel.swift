@@ -14,11 +14,17 @@ protocol NewAccountViewModelProtocol {
 
 class NewAccountViewModel: NewAccountViewModelProtocol {
     
-    let authService: AuthServiceProtocol
+    // MARK: - Dependencies
+    
+    private let authService: AuthServiceProtocol
+    
+    // MARK: - Life Time
     
     required init(authService: AuthServiceProtocol) {
         self.authService = authService
     }
+    
+    // MARK: - Methods
     
     func createNewUser(withEmail email: String,
                        password: String,

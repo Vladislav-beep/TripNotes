@@ -9,6 +9,9 @@ import Foundation
 import Firebase
 
 struct TripNote: Hashable {
+    
+    // MARK: - Properties
+    
     let id: String
     let city: String
     let category: String
@@ -17,6 +20,8 @@ struct TripNote: Hashable {
     let description: String?
     let isFavourite: Bool
     let adress: String?
+    
+    // MARK: - Life Time
     
     init(snapshot: QueryDocumentSnapshot) {
         let snapshotValue = snapshot.data()
@@ -51,6 +56,5 @@ struct TripNote: Hashable {
         self.description = description
         self.isFavourite = isFavourite
         self.adress = adress
-        
     }
 }

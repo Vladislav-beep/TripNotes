@@ -10,16 +10,13 @@ import Firebase
 
 class TripsViewController: UIViewController {
     
-    // MARK: Dependencies
+    // MARK: - Dependencies
     
-  //  lazy var slideInTransitioningDelegate = SlideInPresentationManager()
-
     private var viewModel: TripsViewModelProtocol
     private var newNoteViewModel: NewNoteViewModelProtocol?
-   // var coordinator: AppCoordinator?
     var configurator: Configurator?
 
-    // MARK: UI
+    // MARK: - UI
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
@@ -70,7 +67,7 @@ class TripsViewController: UIViewController {
         return noLabel
     }()
     
-    // MARK: Life Time
+    // MARK: - Life Time
     
     init(viewModel: TripsViewModelProtocol) {
         self.viewModel = viewModel
@@ -100,7 +97,7 @@ class TripsViewController: UIViewController {
         tableView.reloadData()
     }
     
-    // MARK: Actions
+    // MARK: - Actions
     
     @objc func signOutTapped() {
         do {
@@ -126,7 +123,7 @@ class TripsViewController: UIViewController {
         present(weatherVC, animated: true)
     }
     
-    // MARK: Private methods
+    // MARK: - Private methods
     
     private func setupViewModelBindings() {
         viewModel.firstCompletion = { [weak self] in
@@ -187,7 +184,7 @@ class TripsViewController: UIViewController {
         return action
     }
     
-    // MARK: Layout
+    // MARK: - Layout
     
     private func setupAllConstraints() {
         setupTableContraints()
@@ -246,7 +243,7 @@ class TripsViewController: UIViewController {
     }
 }
 
-// MARK: TableViewDataSource
+// MARK: - TableViewDataSource
 
 extension TripsViewController: UITableViewDataSource {
     
@@ -286,7 +283,7 @@ extension TripsViewController: UITableViewDataSource {
     }
 }
 
-// MARK: TableViewDelegate
+// MARK: - TableViewDelegate
 
 extension TripsViewController: UITableViewDelegate {
     

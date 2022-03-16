@@ -27,10 +27,12 @@ protocol NoteCellViewModelProtocol {
 
 class NoteCellViewModel: NoteCellViewModelProtocol {
     
-    let fireBaseService: FireBaseServiceProtocol
-    let dateFormatterService: DateFormatterServiceProtocol
+    // MARK: - Dependencies
     
-    // MARK: Properties
+    private let fireBaseService: FireBaseServiceProtocol
+    private let dateFormatterService: DateFormatterServiceProtocol
+    
+    // MARK: - Properties
     
     var userId: String
     
@@ -66,16 +68,22 @@ class NoteCellViewModel: NoteCellViewModelProtocol {
         "\(trip.country) \n \(dateFormatterService.convertTripDateToShortString(date: trip.beginningDate)) - \(dateFormatterService.convertTripDateToShortString(date: trip.finishingDate))"
     }
     
-    // MARK: Private properties
+    // MARK: - Private properties
     
     private var tripNote: TripNote
     private let currency: String
     private let trip: Trip
     var isInfoShown: Bool
     
-    // MARK: Life Time
+    // MARK: - Life Time
     
-    required init(tripNote: TripNote, currency: String, trip: Trip, isInfoShown: Bool, fireBaseService: FireBaseServiceProtocol, dateFormatterService: DateFormatterServiceProtocol, userId: String) {
+    required init(tripNote: TripNote,
+                  currency: String,
+                  trip: Trip,
+                  isInfoShown: Bool,
+                  fireBaseService: FireBaseServiceProtocol,
+                  dateFormatterService: DateFormatterServiceProtocol,
+                  userId: String) {
         self.tripNote = tripNote
         self.currency = currency
         self.trip = trip
@@ -85,7 +93,7 @@ class NoteCellViewModel: NoteCellViewModelProtocol {
         self.userId = userId
     }
     
-    // MARK: Methods
+    // MARK: - Methods
     
     func toggleFavourite(isFavourite: Bool) {
         fireBaseService.toggleFavourite(forUser: userId, tripId: trip.id, noteId: tripNote.id, isFavourite: isFavourite)

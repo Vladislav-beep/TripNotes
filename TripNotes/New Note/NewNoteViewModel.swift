@@ -20,14 +20,16 @@ protocol NewNoteViewModelProtocol {
 }
 
 class NewNoteViewModel: NewNoteViewModelProtocol {
-
-    let fireBaseService: FireBaseServiceProtocol
     
-    // MARK: Private properties
+    // MARK: - Dependencies
+
+    private let fireBaseService: FireBaseServiceProtocol
+    
+    // MARK: - Private properties
     
     private var note: TripNote?
     
-    // MARK: Properties
+    // MARK: - Properties
     
     var tripId: String
     var noteId: String
@@ -50,7 +52,7 @@ class NewNoteViewModel: NewNoteViewModelProtocol {
         note?.description ?? ""
     }
     
-    // MARK: Life Time
+    // MARK: - Life Time
     
     required init(userId: String, tripId: String, noteId: String, fireBaseService: FireBaseServiceProtocol) {
         self.userId = userId
@@ -59,7 +61,7 @@ class NewNoteViewModel: NewNoteViewModelProtocol {
         self.fireBaseService = fireBaseService
     }
     
-    // MARK: Methods
+    // MARK: - Methods
     
     func addNote(category: String, city: String, price: Double, isFavourite: Bool, description: String) {
         fireBaseService.addNote(forUser: userId, tripId: tripId, category: category, city: city, price: price, isFavourite: isFavourite, description: description)

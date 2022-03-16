@@ -9,7 +9,7 @@ import UIKit
 
 class NoteCell: UICollectionViewCell {
     
-    // MARK: Dependencies
+    // MARK: - Dependencies
     
     var viewModel: NoteCellViewModelProtocol! {
         didSet {
@@ -23,7 +23,7 @@ class NoteCell: UICollectionViewCell {
         }
     }
     
-    // MARK: UI
+    // MARK: - UI
     
     private lazy var lowerView: UIView = {
         let lowerView = UIView()
@@ -94,7 +94,7 @@ class NoteCell: UICollectionViewCell {
         return sumLabel
     }()
     
-    // MARK: Life Time
+    // MARK: - Life Time
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -105,7 +105,7 @@ class NoteCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: Private methods
+    // MARK: - Private methods
     
     @objc func refresh() {
         setupUI()
@@ -144,7 +144,7 @@ class NoteCell: UICollectionViewCell {
         }
     }
     
-    // MARK: Layout
+    // MARK: - Layout
     
     private func setupAllConstraints() {
         setupLowerViewConstraints()

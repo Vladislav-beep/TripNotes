@@ -24,15 +24,17 @@ protocol NewTripViewModelProtocol {
 }
 
 class NewTripViewModel: NewTripViewModelProtocol {
-        
-    let fireBaseService: FireBaseServiceProtocol
-    let fileStorageService: FileStorageServiceProtocol
     
-    // MARK: Private proaperties
+    // MARK: - Dependencies
+        
+    private let fireBaseService: FireBaseServiceProtocol
+    private let fileStorageService: FileStorageServiceProtocol
+    
+    // MARK: - Private proaperties
     
     private var trip: Trip?
     
-    // MARK: Properties
+    // MARK: - Properties
     
     var tripId: String
     var userId: String
@@ -65,7 +67,7 @@ class NewTripViewModel: NewTripViewModelProtocol {
     
     var tripCompletion: (() -> Void)?
     
-    // MARK: Life Time
+    // MARK: - Life Time
     
     required init(tripId: String, userId: String, fireBaseService: FireBaseServiceProtocol, fileStorageService: FileStorageServiceProtocol) {
         self.userId = userId
@@ -74,7 +76,7 @@ class NewTripViewModel: NewTripViewModelProtocol {
         self.fileStorageService = fileStorageService
     }
     
-    // MARK: Methods
+    // MARK: - Methods
     
     func saveImage(data: Data, key: String) {
         fileStorageService.store(image: data, forKey: key)

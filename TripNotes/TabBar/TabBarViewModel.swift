@@ -16,11 +16,11 @@ protocol TabBarViewModelProtocol {
 
 class TabBarViewModel: TabBarViewModelProtocol {
     
-    // MARK: Dependencies
+    // MARK: - Dependencies
     
-    let auth: AuthService
+    private let auth: AuthService
     
-    // MARK: Properties
+    // MARK: - Properties
     
     var completion: ((String) -> Void)?
     var errorCompletion: (() -> Void)?
@@ -32,7 +32,7 @@ class TabBarViewModel: TabBarViewModelProtocol {
         self.auth = authService
     }
     
-    // MARK: Methods
+    // MARK:  -Methods
     
     func fetchUserId() {
         auth.getUserId(completion: { (result: Result<String, AuthError>) in

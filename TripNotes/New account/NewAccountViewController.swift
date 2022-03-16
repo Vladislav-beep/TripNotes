@@ -9,13 +9,13 @@ import UIKit
 
 class NewAccountViewController: UIViewController {
     
-    // MARK: Dependencies
+    // MARK: - Dependencies
     
     private var viewModel: NewAccountViewModelProtocol
     lazy var keyboard = KeyboardHelper(scrollView: scrollView, offSet: 100)
     var configurator: Configurator?
     
-    // MARK: UI
+    // MARK: - UI
     
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -97,7 +97,7 @@ class NewAccountViewController: UIViewController {
         return tap
     }()
     
-    // MARK: Life Time
+    // MARK: - Life Time
     
     init(viewModel: NewAccountViewModelProtocol) {
         self.viewModel = viewModel
@@ -128,7 +128,7 @@ class NewAccountViewController: UIViewController {
         keyboard.removeKeyboardNotification()
     }
     
-    // MARK: Actions
+    // MARK: - Actions
     
     @objc func logInTapped() {
         dismiss(animated: true)
@@ -150,7 +150,7 @@ class NewAccountViewController: UIViewController {
         return
     }
     
-    // MARK: Private methods
+    // MARK: - Private methods
     
     private func setupNavBarAppearence() {
         let navBarAppearance = UINavigationBarAppearance()
@@ -159,7 +159,7 @@ class NewAccountViewController: UIViewController {
         navigationController?.navigationBar.standardAppearance = navBarAppearance
     }
     
-    // MARK: Layout
+    // MARK: - Layout
     
     private func setupConstraints() {
         setupScrollViewConstraints()
@@ -231,6 +231,7 @@ class NewAccountViewController: UIViewController {
     }
 }
 
+// MARK: - UITextFieldDelegate
 extension NewAccountViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

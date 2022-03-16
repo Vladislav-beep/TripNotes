@@ -9,14 +9,12 @@ import UIKit
 
 class NotesViewController: UIViewController {
     
-    // MARK: Dependencies
+    // MARK: - Dependencies
     
     private var viewModel: NotesViewModelProtocol
-  //  lazy var slideInTransitioningDelegate = SlideInPresentationManager()
-   // var coordinator: AppCoordinator?
     var configurator: Configurator?
     
-    // MARK: UI
+    // MARK: - UI
     
     private lazy var collectionView: NotesCollectionView = {
         let collectionView = NotesCollectionView()
@@ -34,7 +32,7 @@ class NotesViewController: UIViewController {
         return activityIndicator
     }()
     
-    // MARK: Life Time
+    // MARK: - Life Time
     
     init(notesViewModel: NotesViewModelProtocol) {
         self.viewModel = notesViewModel
@@ -54,7 +52,10 @@ class NotesViewController: UIViewController {
         collectionView.delegate = self
         activityIndicator.stopAnimating()
         setupViewModelBundings()
-        NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: NSNotification.Name(rawValue: "updateNotes"), object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(refresh),
+                                               name: NSNotification.Name(rawValue: "updateNotes"),
+                                               object: nil)
     }
     
     @objc func refresh() {
@@ -71,7 +72,7 @@ class NotesViewController: UIViewController {
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "updateNotes"), object: nil)
     }
     
-    // MARK: Private methods
+    // MARK: - Private methods
 
     private func setupViewModelBundings() {
         viewModel.noteCompletion = { [weak self] in
@@ -90,7 +91,7 @@ class NotesViewController: UIViewController {
         }
     }
     
-    // MARK: Layout
+    // MARK: - Layout
     
     private func setupCollectionViewConstraints() {
         view.addSubview(collectionView)
@@ -130,7 +131,7 @@ extension NotesViewController: UICollectionViewDelegate {
     }
 }
 
-// MARK: CollectionViewDataSource
+// MARK: - CollectionViewDataSource
 
 extension NotesViewController: UICollectionViewDataSource {
     

@@ -10,11 +10,11 @@ import CoreLocation
 
 class WeatherViewController: UIViewController {
     
-    // MARK: Dependencies
+    // MARK: - Dependencies
     
     private var viewModel: WeatherViewModelProtocol
     
-    // MARK: UI
+    // MARK: - UI
     
     private lazy var weatherIconImageView: UIImageView = {
         let weatherIconImageView = UIImageView()
@@ -89,7 +89,7 @@ class WeatherViewController: UIViewController {
         return lm
     }()
     
-    // MARK: Life Time
+    // MARK: - Life Time
     
     init(viewModel: WeatherViewModelProtocol) {
         self.viewModel = viewModel
@@ -111,13 +111,13 @@ class WeatherViewController: UIViewController {
         requestLocation()
     }
     
-    // MARK: Actions
+    // MARK: - Actions
     
     @objc private func closeScreen() {
         dismiss(animated: true)
     }
     
-    // MARK: Private methods
+    // MARK: - Private methods
     
     private func requestLocation() {
         if CLLocationManager.locationServicesEnabled() {
@@ -144,6 +144,8 @@ class WeatherViewController: UIViewController {
             }
         }
     }
+    
+    // MARK: - Layout
     
     private func setupAllConstraints() {
         setupCloseButtonConstraints()
@@ -202,6 +204,7 @@ class WeatherViewController: UIViewController {
     }
 }
 
+// MARK: - CLLocationManagerDelegate
 extension WeatherViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last else { return }
