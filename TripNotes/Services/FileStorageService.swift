@@ -14,12 +14,16 @@ protocol FileStorageServiceProtocol {
 
 class FileStorageService: FileStorageServiceProtocol {
     
+    // MARK: Private methods
+    
     private func filePath(forKey key: String) -> URL? {
         let fileManager = FileManager.default
         guard let documentURL = fileManager.urls(for: .documentDirectory,
                                                  in: FileManager.SearchPathDomainMask.userDomainMask).first else { return nil }
         return documentURL.appendingPathComponent(key + ".png")
     }
+    
+    // MARK: Methods
     
     func store(image: Data, forKey key: String) {
         if let filePath = filePath(forKey: key) {

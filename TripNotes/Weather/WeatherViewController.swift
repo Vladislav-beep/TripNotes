@@ -113,7 +113,7 @@ class WeatherViewController: UIViewController {
     
     // MARK: Actions
     
-    @objc func closeScreen() {
+    @objc private func closeScreen() {
         dismiss(animated: true)
     }
     
@@ -136,16 +136,13 @@ class WeatherViewController: UIViewController {
                 self?.activityIndicator.isHidden = true
             }
         }
-        ///////////
-        
+  
         viewModel.errorCompletion = { [weak self] error in
             DispatchQueue.main.async {
                 self?.dismiss(animated: true)
                 self?.showAlert(title: "Network error", message: error.description)
             }
         }
-        
-        ///////
     }
     
     private func setupAllConstraints() {

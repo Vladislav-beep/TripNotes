@@ -9,14 +9,16 @@ import UIKit
 
 class SignInButton: UIButton {
     
-    // MARK: Properties
+    // MARK: Private properties
     
-    var title: String
+    private let title: String
+    private let colorOfBackground: UIColor
     
     // MARK: Life Time
     
-    init(title: String) {
+    init(title: String, colorOfBackground: UIColor) {
         self.title = title
+        self.colorOfBackground = colorOfBackground
         super.init(frame: .zero)
         initialize()
     }
@@ -30,7 +32,7 @@ class SignInButton: UIButton {
     private func initialize() {
         setTitle(title, for: .normal)
         titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .heavy)
-        backgroundColor = .tripRed
+        backgroundColor = colorOfBackground
         layer.cornerRadius = 12
         layer.shadowRadius = 2
         layer.shadowOpacity = 0.4

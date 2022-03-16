@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B90251AB27DA01A200788065 /* UserDefaltsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90251AA27DA01A200788065 /* UserDefaltsService.swift */; };
 		B90251AF27DA1EB700788065 /* WelcomeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90251AE27DA1EB700788065 /* WelcomeLabel.swift */; };
 		B90251B327DA205E00788065 /* CreateButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90251B227DA205E00788065 /* CreateButton.swift */; };
 		B90251B727DA221300788065 /* CreateLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90251B627DA221300788065 /* CreateLabel.swift */; };
@@ -21,8 +20,6 @@
 		B90251D827DB3AE500788065 /* LikeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90251D727DB3AE500788065 /* LikeButton.swift */; };
 		B90251DE27DB3D7C00788065 /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90251DD27DB3D7C00788065 /* BackButton.swift */; };
 		B905759B279458BB001EA8D1 /* SectionLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B905759A279458BB001EA8D1 /* SectionLabel.swift */; };
-		B90632EC27AFB86000F0C2A5 /* KeyboardService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90632EB27AFB86000F0C2A5 /* KeyboardService.swift */; };
-		B90632EF27AFBB4900F0C2A5 /* KeyboardService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90632EB27AFB86000F0C2A5 /* KeyboardService.swift */; };
 		B90632F227AFCF0900F0C2A5 /* NoteCellVewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F296C427895C7F00844D6C /* NoteCellVewModel.swift */; };
 		B90632F927AFE47E00F0C2A5 /* DetailNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90632F827AFE47E00F0C2A5 /* DetailNoteViewController.swift */; };
 		B90632FE27AFE47F00F0C2A5 /* DetailNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90632F827AFE47E00F0C2A5 /* DetailNoteViewController.swift */; };
@@ -123,6 +120,7 @@
 		B9DE0D5C2768FDB100805E4C /* FavouritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91E81552767AA4F00D0748B /* FavouritesViewController.swift */; };
 		B9DE0D5F2768FDB800805E4C /* TripModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DE0D402768FD6400805E4C /* TripModel.swift */; };
 		B9E85C3D276E6468004FD1D8 /* Extension + UIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E85C3C276E6468004FD1D8 /* Extension + UIStackView.swift */; };
+		B9E8670F27E1D3CF00C97E5E /* KeyboardHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E8670E27E1D3CF00C97E5E /* KeyboardHelper.swift */; };
 		B9EA410B27777D9A00CC173A /* NewTripViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9FB611B2772339500126A59 /* NewTripViewModel.swift */; };
 		B9EBFB05277A3EDE00746A0A /* Extension + UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9EBFB04277A3EDE00746A0A /* Extension + UIButton.swift */; };
 		B9EBFB0A277A3EEA00746A0A /* Extension + UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9EBFB04277A3EDE00746A0A /* Extension + UIButton.swift */; };
@@ -153,7 +151,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		B90251AA27DA01A200788065 /* UserDefaltsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaltsService.swift; sourceTree = "<group>"; };
 		B90251AE27DA1EB700788065 /* WelcomeLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeLabel.swift; sourceTree = "<group>"; };
 		B90251B227DA205E00788065 /* CreateButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateButton.swift; sourceTree = "<group>"; };
 		B90251B627DA221300788065 /* CreateLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateLabel.swift; sourceTree = "<group>"; };
@@ -166,7 +163,6 @@
 		B90251D727DB3AE500788065 /* LikeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeButton.swift; sourceTree = "<group>"; };
 		B90251DD27DB3D7C00788065 /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
 		B905759A279458BB001EA8D1 /* SectionLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionLabel.swift; sourceTree = "<group>"; };
-		B90632EB27AFB86000F0C2A5 /* KeyboardService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardService.swift; sourceTree = "<group>"; };
 		B90632F827AFE47E00F0C2A5 /* DetailNoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailNoteViewController.swift; sourceTree = "<group>"; };
 		B909AFDC277E3135006EFC38 /* Extension + UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UITextField.swift"; sourceTree = "<group>"; };
 		B90B9A0B276D015A008DD627 /* TripTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripTableViewCellViewModel.swift; sourceTree = "<group>"; };
@@ -228,6 +224,7 @@
 		B9DE0D492768FD7900805E4C /* TripNotesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripNotesTests.swift; sourceTree = "<group>"; };
 		B9DE0D4B2768FD7900805E4C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B9E85C3C276E6468004FD1D8 /* Extension + UIStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIStackView.swift"; sourceTree = "<group>"; };
+		B9E8670E27E1D3CF00C97E5E /* KeyboardHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHelper.swift; sourceTree = "<group>"; };
 		B9EBFB04277A3EDE00746A0A /* Extension + UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIButton.swift"; sourceTree = "<group>"; };
 		B9F296C027895C4300844D6C /* NoteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteCell.swift; sourceTree = "<group>"; };
 		B9F296C427895C7F00844D6C /* NoteCellVewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteCellVewModel.swift; sourceTree = "<group>"; };
@@ -292,13 +289,12 @@
 		B90DB436276F147000F1A544 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				B95FBCFB27D8B709006FF5A8 /* NetworkWeatherManager.swift */,
 				B90DB437276F14B100F1A544 /* DateFormatterService.swift */,
 				B9698F22279C4689005FB438 /* LocationSevice.swift */,
-				B90632EB27AFB86000F0C2A5 /* KeyboardService.swift */,
 				B94439D727B84E09000DF640 /* Animator.swift */,
 				B9863ABA27C1371F00BE6337 /* FireBaseService.swift */,
 				B9863ABE27C1374100BE6337 /* AuthService.swift */,
-				B90251AA27DA01A200788065 /* UserDefaltsService.swift */,
 				B938B1F427DB50B400E205C6 /* FileStorageService.swift */,
 			);
 			path = Services;
@@ -336,7 +332,7 @@
 			children = (
 				B91E813C2767A88E00D0748B /* AppDelegate.swift */,
 				B91E813E2767A88E00D0748B /* SceneDelegate.swift */,
-				B949FB1727AEF05E00590F0E /* Coordinator */,
+				B949FB1727AEF05E00590F0E /* Configurator */,
 				B93DD4B1279F184F00D91A08 /* Auth */,
 				B98282D627A07C56006EFED8 /* New account */,
 				B9DE0D64276900DC00805E4C /* Trips */,
@@ -352,12 +348,11 @@
 				B90DB436276F147000F1A544 /* Services */,
 				B9F39E0A2767D47F00DAFB4C /* Extensions */,
 				B95FBCE027D89354006FF5A8 /* SubViews */,
+				B9E8671627E1E2C100C97E5E /* Helpers */,
 				B91E81452767A88F00D0748B /* Assets.xcassets */,
 				B91E81472767A88F00D0748B /* LaunchScreen.storyboard */,
 				B91E814A2767A88F00D0748B /* Info.plist */,
 				B9AA39DE27BAD08A00CD48E9 /* GoogleService-Info.plist */,
-				B90DB43B276F2D1500F1A544 /* Constants.swift */,
-				B95FBCFB27D8B709006FF5A8 /* NetworkWeatherManager.swift */,
 			);
 			path = TripNotes;
 			sourceTree = "<group>";
@@ -372,12 +367,12 @@
 			path = Auth;
 			sourceTree = "<group>";
 		};
-		B949FB1727AEF05E00590F0E /* Coordinator */ = {
+		B949FB1727AEF05E00590F0E /* Configurator */ = {
 			isa = PBXGroup;
 			children = (
 				B949FB1827AEF0AE00590F0E /* Configurator.swift */,
 			);
-			path = Coordinator;
+			path = Configurator;
 			sourceTree = "<group>";
 		};
 		B95FBCCA27D7D599006FF5A8 /* Weather */ = {
@@ -500,6 +495,15 @@
 				B90B9A0B276D015A008DD627 /* TripTableViewCellViewModel.swift */,
 			);
 			path = TripsCell;
+			sourceTree = "<group>";
+		};
+		B9E8671627E1E2C100C97E5E /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				B90DB43B276F2D1500F1A544 /* Constants.swift */,
+				B9E8670E27E1D3CF00C97E5E /* KeyboardHelper.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		B9F296BF27895C2500844D6C /* Cell */ = {
@@ -666,10 +670,10 @@
 				B9FB61182772336700126A59 /* NewTripViewController.swift in Sources */,
 				B91E81532767A9AC00D0748B /* TabBarViewController.swift in Sources */,
 				B9DE0D412768FD6400805E4C /* TripModel.swift in Sources */,
-				B90251AB27DA01A200788065 /* UserDefaltsService.swift in Sources */,
 				B9698F2D279C5691005FB438 /* mapViewModel.swift in Sources */,
 				B9DCF13E276BBE29007B0320 /* Extension + UIBarButtonItem.swift in Sources */,
 				B90DB426276F134B00F1A544 /* NoteModel.swift in Sources */,
+				B9E8670F27E1D3CF00C97E5E /* KeyboardHelper.swift in Sources */,
 				B95FBCDD27D89050006FF5A8 /* CloseButton.swift in Sources */,
 				B90DB44F276F54F100F1A544 /* NotesViewModel.swift in Sources */,
 				B909AFDD277E3135006EFC38 /* Extension + UITextField.swift in Sources */,
@@ -719,7 +723,6 @@
 				B9EBFB05277A3EDE00746A0A /* Extension + UIButton.swift in Sources */,
 				B9FB61242772617000126A59 /* CustomTextField.swift in Sources */,
 				B96648792799D65F00F527E8 /* MapViewController.swift in Sources */,
-				B90632EC27AFB86000F0C2A5 /* KeyboardService.swift in Sources */,
 				B93DD4C8279F284300D91A08 /* SignInButton.swift in Sources */,
 				B93DD4B3279F186C00D91A08 /* AuthViewController.swift in Sources */,
 				B90DB440276F323000F1A544 /* Extension + Formatter.swift in Sources */,
@@ -758,7 +761,6 @@
 				B9EBFB0A277A3EEA00746A0A /* Extension + UIButton.swift in Sources */,
 				B9FB611F277236B400126A59 /* NewTripViewController.swift in Sources */,
 				B949FB1027AEE4EA00590F0E /* NoteLabel.swift in Sources */,
-				B90632EF27AFBB4900F0C2A5 /* KeyboardService.swift in Sources */,
 				B98282E127A07CDA006EFED8 /* NewAccountViewModel.swift in Sources */,
 				B9698F26279C52CC005FB438 /* LocationSevice.swift in Sources */,
 				B961212827934BDE00B7B81E /* NoteModel.swift in Sources */,

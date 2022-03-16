@@ -43,5 +43,4 @@ class EditDeleteNoteButton: UIButton {
         layer.shadowOpacity = 0.5
         translatesAutoresizingMaskIntoConstraints = false
     }
-    
 }

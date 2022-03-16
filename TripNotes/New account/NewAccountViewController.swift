@@ -12,6 +12,7 @@ class NewAccountViewController: UIViewController {
     // MARK: Dependencies
     
     private var viewModel: NewAccountViewModelProtocol
+    lazy var keyboard = KeyboardHelper(scrollView: scrollView, offSet: 100)
     var configurator: Configurator?
     
     // MARK: UI
@@ -51,7 +52,7 @@ class NewAccountViewController: UIViewController {
     }()
     
     private let signUpButton: SignInButton = {
-        let signInButton = SignInButton(title: "Sign up")
+        let signInButton = SignInButton(title: "Sign up", colorOfBackground: .tripBlue)
         signInButton.addTarget(self, action: #selector(signUpTapped), for: .touchUpInside)
         return signInButton
     }()
@@ -101,7 +102,7 @@ class NewAccountViewController: UIViewController {
     init(viewModel: NewAccountViewModelProtocol) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
-        registerKeyBoardNotification()
+        keyboard.registerKeyBoardNotification()
     }
     
     required init?(coder: NSCoder) {
@@ -124,7 +125,7 @@ class NewAccountViewController: UIViewController {
     }
     
     deinit {
-        removeKeyboardNotification()
+        keyboard.removeKeyboardNotification()
     }
     
     // MARK: Actions
@@ -192,7 +193,7 @@ class NewAccountViewController: UIViewController {
     private func setupCreateNewAccountLabelConstraints() {
         lowerView.addSubview(createNewAccountLabel)
         NSLayoutConstraint.activate([
-            createNewAccountLabel.topAnchor.constraint(equalTo: lowerView.topAnchor, constant: 60),
+            createNewAccountLabel.topAnchor.constraint(equalTo: lowerView.topAnchor, constant: 120),
             createNewAccountLabel.leadingAnchor.constraint(equalTo: lowerView.leadingAnchor, constant: 20),
             createNewAccountLabel.trailingAnchor.constraint(equalTo: lowerView.trailingAnchor, constant: -20),
             createNewAccountLabel.heightAnchor.constraint(equalToConstant: 70)
@@ -222,7 +223,7 @@ class NewAccountViewController: UIViewController {
     private func setupLogInConstraints() {
         lowerView.addSubview(logInStack)
         NSLayoutConstraint.activate([
-            logInStack.bottomAnchor.constraint(equalTo: lowerView.bottomAnchor, constant: -130),
+            logInStack.bottomAnchor.constraint(equalTo: lowerView.bottomAnchor, constant: -40),
             logInStack.centerXAnchor.constraint(equalTo: lowerView.centerXAnchor, constant: 0),
             logInStack.heightAnchor.constraint(equalToConstant: 55),
             logInStack.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width / 2)
@@ -241,45 +242,8 @@ extension NewAccountViewController: UITextFieldDelegate {
         case passwordTextField:
             passwordTextField.resignFirstResponder()
         default:
-            loginTextField.becomeFirstResponder()
+            textField.resignFirstResponder()
         }
         return true
-    }
-}
-
-// MARK: Keyboard methods
-
-extension NewAccountViewController {
-    
-    private func registerKeyBoardNotification() {
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardWillShow),
-                                               name: UIResponder.keyboardWillShowNotification,
-                                               object: nil)
-        
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardWillHide),
-                                               name: UIResponder.keyboardWillHideNotification,
-                                               object: nil)
-    }
-    
-    @objc private func keyboardWillShow(notification: Notification) {
-        let userInfo = notification.userInfo
-        let keyboardFrame = (userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
-        scrollView.contentOffset = CGPoint(x: 0, y: ((keyboardFrame?.height ?? 0) / 2))
-    }
-    
-    @objc private func keyboardWillHide(notification: Notification) {
-        scrollView.contentOffset = CGPoint.zero
-    }
-    
-    private func removeKeyboardNotification() {
-        NotificationCenter.default.removeObserver(self,
-                                                  name: UIResponder.keyboardWillShowNotification,
-                                                  object: nil)
-        
-        NotificationCenter.default.removeObserver(self,
-                                                  name: UIResponder.keyboardWillHideNotification,
-                                                  object: nil)
     }
 }

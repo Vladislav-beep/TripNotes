@@ -8,11 +8,18 @@
 import UIKit
 
 class Animator {
-    let container: UIView
+    
+    // MARK: Private properties
+    
+   private let container: UIView
+    
+    // MARK: Life Time
     
     init(container: UIView) {
         self.container = container
     }
+    
+    // MARK: Methods
     
     func animate(layoutConstraint: NSLayoutConstraint, completion: @escaping () -> Void) {
         layoutConstraint.constant = 70

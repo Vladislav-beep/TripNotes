@@ -10,12 +10,25 @@ import UIKit
 
 class CustomTextField: UITextField {
     
-    var imageName: String
+    // MARK: Private properties
+    
+    private let imageName: String
+    
+    // MARK: Life Time
     
     init(imageName: String) {
         self.imageName = imageName
         super.init(frame: .zero)
-        
+        initialize()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: Private methods
+    
+   private func initialize() {
         borderStyle = .none
         backgroundColor = .tripGrey
         font = UIFont.systemFont(ofSize: 18)
@@ -37,10 +50,6 @@ class CustomTextField: UITextField {
         view.addSubview(imageView)
         leftViewMode = .always
         leftView = view
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }
 

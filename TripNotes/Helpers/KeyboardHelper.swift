@@ -1,21 +1,29 @@
 //
-//  KeyboardService.swift
+//  KeyboardHelper.swift
 //  TripNotes
 //
-//  Created by Владислав Сизонов on 06.02.2022.
+//  Created by Владислав Сизонов on 16.03.2022.
 //
 
 import UIKit
 
-class KeyboardService {
+class KeyboardHelper {
     
-//    var scrollView: UIScrollView?
-//    
-//    init(scrollView: UIScrollView?) {
-//        self.scrollView = scrollView
-//    }
+    // MARK: Private properties
     
-    func registerKeyBoardNotification(scrollView: UIScrollView) {
+    private let scrollView: UIScrollView
+    private let offSet: CGFloat
+    
+    // MARK: Life Time
+    
+    init(scrollView: UIScrollView, offSet: CGFloat) {
+        self.scrollView = scrollView
+        self.offSet = offSet
+    }
+    
+    // MARK: Methods
+    
+    func registerKeyBoardNotification() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(keyboardWillShow),
                                                name: UIResponder.keyboardWillShowNotification,
@@ -27,17 +35,17 @@ class KeyboardService {
                                                object: nil)
     }
     
-    @objc private func keyboardWillShow(notification: Notification, for scrollView: UIScrollView) {
+    @objc private func keyboardWillShow(notification: Notification) {
         let userInfo = notification.userInfo
         let keyboardFrame = (userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
-        scrollView.contentOffset = CGPoint(x: 0, y: (keyboardFrame?.height ?? 0) / 2)
+        scrollView.contentOffset = CGPoint(x: 0, y: ((keyboardFrame?.height ?? 0) / 2) - offSet)
     }
     
-    @objc private func keyboardWillHide(notification: Notification, for scrollView: UIScrollView) {
+    @objc private func keyboardWillHide(notification: Notification) {
         scrollView.contentOffset = CGPoint.zero
     }
     
-     func removeKeyboardNotification() {
+    func removeKeyboardNotification() {
         NotificationCenter.default.removeObserver(self,
                                                   name: UIResponder.keyboardWillShowNotification,
                                                   object: nil)

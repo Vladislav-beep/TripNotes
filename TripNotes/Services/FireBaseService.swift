@@ -26,6 +26,8 @@ protocol FireBaseServiceProtocol {
 
 class FireBaseService: FireBaseServiceProtocol {
     
+    // MARK: Private properties
+    
     private lazy var db = Firestore.firestore()
     private lazy var usersRef = db.collection("users")
 

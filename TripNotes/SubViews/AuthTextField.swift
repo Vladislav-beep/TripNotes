@@ -9,12 +9,25 @@ import UIKit
 
 class AuthTextField: UITextField {
     
-    var placeHolder: String
+    // MARK: Private properties
+    
+    private let placeHolder: String
+    
+    // MARK: Life Time
     
     init(placeHolder: String) {
         self.placeHolder = placeHolder
         super.init(frame: .zero)
-        
+        initialize()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: Private methods
+    
+    private func initialize() {
         placeholder = placeHolder
         backgroundColor = .tripYellow
         textAlignment = .center
@@ -25,10 +38,6 @@ class AuthTextField: UITextField {
         layer.shadowOpacity = 0.4
         layer.shadowOffset = CGSize(width: 0, height: 3)
         translatesAutoresizingMaskIntoConstraints = false
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }
     

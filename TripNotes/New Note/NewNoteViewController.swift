@@ -12,6 +12,7 @@ class NewNoteViewController: UIViewController {
     // MARK: Dependencies
     
     private var viewModel: NewNoteViewModelProtocol?
+    lazy var keyboard = KeyboardHelper(scrollView: scrollView, offSet: -50)
     private lazy var animator = Animator(container: view)
     var configurator: Configurator?
     
@@ -251,6 +252,11 @@ class NewNoteViewController: UIViewController {
         return countLabel
     }()
     
+    private lazy var endEditingGestureRecognizer: UITapGestureRecognizer = {
+        let tap = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
+        return tap
+    }()
+    
     // MARK: Life Time
     
     init(viewModel: NewNoteViewModelProtocol, isEdited: Bool) {
@@ -258,6 +264,7 @@ class NewNoteViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
         self.viewModel = viewModel
         setupConstraints()
+        keyboard.registerKeyBoardNotification()
     }
     
     required init?(coder: NSCoder) {
@@ -266,13 +273,19 @@ class NewNoteViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.addGestureRecognizer(endEditingGestureRecognizer)
         setupUI()
         setupViewModelBindings()
+        setupDelegates()
+    }
+    
+    deinit {
+        keyboard.removeKeyboardNotification()
     }
     
     // MARK: Actions
     
-    func setupViewModelBindings() {
+    private func setupViewModelBindings() {
         viewModel?.noteCompletion = { [weak self] in
             self?.cityTextField.text = self?.viewModel?.city
             self?.priceTextField.text = self?.viewModel?.price
@@ -306,7 +319,7 @@ class NewNoteViewController: UIViewController {
         }
     }
     
-    @objc func addNote() {
+    @objc private func addNote() {
         guard let city = cityTextField.text,
               city != "",
               let description = descriptionTextView.text,
@@ -355,11 +368,11 @@ class NewNoteViewController: UIViewController {
         dismiss(animated: true)
     }
     
-    @objc func backButtonPressed() {
+    @objc private func backButtonPressed() {
         dismiss(animated: true)
     }
     
-    @objc func selectCategory(_ sender: SelectionButton) {
+    @objc private func selectCategory(_ sender: SelectionButton) {
         buttonArray.forEach {
             $0.isSelected = false
             $0.stopAnimation()
@@ -368,7 +381,7 @@ class NewNoteViewController: UIViewController {
         sender.pulsate()
     }
     
-    @objc func getAdress() {
+    @objc private func getAdress() {
         
         ///
         let mapVC = MapViewController()
@@ -392,6 +405,11 @@ class NewNoteViewController: UIViewController {
             descriptionLabel.textColor = .tripBlue
             viewModel?.downloadNote()
         }
+    }
+    
+    private func setupDelegates() {
+        cityTextField.delegate = self
+        priceTextField.delegate = self
     }
     
     // MARK: Layout
@@ -529,6 +547,8 @@ class NewNoteViewController: UIViewController {
     }
 }
 
+// MARK: UITextViewDelegate
+
 extension NewNoteViewController: UITextViewDelegate {
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         return textView.text.count + (text.count - range.length) <= 360
@@ -536,6 +556,23 @@ extension NewNoteViewController: UITextViewDelegate {
     
     func textViewDidChange(_ textView: UITextView) {
         countLabel.text = "\(textView.text.count)/360"
+    }
+}
+
+// MARK: UITextFieldDelegate
+
+extension NewNoteViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        switch textField {
+        case cityTextField:
+            priceTextField.becomeFirstResponder()
+        case priceTextField:
+            priceTextField.resignFirstResponder()
+        default:
+            textField.resignFirstResponder()
+        }
+        return true
     }
 }
 

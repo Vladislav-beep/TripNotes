@@ -9,13 +9,16 @@ import UIKit
 
 class Configurator {
     
-    let authService = AuthService()
-    var fireBaseService = FireBaseService()
+    // MARK: Private properties
     
-    let fileStorageService = FileStorageService()
-    let dateFormatterService = DateFormatterService()
-    let slideInTransitioningDelegate = SlideInPresentationManager()
-    let networkManager = NetworkWeatherManager()
+    private let authService = AuthService()
+    private let fireBaseService = FireBaseService()
+    private let fileStorageService = FileStorageService()
+    private let dateFormatterService = DateFormatterService()
+    private let networkManager = NetworkWeatherManager()
+    private let slideInTransitioningDelegate = SlideInPresentationManager()
+    
+    // MARK: Methods
     
     func cofigureAuth() -> AuthViewController {
         let viewM = AuthViewModel(authService: authService)
@@ -42,7 +45,10 @@ class Configurator {
     }
     
     func configureTripVC(with userId: String) -> TripsViewController {
-        let tripVM = TripsViewModel(fireBaseService: fireBaseService, userId: userId, fileStorageService: fileStorageService, dateFormatterService: dateFormatterService)
+        let tripVM = TripsViewModel(fireBaseService: fireBaseService,
+                                    userId: userId,
+                                    fileStorageService: fileStorageService,
+                                    dateFormatterService: dateFormatterService)
         let tripVC = TripsViewController(viewModel: tripVM)
         tripVC.configurator = self
         tripVC.modalPresentationStyle = .fullScreen
@@ -50,7 +56,9 @@ class Configurator {
     }
     
     func configureFavoutitesVC(withUser userId: String) -> FavouritesViewController {
-        let favVM = FavouritesViewModel(fireBaseSrvice: fireBaseService, dateFormatterService: dateFormatterService, userId: userId)
+        let favVM = FavouritesViewModel(fireBaseSrvice: fireBaseService,
+                                        dateFormatterService: dateFormatterService,
+                                        userId: userId)
         let favVC = FavouritesViewController(notesViewModel: favVM)
         favVC.configurator = self
         favVC.modalPresentationStyle = .fullScreen
@@ -75,7 +83,10 @@ class Configurator {
     }
     
     func configureNewTrip(with tripId: String, userId: String, isEdited: Bool) -> NewTripViewController {
-        let newTripVM = NewTripViewModel(tripId: tripId, userId: userId, fireBaseService: fireBaseService, fileStorageService: fileStorageService)
+        let newTripVM = NewTripViewModel(tripId: tripId,
+                                         userId: userId,
+                                         fireBaseService: fireBaseService,
+                                         fileStorageService: fileStorageService)
         let newtripVC = NewTripViewController(viewModel: newTripVM, isEdited: isEdited)
         newtripVC.modalPresentationStyle = .fullScreen
         return newtripVC
@@ -92,7 +103,10 @@ class Configurator {
     }
     
     func configureNewNoteEdited(withUser userId: String, tripId: String, noteId: String) -> NewNoteViewController? {
-        let newNoteVM = NewNoteViewModel(userId: userId, tripId: tripId, noteId: noteId, fireBaseService: fireBaseService)
+        let newNoteVM = NewNoteViewModel(userId: userId,
+                                         tripId: tripId,
+                                         noteId: noteId,
+                                         fireBaseService: fireBaseService)
         let newNoteVC = NewNoteViewController(viewModel: newNoteVM, isEdited: true)
         newNoteVC.configurator = self
         newNoteVC.modalPresentationStyle = .fullScreen

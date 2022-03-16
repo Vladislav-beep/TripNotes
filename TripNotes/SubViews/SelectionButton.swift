@@ -20,6 +20,23 @@ class SelectionButton: UIButton {
         }
     }
     
+    // MARK: Overriden properties
+    
+    override var isSelected: Bool {
+        didSet {
+            if isSelected {
+                if let color = selectedBackgroundColor {
+                    self.backgroundColor = color
+                }
+            }
+            else {
+                if let color = defaultBackgroundColor {
+                    self.backgroundColor = color
+                }
+            }
+        }
+    }
+    
     // MARK: Enum
     
     enum ButtonState {
@@ -75,23 +92,6 @@ class SelectionButton: UIButton {
         translatesAutoresizingMaskIntoConstraints = false
     }
     
-    // change background color on isSelected value changed
-    override var isSelected: Bool {
-        didSet {
-            if isSelected {
-                if let color = selectedBackgroundColor {
-                    self.backgroundColor = color
-                }
-            }
-            else {
-                if let color = defaultBackgroundColor {
-                    self.backgroundColor = color
-                }
-            }
-        }
-    }
-    
-    // set color for different state
     func setBackgroundColor(_ color: UIColor?, for state: ButtonState) {
         switch state {
         case .selected:

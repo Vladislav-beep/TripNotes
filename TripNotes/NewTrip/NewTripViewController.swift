@@ -13,6 +13,7 @@ class NewTripViewController: UIViewController {
     // MARK: Dependencies
     
     private var viewModel: NewTripViewModelProtocol?
+    lazy var keyboard = KeyboardHelper(scrollView: scrollView, offSet: 100)
     lazy var animator = Animator(container: view)
     
     // MARK: Properties
@@ -160,7 +161,7 @@ class NewTripViewController: UIViewController {
         self.viewModel = viewModel
         self.isEdited = isEdited
         setupConstraints()
-        registerKeyBoardNotification()
+        keyboard.registerKeyBoardNotification()
     }
     
     required init?(coder: NSCoder) {
@@ -176,7 +177,7 @@ class NewTripViewController: UIViewController {
     }
     
     deinit {
-        removeKeyboardNotification()
+        keyboard.removeKeyboardNotification()
     }
     
     // MARK: Actions
@@ -514,42 +515,5 @@ extension NewTripViewController: UITextFieldDelegate {
             descriptionTextField.resignFirstResponder()
         }
         return true
-    }
-}
-
-// MARK: Keyboard methods
-
-extension NewTripViewController {
-    
-    private func registerKeyBoardNotification() {
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardWillShow),
-                                               name: UIResponder.keyboardWillShowNotification,
-                                               object: nil)
-        
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardWillHide),
-                                               name: UIResponder.keyboardWillHideNotification,
-                                               object: nil)
-    }
-    
-    @objc private func keyboardWillShow(notification: Notification) {
-        let userInfo = notification.userInfo
-        let keyboardFrame = (userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
-        scrollView.contentOffset = CGPoint(x: 0, y: (keyboardFrame?.height ?? 0) / 2)
-    }
-    
-    @objc private func keyboardWillHide(notification: Notification) {
-        scrollView.contentOffset = CGPoint.zero
-    }
-    
-    private func removeKeyboardNotification() {
-        NotificationCenter.default.removeObserver(self,
-                                                  name: UIResponder.keyboardWillShowNotification,
-                                                  object: nil)
-        
-        NotificationCenter.default.removeObserver(self,
-                                                  name: UIResponder.keyboardWillHideNotification,
-                                                  object: nil)
     }
 }

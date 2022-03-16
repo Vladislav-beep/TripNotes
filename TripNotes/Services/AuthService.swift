@@ -8,9 +8,25 @@
 import Foundation
 import Firebase
 
+enum AuthError: Error {
+    case badURL
+    case badData
+    case networkProblem
+    
+    var errorDescription: String? {
+        switch self {
+        case .badURL:
+            return "Bad URL"
+        case .badData:
+            return "No data"
+        case .networkProblem:
+            return "Network problem"
+        }
+    }
+}
+
 protocol AuthServiceProtocol {
-    var completion: ((String) -> Void)? { get set }
-    func getUserId(completion: @escaping (Result<String, Error>) -> Void)
+    func getUserId(completion: @escaping (Result<String, AuthError>) -> Void)
     func createNewUser(withEmail email: String, password: String, name: String, completion: @escaping () -> (), errorCompletion: @escaping () -> ())
     func signIn(withEmail email: String, password: String, completion: @escaping () -> (), errorCompletion: @escaping () -> ())
     func checkSignIn(completion: @escaping () -> Void)
@@ -18,19 +34,22 @@ protocol AuthServiceProtocol {
 }
 
 class AuthService: AuthServiceProtocol {
+    
+    // MARK: Private properties
   
-    let db = Firestore.firestore()
+    private let db = Firestore.firestore()
+
+    // MARK: Methods
     
-    var completion: ((String) -> Void)?
-    
-    func getUserId(completion: @escaping (Result<String, Error>) -> Void) {
+    func getUserId(completion: @escaping (Result<String, AuthError>) -> Void) {
             guard let currentUser = Auth.auth().currentUser else { return }
     
             db.collection("users").getDocuments { (snapshot, error) in
-                if let error = error {
-                    completion(.failure(error.localizedDescription as! Error))
+                if error != nil {
+                    completion(.failure(AuthError.badURL))
                 }
-                for document in snapshot!.documents {
+                guard let snap = snapshot else { print("KKKKK"); return }
+                for document in snap.documents {
                     let data = document.data()
     
                     if data["id"] as? String == currentUser.uid {
@@ -76,5 +95,4 @@ class AuthService: AuthServiceProtocol {
             }
         }
     }
-    
 }

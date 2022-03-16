@@ -81,6 +81,10 @@ class TabBarViewController: UITabBarController {
             self?.setupUI(with: id)
             print("\(id) - from viewModel")
         }
+        
+        viewModel.errorCompletion = {
+            self.showAlert(title: "Couldn't get user", message: "Try later")
+        }
     }
 }
 
