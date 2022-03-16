@@ -100,11 +100,8 @@ class TripsViewController: UIViewController {
     // MARK: - Actions
     
     @objc func signOutTapped() {
-        do {
-            try Auth.auth().signOut()
-            dismiss(animated: true)
-        } catch {
-            showAlert(title: "Could not sign out", message: "Check your network connection")
+        showSignOutAlert(title: "Sign out?", message: "Do you realy want to sign out?") {
+            self.signOut()
         }
     }
     
@@ -139,6 +136,15 @@ class TripsViewController: UIViewController {
             noLabel.isHidden = false
         } else {
             noLabel.isHidden = true
+        }
+    }
+    
+    private func signOut() {
+        do {
+            try Auth.auth().signOut()
+            dismiss(animated: true)
+        } catch {
+            showAlert(title: "Could not sign out", message: "Check your network connection")
         }
     }
     

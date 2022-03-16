@@ -16,6 +16,17 @@ extension UIViewController {
         present(alert, animated: true)
     }
     
+    func showSignOutAlert(title: String, message: String, completion: @escaping () -> Void) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Yes", style: .default) { (_) in
+            completion()
+        }
+        let cancelAction = UIAlertAction(title: "No", style: .cancel)
+        alert.addAction(okAction)
+        alert.addAction(cancelAction)
+        present(alert, animated: true)
+    }
+    
     func setImage(for category: String) -> UIImage {
         switch category {
         case Category.hotels.rawValue:

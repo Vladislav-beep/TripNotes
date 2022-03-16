@@ -32,7 +32,7 @@ class FavouritesViewModel: FavouritesViewModelProtocol {
     }
     
     func getNotes() -> [TripNote] {
-        var notesArray: [TripNote] = []
+     //   var notesArray: [TripNote] = []
 //        for trip in getTrips() {
 //            for note in trip.tripNotes {
 //                if note.isFavourite {
@@ -40,16 +40,16 @@ class FavouritesViewModel: FavouritesViewModelProtocol {
 //                }
 //            }
 //        }
-        return notesArray
+        return [TripNote]()
     }
     
     func getCurrency() -> [String] {
-        var currencyArray: [String] = []
+     //   var currencyArray: [String] = []
         
 //        for trip in getTrips() {
 //            currencyArray.append(trip.currency)
 //        }
-        return currencyArray
+        return ["currencyArray"]
     }
     
     func noteCellViewModel(for indexPath: IndexPath) -> NoteCellViewModelProtocol? {
