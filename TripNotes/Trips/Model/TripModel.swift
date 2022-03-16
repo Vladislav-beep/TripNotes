@@ -8,7 +8,7 @@
 import Foundation
 import Firebase
 
-struct Trip: Equatable {
+struct Trip: Equatable, Hashable {
     
     // MARK: - Properties
     

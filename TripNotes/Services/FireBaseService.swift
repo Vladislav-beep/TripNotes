@@ -16,6 +16,7 @@ protocol FireBaseServiceProtocol {
     func deleteTrip(forUser userId: String, tripId: String)
     
     func fetchNotes(forUser userId: String, forTrip tripId: String, completion: @escaping (Result <[TripNote], Error>) -> Void)
+    func fetchFavouriteNotes(forUser userId: String, completion: @escaping (Result <[TripNote: Trip], Error>) -> Void)
     func addNote(forUser userId: String, tripId: String, category: String, city: String, price: Double, isFavourite: Bool, description: String, errorCompletion: @escaping () -> Void)
     func downloadNote(forUser userId: String, tripId: String, noteId: String, completion: @escaping (Result <TripNote, Error>) -> Void)
     func updateNote(forUser userId: String, tripId: String, noteId: String, city: String, category: String, description: String, price: Double, errorCompletion: @escaping () -> Void)
@@ -32,6 +33,33 @@ class FireBaseService: FireBaseServiceProtocol {
     private lazy var usersRef = db.collection("users")
 
     // MARK: Trip methods
+    
+    func fetchFavouriteNotes(forUser userId: String, completion: @escaping (Result <[TripNote: Trip], Error>) -> Void) {
+        usersRef.document(userId).collection("trips").getDocuments { (querySnapshot, err) in
+            if let err = err {
+                completion(.failure(err.localizedDescription as! Error))
+            } else {
+                var tripNoteDict = [TripNote: Trip]()
+                
+                for document in querySnapshot!.documents {
+                    let trip = Trip(snapshot: document)
+                    
+                    self.usersRef.document(userId).collection("trips").document(trip.id).collection("tripNotes").getDocuments { (snapshot, error) in
+                        if let err = error {
+                            completion(.failure(err.localizedDescription as! Error))
+                        } else {
+                            
+                        for document in snapshot!.documents {
+                                let note = TripNote(document: document)
+                                tripNoteDict[note] = trip
+                            }
+                            completion(.success(tripNoteDict))
+                        }
+                    }
+                }  
+            }
+        }
+    }
     
     func fetchTrips(forUser id: String, completion: @escaping (Result <[Trip], Error>) -> Void) {
         usersRef.document(id).collection("trips").getDocuments() { (querySnapshot, err) in

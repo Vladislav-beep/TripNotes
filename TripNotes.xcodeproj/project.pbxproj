@@ -481,6 +481,7 @@
 			children = (
 				B91E81552767AA4F00D0748B /* FavouritesViewController.swift */,
 				B97374BE27AC5CBE000B208D /* FavouritesViewModel.swift */,
+				B9E8671D27E2343D00C97E5E /* Cell */,
 			);
 			path = Favourites;
 			sourceTree = "<group>";
@@ -501,6 +502,13 @@
 				B9E8670E27E1D3CF00C97E5E /* KeyboardHelper.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		B9E8671D27E2343D00C97E5E /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		B9F296BF27895C2500844D6C /* Cell */ = {

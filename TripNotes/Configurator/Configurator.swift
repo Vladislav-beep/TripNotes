@@ -56,7 +56,7 @@ class Configurator {
     }
     
     func configureFavoutitesVC(withUser userId: String) -> FavouritesViewController {
-        let favVM = FavouritesViewModel(fireBaseSrvice: fireBaseService,
+        let favVM = FavouritesViewModel(fireBaseService: fireBaseService,
                                         dateFormatterService: dateFormatterService,
                                         userId: userId)
         let favVC = FavouritesViewController(notesViewModel: favVM)
@@ -66,7 +66,7 @@ class Configurator {
     }
     
     func configureNotesVC(with notesViewModel: NotesViewModelProtocol) -> NotesViewController {
-        let notesVM =  notesViewModel
+        let notesVM = notesViewModel
         let notesVC = NotesViewController(notesViewModel: notesVM)
         notesVC.configurator = self
         notesVC.modalPresentationStyle = .fullScreen

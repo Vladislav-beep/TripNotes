@@ -9,19 +9,19 @@ import UIKit
 
 class FavouritesViewController: UIViewController {
     
-    // MARK: Dependencies
+    // MARK: - Dependencies
     
     private var viewModel: FavouritesViewModel
     var configurator: Configurator?
     
-    // MARK: UI
+    // MARK: - UI
     
     private lazy var collectionView: NotesCollectionView = {
         let collectionView = NotesCollectionView()
         return collectionView
     }()
     
-    // MARK: Life Time
+    // MARK: - Life Time
     
     init(notesViewModel: FavouritesViewModel) {
         self.viewModel = notesViewModel
@@ -38,9 +38,23 @@ class FavouritesViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         setupCollectionViewConstraints()
+        setupViewModelBindings()
     }
     
-    // MARK: Private methods
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.fetchNotes()
+    }
+    
+    // MARK: - Private methods
+    
+    private func setupViewModelBindings() {
+        viewModel.completion = { [weak self] in
+            self?.collectionView.reloadData()
+        }
+    }
+    
+    // MARK: - Layout
     
     private func setupCollectionViewConstraints() {
         view.addSubview(collectionView)
