@@ -17,7 +17,7 @@ class TripTableViewCell: UITableViewCell {
             descriptionLabel.text = viewModel?.description
             dateLabel.text = viewModel?.date
             totalSumLabel.text = viewModel?.getTotalSum()
-            
+
             setupAvatarImage()
         }
     }

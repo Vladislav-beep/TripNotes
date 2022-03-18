@@ -250,7 +250,6 @@ class TripsViewController: UIViewController {
 }
 
 // MARK: - TableViewDataSource
-
 extension TripsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -290,7 +289,6 @@ extension TripsViewController: UITableViewDataSource {
 }
 
 // MARK: - TableViewDelegate
-
 extension TripsViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

@@ -79,7 +79,6 @@ class TabBarViewController: UITabBarController {
     private func setupViewModelBindings() {
         viewModel.completion = { [weak self]  id in
             self?.setupUI(with: id)
-            print("\(id) - from viewModel")
         }
         
         viewModel.errorCompletion = {

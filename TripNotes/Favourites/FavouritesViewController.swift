@@ -21,12 +21,23 @@ class FavouritesViewController: UIViewController {
         return collectionView
     }()
     
+    private lazy var activityIndicator: UIActivityIndicatorView = {
+        let activityIndicator = UIActivityIndicatorView()
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        return activityIndicator
+    }()
+    
+    private lazy var noLabel: NoLabel = {
+        let noLabel = NoLabel(title: "No Trips yet")
+        return noLabel
+    }()
+    
     // MARK: - Life Time
     
     init(viewModel: FavouritesViewModelProtocol) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
-        setupCollectionViewConstraints()
+        setupAllConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -36,19 +47,31 @@ class FavouritesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupDelegates()
-        setupNavigationBar()
         setupViewModelBindings()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setupNavigationBar()
+        activityIndicator.startAnimating()
         viewModel.fetchNotes()
     }
     
     // MARK: - Private methods
     
+    private func setupUI() {
+       if viewModel.numberOfCells() == 0 {
+        noLabel.isHidden = false
+       } else {
+        noLabel.isHidden = true
+       }
+    }
+    
     private func setupViewModelBindings() {
         viewModel.completion = { [weak self] in
+            self?.setupUI()
+            self?.activityIndicator.stopAnimating()
+            self?.activityIndicator.isHidden = true
             self?.collectionView.reloadData()
         }
     }
@@ -74,6 +97,12 @@ class FavouritesViewController: UIViewController {
     
     // MARK: - Layout
     
+    private func setupAllConstraints() {
+        setupCollectionViewConstraints()
+        setupNoLabelConstraints()
+        setupActivityIndicatorConstraints()
+    }
+    
     private func setupCollectionViewConstraints() {
         view.addSubview(collectionView)
         NSLayoutConstraint.activate([
@@ -81,6 +110,26 @@ class FavouritesViewController: UIViewController {
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
+        ])
+    }
+    
+    private func setupNoLabelConstraints() {
+        view.addSubview(noLabel)
+        NSLayoutConstraint.activate([
+            noLabel.centerXAnchor.constraint(equalTo: collectionView.centerXAnchor, constant: 0),
+            noLabel.centerYAnchor.constraint(equalTo: collectionView.centerYAnchor, constant: 0),
+            noLabel.heightAnchor.constraint(equalToConstant: 60),
+            noLabel.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width / 1.2)
+        ])
+    }
+    
+    private func setupActivityIndicatorConstraints() {
+        view.addSubview(activityIndicator)
+        NSLayoutConstraint.activate([
+            activityIndicator.centerXAnchor.constraint(equalTo: collectionView.centerXAnchor,
+                                                       constant: 0),
+            activityIndicator.centerYAnchor.constraint(equalTo: collectionView.centerYAnchor,
+                                                       constant: 0)
         ])
     }
 }
