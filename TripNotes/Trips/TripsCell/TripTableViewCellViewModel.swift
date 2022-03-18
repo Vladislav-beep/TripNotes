@@ -15,20 +15,16 @@ protocol TripTableViewCellViewModelProtocol {
     init(fileStorageService: FileStorageServiceProtocol,
          dateFormatterService: DateFormatterServiceProtocol,
          trip: Trip)
-    func getTotalSum() -> String
     func retrieveImage() -> Data
 }
 
 
 class TripTableViewCellViewModel: TripTableViewCellViewModelProtocol {
-    
-    let fire = FireBaseService()
-    
-    
+
     // MARK: - Dependencies
     
-   private let fileStorageService: FileStorageServiceProtocol
-   private let dateFormatterService: DateFormatterServiceProtocol
+    private let fileStorageService: FileStorageServiceProtocol
+    private let dateFormatterService: DateFormatterServiceProtocol
 
     // MARK: - Properties
     
@@ -55,28 +51,16 @@ class TripTableViewCellViewModel: TripTableViewCellViewModelProtocol {
     // MARK: - Life Time
     
     required init(fileStorageService: FileStorageServiceProtocol,
-         dateFormatterService: DateFormatterServiceProtocol,
-         trip: Trip) {
+                  dateFormatterService: DateFormatterServiceProtocol,
+                  trip: Trip) {
         self.fileStorageService = fileStorageService
         self.dateFormatterService = dateFormatterService
         self.trip = trip
     }
-
+    
     // MARK: - Methods
     
     func retrieveImage() -> Data {
         return fileStorageService.retrieveImage(forKey: trip.id) ?? Data()
-    }
-    
-    func getTotalSum() -> String {
-        var totalSum: Double = 0.0
-//        for note in notes {
-//            totalSum += Double(note.price)
-//            print(notes)
-//        }
-
-        let formattedTotalSum = totalSum.formattedWithSeparator
-        let returnTotalSum = "\(formattedTotalSum) \(trip.currency)"
-        return returnTotalSum
     }
 }

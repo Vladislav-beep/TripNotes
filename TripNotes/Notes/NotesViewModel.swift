@@ -9,6 +9,7 @@ import Foundation
 
 protocol NotesViewModelProtocol {
     var text: String { get }
+    var totalSum: String { get }
     var noteCompletion: (() -> Void)? { get set }
     init(trip: Trip?, fireBaseService: FireBaseServiceProtocol, dateFormatterService: DateFormatterServiceProtocol, userId: String)
     func fetchNotes()
@@ -29,6 +30,16 @@ class NotesViewModel: NotesViewModelProtocol {
     var text: String {
         trip?.country ?? ""
     }
+    
+    
+    var totalSum: String {
+        var sum = 0.0
+        for note in notes {
+            sum += note.price
+        }
+        return "\(sum.formattedWithSeparator) \(trip?.currency ?? "")"
+    }
+    
     
     var notes: [TripNote] = []
     var trip: Trip?

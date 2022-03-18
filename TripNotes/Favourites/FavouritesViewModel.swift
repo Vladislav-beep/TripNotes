@@ -10,9 +10,12 @@ import Foundation
 protocol FavouritesViewModelProtocol {
     var completion: (() -> Void)? { get set }
     func numberOfCells() -> Int
-    init(fireBaseService: FireBaseServiceProtocol, dateFormatterService: DateFormatterServiceProtocol,  userId: String)
+    init(fireBaseService: FireBaseServiceProtocol,
+         dateFormatterService: DateFormatterServiceProtocol,
+         userId: String)
     func fetchNotes()
     func noteCellViewModel(for indexPath: IndexPath) -> NoteCellViewModelProtocol?
+    func viewModelForSelectedRow(at indexPath: IndexPath) -> NoteCellViewModel
 }
 
 class FavouritesViewModel: FavouritesViewModelProtocol {
@@ -87,8 +90,16 @@ class FavouritesViewModel: FavouritesViewModelProtocol {
                                  userId: userId)
     }
     
-  //  func viewModelForSelectedRow(at indexpath: IndexPath) -> NoteCellViewModel {
-//        let note = notes[indexpath.item]
-//        return NoteCellViewModel(tripNote: note, currency: trip?.currency ?? "$", trip: trip ?? Trip(id: "", country: "", beginningDate: Date(), finishingDate: Date(), description: "", currency: ""), isInfoShown: false, fireBaseService: fireBaseService, dateFormatterService: dateFormatterService, userId: userId)
-  //  }
+    func viewModelForSelectedRow(at indexPath: IndexPath) -> NoteCellViewModel {
+        let note = notesArray[indexPath.item]
+        let trip = tripsArray[indexPath.item]
+        let currency = tripsArray[indexPath.item].currency
+        return NoteCellViewModel(tripNote: note,
+                                 currency: currency,
+                                 trip: trip,
+                                 isInfoShown: false,
+                                 fireBaseService: fireBaseService,
+                                 dateFormatterService: dateFormatterService,
+                                 userId: userId)
+    }
 }

@@ -16,7 +16,7 @@ class TripTableViewCell: UITableViewCell {
             countryLabel.text = viewModel?.country
             descriptionLabel.text = viewModel?.description
             dateLabel.text = viewModel?.date
-            totalSumLabel.text = viewModel?.getTotalSum()
+         //   totalSumLabel.text = viewModel?.totalSumString
 
             setupAvatarImage()
         }
@@ -106,7 +106,7 @@ class TripTableViewCell: UITableViewCell {
     private func setupAllConstraints() {
         setupTripImageConstraints()
         setupTextViewConstraints()
-        setupTotalSumLabelConstraints()
+     //   setupTotalSumLabelConstraints()
         descriptionLabelConstraints()
         setupInfoStackViewConstraints()
     }

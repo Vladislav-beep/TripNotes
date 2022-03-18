@@ -29,6 +29,7 @@ class FavouritesViewController: UIViewController {
     
     private lazy var noLabel: NoLabel = {
         let noLabel = NoLabel(title: "No Trips yet")
+        noLabel.isHidden = false
         return noLabel
     }()
     
@@ -48,6 +49,11 @@ class FavouritesViewController: UIViewController {
         super.viewDidLoad()
         setupDelegates()
         setupViewModelBindings()
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(refresh),
+                                               name: NSNotification.Name(rawValue: "updateNotes"),
+                                               object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -57,12 +63,21 @@ class FavouritesViewController: UIViewController {
         viewModel.fetchNotes()
     }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "updateNotes"), object: nil)
+    }
+    
+    // MARK: - Actions
+    
+    @objc func refresh() {
+        viewModel.fetchNotes()
+        collectionView.reloadData()
+    }
+    
     // MARK: - Private methods
     
     private func setupUI() {
-       if viewModel.numberOfCells() == 0 {
-        noLabel.isHidden = false
-       } else {
+       if viewModel.numberOfCells() != 0 {
         noLabel.isHidden = true
        }
     }
@@ -153,6 +168,8 @@ extension FavouritesViewController: UICollectionViewDataSource {
 extension FavouritesViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        let noteVM = viewModel.viewModelForSelectedRow(at: indexPath)
+        let detailVC = configurator?.configureDetailVC(with: noteVM) ?? UIViewController()
+        present(detailVC, animated: true)
     }
 }

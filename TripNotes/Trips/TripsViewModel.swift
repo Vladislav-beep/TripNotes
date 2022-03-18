@@ -9,7 +9,7 @@ import Foundation
 import Firebase
 
 protocol TripsViewModelProtocol: class {
-    var trips: [Trip] { get set }
+   // var trips: [Trip] { get set }
     var userId: String { get set }
     var firstCompletion: (() -> Void)? { get set }
     init(fireBaseService: FireBaseServiceProtocol,
@@ -38,13 +38,13 @@ class TripsViewModel: TripsViewModelProtocol {
     private let dateFormatterService: DateFormatterServiceProtocol
 
     // MARK: Properties
-    
-    var trips: [Trip] = []
+
     var userId: String
     var firstCompletion: (() -> Void)?
     
     // MARK: Private properties
     
+    private var trips: [Trip] = []
     private var tripMore: [Trip]?
     private var tripLow: [Trip]?
     

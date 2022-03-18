@@ -47,10 +47,7 @@ class NotesViewController: UIViewController {
     }
     
     override func viewDidLoad() {
-        view.backgroundColor = .white
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        activityIndicator.stopAnimating()
+        setupUI()
         setupViewModelBundings()
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(refresh),
@@ -84,6 +81,12 @@ class NotesViewController: UIViewController {
     }
     
     private func setupUI() {
+        view.backgroundColor = .white
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        activityIndicator.stopAnimating()
+        title = viewModel.totalSum
+        
         if viewModel.numberOfCells() == 0 {
             noLabel.isHidden = false
         } else {
