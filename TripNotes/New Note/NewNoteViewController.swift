@@ -12,7 +12,7 @@ class NewNoteViewController: UIViewController {
     // MARK: - Dependencies
     
     private var viewModel: NewNoteViewModelProtocol?
-    lazy var keyboard = KeyboardHelper(scrollView: scrollView, offSet: -50)
+    private lazy var keyboard = KeyboardHelper(scrollView: scrollView, offSet: -50)
     private lazy var animator = Animator(container: view)
     var configurator: Configurator?
     
@@ -389,12 +389,14 @@ class NewNoteViewController: UIViewController {
     }
     
     @objc private func getAdress() {
+        ////////
         
-        ///
-        let mapVC = MapViewController()
+        let mapVM = MapViewModel()
+        let mapVC = MapViewController(viewModel: mapVM)
+        mapVC.mapViewControllerDelegate = self
         present(mapVC, animated: true)
         
-        ////
+        ///////
     }
     
     // MARK: - Private methods
@@ -578,6 +580,12 @@ extension NewNoteViewController: UITextFieldDelegate {
             textField.resignFirstResponder()
         }
         return true
+    }
+}
+
+extension NewNoteViewController: MapViewControllerDelegate {
+    func getAddress(_ adress: String?) {
+        descriptionTextView.text = descriptionTextView.text + "\n" + (adress ?? "")
     }
 }
 

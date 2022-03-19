@@ -7,19 +7,33 @@
 
 import UIKit
 import MapKit
+import CoreLocation
 
-class MapViewController: UIViewController {
+protocol MapViewControllerDelegate {
+    func getAddress(_ adress: String?)
+}
+
+class MapViewController: UIViewController, MKMapViewDelegate {
     
-    // MARK: Dependencies
+    // MARK: - Dependencies
     
-    let mapManager = LocationService()
+    var viewModel: MapViewModelProtocol
+    var mapViewControllerDelegate: MapViewControllerDelegate?
     
-    var viewModel: MapViewModelProtocol?
+    private lazy var locationManager: CLLocationManager = {
+        let lm = CLLocationManager()
+        lm.delegate = self
+        lm.desiredAccuracy = kCLLocationAccuracyKilometer
+        lm.requestWhenInUseAuthorization()
+        return lm
+    }()
     
-    // MARK: UI
+    
+    // MARK: - UI
     
     private lazy var mapView: MKMapView = {
         let mapView = MKMapView()
+        mapView.delegate = self
         mapView.translatesAutoresizingMaskIntoConstraints = false
         return mapView
     }()
@@ -60,6 +74,7 @@ class MapViewController: UIViewController {
         button.layer.shadowRadius = 5
         button.layer.shadowOffset = CGSize(width: 0, height: 5)
         button.layer.shadowOpacity = 0.5
+        button.addTarget(self, action: #selector(okButtonPressed), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -67,6 +82,7 @@ class MapViewController: UIViewController {
     private lazy var adressLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
+        label.textColor = .tripBlue
         label.font = UIFont.systemFont(ofSize: 20, weight: .heavy)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -81,20 +97,59 @@ class MapViewController: UIViewController {
         return imageView
     }()
     
-    // MARK: Life Time
+    // MARK: - Life Time
+    
+    init(viewModel: MapViewModelProtocol) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+        setupConstraints()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        showUserLocation(mapView: mapView)
+    }
         
-      //  mapManager.locationManager.delegate = self
-        viewModel?.locationService.locationManager.delegate = self
-        
-        showUserLocation()
-     //   checkLocationServices()
-        setupConstraints() 
+    // MARK: - Actions
+    
+    @objc private func closeScreen() {
+        dismiss(animated: true)
     }
     
-    // MARK: Layout
+    @objc private func showUserLocationButtonTapped() {
+        showUserLocation(mapView: mapView)
+    }
+    
+    @objc private func okButtonPressed() {
+        mapViewControllerDelegate?.getAddress(adressLabel.text)
+        dismiss(animated: true)
+    }
+    
+    // MARK: Private methods
+    
+    func showUserLocation(mapView: MKMapView) {
+        
+        if let location = locationManager.location?.coordinate {
+            let region = MKCoordinateRegion(center: location,
+                                            latitudinalMeters: 500,
+                                            longitudinalMeters: 500)
+            
+            mapView.setRegion(region, animated: true)
+        }
+    }
+    
+    func getCenterLocation(for mapView: MKMapView) -> CLLocation {
+       let latitude = mapView.centerCoordinate.latitude
+       let longitude = mapView.centerCoordinate.longitude
+       
+       return CLLocation(latitude: latitude, longitude: longitude)
+   }
+    
+    // MARK: - Layout
     
     private func setupConstraints() {
         setupMapViewConstraints()
@@ -104,48 +159,6 @@ class MapViewController: UIViewController {
         setupAdressLabelConstraints()
         setupPinImageViewConstraints()
     }
-    
-//    private func checkLocationServices() {
-//        mapManager.checkLocationServices(mapView: mapView) {
-//            mapManager.locationManager.delegate = self
-//        }
-//    }
-    
-    // MARK: Actions
-    
-    @objc func closeScreen() {
-        dismiss(animated: true)
-    }
-    
-    @objc func showUserLocationButtonTapped() {
-        showUserLocation()
-    }
-    
-    // MARK: Private methods
-    
-    private func showUserLocation() {
-      //  mapManager.showUserLocation2(mapView: mapView)
-        let region = viewModel?.showUserLocation()
-        print("37")
-        guard let unwrappedRegion = region else { return }
-
-        mapView.setRegion(unwrappedRegion, animated: true)
-    }
-    
-//    private func showAlert(title: String, message: String) {
-//        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-//        let okAction = UIAlertAction(title: "OK", style: .default)
-//        
-//        alert.addAction(okAction)
-//        
-//        let alertWindow = UIWindow(frame: UIScreen.main.bounds)
-//        alertWindow.rootViewController = UIViewController()
-//        alertWindow.windowLevel = UIWindow.Level.alert + 1
-//        alertWindow.makeKeyAndVisible()
-//        alertWindow.rootViewController?.present(alert, animated: true)
-//    }
-    
-    // MARK: Layout
     
     private func setupMapViewConstraints() {
         view.addSubview(mapView)
@@ -210,12 +223,10 @@ class MapViewController: UIViewController {
     }
 }
 
-// MARK: CLLocationManagerDelegate
-
+// MARK: - CLLocationManagerDelegate
 extension MapViewController: CLLocationManagerDelegate {
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-        print("2")
         manager.desiredAccuracy = kCLLocationAccuracyBest
         
         switch manager.authorizationStatus {
@@ -232,9 +243,36 @@ extension MapViewController: CLLocationManagerDelegate {
         case .authorizedAlways:
             break
         case .authorizedWhenInUse:
-            showUserLocation()
+            showUserLocation(mapView: mapView)
         @unknown default:
             print("New case is available")
+        }
+    }
+    
+    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+        let center = getCenterLocation(for: mapView)
+        let geocoder = CLGeocoder()
+        
+        geocoder.reverseGeocodeLocation(center) { (placemarks, error) in
+            if let error = error {
+                print(error)
+                return
+            }
+            
+            guard let placemarks = placemarks else { return }
+            let placemark = placemarks.first
+            let streetName = placemark?.thoroughfare
+            let buildName = placemark?.subThoroughfare
+            
+            DispatchQueue.main.async {
+                if streetName != nil && buildName != nil {
+                    self.adressLabel.text = "\(streetName!), \(buildName!)"
+                } else if streetName != nil {
+                    self.adressLabel.text = "\(streetName ?? "")"
+                } else {
+                    self.adressLabel.text = ""
+                }
+            }
         }
     }
 }
