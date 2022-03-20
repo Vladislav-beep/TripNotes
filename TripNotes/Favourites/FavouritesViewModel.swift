@@ -9,13 +9,14 @@ import Foundation
 
 protocol FavouritesViewModelProtocol {
     var completion: (() -> Void)? { get set }
-    func numberOfCells() -> Int
     init(fireBaseService: FireBaseServiceProtocol,
          dateFormatterService: DateFormatterServiceProtocol,
          userId: String)
+    func numberOfCells(isFiltering: Bool) -> Int
     func fetchNotes()
-    func noteCellViewModel(for indexPath: IndexPath) -> NoteCellViewModelProtocol?
-    func viewModelForSelectedRow(at indexPath: IndexPath) -> NoteCellViewModel
+    func filterContentForSearchText(_ searchText: String)
+    func noteCellViewModel(for indexPath: IndexPath, isFiltering: Bool) -> NoteCellViewModelProtocol?
+    func viewModelForSelectedRow(at indexPath: IndexPath, isFiltering: Bool) -> NoteCellViewModel
 }
 
 class FavouritesViewModel: FavouritesViewModelProtocol {
@@ -28,6 +29,7 @@ class FavouritesViewModel: FavouritesViewModelProtocol {
     // MARK: - Private properties
     
     private var tripNotesDict: [TripNote: Trip]?
+    var notesArrayFiltered = [TripNote]()
     
     private var notesArray: [TripNote] {
         let notes = tripNotesDict!.keys
@@ -73,33 +75,56 @@ class FavouritesViewModel: FavouritesViewModelProtocol {
         }
     }
     
-    func numberOfCells() -> Int {
-        tripNotesDict?.keys.count ?? 0
+    func numberOfCells(isFiltering: Bool) -> Int {
+        if isFiltering {
+            return notesArrayFiltered.count
+        }
+        return tripNotesDict?.keys.count ?? 0
     }
     
-    func noteCellViewModel(for indexPath: IndexPath) -> NoteCellViewModelProtocol? {
+    func noteCellViewModel(for indexPath: IndexPath, isFiltering: Bool) -> NoteCellViewModelProtocol? {
+        if isFiltering {
+            let note = notesArrayFiltered[indexPath.item]
+            let rip = tripNotesDict?[note] ?? Trip(id: "", country: "", beginningDate: Date(), finishingDate: Date(), description: "", currency: "")
+            print(note)
+            let currency = rip.currency
+            return NoteCellViewModel(tripNote: note, currency: currency, trip: rip, isInfoShown: true, fireBaseService: fireBaseService, dateFormatterService: dateFormatterService, userId: userId)
+        }
         let note = notesArray[indexPath.item]
         let trip = tripsArray[indexPath.item]
         let currency = tripsArray[indexPath.item].currency
-        return NoteCellViewModel(tripNote: note,
-                                 currency: currency,
-                                 trip: trip,
-                                 isInfoShown: true,
-                                 fireBaseService: fireBaseService,
-                                 dateFormatterService: dateFormatterService,
-                                 userId: userId)
+        return NoteCellViewModel(tripNote: note, currency: currency, trip: trip, isInfoShown: true, fireBaseService: fireBaseService, dateFormatterService: dateFormatterService, userId: userId)
     }
     
-    func viewModelForSelectedRow(at indexPath: IndexPath) -> NoteCellViewModel {
+    func viewModelForSelectedRow(at indexPath: IndexPath, isFiltering: Bool) -> NoteCellViewModel {
+        if isFiltering {
+            let note = notesArrayFiltered[indexPath.item]
+            let rip = tripNotesDict?[note] ?? Trip(id: "", country: "", beginningDate: Date(), finishingDate: Date(), description: "", currency: "")
+            let currency = rip.currency
+            return NoteCellViewModel(tripNote: note,
+                                     currency: currency,
+                                     trip: rip,
+                                     isInfoShown: false,
+                                     fireBaseService: fireBaseService,
+                                     dateFormatterService: dateFormatterService,
+                                     userId: userId)
+        }
+        
         let note = notesArray[indexPath.item]
-        let trip = tripsArray[indexPath.item]
-        let currency = tripsArray[indexPath.item].currency
+        let rip = tripNotesDict?[note] ?? Trip(id: "", country: "", beginningDate: Date(), finishingDate: Date(), description: "", currency: "")
+        let currency = rip.currency
         return NoteCellViewModel(tripNote: note,
                                  currency: currency,
-                                 trip: trip,
+                                 trip: rip,
                                  isInfoShown: false,
                                  fireBaseService: fireBaseService,
                                  dateFormatterService: dateFormatterService,
                                  userId: userId)
+    }
+    
+    func filterContentForSearchText(_ searchText: String) {
+        notesArrayFiltered = notesArray.filter({ (note: TripNote) -> Bool in
+            return (note.description?.lowercased().contains(searchText.lowercased()) ?? false)
+        })
     }
 }

@@ -14,6 +14,15 @@ class FavouritesViewController: UIViewController {
     private var viewModel: FavouritesViewModelProtocol
     var configurator: Configurator?
     
+    private var searchBarIsEmpty: Bool {
+        guard let text = searchController.searchBar.text else { return false }
+        return text.isEmpty
+    }
+    
+    private var isFiltering: Bool {
+        return searchController.isActive && !searchBarIsEmpty
+    }
+    
     // MARK: - UI
     
     private lazy var collectionView: NotesCollectionView = {
@@ -33,6 +42,16 @@ class FavouritesViewController: UIViewController {
         return noLabel
     }()
     
+    private lazy var searchController: UISearchController = {
+        let searchController = UISearchController()
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search by description"
+        searchController.searchBar.searchTextField.backgroundColor = .tripWhite
+        definesPresentationContext = true
+        return searchController
+    }()
+    
     // MARK: - Life Time
     
     init(viewModel: FavouritesViewModelProtocol) {
@@ -49,7 +68,7 @@ class FavouritesViewController: UIViewController {
         super.viewDidLoad()
         setupDelegates()
         setupViewModelBindings()
-        
+
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(refresh),
                                                name: NSNotification.Name(rawValue: "updateNotes"),
@@ -77,7 +96,7 @@ class FavouritesViewController: UIViewController {
     // MARK: - Private methods
     
     private func setupUI() {
-       if viewModel.numberOfCells() != 0 {
+        if viewModel.numberOfCells(isFiltering: isFiltering) != 0 {
         noLabel.isHidden = true
        }
     }
@@ -100,6 +119,7 @@ class FavouritesViewController: UIViewController {
         title = "Favourites"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.tintColor = .tripWhite
+        navigationItem.searchController = searchController
         
         let navBarAppearance = UINavigationBarAppearance()
         navBarAppearance.configureWithOpaqueBackground()
@@ -153,13 +173,14 @@ class FavouritesViewController: UIViewController {
 extension FavouritesViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        viewModel.numberOfCells()
+       viewModel.numberOfCells(isFiltering: isFiltering)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.CellIdentifiers.noteCollectionViewCellId.rawValue,
                                                       for: indexPath) as? NoteCell
-        cell?.viewModel = viewModel.noteCellViewModel(for: indexPath)
+        
+        cell?.viewModel = viewModel.noteCellViewModel(for: indexPath, isFiltering: isFiltering)
         return cell ?? UICollectionViewCell()
     }
 }
@@ -168,8 +189,16 @@ extension FavouritesViewController: UICollectionViewDataSource {
 extension FavouritesViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let noteVM = viewModel.viewModelForSelectedRow(at: indexPath)
+        let noteVM = viewModel.viewModelForSelectedRow(at: indexPath, isFiltering: isFiltering)
         let detailVC = configurator?.configureDetailVC(with: noteVM) ?? UIViewController()
         present(detailVC, animated: true)
+    }
+}
+
+// MARK: - UISearchResultsUpdating
+extension FavouritesViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        viewModel.filterContentForSearchText(searchController.searchBar.text ?? "")
+        collectionView.reloadData()
     }
 }
