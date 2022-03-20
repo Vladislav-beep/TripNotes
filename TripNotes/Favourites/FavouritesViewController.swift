@@ -20,7 +20,8 @@ class FavouritesViewController: UIViewController {
     }
     
     private var isFiltering: Bool {
-        return searchController.isActive && !searchBarIsEmpty
+        let searchBarScopeIsFiltering = searchController.searchBar.selectedScopeButtonIndex != 0
+        return searchController.isActive && (!searchBarIsEmpty || searchBarScopeIsFiltering)
     }
     
     // MARK: - UI
@@ -47,6 +48,8 @@ class FavouritesViewController: UIViewController {
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search by description"
+        searchController.searchBar.scopeButtonTitles = ["All", "Hotels", "Transport", "Food", "A", "P", "O"]
+        searchController.searchBar.delegate = self
         searchController.searchBar.searchTextField.backgroundColor = .tripWhite
         definesPresentationContext = true
         return searchController
@@ -68,7 +71,7 @@ class FavouritesViewController: UIViewController {
         super.viewDidLoad()
         setupDelegates()
         setupViewModelBindings()
-
+  
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(refresh),
                                                name: NSNotification.Name(rawValue: "updateNotes"),
@@ -198,7 +201,21 @@ extension FavouritesViewController: UICollectionViewDelegate {
 // MARK: - UISearchResultsUpdating
 extension FavouritesViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        viewModel.filterContentForSearchText(searchController.searchBar.text ?? "")
+        let searchBar = searchController.searchBar
+        let scope = searchBar.scopeButtonTitles?[searchBar.selectedScopeButtonIndex] ?? "All"
+        viewModel.filterContentForSearchText(searchController.searchBar.text ?? "",
+                                             scope: scope,
+                                             searchBarIsEmpty: searchBarIsEmpty)
+        collectionView.reloadData()
+    }
+}
+
+// MARK: - UISearchBarDelegate
+extension FavouritesViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        viewModel.filterContentForSearchText(searchBar.text ?? "",
+                                             scope: searchBar.scopeButtonTitles?[selectedScope] ?? "All",
+                                             searchBarIsEmpty: searchBarIsEmpty)
         collectionView.reloadData()
     }
 }

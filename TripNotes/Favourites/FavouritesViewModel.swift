@@ -14,9 +14,9 @@ protocol FavouritesViewModelProtocol {
          userId: String)
     func numberOfCells(isFiltering: Bool) -> Int
     func fetchNotes()
-    func filterContentForSearchText(_ searchText: String)
     func noteCellViewModel(for indexPath: IndexPath, isFiltering: Bool) -> NoteCellViewModelProtocol?
     func viewModelForSelectedRow(at indexPath: IndexPath, isFiltering: Bool) -> NoteCellViewModel
+    func filterContentForSearchText(_ searchText: String, scope: String, searchBarIsEmpty: Bool)
 }
 
 class FavouritesViewModel: FavouritesViewModelProtocol {
@@ -122,9 +122,15 @@ class FavouritesViewModel: FavouritesViewModelProtocol {
                                  userId: userId)
     }
     
-    func filterContentForSearchText(_ searchText: String) {
+    func filterContentForSearchText(_ searchText: String, scope: String = "All", searchBarIsEmpty: Bool) {
         notesArrayFiltered = notesArray.filter({ (note: TripNote) -> Bool in
-            return (note.description?.lowercased().contains(searchText.lowercased()) ?? false)
+            let doesCategoryMatch = (scope == "All") || (note.category == scope)
+            
+            if searchBarIsEmpty {
+                return doesCategoryMatch
+            }
+            return doesCategoryMatch && (note.description?.lowercased().contains(searchText.lowercased()) ?? false)
         })
     }
 }
+ 
