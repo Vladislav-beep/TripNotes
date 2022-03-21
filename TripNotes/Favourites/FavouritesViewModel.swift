@@ -124,7 +124,25 @@ class FavouritesViewModel: FavouritesViewModelProtocol {
     
     func filterContentForSearchText(_ searchText: String, scope: String = "All", searchBarIsEmpty: Bool) {
         notesArrayFiltered = notesArray.filter({ (note: TripNote) -> Bool in
-            let doesCategoryMatch = (scope == "All") || (note.category == scope)
+            var scopeCategory = ""
+            
+            switch scope {
+            case "H":
+                scopeCategory = Category.hotels.rawValue
+            case "T":
+                scopeCategory = Category.transport.rawValue
+            case "F":
+                scopeCategory = Category.food.rawValue
+            case "A":
+                scopeCategory = Category.activity.rawValue
+            case "P":
+                scopeCategory = Category.purchases.rawValue
+            case "O":
+                scopeCategory = Category.other.rawValue
+            default:
+                scopeCategory = "All"
+            }
+            let doesCategoryMatch = (scope == "All") || (note.category == scopeCategory)
             
             if searchBarIsEmpty {
                 return doesCategoryMatch

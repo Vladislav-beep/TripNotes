@@ -43,15 +43,10 @@ class FavouritesViewController: UIViewController {
         return noLabel
     }()
     
-    private lazy var searchController: UISearchController = {
-        let searchController = UISearchController()
+    private lazy var searchController: SearchController = {
+        let searchController = SearchController()
         searchController.searchResultsUpdater = self
-        searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search by description"
-        searchController.searchBar.scopeButtonTitles = ["All", "Hotels", "Transport", "Food", "A", "P", "O"]
         searchController.searchBar.delegate = self
-        searchController.searchBar.searchTextField.backgroundColor = .tripWhite
-        definesPresentationContext = true
         return searchController
     }()
     

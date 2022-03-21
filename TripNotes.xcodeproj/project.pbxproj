@@ -23,6 +23,7 @@
 		B90632F227AFCF0900F0C2A5 /* NoteCellVewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F296C427895C7F00844D6C /* NoteCellVewModel.swift */; };
 		B90632F927AFE47E00F0C2A5 /* DetailNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90632F827AFE47E00F0C2A5 /* DetailNoteViewController.swift */; };
 		B90632FE27AFE47F00F0C2A5 /* DetailNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90632F827AFE47E00F0C2A5 /* DetailNoteViewController.swift */; };
+		B9072FEC27E8D1A9008BE67C /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9072FEB27E8D1A9008BE67C /* SearchController.swift */; };
 		B909AFDD277E3135006EFC38 /* Extension + UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B909AFDC277E3135006EFC38 /* Extension + UITextField.swift */; };
 		B909AFE0277E437D006EFC38 /* Extension + UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B909AFDC277E3135006EFC38 /* Extension + UITextField.swift */; };
 		B90A37E427784E830028B6F1 /* Extension + UIBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DCF13D276BBE29007B0320 /* Extension + UIBarButtonItem.swift */; };
@@ -163,6 +164,7 @@
 		B90251DD27DB3D7C00788065 /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
 		B905759A279458BB001EA8D1 /* SectionLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionLabel.swift; sourceTree = "<group>"; };
 		B90632F827AFE47E00F0C2A5 /* DetailNoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailNoteViewController.swift; sourceTree = "<group>"; };
+		B9072FEB27E8D1A9008BE67C /* SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
 		B909AFDC277E3135006EFC38 /* Extension + UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UITextField.swift"; sourceTree = "<group>"; };
 		B90B9A0B276D015A008DD627 /* TripTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripTableViewCellViewModel.swift; sourceTree = "<group>"; };
 		B90DB425276F134B00F1A544 /* NoteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteModel.swift; sourceTree = "<group>"; };
@@ -407,6 +409,7 @@
 				B90251DD27DB3D7C00788065 /* BackButton.swift */,
 				B938B1F027DB463D00E205C6 /* AdressButton.swift */,
 				B938B1F827DB91C400E205C6 /* NoLabel.swift */,
+				B9072FEB27E8D1A9008BE67C /* SearchController.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -721,6 +724,7 @@
 				B95FBCD127D7D6D5006FF5A8 /* WeatherViewModel.swift in Sources */,
 				B90DB438276F14B100F1A544 /* DateFormatterService.swift in Sources */,
 				B90DB44A276F532D00F1A544 /* NotesViewController.swift in Sources */,
+				B9072FEC27E8D1A9008BE67C /* SearchController.swift in Sources */,
 				B90251CE27DA477600788065 /* TotalSumLabel.swift in Sources */,
 				B91E813F2767A88E00D0748B /* SceneDelegate.swift in Sources */,
 				B95FBD0027D8B8AD006FF5A8 /* CurrentWeather.swift in Sources */,
