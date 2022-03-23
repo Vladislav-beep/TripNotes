@@ -19,7 +19,7 @@ struct TripNote: Hashable {
     let date: Date
     let description: String?
     let isFavourite: Bool
-    let adress: String?
+    var address: String?
     
     // MARK: - Life Time
     
@@ -32,7 +32,7 @@ struct TripNote: Hashable {
         date = (snapshotValue["date"] as? Timestamp)?.dateValue() ?? Date()
         description = snapshotValue["description"] as? String ?? ""
         isFavourite = snapshotValue["isFavourite"] as? Bool ?? false
-        adress = snapshotValue["adress"] as? String ?? ""
+        address = snapshotValue["address"] as? String ?? ""
     }
     
     init(document: DocumentSnapshot) {
@@ -44,10 +44,10 @@ struct TripNote: Hashable {
         date = (snapshotValue?["date"] as? Timestamp)?.dateValue() ?? Date()
         description = snapshotValue?["description"] as? String ?? ""
         isFavourite = snapshotValue?["isFavourite"] as? Bool ?? false
-        adress = snapshotValue?["adress"] as? String ?? ""
+        address = snapshotValue?["address"] as? String ?? ""
     }
     
-    init(id: String, city: String, category: String, price: Double, date: Date, description: String, isFavourite: Bool, adress: String) {
+    init(id: String, city: String, category: String, price: Double, date: Date, description: String, isFavourite: Bool, address: String) {
         self.id = id
         self.city = city
         self.category = category
@@ -55,6 +55,6 @@ struct TripNote: Hashable {
         self.date = date
         self.description = description
         self.isFavourite = isFavourite
-        self.adress = adress
+        self.address = address
     }
 }

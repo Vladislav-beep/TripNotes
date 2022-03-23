@@ -17,9 +17,9 @@ protocol FireBaseServiceProtocol {
     
     func fetchNotes(forUser userId: String, forTrip tripId: String, completion: @escaping (Result <[TripNote], Error>) -> Void)
     func fetchFavouriteNotes(forUser userId: String, completion: @escaping (Result <[TripNote: Trip], Error>) -> Void)
-    func addNote(forUser userId: String, tripId: String, category: String, city: String, price: Double, isFavourite: Bool, description: String, errorCompletion: @escaping () -> Void)
+    func addNote(forUser userId: String, tripId: String, category: String, city: String, price: Double, isFavourite: Bool, description: String, address: String, errorCompletion: @escaping () -> Void)
     func downloadNote(forUser userId: String, tripId: String, noteId: String, completion: @escaping (Result <TripNote, Error>) -> Void)
-    func updateNote(forUser userId: String, tripId: String, noteId: String, city: String, category: String, description: String, price: Double, errorCompletion: @escaping () -> Void)
+    func updateNote(forUser userId: String, tripId: String, noteId: String, city: String, category: String, description: String, price: Double, address: String, errorCompletion: @escaping () -> Void)
     func deleteNote(forUser userId: String, tripId: String, noteId: String)
     func toggleFavourite(forUser userId: String, tripId: String, noteId: String, isFavourite: Bool)
     
@@ -157,7 +157,7 @@ class FireBaseService: FireBaseServiceProtocol {
         }
     }
     
-    func addNote(forUser userId: String, tripId: String, category: String, city: String, price: Double, isFavourite: Bool, description: String, errorCompletion: @escaping () -> Void) {
+    func addNote(forUser userId: String, tripId: String, category: String, city: String, price: Double, isFavourite: Bool, description: String, address: String, errorCompletion: @escaping () -> Void) {
         
         let newNoteRef = usersRef.document(userId).collection("trips").document(tripId).collection("tripNotes").document()
         newNoteRef.setData([
@@ -167,7 +167,8 @@ class FireBaseService: FireBaseServiceProtocol {
             "description": description,
             "price": price,
             "isFavourite": isFavourite,
-            "date": Date()
+            "date": Date(),
+            "address": address
         ]) { err in
             if err != nil {
                 errorCompletion()
@@ -188,13 +189,14 @@ class FireBaseService: FireBaseServiceProtocol {
         }
     }
     
-    func updateNote(forUser userId: String, tripId: String, noteId: String, city: String, category: String, description: String, price: Double, errorCompletion: @escaping () -> Void) {
+    func updateNote(forUser userId: String, tripId: String, noteId: String, city: String, category: String, description: String, price: Double, address: String, errorCompletion: @escaping () -> Void) {
         let noteRef = usersRef.document(userId).collection("trips").document(tripId).collection("tripNotes").document(noteId)
         noteRef.updateData([
             "city": city,
             "price": price,
             "description": description,
-            "category": category
+            "category": category,
+            "address": address
         ]) { err in
             if err != nil {
                 errorCompletion()

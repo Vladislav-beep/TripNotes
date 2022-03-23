@@ -361,14 +361,15 @@ class NewNoteViewController: UIViewController {
         }
         
         if isEdited {
-            viewModel?.updateNote(city: city, category: category, description: description, price: priceDouble, errorCompletion: {
+            viewModel?.updateNote(city: city, category: category, description: description, price: priceDouble, address: viewModel?.address ?? "", errorCompletion: {
                 self.showAlert(title: "Unable to update note",
                                message: "Please, check internet connection")
                 return
             })
         } else {
-            viewModel?.addNote(category: category, city: city, price: priceDouble, isFavourite: false, description: description, errorCompletion: {
-                self.showAlert(title: "Unable to add note", message: "Please, check internet connection")
+            viewModel?.addNote(category: category, city: city, price: priceDouble, isFavourite: false, description: description, address: viewModel?.address ?? "", errorCompletion: {
+                self.showAlert(title: "Unable to add note",
+                               message: "Please, check internet connection")
                 return
             })
         }
@@ -586,6 +587,7 @@ extension NewNoteViewController: UITextFieldDelegate {
 extension NewNoteViewController: MapViewControllerDelegate {
     func getAddress(_ adress: String?) {
         descriptionTextView.text = descriptionTextView.text + "\n" + (adress ?? "")
+        viewModel?.address = adress ?? ""
     }
 }
 
