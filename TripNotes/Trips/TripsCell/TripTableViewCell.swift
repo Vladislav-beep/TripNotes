@@ -16,7 +16,7 @@ class TripTableViewCell: UITableViewCell {
             countryLabel.text = viewModel?.country
             descriptionLabel.text = viewModel?.description
             dateLabel.text = viewModel?.date
-         //   totalSumLabel.text = viewModel?.totalSumString
+            currencyLabel.text = viewModel?.currency
 
             setupAvatarImage()
         }
@@ -58,7 +58,7 @@ class TripTableViewCell: UITableViewCell {
         return dateLabel
     }()
     
-    private lazy var totalSumLabel: TotalSumLabel = {
+    private lazy var currencyLabel: TotalSumLabel = {
         let totalSumLabel = TotalSumLabel(fontSize: 40)
         return totalSumLabel
     }()
@@ -106,7 +106,7 @@ class TripTableViewCell: UITableViewCell {
     private func setupAllConstraints() {
         setupTripImageConstraints()
         setupTextViewConstraints()
-     //   setupTotalSumLabelConstraints()
+        setupTotalSumLabelConstraints()
         descriptionLabelConstraints()
         setupInfoStackViewConstraints()
     }
@@ -132,12 +132,12 @@ class TripTableViewCell: UITableViewCell {
     }
     
     private func setupTotalSumLabelConstraints() {
-        contentView.addSubview(totalSumLabel)
+        contentView.addSubview(currencyLabel)
         NSLayoutConstraint.activate([
-            totalSumLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5),
-            totalSumLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5),
-            totalSumLabel.widthAnchor.constraint(equalToConstant: 150),
-            totalSumLabel.heightAnchor.constraint(equalToConstant: 40)
+            currencyLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15),
+            currencyLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5),
+            currencyLabel.widthAnchor.constraint(equalToConstant: 150),
+            currencyLabel.heightAnchor.constraint(equalToConstant: 40)
         ])
     }
     

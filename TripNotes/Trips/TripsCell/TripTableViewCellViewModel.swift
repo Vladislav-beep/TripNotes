@@ -11,6 +11,7 @@ protocol TripTableViewCellViewModelProtocol {
     var country: String { get }
     var description: String { get }
     var date: String { get }
+    var currency: String { get }
     var notesCompletion: (() -> Void)? { get set }
     init(fileStorageService: FileStorageServiceProtocol,
          dateFormatterService: DateFormatterServiceProtocol,
@@ -40,6 +41,10 @@ class TripTableViewCellViewModel: TripTableViewCellViewModelProtocol {
     
     var country: String {
         trip.country
+    }
+    
+    var currency: String {
+        trip.currency
     }
     
     var notesCompletion: (() -> Void)?
