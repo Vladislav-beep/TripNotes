@@ -14,6 +14,7 @@ protocol NewNoteViewModelProtocol {
     var description: String { get }
     var address: String { get set }
     var noteCompletion: (() -> Void)? { get set }
+    var errorCompletion: ((FireBaseError) -> Void)? { get set }
     init(userId: String, tripId: String, noteId: String, fireBaseService: FireBaseServiceProtocol)
     func addNote(category: String, city: String, price: Double, isFavourite: Bool, description: String, address: String, errorCompletion: @escaping () -> Void)
     func updateNote(city: String, category: String, description: String, price: Double, address: String, errorCompletion: @escaping () -> Void)
@@ -36,6 +37,7 @@ class NewNoteViewModel: NewNoteViewModelProtocol {
     var noteId: String
     var userId: String
     var noteCompletion: (() -> Void)?
+    var errorCompletion: ((FireBaseError) -> Void)?
     
     var category: String {
         note?.category ?? "Other"
@@ -78,13 +80,13 @@ class NewNoteViewModel: NewNoteViewModelProtocol {
     }
     
     func downloadNote() {
-        fireBaseService.downloadNote(forUser: userId, tripId: tripId, noteId: noteId) { (result: Result<TripNote, Error>)  in
+        fireBaseService.downloadNote(forUser: userId, tripId: tripId, noteId: noteId) { (result: Result<TripNote, FireBaseError>)  in
             switch result {
             case .success(let note):
                 self.note = note
                 self.noteCompletion?()
             case .failure(let error):
-                print("\(error.localizedDescription) - JJJJJJJJJJJ")
+                self.errorCompletion?(error)
             }
         }
     }

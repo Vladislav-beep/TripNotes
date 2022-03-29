@@ -367,6 +367,10 @@ class NewTripViewController: UIViewController {
                 break
             }
         }
+        
+        viewModel?.errorCompletion = { [weak self] error in
+            self?.showAlert(title: "Error!", message: error.errorDescription)
+        }
     }
     
     private func updateImageAndCloseScreen(forKey key: String) {

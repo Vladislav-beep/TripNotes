@@ -9,6 +9,7 @@ import Foundation
 
 protocol FavouritesViewModelProtocol {
     var completion: (() -> Void)? { get set }
+    var errorCompletion: ((FireBaseError) -> Void)? { get set }
     init(fireBaseService: FireBaseServiceProtocol,
          dateFormatterService: DateFormatterServiceProtocol,
          userId: String)
@@ -54,6 +55,7 @@ class FavouritesViewModel: FavouritesViewModelProtocol {
     
     var userId: String
     var completion: (() -> Void)?
+    var errorCompletion: ((FireBaseError) -> Void)?
     
     // MARK: - Life Time
     
@@ -64,13 +66,13 @@ class FavouritesViewModel: FavouritesViewModelProtocol {
     }
     
     func fetchNotes() {
-        fireBaseService.fetchFavouriteNotes(forUser: userId) { (result: Result<[TripNote: Trip], Error>) in
+        fireBaseService.fetchFavouriteNotes(forUser: userId) { (result: Result<[TripNote: Trip], FireBaseError>) in
             switch result {
             case .success(let tripNotesDict):
                 self.tripNotesDict = tripNotesDict
                 self.completion?()
             case .failure(let error):
-                print(error.localizedDescription)
+                self.errorCompletion?(error)
             }
         }
     }

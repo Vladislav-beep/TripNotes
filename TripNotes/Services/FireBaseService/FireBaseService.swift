@@ -9,16 +9,16 @@ import Foundation
 import Firebase
 
 protocol FireBaseServiceProtocol {
-    func fetchTrips(forUser id: String, completion: @escaping (Result <[Trip], Error>) -> Void)
+    func fetchTrips(forUser id: String, completion: @escaping (Result <[Trip], FireBaseError>) -> Void)
     func addTrip(forUser userId: String, country: String, currency: String, description: String, beginningDate: Date, finishingDate: Date, completion: @escaping (String) -> Void, errorCompletion: @escaping () -> Void)
-    func downloadTrip(forUser userId: String, tripId: String, completion: @escaping (Result <Trip, Error>) -> Void)
+    func downloadTrip(forUser userId: String, tripId: String, completion: @escaping (Result <Trip, FireBaseError>) -> Void)
     func updateTrip(forUser userId: String, tripId: String, country: String, currency: String, description: String, beginningDate: Date, finishingDate: Date, completion: @escaping (String) -> Void, errorCompletion: @escaping () -> Void)
-    func deleteTrip(forUser userId: String, tripId: String)
+    func deleteTrip(forUser userId: String, tripId: String, errorCompletion: @escaping () -> Void)
     
-    func fetchNotes(forUser userId: String, forTrip tripId: String, completion: @escaping (Result <[TripNote], Error>) -> Void)
-    func fetchFavouriteNotes(forUser userId: String, completion: @escaping (Result <[TripNote: Trip], Error>) -> Void)
+    func fetchNotes(forUser userId: String, forTrip tripId: String, completion: @escaping (Result <[TripNote], FireBaseError>) -> Void)
+    func fetchFavouriteNotes(forUser userId: String, completion: @escaping (Result <[TripNote: Trip], FireBaseError>) -> Void)
     func addNote(forUser userId: String, tripId: String, category: String, city: String, price: Double, isFavourite: Bool, description: String, address: String, errorCompletion: @escaping () -> Void)
-    func downloadNote(forUser userId: String, tripId: String, noteId: String, completion: @escaping (Result <TripNote, Error>) -> Void)
+    func downloadNote(forUser userId: String, tripId: String, noteId: String, completion: @escaping (Result <TripNote, FireBaseError>) -> Void)
     func updateNote(forUser userId: String, tripId: String, noteId: String, city: String, category: String, description: String, price: Double, address: String, errorCompletion: @escaping () -> Void)
     func deleteNote(forUser userId: String, tripId: String, noteId: String)
     func toggleFavourite(forUser userId: String, tripId: String, noteId: String, isFavourite: Bool)
@@ -34,10 +34,10 @@ class FireBaseService: FireBaseServiceProtocol {
 
     // MARK: Trip methods
     
-    func fetchTrips(forUser id: String, completion: @escaping (Result <[Trip], Error>) -> Void) {
+    func fetchTrips(forUser id: String, completion: @escaping (Result <[Trip], FireBaseError>) -> Void) {
         usersRef.document(id).collection("trips").getDocuments() { (querySnapshot, err) in
-            if let err = err {
-                completion(.failure(err.localizedDescription as! Error))
+            if err != nil {
+                completion(.failure(FireBaseError.trip))
             } else {
                 var tripArray = [Trip]()
                 for document in querySnapshot!.documents {
@@ -68,14 +68,14 @@ class FireBaseService: FireBaseServiceProtocol {
         }
     }
     
-    func downloadTrip(forUser userId: String, tripId: String, completion: @escaping (Result <Trip, Error>) -> Void) {
+    func downloadTrip(forUser userId: String, tripId: String, completion: @escaping (Result <Trip, FireBaseError>) -> Void) {
         let tripRef = usersRef.document(userId).collection("trips").document(tripId)
         tripRef.getDocument { (document, error) in
             if let document = document, document.exists {
                 let trip = Trip(document: document)
                 completion(.success(trip))
             } else {
-                completion(.failure(error?.localizedDescription as! Error))
+                completion(.failure(FireBaseError.trip))
             }
         }
     }
@@ -97,13 +97,13 @@ class FireBaseService: FireBaseServiceProtocol {
         }
     }
     
-    func deleteTrip(forUser userId: String, tripId: String) {
+    func deleteTrip(forUser userId: String, tripId: String, errorCompletion: @escaping () -> Void) {
         let tripRef = usersRef.document(userId).collection("trips").document(tripId)
         let noteCollectionRef = usersRef.document(userId).collection("trips").document(tripId).collection("tripNotes")
         tripRef.delete()
         noteCollectionRef.getDocuments { (snaphot, error) in
-            if let error = error {
-                print(error.localizedDescription)
+            if error != nil {
+                errorCompletion()
             } else {
                 for doc in snaphot!.documents {
                     let docref = self.usersRef.document(userId).collection("trips").document(tripId).collection("tripNotes").document(doc.documentID)
@@ -115,10 +115,10 @@ class FireBaseService: FireBaseServiceProtocol {
     
     // MARK: Note methods
         
-    func fetchNotes(forUser userId: String, forTrip tripId: String, completion: @escaping (Result <[TripNote], Error>) -> Void) {
-        usersRef.document(userId).collection("trips").document(tripId).collection("tripNotes").getDocuments { (querySnapshot, err) in
-            if let err = err {
-                completion(.failure(err.localizedDescription as! Error))
+    func fetchNotes(forUser userId: String, forTrip tripId: String, completion: @escaping (Result <[TripNote], FireBaseError>) -> Void) {
+        usersRef.document(userId).collection("trips").document(tripId).collection("tripNotes").getDocuments { (querySnapshot, error) in
+            if error != nil {
+                completion(.failure(FireBaseError.note))
             } else {
                 var noteArray = [TripNote]()
                 for document in querySnapshot!.documents {
@@ -130,10 +130,10 @@ class FireBaseService: FireBaseServiceProtocol {
         }
     }
     
-    func fetchFavouriteNotes(forUser userId: String, completion: @escaping (Result <[TripNote: Trip], Error>) -> Void) {
-        usersRef.document(userId).collection("trips").getDocuments { (querySnapshot, err) in
-            if let err = err {
-                completion(.failure(err.localizedDescription as! Error))
+    func fetchFavouriteNotes(forUser userId: String, completion: @escaping (Result <[TripNote: Trip], FireBaseError>) -> Void) {
+        usersRef.document(userId).collection("trips").getDocuments { (querySnapshot, error) in
+            if error != nil {
+                completion(.failure(FireBaseError.note))
             } else {
                 var tripNoteDict = [TripNote: Trip]()
                 
@@ -141,8 +141,8 @@ class FireBaseService: FireBaseServiceProtocol {
                     let trip = Trip(snapshot: document)
                     
                     self.usersRef.document(userId).collection("trips").document(trip.id).collection("tripNotes").whereField("isFavourite", isEqualTo: true).getDocuments { (snapshot, error) in
-                        if let err = error {
-                            completion(.failure(err.localizedDescription as! Error))
+                        if error != nil {
+                            completion(.failure(FireBaseError.note))
                         } else {
                             
                         for document in snapshot!.documents {
@@ -176,15 +176,14 @@ class FireBaseService: FireBaseServiceProtocol {
         }
     }
     
-    func downloadNote(forUser userId: String, tripId: String, noteId: String, completion: @escaping (Result <TripNote, Error>) -> Void) {
+    func downloadNote(forUser userId: String, tripId: String, noteId: String, completion: @escaping (Result <TripNote, FireBaseError>) -> Void) {
         let noteRef = usersRef.document(userId).collection("trips").document(tripId).collection("tripNotes").document(noteId)
         noteRef.getDocument { (document, error) in
             if let document = document, document.exists {
                 let note = TripNote(document: document)
                 completion(.success(note))
                } else {
-                completion(.failure(error?.localizedDescription as! Error))
-                print("errrrrrrrrrrrrrrr")
+                completion(.failure(FireBaseError.note))
                }
         }
     }

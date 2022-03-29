@@ -78,6 +78,10 @@ class NotesViewController: UIViewController {
             self?.activityIndicator.stopAnimating()
             self?.activityIndicator.isHidden = true
         }
+        
+        viewModel.errorCompletion = { [weak self] error in
+            self?.showAlert(title: "Error!", message: error.errorDescription)
+        }
     }
     
     private func setupUI() {

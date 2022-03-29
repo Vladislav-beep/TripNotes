@@ -106,6 +106,10 @@ class FavouritesViewController: UIViewController {
             self?.activityIndicator.isHidden = true
             self?.collectionView.reloadData()
         }
+        
+        viewModel.errorCompletion = { [weak self] error in
+            self?.showAlert(title: "Error!", message: error.errorDescription)
+        }
     }
     
     private func setupDelegates() {

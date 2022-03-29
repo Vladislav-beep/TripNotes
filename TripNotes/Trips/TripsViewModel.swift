@@ -12,6 +12,7 @@ protocol TripsViewModelProtocol: class {
    // var trips: [Trip] { get set }
     var userId: String { get set }
     var firstCompletion: (() -> Void)? { get set }
+    var errorCompletion: ((FireBaseError) -> Void)? { get set }
     init(fireBaseService: FireBaseServiceProtocol,
                   userId: String,
                   fileStorageService: FileStorageServiceProtocol,
@@ -24,7 +25,7 @@ protocol TripsViewModelProtocol: class {
     func newTripViewModelEdited(for indexPath: IndexPath?) -> NewTripViewModelProtocol
     func newTripViewModel() -> NewTripViewModelProtocol 
     func newNoteViewModel(at indexPath: IndexPath) -> NewNoteViewModelProtocol
-    func deleteRow(at indexPath: IndexPath)
+    func deleteRow(at indexPath: IndexPath, errorCompletion: @escaping () -> Void)
     func getTripId(for indexPath: IndexPath?) -> String
     
 }
@@ -41,6 +42,7 @@ class TripsViewModel: TripsViewModelProtocol {
 
     var userId: String
     var firstCompletion: (() -> Void)?
+    var errorCompletion: ((FireBaseError) -> Void)?
     
     // MARK: Private properties
     
@@ -62,20 +64,20 @@ class TripsViewModel: TripsViewModelProtocol {
     
     // MARK: - Private methods
     
-    private func deleteTrip(tripId: String) {
-        fireBaseService.deleteTrip(forUser: userId, tripId: tripId)
+    private func deleteTrip(tripId: String, errorCompletion: @escaping () -> Void) {
+        fireBaseService.deleteTrip(forUser: userId, tripId: tripId, errorCompletion: errorCompletion)
     }
     
     // MARK: - Methods
     
     func fetchTrips() {
-        fireBaseService.fetchTrips(forUser: userId, completion: { (result: Result<[Trip], Error>) in
+        fireBaseService.fetchTrips(forUser: userId, completion: { (result: Result<[Trip], FireBaseError>) in
             switch result {
             case .success(let tripss):
                 self.trips = tripss
                 self.firstCompletion?()
             case .failure(let error):
-                print(error.localizedDescription)
+                self.errorCompletion?(error)
             }
         })
     }
@@ -150,13 +152,13 @@ class TripsViewModel: TripsViewModelProtocol {
         }
     }
     
-    func deleteRow(at indexPath: IndexPath) {
+    func deleteRow(at indexPath: IndexPath, errorCompletion: @escaping () -> Void) {
         if indexPath.section == 0 {
             let trip = tripMore?[indexPath.row]
             for (index, tripp) in trips.enumerated() {
                 if tripp == trip {
                     trips.remove(at: index)
-                    deleteTrip(tripId: tripp.id)
+                    deleteTrip(tripId: tripp.id, errorCompletion: errorCompletion)
                 }
             }
         } else {
@@ -164,7 +166,7 @@ class TripsViewModel: TripsViewModelProtocol {
             for (index, tripp) in trips.enumerated() {
                 if tripp == trip {
                     trips.remove(at: index)
-                    deleteTrip(tripId: tripp.id)
+                    deleteTrip(tripId: tripp.id, errorCompletion: errorCompletion)
                 }
             }
         }

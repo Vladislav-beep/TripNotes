@@ -11,7 +11,11 @@ protocol NotesViewModelProtocol {
     var text: String { get }
     var totalSum: String { get }
     var noteCompletion: (() -> Void)? { get set }
-    init(trip: Trip?, fireBaseService: FireBaseServiceProtocol, dateFormatterService: DateFormatterServiceProtocol, userId: String)
+    var errorCompletion: ((FireBaseError) -> Void)? { get set }
+    init(trip: Trip?,
+         fireBaseService: FireBaseServiceProtocol,
+         dateFormatterService: DateFormatterServiceProtocol,
+         userId: String)
     func fetchNotes()
     func numberOfCells() -> Int
     func noteCellViewModel(for indexPath: IndexPath) -> NoteCellViewModelProtocol?
@@ -46,6 +50,7 @@ class NotesViewModel: NotesViewModelProtocol {
     var userId: String
     
     var noteCompletion: (() -> Void)?
+    var errorCompletion: ((FireBaseError) -> Void)?
     
     // MARK: - Life time
     
@@ -59,14 +64,14 @@ class NotesViewModel: NotesViewModelProtocol {
     // MARK: - Methods
     
     func fetchNotes() {
-        fireBaseService.fetchNotes(forUser: userId, forTrip: trip?.id ?? "", completion: { (result: Result<[TripNote], Error>) in
+        fireBaseService.fetchNotes(forUser: userId, forTrip: trip?.id ?? "", completion: { (result: Result<[TripNote], FireBaseError>) in
             switch result {
             case .success(let notess):
                 self.notes = notess
                 self.notes.sort(by: { $0.date > $1.date })
                 self.noteCompletion?()
             case .failure(let error):
-                print(error.localizedDescription)
+                self.errorCompletion?(error)
             }
         })
     }

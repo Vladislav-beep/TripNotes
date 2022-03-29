@@ -15,7 +15,10 @@ protocol NewTripViewModelProtocol {
     var description: String { get }
     var currency: String { get }
     var tripCompletion: (() -> Void)? { get set }
-    init(tripId: String, userId: String, fireBaseService: FireBaseServiceProtocol, fileStorageService: FileStorageServiceProtocol)
+    var errorCompletion: ((FireBaseError) -> Void)? { get set }
+    init(tripId: String, userId: String,
+         fireBaseService: FireBaseServiceProtocol,
+         fileStorageService: FileStorageServiceProtocol)
     func saveImage(data: Data, key: String)
     func retrieveImage() -> Data
     func addTrip(country: String, currency: String, description: String, beginningDate: Date, finishingDate: Date, completion: @escaping (String) -> Void, errorCompletion: @escaping () -> Void) 
@@ -66,6 +69,7 @@ class NewTripViewModel: NewTripViewModelProtocol {
     }
     
     var tripCompletion: (() -> Void)?
+    var errorCompletion: ((FireBaseError) -> Void)?
     
     // MARK: - Life Time
     
@@ -91,13 +95,13 @@ class NewTripViewModel: NewTripViewModelProtocol {
     }
     
     func downloadTrip() {
-        fireBaseService.downloadTrip(forUser: userId, tripId: tripId) { (result: Result<Trip, Error>)  in
+        fireBaseService.downloadTrip(forUser: userId, tripId: tripId) { (result: Result<Trip, FireBaseError>)  in
             switch result {
             case .success(let tripp):
                 self.trip = tripp
                 self.tripCompletion?()
             case .failure(let error):
-                print("\(error.localizedDescription) - JJJJJJJJJJJ")
+                self.errorCompletion?(error)
                 return
             }
         }

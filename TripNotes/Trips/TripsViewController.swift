@@ -128,6 +128,10 @@ class TripsViewController: UIViewController {
             self?.activityIndicator.stopAnimating()
             self?.activityIndicator.isHidden = true
         }
+        
+        viewModel.errorCompletion = { [weak self] error in
+            self?.showAlert(title: "Error!", message: error.errorDescription)
+        }
     }
     
     private func setupUI() {
@@ -178,7 +182,10 @@ class TripsViewController: UIViewController {
     
     private func deleteAction(at indexPath: IndexPath) -> UIContextualAction {
         let action = UIContextualAction(style: .destructive, title: "Delete") { [weak self] (action, view, complition) in
-            self?.viewModel.deleteRow(at: indexPath)
+            self?.viewModel.deleteRow(at: indexPath, errorCompletion: {
+                self?.showAlert(title: "Coudn't delete Trip(",
+                                message: "Please, check your internet connection")
+            })
 
             self?.tableView.beginUpdates()
             self?.tableView.deleteRows(at: [indexPath], with: .automatic)
@@ -313,7 +320,10 @@ extension TripsViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            viewModel.deleteRow(at: indexPath)
+            viewModel.deleteRow(at: indexPath, errorCompletion: {
+                self.showAlert(title: "Coudn't delete Trip(",
+                                message: "Please, check your internet connection")
+            })
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
     }

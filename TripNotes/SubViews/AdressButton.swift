@@ -23,7 +23,7 @@ class AdressButton: UIButton {
     // MARK: Private methods
     
     private func initialize() {
-        setTitle(" Adress", for: .normal)
+        setTitle(" Address", for: .normal)
         titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .heavy)
         tintColor = .tripBlue
         setTitleColor(.tripBlue, for: .normal)

@@ -42,6 +42,7 @@
 		B90DB45A276FB39E00F1A544 /* NotesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90DB44E276F54F100F1A544 /* NotesViewModel.swift */; };
 		B912CFEF27ADB60E00AE1FCE /* NotesCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B912CFEE27ADB60E00AE1FCE /* NotesCollectionView.swift */; };
 		B912CFF227ADB66B00AE1FCE /* NotesCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B912CFEE27ADB60E00AE1FCE /* NotesCollectionView.swift */; };
+		B919352C27F36C7B0095D1C9 /* FireBaseServiceErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B919352B27F36C7B0095D1C9 /* FireBaseServiceErrors.swift */; };
 		B91E813D2767A88E00D0748B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91E813C2767A88E00D0748B /* AppDelegate.swift */; };
 		B91E813F2767A88E00D0748B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91E813E2767A88E00D0748B /* SceneDelegate.swift */; };
 		B91E81412767A88E00D0748B /* TripsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91E81402767A88E00D0748B /* TripsViewController.swift */; };
@@ -177,6 +178,7 @@
 		B90DB449276F532D00F1A544 /* NotesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesViewController.swift; sourceTree = "<group>"; };
 		B90DB44E276F54F100F1A544 /* NotesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesViewModel.swift; sourceTree = "<group>"; };
 		B912CFEE27ADB60E00AE1FCE /* NotesCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesCollectionView.swift; sourceTree = "<group>"; };
+		B919352B27F36C7B0095D1C9 /* FireBaseServiceErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireBaseServiceErrors.swift; sourceTree = "<group>"; };
 		B91E81392767A88E00D0748B /* TripNotes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TripNotes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B91E813C2767A88E00D0748B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B91E813E2767A88E00D0748B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -289,11 +291,11 @@
 		B90DB436276F147000F1A544 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				B919352A27F36C5B0095D1C9 /* FireBaseService */,
 				B95FBCFB27D8B709006FF5A8 /* NetworkWeatherManager.swift */,
 				B90DB437276F14B100F1A544 /* DateFormatterService.swift */,
 				B9698F22279C4689005FB438 /* LocationSevice.swift */,
 				B94439D727B84E09000DF640 /* Animator.swift */,
-				B9863ABA27C1371F00BE6337 /* FireBaseService.swift */,
 				B9863ABE27C1374100BE6337 /* AuthService.swift */,
 				B938B1F427DB50B400E205C6 /* FileStorageService.swift */,
 			);
@@ -307,6 +309,15 @@
 				B90DB429276F137500F1A544 /* Category.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		B919352A27F36C5B0095D1C9 /* FireBaseService */ = {
+			isa = PBXGroup;
+			children = (
+				B9863ABA27C1371F00BE6337 /* FireBaseService.swift */,
+				B919352B27F36C7B0095D1C9 /* FireBaseServiceErrors.swift */,
+			);
+			path = FireBaseService;
 			sourceTree = "<group>";
 		};
 		B91E81302767A88E00D0748B = {
@@ -718,6 +729,7 @@
 				B9FD6C08278E040900311EF1 /* NewNoteViewController.swift in Sources */,
 				B95FBCED27D89B13006FF5A8 /* SlideInPresentationController.swift in Sources */,
 				B98282D827A07C84006EFED8 /* NewAccountViewController.swift in Sources */,
+				B919352C27F36C7B0095D1C9 /* FireBaseServiceErrors.swift in Sources */,
 				B938B1FD27DC99B600E205C6 /* Extension + UIViewController.swift in Sources */,
 				B90251C327DA3BF100788065 /* AddButton.swift in Sources */,
 				B961212D279351FB00B7B81E /* SelectionLabel.swift in Sources */,
