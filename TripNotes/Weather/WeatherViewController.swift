@@ -84,7 +84,7 @@ class WeatherViewController: UIViewController {
     private lazy var locationManager: CLLocationManager = {
         let lm = CLLocationManager()
         lm.delegate = self
-        lm.desiredAccuracy = kCLLocationAccuracyKilometer
+        lm.desiredAccuracy = kCLLocationAccuracyBest
         lm.requestWhenInUseAuthorization()
         return lm
     }()

@@ -20,6 +20,10 @@ class NewNoteViewController: UIViewController {
     
     var isEdited: Bool
     
+    // MARK: - Private properties
+    
+    private var address: String?
+    
     // MARK: - UI
     
     private lazy var scrollView: UIScrollView = {
@@ -364,13 +368,13 @@ class NewNoteViewController: UIViewController {
         }
         
         if isEdited {
-            viewModel?.updateNote(city: city, category: category, description: description, price: priceDouble, address: viewModel?.address ?? "", errorCompletion: {
+            viewModel?.updateNote(city: city, category: category, description: description, price: priceDouble, address: address ?? "", errorCompletion: {
                 self.showAlert(title: "Unable to update note",
                                message: "Please, check internet connection")
                 return
             })
         } else {
-            viewModel?.addNote(category: category, city: city, price: priceDouble, isFavourite: false, description: description, address: viewModel?.address ?? "", errorCompletion: {
+            viewModel?.addNote(category: category, city: city, price: priceDouble, isFavourite: false, description: description, address: address ?? "", errorCompletion: {
                 self.showAlert(title: "Unable to add note",
                                message: "Please, check internet connection")
                 return
@@ -590,7 +594,7 @@ extension NewNoteViewController: UITextFieldDelegate {
 extension NewNoteViewController: MapViewControllerDelegate {
     func getAddress(_ adress: String?) {
         descriptionTextView.text = descriptionTextView.text + "\n" + (adress ?? "")
-        viewModel?.address = adress ?? ""
+        address = adress ?? ""
     }
 }
 

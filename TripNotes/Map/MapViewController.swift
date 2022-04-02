@@ -111,7 +111,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        showUserLocation(mapView: mapView)
+        requestLocation()
     }
         
     // MARK: - Actions
@@ -121,7 +121,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     }
     
     @objc private func showUserLocationButtonTapped() {
-        showUserLocation(mapView: mapView)
+        showUserLocation()
     }
     
     @objc private func okButtonPressed() {
@@ -131,14 +131,20 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     // MARK: Private methods
     
-    func showUserLocation(mapView: MKMapView) {
-        
+    private func requestLocation() {
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.requestLocation()
+        }
+    }
+    
+    func showUserLocation() {
         if let location = locationManager.location?.coordinate {
             let region = MKCoordinateRegion(center: location,
                                             latitudinalMeters: 500,
                                             longitudinalMeters: 500)
             
             mapView.setRegion(region, animated: true)
+            print("2")
         }
     }
     
@@ -243,7 +249,7 @@ extension MapViewController: CLLocationManagerDelegate {
         case .authorizedAlways:
             break
         case .authorizedWhenInUse:
-            showUserLocation(mapView: mapView)
+            showUserLocation()
         @unknown default:
             print("New case is available")
         }
@@ -275,4 +281,20 @@ extension MapViewController: CLLocationManagerDelegate {
             }
         }
     }
+
+
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        //    guard let location = locations.last else { return }
+        //    let latitude = location.coordinate.latitude
+        //    let longitude = location.coordinate.longitude
+        
+        showUserLocation()
+        
+         print("1")
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print(error.localizedDescription)
+    }
+    
 }

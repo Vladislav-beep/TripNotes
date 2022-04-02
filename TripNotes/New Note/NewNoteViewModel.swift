@@ -12,7 +12,7 @@ protocol NewNoteViewModelProtocol {
     var city: String { get }
     var price: String { get }
     var description: String { get }
-    var address: String { get set }
+    var address: String { get }
     var noteCompletion: (() -> Void)? { get set }
     var errorCompletion: ((FireBaseError) -> Void)? { get set }
     init(userId: String, tripId: String, noteId: String, fireBaseService: FireBaseServiceProtocol)
@@ -56,12 +56,7 @@ class NewNoteViewModel: NewNoteViewModelProtocol {
     }
     
     var address: String {
-        get {
         note?.address ?? ""
-    }
-        set {
-            note?.address = newValue
-        }
     }
     
     // MARK: - Life Time
