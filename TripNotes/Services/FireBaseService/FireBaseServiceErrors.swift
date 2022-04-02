@@ -10,7 +10,6 @@ import Foundation
 enum FireBaseError: Error {
     case trip
     case note
-
     
     var errorDescription: String {
         switch self {
