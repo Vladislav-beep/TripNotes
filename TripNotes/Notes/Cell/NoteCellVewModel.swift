@@ -73,6 +73,9 @@ class NoteCellViewModel: NoteCellViewModelProtocol {
     private var tripNote: TripNote
     private let currency: String
     private let trip: Trip
+    
+    // MARK: - Properties
+    
     var isInfoShown: Bool
     
     // MARK: - Life Time

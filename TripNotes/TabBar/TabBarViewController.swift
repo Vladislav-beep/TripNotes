@@ -77,12 +77,12 @@ class TabBarViewController: UITabBarController {
     }
     
     private func setupViewModelBindings() {
-        viewModel.completion = { [weak self]  id in
+        viewModel.completion = { [weak self] id in
             self?.setupUI(with: id)
         }
         
-        viewModel.errorCompletion = {
-            self.showAlert(title: "Couldn't get user", message: "Try later")
+        viewModel.errorCompletion = { [weak self] in
+            self?.showAlert(title: "Couldn't get user", message: "Try later")
         }
     }
 }

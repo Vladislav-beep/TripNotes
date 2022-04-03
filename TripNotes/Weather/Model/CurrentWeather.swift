@@ -23,6 +23,7 @@ struct CurrentWeather {
     }
     
     let conditionCode: Int
+    
     var systemIconNameString: String {
         switch conditionCode {
         case 200...232: return "cloud.bolt.rain.fill"

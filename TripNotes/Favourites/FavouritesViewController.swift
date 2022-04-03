@@ -14,6 +14,8 @@ class FavouritesViewController: UIViewController {
     private var viewModel: FavouritesViewModelProtocol
     var configurator: Configurator?
     
+    // MARK: - Private properties
+    
     private var searchBarIsEmpty: Bool {
         guard let text = searchController.searchBar.text else { return false }
         return text.isEmpty

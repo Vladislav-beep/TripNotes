@@ -12,8 +12,8 @@ class AuthViewController: UIViewController {
     // MARK: - Dependencies
     
     private var viewModel: AuthViewModelProtocol
-    lazy var keyboard = KeyboardHelper(scrollView: scrollView, offSet: 100)
-    lazy var animator = Animator(container: view)
+    private lazy var keyboard = KeyboardHelper(scrollView: scrollView, offSet: 100)
+    private lazy var animator = Animator(container: view)
     var configurator: Configurator?
     
     // MARK: - UI
@@ -113,6 +113,7 @@ class AuthViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        loginTextField.text = ""
         passwordTextField.text = ""
     }
     
@@ -132,26 +133,27 @@ class AuthViewController: UIViewController {
               let password = passwordTextField.text, password != ""
         else {
             let warningText = "None of fields can be empty"
-            self.animator.animateWarningLabel(warningLabel: self.warningLabel, withText: warningText)
+            animator.animateWarningLabel(warningLabel: self.warningLabel, withText: warningText)
             return
         }
         
         viewModel.signIn(withEmail: email, password: password) { [weak self] in
             let tabBar = self?.configurator?.configureTabbar() ?? UIViewController()
             self?.present(tabBar, animated: true)
-        } errorComletion: {
+        } errorComletion: { [weak self] in
             let warningText = "Incorrect login or password"
-            self.animator.animateWarningLabel(warningLabel: self.warningLabel, withText: warningText)
+            self?.animator.animateWarningLabel(warningLabel: self?.warningLabel ?? UILabel(),
+                                               withText: warningText)
         }
     }
     
     // MARK: - Private methods
     
     private func checkSignIn() {
-        viewModel.checkSignIn {
-            let tabBar = self.configurator?.configureTabbar() ?? UIViewController()
+        viewModel.checkSignIn { [weak self] in
+            let tabBar = self?.configurator?.configureTabbar() ?? UIViewController()
             tabBar.modalPresentationStyle = .fullScreen
-            self.present(tabBar, animated: true)
+            self?.present(tabBar, animated: true)
         }
     }
     

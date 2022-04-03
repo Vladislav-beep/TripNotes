@@ -32,6 +32,5 @@ extension SlideInPresentationManager: UIViewControllerTransitioningDelegate {
         )
         return presentationController
     }
-
 }
 

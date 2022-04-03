@@ -121,4 +121,10 @@ class Configurator {
         weatherVC.modalPresentationStyle = .custom
         return weatherVC
     }
+    
+    func configureMapVC() -> MapViewController {
+        let mapVM = MapViewModel()
+        let mapVC = MapViewController(viewModel: mapVM)
+        return mapVC
+    }
 }

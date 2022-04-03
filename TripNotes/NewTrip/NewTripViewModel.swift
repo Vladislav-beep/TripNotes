@@ -95,13 +95,13 @@ class NewTripViewModel: NewTripViewModelProtocol {
     }
     
     func downloadTrip() {
-        fireBaseService.downloadTrip(forUser: userId, tripId: tripId) { (result: Result<Trip, FireBaseError>)  in
+        fireBaseService.downloadTrip(forUser: userId, tripId: tripId) { [weak self] (result: Result<Trip, FireBaseError>)  in
             switch result {
             case .success(let tripp):
-                self.trip = tripp
-                self.tripCompletion?()
+                self?.trip = tripp
+                self?.tripCompletion?()
             case .failure(let error):
-                self.errorCompletion?(error)
+                self?.errorCompletion?(error)
                 return
             }
         }

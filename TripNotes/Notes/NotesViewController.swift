@@ -55,11 +55,6 @@ class NotesViewController: UIViewController {
                                                object: nil)
     }
     
-    @objc func refresh() {
-        viewModel.fetchNotes()
-        collectionView.reloadData()
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel.fetchNotes()
@@ -67,6 +62,13 @@ class NotesViewController: UIViewController {
     
     deinit {
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "updateNotes"), object: nil)
+    }
+    
+    // MARK: - Actions
+    
+    @objc private func refresh() {
+        viewModel.fetchNotes()
+        collectionView.reloadData()
     }
     
     // MARK: - Private methods

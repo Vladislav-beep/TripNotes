@@ -75,13 +75,13 @@ class NewNoteViewModel: NewNoteViewModelProtocol {
     }
     
     func downloadNote() {
-        fireBaseService.downloadNote(forUser: userId, tripId: tripId, noteId: noteId) { (result: Result<TripNote, FireBaseError>)  in
+        fireBaseService.downloadNote(forUser: userId, tripId: tripId, noteId: noteId) { [weak self] (result: Result<TripNote, FireBaseError>)  in
             switch result {
             case .success(let note):
-                self.note = note
-                self.noteCompletion?()
+                self?.note = note
+                self?.noteCompletion?()
             case .failure(let error):
-                self.errorCompletion?(error)
+                self?.errorCompletion?(error)
             }
         }
     }

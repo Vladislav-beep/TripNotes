@@ -83,6 +83,7 @@ class TripsViewController: UIViewController {
         setupNavigationBar()
         setupViewModelBindings()
         setupAllConstraints()
+        
         tableView.delegate = self
         tableView.dataSource = self
     }
@@ -99,8 +100,8 @@ class TripsViewController: UIViewController {
     // MARK: - Actions
     
     @objc func signOutTapped() {
-        showSignOutAlert(title: "Sign out?", message: "Do you realy want to sign out?") {
-            self.signOut()
+        showSignOutAlert(title: "Sign out?", message: "Do you realy want to sign out?") { [weak self] in
+            self?.signOut()
         }
     }
     
@@ -170,8 +171,9 @@ class TripsViewController: UIViewController {
     private func editAction(at indexPath: IndexPath) -> UIContextualAction {
         let editAction = UIContextualAction(style: .normal, title: "Edit Trip") { [weak self] (action, view, complition) in
             
-
-            let newTripVC = self?.configurator?.configureNewTrip(with: self?.viewModel.getTripId(for: indexPath) ?? "", userId: self?.viewModel.userId ?? "", isEdited: true) ?? UIViewController()
+            let tripId = self?.viewModel.getTripId(for: indexPath) ?? ""
+            let userId = self?.viewModel.userId ?? ""
+            let newTripVC = self?.configurator?.configureNewTrip(with: tripId, userId: userId, isEdited: true) ?? UIViewController()
             self?.present(newTripVC, animated: true)
             complition(true)
         }
@@ -320,8 +322,8 @@ extension TripsViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            viewModel.deleteRow(at: indexPath, errorCompletion: {
-                self.showAlert(title: "Coudn't delete Trip(",
+            viewModel.deleteRow(at: indexPath, errorCompletion: { [weak self] in
+                self?.showAlert(title: "Coudn't delete Trip(",
                                 message: "Please, check your internet connection")
             })
             tableView.deleteRows(at: [indexPath], with: .automatic)

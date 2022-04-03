@@ -64,14 +64,14 @@ class NotesViewModel: NotesViewModelProtocol {
     // MARK: - Methods
     
     func fetchNotes() {
-        fireBaseService.fetchNotes(forUser: userId, forTrip: trip?.id ?? "", completion: { (result: Result<[TripNote], FireBaseError>) in
+        fireBaseService.fetchNotes(forUser: userId, forTrip: trip?.id ?? "", completion: { [weak self] (result: Result<[TripNote], FireBaseError>) in
             switch result {
             case .success(let notess):
-                self.notes = notess
-                self.notes.sort(by: { $0.date > $1.date })
-                self.noteCompletion?()
+                self?.notes = notess
+                self?.notes.sort(by: { $0.date > $1.date })
+                self?.noteCompletion?()
             case .failure(let error):
-                self.errorCompletion?(error)
+                self?.errorCompletion?(error)
             }
         })
     }

@@ -12,7 +12,7 @@ class NewAccountViewController: UIViewController {
     // MARK: - Dependencies
     
     private var viewModel: NewAccountViewModelProtocol
-    lazy var keyboard = KeyboardHelper(scrollView: scrollView, offSet: 100)
+    private lazy var keyboard = KeyboardHelper(scrollView: scrollView, offSet: 100)
     var configurator: Configurator?
     
     // MARK: - UI
@@ -102,6 +102,7 @@ class NewAccountViewController: UIViewController {
     init(viewModel: NewAccountViewModelProtocol) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
+        setupConstraints()
         keyboard.registerKeyBoardNotification()
     }
     
@@ -111,16 +112,18 @@ class NewAccountViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupConstraints()
         loginTextField.delegate = self
         passwordTextField.delegate = self
         nameTextField.delegate = self
+        
         view.addGestureRecognizer(endEditingGestureRecognizer)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupNavBarAppearence()
+        nameTextField.text = ""
+        loginTextField.text = ""
         passwordTextField.text = ""
     }
     
@@ -142,10 +145,9 @@ class NewAccountViewController: UIViewController {
         viewModel.createNewUser(withEmail: email, password: password, name: name) { [weak self] in
             let tabbar = self?.configurator?.configureTabbar() ?? UIViewController()
             self?.present(tabbar, animated: true)
-         //   self?.coordinator?.showTabBar()
-        } errorCompletion: {
-            self.showAlert(title: "We have some problems",
-                             message: "Please, check your internet connection")
+        } errorCompletion: { [weak self] in
+            self?.showAlert(title: "We have some problems",
+                             message: "All of fields must be fullfilled")
         }
         return
     }

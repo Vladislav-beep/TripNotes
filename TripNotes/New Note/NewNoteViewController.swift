@@ -61,7 +61,7 @@ class NewNoteViewController: UIViewController {
     }()
     
     private lazy var foodLabel: UILabel = {
-        let foodLabel = SelectionLabel(labelText: "Restaurants")
+        let foodLabel = SelectionLabel(labelText: "Food")
         return foodLabel
     }()
     
@@ -277,10 +277,11 @@ class NewNoteViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addGestureRecognizer(endEditingGestureRecognizer)
         setupUI()
         setupViewModelBindings()
         setupDelegates()
+        
+        view.addGestureRecognizer(endEditingGestureRecognizer)
     }
     
     deinit {
@@ -368,14 +369,14 @@ class NewNoteViewController: UIViewController {
         }
         
         if isEdited {
-            viewModel?.updateNote(city: city, category: category, description: description, price: priceDouble, address: address ?? "", errorCompletion: {
-                self.showAlert(title: "Unable to update note",
+            viewModel?.updateNote(city: city, category: category, description: description, price: priceDouble, address: address ?? "", errorCompletion: { [weak self] in
+                self?.showAlert(title: "Unable to update note",
                                message: "Please, check internet connection")
                 return
             })
         } else {
-            viewModel?.addNote(category: category, city: city, price: priceDouble, isFavourite: false, description: description, address: address ?? "", errorCompletion: {
-                self.showAlert(title: "Unable to add note",
+            viewModel?.addNote(category: category, city: city, price: priceDouble, isFavourite: false, description: description, address: address ?? "", errorCompletion: { [weak self] in
+                self?.showAlert(title: "Unable to add note",
                                message: "Please, check internet connection")
                 return
             })
@@ -397,14 +398,9 @@ class NewNoteViewController: UIViewController {
     }
     
     @objc private func getAdress() {
-        ////////
-        
-        let mapVM = MapViewModel()
-        let mapVC = MapViewController(viewModel: mapVM)
+        guard let mapVC = configurator?.configureMapVC() else { return }
         mapVC.mapViewControllerDelegate = self
         present(mapVC, animated: true)
-        
-        ///////
     }
     
     // MARK: - Private methods
@@ -592,6 +588,7 @@ extension NewNoteViewController: UITextFieldDelegate {
 }
 
 extension NewNoteViewController: MapViewControllerDelegate {
+    
     func getAddress(_ adress: String?) {
         descriptionTextView.text = descriptionTextView.text + "\n" + (adress ?? "")
         address = adress ?? ""

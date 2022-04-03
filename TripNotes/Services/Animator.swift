@@ -11,7 +11,7 @@ class Animator {
     
     // MARK: - Private properties
     
-   private let container: UIView
+    private let container: UIView
     
     // MARK: - Life Time
     
@@ -23,14 +23,14 @@ class Animator {
     
     func animate(layoutConstraint: NSLayoutConstraint, completion: @escaping () -> Void) {
         layoutConstraint.constant = 70
-         
+        
         UIView.animate(withDuration: 0.7,
                        delay: 0,
                        usingSpringWithDamping: 0.5,
                        initialSpringVelocity: 2,
                        options: .curveLinear,
                        animations: { [weak self] in
-                
+                        
                         self?.container.layoutIfNeeded()
                         
                        }) { [weak self] (_) in

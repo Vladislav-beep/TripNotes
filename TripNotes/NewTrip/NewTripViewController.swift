@@ -13,8 +13,8 @@ class NewTripViewController: UIViewController {
     // MARK: - Dependencies
     
     private var viewModel: NewTripViewModelProtocol?
-    lazy var keyboard = KeyboardHelper(scrollView: scrollView, offSet: 100)
-    lazy var animator = Animator(container: view)
+    private lazy var keyboard = KeyboardHelper(scrollView: scrollView, offSet: 100)
+    private lazy var animator = Animator(container: view)
     
     // MARK: - Properties
     
@@ -72,14 +72,14 @@ class NewTripViewController: UIViewController {
     private lazy var beginDateTextField: CustomTextField = {
         let beginDateTextField = CustomTextField(imageName: "calendar-edit")
         beginDateTextField.placeholder = "Date when trip begins"
-        beginDateTextField.setInputViewDatePicker(target: self, selector: #selector(tapDone))
+        beginDateTextField.setInputViewDatePicker(target: self, selector: #selector(tapBeginningDate))
         return beginDateTextField
     }()
     
     private lazy var finishDateTextField: CustomTextField = {
         let finishDateTextField = CustomTextField(imageName: "calendar-edit")
         finishDateTextField.placeholder = "Date when trip ends"
-        finishDateTextField.setInputViewDatePicker(target: self, selector: #selector(tapDone3))
+        finishDateTextField.setInputViewDatePicker(target: self, selector: #selector(tapfinishingDate))
         return finishDateTextField
     }()
     
@@ -173,6 +173,7 @@ class NewTripViewController: UIViewController {
         setupDelegates()
         setupViewModelBindings()
         setupUI()
+        
         view.addGestureRecognizer(endEditingGestureRecognizer)
     }
     
@@ -220,25 +221,25 @@ class NewTripViewController: UIViewController {
         }
 
         if self.isEdited ?? false {
-            self.viewModel?.updateTrip(country: country, currency: currency, description: description, beginningDate: bdate , finishingDate: fdate , completion: { docId in
-                self.updateImageAndCloseScreen(forKey: docId)
-            }, errorCompletion: {
-                self.showAlert(title: "Unable to update trip",
+           viewModel?.updateTrip(country: country, currency: currency, description: description, beginningDate: bdate , finishingDate: fdate , completion: { [weak self] docId in
+            self?.updateImageAndCloseScreen(forKey: docId)
+            }, errorCompletion: { [weak self] in
+                self?.showAlert(title: "Unable to update trip",
                                message: "Please, check your internet connection")
                 return
             })
         } else {
-            self.viewModel?.addTrip(country: country, currency: currency, description: description, beginningDate: bdate , finishingDate: fdate , completion: { docId in
-                self.updateImageAndCloseScreen(forKey: docId)
-            }, errorCompletion: {
-                self.showAlert(title: "Unable to add trip",
+            viewModel?.addTrip(country: country, currency: currency, description: description, beginningDate: bdate , finishingDate: fdate , completion: { [weak self] docId in
+                self?.updateImageAndCloseScreen(forKey: docId)
+            }, errorCompletion: { [weak self] in
+                self?.showAlert(title: "Unable to add trip",
                                message: "Please, check your internet connection")
                 return
             })
         }
     }
     
-    @objc private func tapDone() {
+    @objc private func tapBeginningDate() {
         if let inputView = beginDateTextField.inputView {
             let dateformatter = DateFormatter()
             dateformatter.dateStyle = .medium
@@ -253,7 +254,7 @@ class NewTripViewController: UIViewController {
         finishDateTextField.becomeFirstResponder()
     }
     
-    @objc func tapDone3() {
+    @objc func tapfinishingDate() {
         if let inputView = finishDateTextField.inputView {
             let dateformatter = DateFormatter()
             dateformatter.dateStyle = .medium
@@ -267,29 +268,6 @@ class NewTripViewController: UIViewController {
         }
         descriptionTextField.becomeFirstResponder()
     }
-    
-    //    @objc func tapDone2(_ sender: CustomTextField) {
-    //        if let inputView = sender.inputView {
-    //            let dateformatter = DateFormatter()
-    //            dateformatter.dateStyle = .medium
-    //            var datePicker = UIDatePicker()
-    //            for subview in inputView.subviews {
-    //                if subview is UIDatePicker {
-    //                    datePicker = subview as? UIDatePicker ?? UIDatePicker()
-    //                }
-    //            }
-    //            sender.text = dateformatter.string(from: datePicker.date)
-    //        }
-    //        switch sender {
-    //        case beginDateTextField:
-    //            finishDateTextField.becomeFirstResponder()
-    //        case finishDateTextField:
-    //            descriptionTextField.becomeFirstResponder()
-    //        default:
-    //            finishDateTextField.becomeFirstResponder()
-    //        }
-    //        descriptionTextField.becomeFirstResponder()
-    //    }
     
     @objc private func backButtonPressed() {
         dismiss(animated: true)

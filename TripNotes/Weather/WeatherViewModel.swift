@@ -58,13 +58,13 @@ class WeatherViewModel: WeatherViewModelProtocol {
     // MARK: - Methods
     
     func fetchWeather(longitude: CLLocationDegrees, latitude: CLLocationDegrees) {
-        networkManager.fetchCurrentWeather(forCoordinates: longitude, latitude: latitude) { (result: Result<CurrentWeather, NetworkError>) in
+        networkManager.fetchCurrentWeather(forCoordinates: longitude, latitude: latitude) { [weak self] (result: Result<CurrentWeather, NetworkError>) in
             switch result {
             case .success(let weather):
-                self.weather = weather
-                self.weatherCompletion?()
+                self?.weather = weather
+                self?.weatherCompletion?()
             case .failure(let error):
-                self.errorCompletion?(error.errorDescription ?? "")
+                self?.errorCompletion?(error.errorDescription ?? "")
                 print(error.localizedDescription)
             }
         }

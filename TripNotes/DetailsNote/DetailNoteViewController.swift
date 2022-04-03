@@ -12,13 +12,13 @@ class DetailNoteViewController: UIViewController {
     // MARK: - Dependencies
     
     private var viewModel: NoteCellViewModelProtocol
+    private lazy var contraint = heartImageView.heightAnchor.constraint(equalToConstant: 0)
+    private lazy var animator = Animator(container: view)
     var configurator: Configurator?
     
     // MARK: - Properties
     
     var isFavourite = false
-    lazy var contraint = heartImageView.heightAnchor.constraint(equalToConstant: 0)
-    lazy var animator = Animator(container: view)
     
     // MARK: - UI
         
@@ -57,6 +57,7 @@ class DetailNoteViewController: UIViewController {
         categoryLabel.textAlignment = .center
         return categoryLabel
     }()
+    
     private lazy var cityLabel: NoteLabel = {
         let cityLabel = NoteLabel(fontSize: 18, fontWeight: .bold)
         return cityLabel

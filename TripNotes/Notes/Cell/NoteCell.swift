@@ -19,6 +19,7 @@ class NoteCell: UICollectionViewCell {
             dateLabel.text = viewModel.date
             sumLabel.text = viewModel.price
             categoryImageView.image = setImage(for: viewModel.category)
+            
             setupUI()
         }
     }
@@ -58,8 +59,10 @@ class NoteCell: UICollectionViewCell {
         let categoryLabel = NoteLabel(fontSize: 17, fontWeight: .heavy)
         return categoryLabel
     }()
+    
     private lazy var cityLabel: NoteLabel = {
         let cityLabel = NoteLabel(fontSize: 15, fontWeight: .bold)
+        cityLabel.adjustsFontSizeToFitWidth = true
         return cityLabel
     }()
     
@@ -105,11 +108,13 @@ class NoteCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Private methods
+    // MARK: - Actions
     
-    @objc func refresh() {
+    @objc private func refresh() {
         setupUI()
     }
+    
+    // MARK: - Private methods
     
     private func setupUI() {
         if viewModel.isFavourite {

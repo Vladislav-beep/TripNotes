@@ -9,7 +9,11 @@ import Foundation
 
 protocol NewAccountViewModelProtocol {
     init(authService: AuthServiceProtocol)
-    func createNewUser(withEmail email: String, password: String, name: String, completion: @escaping () -> (), errorCompletion: @escaping () -> ())
+    func createNewUser(withEmail email: String,
+                       password: String,
+                       name: String,
+                       completion: @escaping () -> (),
+                       errorCompletion: @escaping () -> ())
 }
 
 class NewAccountViewModel: NewAccountViewModelProtocol {
@@ -31,6 +35,11 @@ class NewAccountViewModel: NewAccountViewModelProtocol {
                        name: String,
                        completion: @escaping () -> (),
                        errorCompletion: @escaping () -> ()) {
-        authService.createNewUser(withEmail: email, password: password, name: name, completion: completion, errorCompletion: errorCompletion)
+        
+        authService.createNewUser(withEmail: email,
+                                  password: password,
+                                  name: name,
+                                  completion: completion,
+                                  errorCompletion: errorCompletion)
     }
 }

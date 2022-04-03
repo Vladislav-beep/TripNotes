@@ -9,7 +9,6 @@ import Foundation
 import Firebase
 
 protocol TripsViewModelProtocol: class {
-   // var trips: [Trip] { get set }
     var userId: String { get set }
     var firstCompletion: (() -> Void)? { get set }
     var errorCompletion: ((FireBaseError) -> Void)? { get set }
@@ -71,13 +70,13 @@ class TripsViewModel: TripsViewModelProtocol {
     // MARK: - Methods
     
     func fetchTrips() {
-        fireBaseService.fetchTrips(forUser: userId, completion: { (result: Result<[Trip], FireBaseError>) in
+        fireBaseService.fetchTrips(forUser: userId, completion: { [weak self] (result: Result<[Trip], FireBaseError>) in
             switch result {
             case .success(let tripss):
-                self.trips = tripss
-                self.firstCompletion?()
+                self?.trips = tripss
+                self?.firstCompletion?()
             case .failure(let error):
-                self.errorCompletion?(error)
+                self?.errorCompletion?(error)
             }
         })
     }
