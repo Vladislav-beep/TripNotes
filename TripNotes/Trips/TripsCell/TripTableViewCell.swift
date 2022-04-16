@@ -30,6 +30,7 @@ class TripTableViewCell: UITableViewCell {
         tripImageView.clipsToBounds = true
         tripImageView.contentMode = .scaleAspectFill
         tripImageView.image = UIImage(named: Constants.ImageNames.tripPlaceHolderImage.rawValue)
+        tripImageView.backgroundColor = .tripRed
         tripImageView.layer.opacity = 0.75
         tripImageView.translatesAutoresizingMaskIntoConstraints = false
         return tripImageView
@@ -98,6 +99,8 @@ class TripTableViewCell: UITableViewCell {
         let imageData = viewModel?.retrieveImage()
         if imageData?.count != 0 {
             self.tripImageView.image = UIImage(data: imageData ?? Data())
+        } else {
+            tripImageView.image = nil
         }
     }
     

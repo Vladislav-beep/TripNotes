@@ -21,6 +21,7 @@ protocol NewTripViewModelProtocol {
          fileStorageService: FileStorageServiceProtocol)
     func saveImage(data: Data, key: String)
     func retrieveImage() -> Data
+    func deleteImage(forKey key: String)
     func addTrip(country: String, currency: String, description: String, beginningDate: Date, finishingDate: Date, completion: @escaping (String) -> Void, errorCompletion: @escaping () -> Void) 
     func updateTrip(country: String, currency: String, description: String, beginningDate: Date, finishingDate: Date, completion: @escaping (String) -> Void, errorCompletion: @escaping () -> Void)
     func downloadTrip()
@@ -88,6 +89,10 @@ class NewTripViewModel: NewTripViewModelProtocol {
     
     func retrieveImage() -> Data {
         fileStorageService.retrieveImage(forKey: tripId) ?? Data()
+    }
+    
+    func deleteImage(forKey key: String) {
+        fileStorageService.delete(forKey: key)
     }
     
     func addTrip(country: String, currency: String, description: String, beginningDate: Date, finishingDate: Date, completion: @escaping (String) -> Void, errorCompletion: @escaping () -> Void) {

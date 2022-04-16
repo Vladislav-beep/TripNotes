@@ -293,11 +293,21 @@ class NewTripViewController: UIViewController {
             self.chooseImagePicker(source: .photoLibrary)
         }
         
+        let placeHolderImage = UIAlertAction(title: "Return placeholder image", style: .default) { _ in
+            self.avatarImageView.image = UIImage(named: "tripPlaceHolder")
+        }
+        
+        let deleteImage = UIAlertAction(title: "Delete image", style: .default) { _ in
+            self.avatarImageView.image = nil
+        }
+        
         let cancel = UIAlertAction(title: "Cancel", style: .cancel)
         
         actionSheet.addAction(camera)
         actionSheet.addAction(photo)
         actionSheet.addAction(cancel)
+        actionSheet.addAction(placeHolderImage)
+        actionSheet.addAction(deleteImage)
         
         present(actionSheet, animated: true)
     }
@@ -319,6 +329,7 @@ class NewTripViewController: UIViewController {
             redView.backgroundColor = .tripBlue
             let imageData = viewModel?.retrieveImage()
             avatarImageView.image = UIImage(data: imageData ?? Data())
+            
             viewModel?.downloadTrip()
         }
     }
@@ -352,8 +363,13 @@ class NewTripViewController: UIViewController {
     }
     
     private func updateImageAndCloseScreen(forKey key: String) {
+        if avatarImageView.image == UIImage() {
+            viewModel?.deleteImage(forKey: key)
+        } else {
+        
         let imageData = self.avatarImageView.image?.pngData()
         self.viewModel?.saveImage(data: imageData ?? Data(), key: key)
+        }
         self.dismiss(animated: true)
     }
     
