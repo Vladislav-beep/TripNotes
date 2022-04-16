@@ -15,8 +15,10 @@ protocol WeatherViewModelProtocol {
     var IconName: String { get }
     var weatherCompletion: (() -> Void)? { get set }
     var errorCompletion: ((String) -> Void)? { get set }
-    init(networkManager: NetworkWeatherManagerProtocol)
+    init(networkManager: NetworkWeatherManagerProtocol, locationService: LocationServiceProtocol)
     func fetchWeather(longitude: CLLocationDegrees, latitude: CLLocationDegrees)
+    func setDelegate(for vc: Any)
+    func requestLocation()
 }
 
 class WeatherViewModel: WeatherViewModelProtocol {
@@ -24,6 +26,7 @@ class WeatherViewModel: WeatherViewModelProtocol {
     // MARK: - Dependencies
     
     private let networkManager: NetworkWeatherManagerProtocol
+    private let locationService: LocationServiceProtocol
     
     // MARK: - Properties
     
@@ -51,8 +54,10 @@ class WeatherViewModel: WeatherViewModelProtocol {
     
     // MARK: - Life Time
     
-    required init(networkManager: NetworkWeatherManagerProtocol) {
+    required init(networkManager: NetworkWeatherManagerProtocol,
+                  locationService: LocationServiceProtocol) {
         self.networkManager = networkManager
+        self.locationService = locationService
     }
     
     // MARK: - Methods
@@ -68,6 +73,14 @@ class WeatherViewModel: WeatherViewModelProtocol {
                 print(error.localizedDescription)
             }
         }
+    }
+    
+    func setDelegate(for vc: Any) {
+        locationService.setDelegates(for: vc)
+    }
+    
+    func requestLocation() {
+        locationService.requestLocation()
     }
 }
 

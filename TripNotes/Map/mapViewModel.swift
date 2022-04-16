@@ -9,21 +9,35 @@ import Foundation
 import MapKit
 
 protocol MapViewModelProtocol {
-    func showUserLocation() -> MKCoordinateRegion
-    func getLocationManager(viewController: UIViewController)
-    var locationService: LocationService { get }
+    init(locationService: LocationServiceProtocol)
+    func setDelegate(for vc: Any)
+    func requestLocation()
+    func showUserLocation() -> MKCoordinateRegion?
 }
 
 class MapViewModel: MapViewModelProtocol {
     
-    var locationService = LocationService()
+    // MARK: - Dependencies
     
-    func showUserLocation() -> MKCoordinateRegion {
-        print("25")
-        return locationService.showUserLocation()
+    private let locationService: LocationServiceProtocol
+    
+    // MARK: - Life Time
+    
+    required init(locationService: LocationServiceProtocol) {
+        self.locationService = locationService
     }
     
-    func getLocationManager(viewController: UIViewController) {
-        locationService.locationManager.delegate = viewController as? CLLocationManagerDelegate
+    // MARK: - Methods
+    
+    func setDelegate(for vc: Any) {
+        locationService.setDelegates(for: vc)
+    }
+    
+    func requestLocation() {
+        locationService.requestLocation()
+    }
+    
+    func showUserLocation() -> MKCoordinateRegion? {
+        locationService.showUserLocation()
     }
 }

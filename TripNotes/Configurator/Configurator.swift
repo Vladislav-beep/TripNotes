@@ -16,6 +16,7 @@ class Configurator {
     private let fileStorageService = FileStorageService()
     private let dateFormatterService = DateFormatterService()
     private let networkManager = NetworkWeatherManager()
+    private let locationService = LocationService()
     private let slideInTransitioningDelegate = SlideInPresentationManager()
     
     // MARK: - Methods
@@ -115,7 +116,8 @@ class Configurator {
     }
     
     func configureWeatherVC() -> WeatherViewController {
-        let weatherVM = WeatherViewModel(networkManager: networkManager)
+        let weatherVM = WeatherViewModel(networkManager: networkManager,
+                                         locationService: locationService)
         let weatherVC = WeatherViewController(viewModel: weatherVM)
         slideInTransitioningDelegate.direction = .bottom
         weatherVC.transitioningDelegate = slideInTransitioningDelegate
@@ -124,8 +126,9 @@ class Configurator {
     }
     
     func configureMapVC() -> MapViewController {
-        let mapVM = MapViewModel()
+        let mapVM = MapViewModel(locationService: locationService)
         let mapVC = MapViewController(viewModel: mapVM)
+        mapVC.modalPresentationStyle = .fullScreen
         return mapVC
     }
 }

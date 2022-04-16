@@ -108,7 +108,8 @@ class WeatherViewController: UIViewController {
         activityIndicator.startAnimating()
         
         setupViewModelBindings()
-        requestLocation()
+        viewModel.setDelegate(for: self)
+        viewModel.requestLocation()
     }
     
     // MARK: - Actions
@@ -116,6 +117,8 @@ class WeatherViewController: UIViewController {
     @objc private func closeScreen() {
         dismiss(animated: true)
     }
+    
+    let location = LocationService()
     
     // MARK: - Private methods
     
@@ -215,8 +218,7 @@ extension WeatherViewController: CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print(error.localizedDescription)
+        showAlert(title: "Coudn't determine your location",
+                  message: "Please, check your internet connection")
     }
 }
-
-

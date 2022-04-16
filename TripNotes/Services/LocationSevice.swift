@@ -8,35 +8,80 @@
 import Foundation
 import MapKit
 
-class LocationService {
-    
-    let locationManager = CLLocationManager()
-    private var placeCoordinate: CLLocationCoordinate2D?
-    private let regionInMeters = 1000.00
-    
-    
-    func showUserLocation() -> MKCoordinateRegion {
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        guard let location = locationManager.location?.coordinate else {
-            return MKCoordinateRegion() }
-            let region = MKCoordinateRegion(center: location,
-                                            latitudinalMeters: regionInMeters,
-                                            longitudinalMeters: regionInMeters)
-            
-          //  mapView.setRegion(region, animated: true)
-        return region
-    }
-    
-    func showUserLocation2(mapView: MKMapView) {
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        let location = locationManager.location?.coordinate ?? CLLocationCoordinate2D()
-            let region = MKCoordinateRegion(center: location,
-                                            latitudinalMeters: regionInMeters,
-                                            longitudinalMeters: regionInMeters)
-            
-            mapView.setRegion(region, animated: true)
+protocol LocationServiceProtocol {
+    func setDelegates(for vc: Any)
+    func requestLocation()
+    func showUserLocation() -> MKCoordinateRegion?
+}
 
+class LocationService: LocationServiceProtocol {
+    
+    private lazy var locationManager: CLLocationManager = {
+        let lm = CLLocationManager()
+        lm.desiredAccuracy = kCLLocationAccuracyBest
+        lm.requestWhenInUseAuthorization()
+        return lm
+    }()
+    
+    func setDelegates(for vc: Any) {
+        locationManager.delegate = vc as? CLLocationManagerDelegate
     }
+    
+    func requestLocation() {
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.requestLocation()
+        }
+    }
+
+    
+    
+    func showUserLocation() -> MKCoordinateRegion? {
+        guard let location = locationManager.location?.coordinate else { return nil }
+        let region = MKCoordinateRegion(center: location,
+                                        latitudinalMeters: 500,
+                                        longitudinalMeters: 500)
+        print("2")
+        return region
+        
+    }
+    
+//    func getCenterLocation(for mapView: MKMapView) -> CLLocation {
+//       let latitude = mapView.centerCoordinate.latitude
+//       let longitude = mapView.centerCoordinate.longitude
+//       
+//       return CLLocation(latitude: latitude, longitude: longitude)
+//   }
+}
+    
+    
+    
+   // let locationManager = CLLocationManager()
+  //  private var placeCoordinate: CLLocationCoordinate2D?
+  //  private let regionInMeters = 1000.00
+    
+    
+//    func showUserLocation() -> MKCoordinateRegion {
+//        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+//        guard let location = locationManager.location?.coordinate else {
+//            return MKCoordinateRegion() }
+//            let region = MKCoordinateRegion(center: location,
+//                                            latitudinalMeters: regionInMeters,
+//                                            longitudinalMeters: regionInMeters)
+//
+//          //  mapView.setRegion(region, animated: true)
+//        return region
+//    }
+//
+//    func showUserLocation2(mapView: MKMapView) {
+//        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+//        let location = locationManager.location?.coordinate ?? CLLocationCoordinate2D()
+//            let region = MKCoordinateRegion(center: location,
+//                                            latitudinalMeters: regionInMeters,
+//                                            longitudinalMeters: regionInMeters)
+//
+//            mapView.setRegion(region, animated: true)
+//
+//    }
     
 //    func getDirections(for mapView: MKMapView, previousLocation: (CLLocation) -> ()) {
 //        
@@ -80,22 +125,22 @@ class LocationService {
 //        }
 //    }
     
-    func startTrackingUserLocation(for mapView: MKMapView, and location: CLLocation?, closure: (_ currentLocation: CLLocation) -> ()) {
-        
-        guard let location = location else { return }
-        let center = getCenterLocation(for: mapView)
-        guard center.distance(from: location) > 50 else { return }
-        closure(center)
-    }
-    
-  
-     func getCenterLocation(for mapView: MKMapView) -> CLLocation {
-        
-        let latitude = mapView.centerCoordinate.latitude
-        let longitude = mapView.centerCoordinate.longitude
-        
-        return CLLocation(latitude: latitude, longitude: longitude)
-    }
-    
-    
-}
+//    func startTrackingUserLocation(for mapView: MKMapView, and location: CLLocation?, closure: (_ currentLocation: CLLocation) -> ()) {
+//
+//        guard let location = location else { return }
+//        let center = getCenterLocation(for: mapView)
+//        guard center.distance(from: location) > 50 else { return }
+//        closure(center)
+//    }
+//
+//
+//     func getCenterLocation(for mapView: MKMapView) -> CLLocation {
+//
+//        let latitude = mapView.centerCoordinate.latitude
+//        let longitude = mapView.centerCoordinate.longitude
+//
+//        return CLLocation(latitude: latitude, longitude: longitude)
+//    }
+//
+//
+

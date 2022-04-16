@@ -28,7 +28,6 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         return lm
     }()
     
-    
     // MARK: - UI
     
     private lazy var mapView: MKMapView = {
@@ -111,9 +110,11 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        requestLocation()
-    }
         
+        viewModel.setDelegate(for: self)
+        viewModel.requestLocation()
+    }
+    
     // MARK: - Actions
     
     @objc private func closeScreen() {
@@ -129,31 +130,19 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         dismiss(animated: true)
     }
     
-    // MARK: Private methods
+    // MARK: - Private methods
     
-    private func requestLocation() {
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager.requestLocation()
-        }
+    private func showUserLocation() {
+        guard let region = viewModel.showUserLocation() else { return }
+        mapView.setRegion(region, animated: true)
     }
     
-    func showUserLocation() {
-        if let location = locationManager.location?.coordinate {
-            let region = MKCoordinateRegion(center: location,
-                                            latitudinalMeters: 500,
-                                            longitudinalMeters: 500)
-            
-            mapView.setRegion(region, animated: true)
-            print("2")
-        }
+    private func getCenterLocation(for mapView: MKMapView) -> CLLocation {
+        let latitude = mapView.centerCoordinate.latitude
+        let longitude = mapView.centerCoordinate.longitude
+        
+        return CLLocation(latitude: latitude, longitude: longitude)
     }
-    
-    func getCenterLocation(for mapView: MKMapView) -> CLLocation {
-       let latitude = mapView.centerCoordinate.latitude
-       let longitude = mapView.centerCoordinate.longitude
-       
-       return CLLocation(latitude: latitude, longitude: longitude)
-   }
     
     // MARK: - Layout
     
@@ -281,20 +270,13 @@ extension MapViewController: CLLocationManagerDelegate {
             }
         }
     }
-
-
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        //    guard let location = locations.last else { return }
-        //    let latitude = location.coordinate.latitude
-        //    let longitude = location.coordinate.longitude
-        
         showUserLocation()
-        
-         print("1")
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print(error.localizedDescription)
+        showAlert(title: "Coudn't determine your location",
+                  message: "Please, check your internet connection")
     }
-    
 }
