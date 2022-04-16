@@ -26,23 +26,22 @@ class TripTableViewCell: UITableViewCell {
     
     private lazy var tripImageView: UIImageView = {
         let tripImageView = UIImageView()
-        tripImageView.layer.cornerRadius = 10
+        tripImageView.layer.cornerRadius = 22
         tripImageView.clipsToBounds = true
         tripImageView.contentMode = .scaleAspectFill
         tripImageView.image = UIImage(named: Constants.ImageNames.tripPlaceHolderImage.rawValue)
         tripImageView.layer.opacity = 0.75
-        tripImageView.backgroundColor = .tripRed
         tripImageView.translatesAutoresizingMaskIntoConstraints = false
         return tripImageView
     }()
     
     private lazy var countryLabel: TripCellLabel = {
-        let countryLabel = TripCellLabel(lineNumber: 1, fontSize: 22)
+        let countryLabel = TripCellLabel(lineNumber: 1, fontSize: 18)
         return countryLabel
     }()
     
     private lazy var descriptionLabel: TripCellLabel = {
-        let descriptionLabel = TripCellLabel(lineNumber: 2, fontSize: 15)
+        let descriptionLabel = TripCellLabel(lineNumber: 2, fontSize: 14)
         return descriptionLabel
     }()
     
@@ -54,7 +53,8 @@ class TripTableViewCell: UITableViewCell {
     }()
     
     private lazy var dateLabel: TripCellLabel = {
-        let dateLabel = TripCellLabel(lineNumber: 1, fontSize: 17)
+        let dateLabel = TripCellLabel(lineNumber: 1, fontSize: 13)
+        dateLabel.font = UIFont.systemFont(ofSize: 13, weight: .heavy)
         return dateLabel
     }()
     
@@ -72,14 +72,14 @@ class TripTableViewCell: UITableViewCell {
         return infoStackView
     }()
     
-    private lazy var textView: UIView = {
-        let textView = UIView()
-        textView.backgroundColor = .tripRed
-        textView.layer.opacity = 0.45
-        textView.layer.cornerRadius = 8
-        textView.translatesAutoresizingMaskIntoConstraints = false
-        return textView
-    }()
+//    private lazy var textView: UIView = {
+//        let textView = UIView()
+//        textView.backgroundColor = .tripRed
+//        textView.layer.opacity = 0.45
+//        textView.layer.cornerRadius = 8
+//        textView.translatesAutoresizingMaskIntoConstraints = false
+//        return textView
+//    }()
     
     // MARK: - Life Time
     
@@ -105,7 +105,7 @@ class TripTableViewCell: UITableViewCell {
     
     private func setupAllConstraints() {
         setupTripImageConstraints()
-        setupTextViewConstraints()
+       // setupTextViewConstraints()
         setupTotalSumLabelConstraints()
         descriptionLabelConstraints()
         setupInfoStackViewConstraints()
@@ -114,8 +114,8 @@ class TripTableViewCell: UITableViewCell {
     private func setupTripImageConstraints() {
         contentView.addSubview(tripImageView)
         NSLayoutConstraint.activate([
-            tripImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
-            tripImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20),
+            tripImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
+            tripImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
             tripImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
             tripImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10)
         ])
@@ -135,30 +135,30 @@ class TripTableViewCell: UITableViewCell {
         contentView.addSubview(currencyLabel)
         NSLayoutConstraint.activate([
             currencyLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15),
-            currencyLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5),
+            currencyLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
             currencyLabel.widthAnchor.constraint(equalToConstant: 150),
             currencyLabel.heightAnchor.constraint(equalToConstant: 40)
         ])
     }
     
-    private func setupTextViewConstraints() {
-        contentView.addSubview(textView)
-        NSLayoutConstraint.activate([
-            textView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
-            textView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: -10),
-            textView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -30),
-            textView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -44),
-        ])
-    }
+//    private func setupTextViewConstraints() {
+//        contentView.addSubview(textView)
+//        NSLayoutConstraint.activate([
+//            textView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+//            textView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: -10),
+//            textView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -30),
+//            textView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -44),
+//        ])
+//    }
     
     private func setupInfoStackViewConstraints() {
         descriptionLabelConstraints()
         contentView.addSubview(infoStackView)
         NSLayoutConstraint.activate([
-            infoStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
-            infoStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 18),
-            infoStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -30),
-            infoStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -44),
+            infoStackView.topAnchor.constraint(equalTo: tripImageView.topAnchor, constant: 45),
+            infoStackView.leadingAnchor.constraint(equalTo: tripImageView.leadingAnchor, constant: 10),
+            infoStackView.trailingAnchor.constraint(equalTo: tripImageView.trailingAnchor, constant: -30),
+            infoStackView.bottomAnchor.constraint(equalTo: tripImageView.bottomAnchor, constant: -10),
         ])
     }
 }

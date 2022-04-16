@@ -40,7 +40,7 @@ class TripTableViewCellViewModel: TripTableViewCellViewModelProtocol {
     }
     
     var country: String {
-        trip.country
+        trip.country.uppercased()
     }
     
     var currency: String {

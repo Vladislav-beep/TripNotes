@@ -65,7 +65,7 @@ class NoteCellViewModel: NoteCellViewModelProtocol {
     }
     
     var infoLabel: String {
-        "\(trip.country) \n \(dateFormatterService.convertTripDateToShortString(date: trip.beginningDate)) - \(dateFormatterService.convertTripDateToShortString(date: trip.finishingDate))"
+        "\(trip.country) \n \(dateFormatterService.convertTripDateToShortString(date: trip.beginningDate)) - \(dateFormatterService.convertTripDateToShortString(date: trip.finishingDate))".uppercased()
     }
     
     // MARK: - Private properties
