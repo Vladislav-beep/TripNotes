@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import Firebase
+//import Firebase
 
 class TripsViewController: UIViewController {
     
@@ -144,12 +144,19 @@ class TripsViewController: UIViewController {
     }
     
     private func signOut() {
-        do {
-            try Auth.auth().signOut()
-            dismiss(animated: true)
-        } catch {
-            showAlert(title: "Could not sign out", message: "Check your network connection")
+        
+        viewModel.signOut { [weak self] in
+            self?.dismiss(animated: true)
+        } completionError: { [weak self] in
+            self?.showAlert(title: "Could not sign out", message: "Check your network connection")
         }
+
+//        do {
+//            try Auth.auth().signOut()
+//            dismiss(animated: true)
+//        } catch {
+//            showAlert(title: "Could not sign out", message: "Check your network connection")
+//        }
     }
     
     private func setupNavigationBar() {
@@ -338,6 +345,10 @@ extension TripsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let edit = editAction(at: indexPath)
         return UISwipeActionsConfiguration(actions: [edit])
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.backgroundColor = .clear
     }
 }
 

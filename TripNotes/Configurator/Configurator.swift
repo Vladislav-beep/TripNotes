@@ -48,7 +48,8 @@ class Configurator {
         let tripVM = TripsViewModel(fireBaseService: fireBaseService,
                                     userId: userId,
                                     fileStorageService: fileStorageService,
-                                    dateFormatterService: dateFormatterService)
+                                    dateFormatterService: dateFormatterService,
+                                    authService: authService)
         let tripVC = TripsViewController(viewModel: tripVM)
         tripVC.configurator = self
         tripVC.modalPresentationStyle = .fullScreen

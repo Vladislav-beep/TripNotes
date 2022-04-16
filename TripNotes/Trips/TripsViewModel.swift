@@ -15,8 +15,10 @@ protocol TripsViewModelProtocol: class {
     init(fireBaseService: FireBaseServiceProtocol,
                   userId: String,
                   fileStorageService: FileStorageServiceProtocol,
-                  dateFormatterService: DateFormatterServiceProtocol)
+                  dateFormatterService: DateFormatterServiceProtocol,
+                  authService: AuthServiceProtocol)
     func fetchTrips()
+    func signOut(completionSuccess: @escaping () -> (), completionError: @escaping () -> ())
     func numberOfRows(section: Int) -> Int
     func titleForHeaderInSection(section: Int) -> String
     func tripCellViewModel(for indexPath: IndexPath) -> TripTableViewCellViewModelProtocol?
@@ -26,7 +28,6 @@ protocol TripsViewModelProtocol: class {
     func newNoteViewModel(at indexPath: IndexPath) -> NewNoteViewModelProtocol
     func deleteRow(at indexPath: IndexPath, errorCompletion: @escaping () -> Void)
     func getTripId(for indexPath: IndexPath?) -> String
-    
 }
 
 class TripsViewModel: TripsViewModelProtocol {
@@ -36,6 +37,7 @@ class TripsViewModel: TripsViewModelProtocol {
     private let fireBaseService: FireBaseServiceProtocol
     private let fileStorageService: FileStorageServiceProtocol
     private let dateFormatterService: DateFormatterServiceProtocol
+    private let authService: AuthServiceProtocol
 
     // MARK: Properties
 
@@ -54,11 +56,13 @@ class TripsViewModel: TripsViewModelProtocol {
     required init(fireBaseService: FireBaseServiceProtocol,
                   userId: String,
                   fileStorageService: FileStorageServiceProtocol,
-                  dateFormatterService: DateFormatterServiceProtocol) {
+                  dateFormatterService: DateFormatterServiceProtocol,
+                  authService: AuthServiceProtocol) {
         self.fireBaseService = fireBaseService
         self.userId = userId
         self.fileStorageService = fileStorageService
         self.dateFormatterService = dateFormatterService
+        self.authService = authService
     }
     
     // MARK: - Private methods
@@ -79,6 +83,10 @@ class TripsViewModel: TripsViewModelProtocol {
                 self?.errorCompletion?(error)
             }
         })
+    }
+    
+    func signOut(completionSuccess: @escaping () -> (), completionError: @escaping () -> ()) {
+        authService.signOut(completionSuccess: completionSuccess, completionError: completionError)
     }
     
     func numberOfRows(section: Int) -> Int {

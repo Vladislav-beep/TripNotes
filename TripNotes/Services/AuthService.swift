@@ -29,8 +29,8 @@ protocol AuthServiceProtocol {
     func getUserId(completion: @escaping (Result<String, AuthError>) -> Void)
     func createNewUser(withEmail email: String, password: String, name: String, completion: @escaping () -> (), errorCompletion: @escaping () -> ())
     func signIn(withEmail email: String, password: String, completion: @escaping () -> (), errorCompletion: @escaping () -> ())
+    func signOut(completionSuccess: @escaping () -> (), completionError: @escaping () -> ()) 
     func checkSignIn(completion: @escaping () -> Void)
-    
 }
 
 class AuthService: AuthServiceProtocol {
@@ -84,6 +84,15 @@ class AuthService: AuthServiceProtocol {
             if user != nil {
                 completion()
             }
+        }
+    }
+    
+    func signOut(completionSuccess: @escaping () -> (), completionError: @escaping () -> ()) {
+        do {
+            try Auth.auth().signOut()
+            completionSuccess()
+        } catch {
+            completionError()
         }
     }
     
