@@ -83,4 +83,3 @@ class WeatherViewModel: WeatherViewModelProtocol {
         locationService.requestLocation()
     }
 }
-

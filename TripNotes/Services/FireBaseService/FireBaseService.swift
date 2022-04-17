@@ -22,7 +22,6 @@ protocol FireBaseServiceProtocol {
     func updateNote(forUser userId: String, tripId: String, noteId: String, city: String, category: String, description: String, price: Double, address: String, errorCompletion: @escaping () -> Void)
     func deleteNote(forUser userId: String, tripId: String, noteId: String)
     func toggleFavourite(forUser userId: String, tripId: String, noteId: String, isFavourite: Bool)
-    
 }
 
 class FireBaseService: FireBaseServiceProtocol {
@@ -31,7 +30,7 @@ class FireBaseService: FireBaseServiceProtocol {
     
     private lazy var db = Firestore.firestore()
     private lazy var usersRef = db.collection("users")
-
+    
     // MARK: Trip methods
     
     func fetchTrips(forUser id: String, completion: @escaping (Result <[Trip], FireBaseError>) -> Void) {
@@ -114,7 +113,7 @@ class FireBaseService: FireBaseServiceProtocol {
     }
     
     // MARK: Note methods
-        
+    
     func fetchNotes(forUser userId: String, forTrip tripId: String, completion: @escaping (Result <[TripNote], FireBaseError>) -> Void) {
         usersRef.document(userId).collection("trips").document(tripId).collection("tripNotes").getDocuments { (querySnapshot, error) in
             if error != nil {
@@ -145,7 +144,7 @@ class FireBaseService: FireBaseServiceProtocol {
                             completion(.failure(FireBaseError.note))
                         } else {
                             
-                        for document in snapshot!.documents {
+                            for document in snapshot!.documents {
                                 let note = TripNote(document: document)
                                 tripNoteDict[note] = trip
                             }
@@ -182,9 +181,9 @@ class FireBaseService: FireBaseServiceProtocol {
             if let document = document, document.exists {
                 let note = TripNote(document: document)
                 completion(.success(note))
-               } else {
+            } else {
                 completion(.failure(FireBaseError.note))
-               }
+            }
         }
     }
     
@@ -202,7 +201,7 @@ class FireBaseService: FireBaseServiceProtocol {
             }
         }
     }
-     
+    
     func toggleFavourite(forUser userId: String, tripId: String, noteId: String, isFavourite: Bool) {
         let noteRef = usersRef.document(userId).collection("trips").document(tripId).collection("tripNotes").document(noteId)
         
@@ -214,4 +213,3 @@ class FireBaseService: FireBaseServiceProtocol {
         noteRef.delete()
     }
 }
-

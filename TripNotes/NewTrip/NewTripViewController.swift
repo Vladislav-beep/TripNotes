@@ -7,7 +7,6 @@
 
 import UIKit
 
-
 class NewTripViewController: UIViewController {
     
     // MARK: - Dependencies
@@ -219,13 +218,13 @@ class NewTripViewController: UIViewController {
             return
             
         }
-
+        
         if self.isEdited ?? false {
-           viewModel?.updateTrip(country: country, currency: currency, description: description, beginningDate: bdate , finishingDate: fdate , completion: { [weak self] docId in
-            self?.updateImageAndCloseScreen(forKey: docId)
+            viewModel?.updateTrip(country: country, currency: currency, description: description, beginningDate: bdate , finishingDate: fdate , completion: { [weak self] docId in
+                self?.updateImageAndCloseScreen(forKey: docId)
             }, errorCompletion: { [weak self] in
                 self?.showAlert(title: "Unable to update trip",
-                               message: "Please, check your internet connection")
+                                message: "Please, check your internet connection")
                 return
             })
         } else {
@@ -233,7 +232,7 @@ class NewTripViewController: UIViewController {
                 self?.updateImageAndCloseScreen(forKey: docId)
             }, errorCompletion: { [weak self] in
                 self?.showAlert(title: "Unable to add trip",
-                               message: "Please, check your internet connection")
+                                message: "Please, check your internet connection")
                 return
             })
         }
@@ -366,9 +365,9 @@ class NewTripViewController: UIViewController {
         if avatarImageView.image == UIImage() {
             viewModel?.deleteImage(forKey: key)
         } else {
-        
-        let imageData = self.avatarImageView.image?.pngData()
-        self.viewModel?.saveImage(data: imageData ?? Data(), key: key)
+            
+            let imageData = self.avatarImageView.image?.pngData()
+            self.viewModel?.saveImage(data: imageData ?? Data(), key: key)
         }
         self.dismiss(animated: true)
     }

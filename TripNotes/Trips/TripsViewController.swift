@@ -6,7 +6,6 @@
 //
 
 import UIKit
-//import Firebase
 
 class TripsViewController: UIViewController {
     
@@ -144,19 +143,11 @@ class TripsViewController: UIViewController {
     }
     
     private func signOut() {
-        
         viewModel.signOut { [weak self] in
             self?.dismiss(animated: true)
         } completionError: { [weak self] in
             self?.showAlert(title: "Could not sign out", message: "Check your network connection")
         }
-
-//        do {
-//            try Auth.auth().signOut()
-//            dismiss(animated: true)
-//        } catch {
-//            showAlert(title: "Could not sign out", message: "Check your network connection")
-//        }
     }
     
     private func setupNavigationBar() {
@@ -351,6 +342,3 @@ extension TripsViewController: UITableViewDelegate {
         cell.backgroundColor = .clear
     }
 }
-
-
-

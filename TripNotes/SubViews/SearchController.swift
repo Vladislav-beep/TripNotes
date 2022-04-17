@@ -30,4 +30,3 @@ class SearchController: UISearchController {
         definesPresentationContext = true
     }
 }
-

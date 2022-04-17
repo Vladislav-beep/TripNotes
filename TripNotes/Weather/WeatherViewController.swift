@@ -81,14 +81,6 @@ class WeatherViewController: UIViewController {
         return activityIndicator
     }()
     
-    private lazy var locationManager: CLLocationManager = {
-        let lm = CLLocationManager()
-        lm.delegate = self
-        lm.desiredAccuracy = kCLLocationAccuracyBest
-        lm.requestWhenInUseAuthorization()
-        return lm
-    }()
-    
     // MARK: - Life Time
     
     init(viewModel: WeatherViewModelProtocol) {
@@ -121,12 +113,6 @@ class WeatherViewController: UIViewController {
     let location = LocationService()
     
     // MARK: - Private methods
-    
-    private func requestLocation() {
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager.requestLocation()
-        }
-    }
     
     private func setupViewModelBindings() {
         viewModel.weatherCompletion = { [weak self] in

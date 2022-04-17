@@ -10,5 +10,3 @@ import Foundation
 extension Numeric {
     var formattedWithSeparator: String { Formatter.withSeparator.string(for: self) ?? "" }
 }
-
-

@@ -30,7 +30,7 @@ protocol NewTripViewModelProtocol {
 class NewTripViewModel: NewTripViewModelProtocol {
     
     // MARK: - Dependencies
-        
+    
     private let fireBaseService: FireBaseServiceProtocol
     private let fileStorageService: FileStorageServiceProtocol
     
@@ -116,5 +116,3 @@ class NewTripViewModel: NewTripViewModelProtocol {
         fireBaseService.updateTrip(forUser: userId, tripId: tripId, country: country, currency: currency, description: description, beginningDate: beginningDate, finishingDate: finishingDate, completion: completion, errorCompletion: errorCompletion)
     }
 }
-
-

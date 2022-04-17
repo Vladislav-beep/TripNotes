@@ -21,7 +21,7 @@ class DetailNoteViewController: UIViewController {
     var isFavourite = false
     
     // MARK: - UI
-        
+    
     private lazy var yellowView: UIView = {
         let redView = UIView()
         redView.backgroundColor = .tripYellow
@@ -84,7 +84,7 @@ class DetailNoteViewController: UIViewController {
         editButton.addTarget(self, action: #selector(editNote), for: .touchUpInside)
         return editButton
     }()
-
+    
     private lazy var editDeleteButtonStack: UIStackView = {
         let stack = UIStackView(arrangedSubviews: [deleteButton, editButton],
                                 axis: .horizontal,
@@ -210,7 +210,7 @@ class DetailNoteViewController: UIViewController {
     private func postNotification() {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateNotes"), object: nil)
     }
-        
+    
     // MARK: - Layout
     
     private func setupAllConstraints() {
@@ -234,7 +234,7 @@ class DetailNoteViewController: UIViewController {
             yellowView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0)
         ])
     }
-
+    
     private func setupCloseButtonConstraints() {
         yellowView.addSubview(closeButton)
         NSLayoutConstraint.activate([
@@ -254,7 +254,7 @@ class DetailNoteViewController: UIViewController {
             likeButton.topAnchor.constraint(equalTo: yellowView.topAnchor, constant: 8)
         ])
     }
-        
+    
     private func setupStackViewConstraints() {
         yellowView.addSubview(categoryImageView)
         NSLayoutConstraint.activate([

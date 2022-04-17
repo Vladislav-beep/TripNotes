@@ -18,7 +18,13 @@ protocol NoteCellViewModelProtocol {
     var isFavourite: Bool { get }
     var infoLabel: String { get }
     var isInfoShown: Bool { get }
-    init(tripNote: TripNote, currency: String, trip: Trip, isInfoShown: Bool, fireBaseService: FireBaseServiceProtocol, dateFormatterService: DateFormatterServiceProtocol, userId: String)
+    init(tripNote: TripNote,
+         currency: String,
+         trip: Trip,
+         isInfoShown: Bool,
+         fireBaseService: FireBaseServiceProtocol,
+         dateFormatterService: DateFormatterServiceProtocol,
+         userId: String)
     func deleteNote()
     func toggleFavourite(isFavourite: Bool)
     func getTripId() -> String
@@ -39,7 +45,7 @@ class NoteCellViewModel: NoteCellViewModelProtocol {
     var id: String {
         tripNote.id
     }
-   
+    
     var description: String {
         tripNote.description ?? ""
     }

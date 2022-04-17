@@ -74,7 +74,7 @@ class SlideInPresentationController: UIPresentationController {
             dimmingView.leadingAnchor.constraint(equalTo: containerView?.leadingAnchor ?? NSLayoutAnchor(), constant: 0),
             dimmingView.trailingAnchor.constraint(equalTo: containerView?.trailingAnchor ?? NSLayoutAnchor(), constant: 0),
         ])
-    
+        
         guard let coordinator = presentedViewController.transitionCoordinator else {
             dimmingView.alpha = 1.0
             return
@@ -110,4 +110,3 @@ class SlideInPresentationController: UIPresentationController {
         }
     }
 }
-

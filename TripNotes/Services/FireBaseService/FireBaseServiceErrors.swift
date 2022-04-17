@@ -5,8 +5,6 @@
 //  Created by Владислав Сизонов on 29.03.2022.
 //
 
-import Foundation
-
 enum FireBaseError: Error {
     case trip
     case note

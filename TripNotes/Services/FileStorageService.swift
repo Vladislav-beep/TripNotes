@@ -47,11 +47,11 @@ class FileStorageService: FileStorageServiceProtocol {
     
     func delete(forKey key: String) {
         if let filePath = filePath(forKey: key) {
-        do {
-            try fileManager.removeItem(atPath: filePath.path)
-        } catch let err {
-            print("Coudn't delete image", err)
+            do {
+                try fileManager.removeItem(atPath: filePath.path)
+            } catch let err {
+                print("Coudn't delete image", err)
+            }
         }
-    }
     }
 }

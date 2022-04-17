@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Firebase
 
 class TabBarViewController: UITabBarController {
     
@@ -86,5 +85,3 @@ class TabBarViewController: UITabBarController {
         }
     }
 }
-
-

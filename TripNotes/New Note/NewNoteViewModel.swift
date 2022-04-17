@@ -24,7 +24,7 @@ protocol NewNoteViewModelProtocol {
 class NewNoteViewModel: NewNoteViewModelProtocol {
     
     // MARK: - Dependencies
-
+    
     private let fireBaseService: FireBaseServiceProtocol
     
     // MARK: - Private properties

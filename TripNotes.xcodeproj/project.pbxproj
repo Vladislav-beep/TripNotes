@@ -109,6 +109,7 @@
 		B9AA39DF27BAD08A00CD48E9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B9AA39DE27BAD08A00CD48E9 /* GoogleService-Info.plist */; };
 		B9AA39E027BAD08A00CD48E9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B9AA39DE27BAD08A00CD48E9 /* GoogleService-Info.plist */; };
 		B9C2F1F527E08E9600A38B18 /* TabBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C2F1F427E08E9600A38B18 /* TabBarViewModel.swift */; };
+		B9C6A69E280C1A8F00BA9F61 /* AuthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C6A69D280C1A8F00BA9F61 /* AuthError.swift */; };
 		B9D9C8AF27C3EDF70003D34C /* FireBaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9863ABA27C1371F00BE6337 /* FireBaseService.swift */; };
 		B9D9FC11278F390B007710B4 /* NewNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9FD6C07278E040900311EF1 /* NewNoteViewController.swift */; };
 		B9D9FC14278F4E1D007710B4 /* SelectionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A0EF6A2774DDCE00DE65E2 /* SelectionButton.swift */; };
@@ -124,8 +125,6 @@
 		B9E85C3D276E6468004FD1D8 /* Extension + UIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E85C3C276E6468004FD1D8 /* Extension + UIStackView.swift */; };
 		B9E8670F27E1D3CF00C97E5E /* KeyboardHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E8670E27E1D3CF00C97E5E /* KeyboardHelper.swift */; };
 		B9EA410B27777D9A00CC173A /* NewTripViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9FB611B2772339500126A59 /* NewTripViewModel.swift */; };
-		B9EBFB05277A3EDE00746A0A /* Extension + UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9EBFB04277A3EDE00746A0A /* Extension + UIButton.swift */; };
-		B9EBFB0A277A3EEA00746A0A /* Extension + UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9EBFB04277A3EDE00746A0A /* Extension + UIButton.swift */; };
 		B9F018982770DF1D006F2DE7 /* TripsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DCF134276BAFF8007B0320 /* TripsViewModel.swift */; };
 		B9F296C127895C4300844D6C /* NoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F296C027895C4300844D6C /* NoteCell.swift */; };
 		B9F296C527895C7F00844D6C /* NoteCellVewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F296C427895C7F00844D6C /* NoteCellVewModel.swift */; };
@@ -221,6 +220,7 @@
 		B9A0EF6A2774DDCE00DE65E2 /* SelectionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionButton.swift; sourceTree = "<group>"; };
 		B9AA39DE27BAD08A00CD48E9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B9C2F1F427E08E9600A38B18 /* TabBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewModel.swift; sourceTree = "<group>"; };
+		B9C6A69D280C1A8F00BA9F61 /* AuthError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthError.swift; sourceTree = "<group>"; };
 		B9DCF134276BAFF8007B0320 /* TripsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripsViewModel.swift; sourceTree = "<group>"; };
 		B9DCF13D276BBE29007B0320 /* Extension + UIBarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIBarButtonItem.swift"; sourceTree = "<group>"; };
 		B9DE0D402768FD6400805E4C /* TripModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripModel.swift; sourceTree = "<group>"; };
@@ -229,7 +229,6 @@
 		B9DE0D4B2768FD7900805E4C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B9E85C3C276E6468004FD1D8 /* Extension + UIStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIStackView.swift"; sourceTree = "<group>"; };
 		B9E8670E27E1D3CF00C97E5E /* KeyboardHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHelper.swift; sourceTree = "<group>"; };
-		B9EBFB04277A3EDE00746A0A /* Extension + UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIButton.swift"; sourceTree = "<group>"; };
 		B9F296C027895C4300844D6C /* NoteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteCell.swift; sourceTree = "<group>"; };
 		B9F296C427895C7F00844D6C /* NoteCellVewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteCellVewModel.swift; sourceTree = "<group>"; };
 		B9F39E042767D28600DAFB4C /* TripTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripTableViewCell.swift; sourceTree = "<group>"; };
@@ -293,12 +292,12 @@
 		B90DB436276F147000F1A544 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				B9C6A69C280C1A6F00BA9F61 /* AuthService */,
 				B919353127F379EA0095D1C9 /* NetworkService */,
 				B919352A27F36C5B0095D1C9 /* FireBaseService */,
 				B90DB437276F14B100F1A544 /* DateFormatterService.swift */,
 				B9698F22279C4689005FB438 /* LocationSevice.swift */,
 				B94439D727B84E09000DF640 /* Animator.swift */,
-				B9863ABE27C1374100BE6337 /* AuthService.swift */,
 				B938B1F427DB50B400E205C6 /* FileStorageService.swift */,
 			);
 			path = Services;
@@ -472,6 +471,15 @@
 			path = "New account";
 			sourceTree = "<group>";
 		};
+		B9C6A69C280C1A6F00BA9F61 /* AuthService */ = {
+			isa = PBXGroup;
+			children = (
+				B9863ABE27C1374100BE6337 /* AuthService.swift */,
+				B9C6A69D280C1A8F00BA9F61 /* AuthError.swift */,
+			);
+			path = AuthService;
+			sourceTree = "<group>";
+		};
 		B9DCF13A276BB6F0007B0320 /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -545,7 +553,6 @@
 				B9E85C3C276E6468004FD1D8 /* Extension + UIStackView.swift */,
 				B90DB43F276F323000F1A544 /* Extension + Formatter.swift */,
 				B90DB443276F326000F1A544 /* Extension + Numeric.swift */,
-				B9EBFB04277A3EDE00746A0A /* Extension + UIButton.swift */,
 				B909AFDC277E3135006EFC38 /* Extension + UITextField.swift */,
 				B938B1FC27DC99B600E205C6 /* Extension + UIViewController.swift */,
 			);
@@ -738,12 +745,12 @@
 				B961212D279351FB00B7B81E /* SelectionLabel.swift in Sources */,
 				B95FBCD127D7D6D5006FF5A8 /* WeatherViewModel.swift in Sources */,
 				B90DB438276F14B100F1A544 /* DateFormatterService.swift in Sources */,
+				B9C6A69E280C1A8F00BA9F61 /* AuthError.swift in Sources */,
 				B90DB44A276F532D00F1A544 /* NotesViewController.swift in Sources */,
 				B9072FEC27E8D1A9008BE67C /* SearchController.swift in Sources */,
 				B90251CE27DA477600788065 /* TotalSumLabel.swift in Sources */,
 				B91E813F2767A88E00D0748B /* SceneDelegate.swift in Sources */,
 				B95FBD0027D8B8AD006FF5A8 /* CurrentWeather.swift in Sources */,
-				B9EBFB05277A3EDE00746A0A /* Extension + UIButton.swift in Sources */,
 				B9FB61242772617000126A59 /* CustomTextField.swift in Sources */,
 				B96648792799D65F00F527E8 /* MapViewController.swift in Sources */,
 				B93DD4C8279F284300D91A08 /* SignInButton.swift in Sources */,
@@ -782,7 +789,6 @@
 				B909AFE0277E437D006EFC38 /* Extension + UITextField.swift in Sources */,
 				B9DE0D5F2768FDB800805E4C /* TripModel.swift in Sources */,
 				B98282E427A082CE006EFED8 /* NewAccountViewController.swift in Sources */,
-				B9EBFB0A277A3EEA00746A0A /* Extension + UIButton.swift in Sources */,
 				B9FB611F277236B400126A59 /* NewTripViewController.swift in Sources */,
 				B949FB1027AEE4EA00590F0E /* NoteLabel.swift in Sources */,
 				B98282E127A07CDA006EFED8 /* NewAccountViewModel.swift in Sources */,

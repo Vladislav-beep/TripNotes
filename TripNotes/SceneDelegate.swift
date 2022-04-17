@@ -8,7 +8,7 @@
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-
+    
     var window: UIWindow?
     var configurator: Configurator?
     
@@ -22,4 +22,3 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window = window
     }
 }
-

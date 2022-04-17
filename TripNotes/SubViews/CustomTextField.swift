@@ -52,7 +52,3 @@ class CustomTextField: UITextField {
         leftView = view
     }
 }
-
-
-
-

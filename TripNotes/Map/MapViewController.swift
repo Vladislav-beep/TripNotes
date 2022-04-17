@@ -20,14 +20,6 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     var viewModel: MapViewModelProtocol
     var mapViewControllerDelegate: MapViewControllerDelegate?
     
-    private lazy var locationManager: CLLocationManager = {
-        let lm = CLLocationManager()
-        lm.delegate = self
-        lm.desiredAccuracy = kCLLocationAccuracyKilometer
-        lm.requestWhenInUseAuthorization()
-        return lm
-    }()
-    
     // MARK: - UI
     
     private lazy var mapView: MKMapView = {

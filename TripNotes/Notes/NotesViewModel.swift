@@ -35,7 +35,6 @@ class NotesViewModel: NotesViewModelProtocol {
         trip?.country ?? ""
     }
     
-    
     var totalSum: String {
         var sum = 0.0
         for note in notes {
@@ -43,7 +42,6 @@ class NotesViewModel: NotesViewModelProtocol {
         }
         return "\(sum.formattedWithSeparator) \(trip?.currency ?? "")"
     }
-    
     
     var notes: [TripNote] = []
     var trip: Trip?

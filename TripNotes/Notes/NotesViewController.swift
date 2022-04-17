@@ -72,7 +72,7 @@ class NotesViewController: UIViewController {
     }
     
     // MARK: - Private methods
-
+    
     private func setupViewModelBundings() {
         viewModel.noteCompletion = { [weak self] in
             self?.collectionView.reloadData()
@@ -130,7 +130,8 @@ class NotesViewController: UIViewController {
         ])
     }
 }
-    
+
+// MARK: - UICollectionViewDelegate
 extension NotesViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -141,7 +142,6 @@ extension NotesViewController: UICollectionViewDelegate {
 }
 
 // MARK: - CollectionViewDataSource
-
 extension NotesViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -156,6 +156,3 @@ extension NotesViewController: UICollectionViewDataSource {
         return cell ?? UICollectionViewCell()
     }
 }
-
-
-

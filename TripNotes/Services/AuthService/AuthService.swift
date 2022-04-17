@@ -8,23 +8,6 @@
 import Foundation
 import Firebase
 
-enum AuthError: Error {
-    case badURL
-    case badData
-    case networkProblem
-    
-    var errorDescription: String? {
-        switch self {
-        case .badURL:
-            return "Bad URL"
-        case .badData:
-            return "No data"
-        case .networkProblem:
-            return "Network problem"
-        }
-    }
-}
-
 protocol AuthServiceProtocol {
     func getUserId(completion: @escaping (Result<String, AuthError>) -> Void)
     func createNewUser(withEmail email: String, password: String, name: String, completion: @escaping () -> (), errorCompletion: @escaping () -> ())

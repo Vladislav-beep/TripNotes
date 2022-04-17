@@ -68,7 +68,7 @@ class FavouritesViewController: UIViewController {
         super.viewDidLoad()
         setupDelegates()
         setupViewModelBindings()
-  
+        
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(refresh),
                                                name: NSNotification.Name(rawValue: "updateNotes"),
@@ -97,8 +97,8 @@ class FavouritesViewController: UIViewController {
     
     private func setupUI() {
         if viewModel.numberOfCells(isFiltering: isFiltering) != 0 {
-        noLabel.isHidden = true
-       }
+            noLabel.isHidden = true
+        }
     }
     
     private func setupViewModelBindings() {
@@ -177,7 +177,7 @@ class FavouritesViewController: UIViewController {
 extension FavouritesViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-       viewModel.numberOfCells(isFiltering: isFiltering)
+        viewModel.numberOfCells(isFiltering: isFiltering)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

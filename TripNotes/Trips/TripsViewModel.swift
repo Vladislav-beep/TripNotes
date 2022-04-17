@@ -6,17 +6,16 @@
 //
 
 import Foundation
-import Firebase
 
 protocol TripsViewModelProtocol: class {
     var userId: String { get set }
     var firstCompletion: (() -> Void)? { get set }
     var errorCompletion: ((FireBaseError) -> Void)? { get set }
     init(fireBaseService: FireBaseServiceProtocol,
-                  userId: String,
-                  fileStorageService: FileStorageServiceProtocol,
-                  dateFormatterService: DateFormatterServiceProtocol,
-                  authService: AuthServiceProtocol)
+         userId: String,
+         fileStorageService: FileStorageServiceProtocol,
+         dateFormatterService: DateFormatterServiceProtocol,
+         authService: AuthServiceProtocol)
     func fetchTrips()
     func signOut(completionSuccess: @escaping () -> (), completionError: @escaping () -> ())
     func numberOfRows(section: Int) -> Int
@@ -38,20 +37,20 @@ class TripsViewModel: TripsViewModelProtocol {
     private let fileStorageService: FileStorageServiceProtocol
     private let dateFormatterService: DateFormatterServiceProtocol
     private let authService: AuthServiceProtocol
-
-    // MARK: Properties
-
+    
+    // MARK: - Properties
+    
     var userId: String
     var firstCompletion: (() -> Void)?
     var errorCompletion: ((FireBaseError) -> Void)?
     
-    // MARK: Private properties
+    // MARK: - Private properties
     
     private var trips: [Trip] = []
     private var tripMore: [Trip]?
     private var tripLow: [Trip]?
     
-    // MARK: Life Time
+    // MARK: - Life Time
     
     required init(fireBaseService: FireBaseServiceProtocol,
                   userId: String,

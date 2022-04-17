@@ -40,6 +40,3 @@ class AuthTextField: UITextField {
         translatesAutoresizingMaskIntoConstraints = false
     }
 }
-    
-
-

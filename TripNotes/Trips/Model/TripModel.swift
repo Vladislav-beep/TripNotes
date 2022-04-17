@@ -50,4 +50,3 @@ struct Trip: Equatable, Hashable {
         self.currency = currency
     }
 }
-
