@@ -18,7 +18,7 @@ class WeatherViewController: UIViewController {
     
     private lazy var weatherIconImageView: UIImageView = {
         let weatherIconImageView = UIImageView()
-        weatherIconImageView.image = UIImage(systemName: "cloud")
+        weatherIconImageView.image = UIImage(systemName: C.ImageNames.cloud.rawValue)
         weatherIconImageView.contentMode = .scaleAspectFit
         weatherIconImageView.tintColor = .tripBlue
         weatherIconImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -120,7 +120,7 @@ class WeatherViewController: UIViewController {
                 self?.cityLabel.text = self?.viewModel.cityName
                 self?.temperatureLabel.text = self?.viewModel.temperature
                 self?.feelsLikeTemperatureLabel.text = self?.viewModel.feelsLikeTemperature
-                self?.weatherIconImageView.image = UIImage(systemName: self?.viewModel.IconName ?? "cloud")
+                self?.weatherIconImageView.image = UIImage(systemName: self?.viewModel.IconName ?? C.ImageNames.cloud.rawValue)
                 self?.activityIndicator.stopAnimating()
                 self?.activityIndicator.isHidden = true
             }
@@ -129,7 +129,7 @@ class WeatherViewController: UIViewController {
         viewModel.errorCompletion = { [weak self] error in
             DispatchQueue.main.async {
                 self?.dismiss(animated: true)
-                self?.showAlert(title: "Network error", message: error.description)
+                self?.showAlert(title: I.errorConnectionAlertTitle, message: error.description)
             }
         }
     }
@@ -204,7 +204,7 @@ extension WeatherViewController: CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        showAlert(title: "Coudn't determine your location",
-                  message: "Please, check your internet connection")
+        showAlert(title: I.locationManagerErrorAlertTitle,
+                  message: I.errorConnectionAlertMessage)
     }
 }

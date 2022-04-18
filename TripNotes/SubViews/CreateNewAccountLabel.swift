@@ -24,7 +24,7 @@ class CreateNewAccountLabel: UILabel {
     
     private func initialize() {
         numberOfLines = 1
-        text = "Create new account"
+        text = I.CreateNewAccountLabelText
         textAlignment = .center
         textColor = .tripBlue
         adjustsFontSizeToFitWidth = true

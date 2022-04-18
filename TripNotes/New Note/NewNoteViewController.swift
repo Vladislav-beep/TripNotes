@@ -46,44 +46,44 @@ class NewNoteViewController: UIViewController {
     }()
     
     private lazy var categoryLabel: UILabel = {
-        let categoryLabel = SectionLabel(labelText: "Category")
+        let categoryLabel = SectionLabel(labelText: I.categoryLabelText)
         return categoryLabel
     }()
     
     private lazy var transportLabel: UILabel = {
-        let transportLabel = SelectionLabel(labelText: "Transport")
+        let transportLabel = SelectionLabel(labelText: Category.transport.rawValue)
         return transportLabel
     }()
     
     private lazy var hotelLabel: UILabel = {
-        let hotelLabel = SelectionLabel(labelText: "Hotels")
+        let hotelLabel = SelectionLabel(labelText: Category.hotels.rawValue)
         return hotelLabel
     }()
     
     private lazy var foodLabel: UILabel = {
-        let foodLabel = SelectionLabel(labelText: "Food")
+        let foodLabel = SelectionLabel(labelText: Category.food.rawValue)
         return foodLabel
     }()
     
     private lazy var activityLabel: UILabel = {
-        let activityLabel = SelectionLabel(labelText: "Activities")
+        let activityLabel = SelectionLabel(labelText: Category.activity.rawValue)
         return activityLabel
     }()
     
-    private lazy var perhaseLabel: UILabel = {
-        let perhaseLabel = SelectionLabel(labelText: "Perhases")
+    private lazy var purhaseLabel: UILabel = {
+        let perhaseLabel = SelectionLabel(labelText: Category.purchases.rawValue)
         return perhaseLabel
     }()
     
     private lazy var otherLabel: SelectionLabel = {
-        let otherLabel = SelectionLabel(labelText: "Other")
+        let otherLabel = SelectionLabel(labelText: Category.other.rawValue)
         return otherLabel
     }()
     
     private lazy var transportButton: SelectionButton = {
         let transportButton = SelectionButton()
         transportButton.tag = 1
-        transportButton.setImage(imageName: "tram.tunnel.fill")
+        transportButton.setImage(imageName: C.ImageNames.transport.rawValue)
         transportButton.addTarget(self, action: #selector(selectCategory(_:)), for: .touchUpInside)
         return transportButton
     }()
@@ -91,7 +91,7 @@ class NewNoteViewController: UIViewController {
     private lazy var hotelsButton: SelectionButton = {
         let hotelsButton = SelectionButton()
         hotelsButton.tag = 2
-        hotelsButton.setImage(imageName: "building.fill")
+        hotelsButton.setImage(imageName: C.ImageNames.hotel.rawValue)
         hotelsButton.addTarget(self, action: #selector(selectCategory(_:)), for: .touchUpInside)
         return hotelsButton
     }()
@@ -99,7 +99,7 @@ class NewNoteViewController: UIViewController {
     private lazy var foodButton: SelectionButton = {
         let foodButton = SelectionButton()
         foodButton.tag = 3
-        foodButton.setImage(imageName: "hourglass.tophalf.fill")
+        foodButton.setImage(imageName: C.ImageNames.food.rawValue)
         foodButton.addTarget(self, action: #selector(selectCategory(_:)), for: .touchUpInside)
         return foodButton
     }()
@@ -107,15 +107,15 @@ class NewNoteViewController: UIViewController {
     private lazy var activityButton: SelectionButton = {
         let activityButton = SelectionButton()
         activityButton.tag = 4
-        activityButton.setImage(imageName: "camera.on.rectangle.fill")
+        activityButton.setImage(imageName: C.ImageNames.activity.rawValue)
         activityButton.addTarget(self, action: #selector(selectCategory(_:)), for: .touchUpInside)
         return activityButton
     }()
     
-    private lazy var perchaseButton: SelectionButton = {
+    private lazy var purchaseButton: SelectionButton = {
         let purchaseButton = SelectionButton()
         purchaseButton.tag = 5
-        purchaseButton.setImage(imageName: "creditcard.fill")
+        purchaseButton.setImage(imageName: C.ImageNames.purchases.rawValue)
         purchaseButton.addTarget(self, action: #selector(selectCategory(_:)), for: .touchUpInside)
         return purchaseButton
     }()
@@ -123,13 +123,13 @@ class NewNoteViewController: UIViewController {
     private lazy var otherButton: SelectionButton = {
         let otherButton = SelectionButton()
         otherButton.tag = 6
-        otherButton.setImage(imageName: "square.3.stack.3d.bottom.fill")
+        otherButton.setImage(imageName: C.ImageNames.other.rawValue)
         otherButton.addTarget(self, action: #selector(selectCategory(_:)), for: .touchUpInside)
         return otherButton
     }()
     
     private lazy var buttonArray: [SelectionButton] = {
-        let array = [transportButton, hotelsButton, foodButton, activityButton, perchaseButton, otherButton]
+        let array = [transportButton, hotelsButton, foodButton, activityButton, purchaseButton, otherButton]
         return array
     }()
     
@@ -154,7 +154,7 @@ class NewNoteViewController: UIViewController {
     }()
     
     private lazy var perhaseStackView: UIStackView = {
-        let stack = UIStackView(arrangedSubviews: [perhaseLabel, perchaseButton], axis: .vertical, spacing: 5, distribution: .fillProportionally)
+        let stack = UIStackView(arrangedSubviews: [purhaseLabel, purchaseButton], axis: .vertical, spacing: 5, distribution: .fillProportionally)
         return stack
     }()
     
@@ -174,29 +174,29 @@ class NewNoteViewController: UIViewController {
     }()
     
     private lazy var cityLabel: SectionLabel = {
-        let label = SectionLabel(labelText: "City")
+        let label = SectionLabel(labelText: I.cityLabelText)
         return label
     }()
     
     private lazy var cityTextField: CustomTextField = {
-        let textField = CustomTextField(imageName: "buildings")
-        textField.placeholder = "Enter city"
+        let textField = CustomTextField(imageName: C.ImageNames.buildings.rawValue)
+        textField.placeholder = I.cityTextFieldPlaceHolder
         return textField
     }()
     
     private lazy var priceLabel: UILabel = {
-        let label = SectionLabel(labelText: "Price")
+        let label = SectionLabel(labelText: I.priceLabelText)
         return label
     }()
     
     private lazy var priceTextField: CustomTextField = {
-        let textField = CustomTextField(imageName: "money3")
-        textField.placeholder = "Enter price"
+        let textField = CustomTextField(imageName: C.ImageNames.money.rawValue)
+        textField.placeholder = I.priceTextFieldPlaceHolder
         return textField
     }()
     
     private lazy var descriptionLabel: UILabel = {
-        let label = SectionLabel(labelText: "Description")
+        let label = SectionLabel(labelText: I.descriptionLabelText)
         return label
     }()
     
@@ -236,7 +236,7 @@ class NewNoteViewController: UIViewController {
     }()
     
     private lazy var addNewNoteButton: AddButton = {
-        let addNoteTripButton = AddButton(imageName: nil, title: "+ Add Note", cornerRadius: 10)
+        let addNoteTripButton = AddButton(imageName: nil, title: I.addNoteButtonTitle, cornerRadius: 10)
         addNoteTripButton.addTarget(self, action: #selector(addNote), for: .touchUpInside)
         return addNoteTripButton
     }()
@@ -249,7 +249,7 @@ class NewNoteViewController: UIViewController {
     
     private lazy var countLabel: UILabel = {
         let countLabel = UILabel()
-        countLabel.text = "0/360"
+        countLabel.text = I.countLabelText
         countLabel.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
         countLabel.textColor = .tripBlue
         countLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -296,7 +296,7 @@ class NewNoteViewController: UIViewController {
             self?.priceTextField.text = self?.viewModel?.price
             self?.descriptionTextView.text = self?.viewModel?.description
             let countCharacters = self?.descriptionTextView.text.count ?? 0
-            self?.countLabel.text = "\(countCharacters)/360"
+            self?.countLabel.text = "\(countCharacters)/\(I.maxCharCount)"
             
             let category = self?.viewModel?.category
             switch category {
@@ -313,8 +313,8 @@ class NewNoteViewController: UIViewController {
                 self?.activityButton.pulsate()
                 self?.activityButton.backgroundColor = .tripRed
             case Category.purchases.rawValue:
-                self?.perchaseButton.pulsate()
-                self?.perchaseButton.backgroundColor = .tripRed
+                self?.purchaseButton.pulsate()
+                self?.purchaseButton.backgroundColor = .tripRed
             case Category.other.rawValue:
                 self?.otherButton.pulsate()
                 self?.otherButton.backgroundColor = .tripRed
@@ -323,7 +323,7 @@ class NewNoteViewController: UIViewController {
             }
         }
         viewModel?.errorCompletion = { [weak self] error in
-            self?.showAlert(title: "Error!", message: error.errorDescription)
+            self?.showAlert(title: I.fetchNoteAlertTitle, message: error.errorDescription)
         }
     }
     
@@ -335,7 +335,7 @@ class NewNoteViewController: UIViewController {
               let price = priceTextField.text,
               let priceDouble = Double(price)
         else {
-            let warningText = "Fill all of fields or write correct price"
+            let warningText = I.fieldAndPriceWarning
             animator.animateWarningLabel(warningLabel: warningLabel, withText: warningText)
             return
         }
@@ -345,39 +345,39 @@ class NewNoteViewController: UIViewController {
             if button.backgroundColor == UIColor.tripRed {
                 switch button.tag {
                 case 1:
-                    category = "Transport"
+                    category = Category.transport.rawValue
                 case 2:
-                    category = "Hotels"
+                    category = Category.hotels.rawValue
                 case 3:
-                    category = "Food"
+                    category = Category.food.rawValue
                 case 4:
-                    category = "Activities"
+                    category = Category.activity.rawValue
                 case 5:
-                    category = "Purchases"
+                    category = Category.purchases.rawValue
                 case 6:
-                    category = "Other"
+                    category = Category.other.rawValue
                 default:
-                    category = "Other"
+                    category = Category.other.rawValue
                 }
             }
         }
         
         guard category != "" else {
-            let categoryWarningText = "Choose category"
+            let categoryWarningText = I.categoryWarningText
             animator.animateWarningLabel(warningLabel: warningLabel, withText: categoryWarningText)
             return
         }
         
         if isEdited {
             viewModel?.updateNote(city: city, category: category, description: description, price: priceDouble, address: address ?? "", errorCompletion: { [weak self] in
-                self?.showAlert(title: "Unable to update note",
-                                message: "Please, check internet connection")
+                self?.showAlert(title: I.updateNoteAlertTitle,
+                                message: I.errorConnectionAlertMessage)
                 return
             })
         } else {
             viewModel?.addNote(category: category, city: city, price: priceDouble, isFavourite: false, description: description, address: address ?? "", errorCompletion: { [weak self] in
-                self?.showAlert(title: "Unable to add note",
-                                message: "Please, check internet connection")
+                self?.showAlert(title: I.addNOteAlertTitle,
+                                message: I.errorConnectionAlertMessage)
                 return
             })
         }
@@ -411,8 +411,8 @@ class NewNoteViewController: UIViewController {
         
         if isEdited {
             addNewNoteButton.backgroundColor = .tripBlue
-            addNewNoteButton.setTitle(" Edit Note", for: .normal)
-            addNewNoteButton.setImage(UIImage(systemName: "square.and.pencil"), for: .normal)
+            addNewNoteButton.setTitle(I.editNoteButtonTitle, for: .normal)
+            addNewNoteButton.setImage(UIImage(systemName: C.ImageNames.editIcon.rawValue), for: .normal)
             cityLabel.textColor = .tripBlue
             priceLabel.textColor = .tripBlue
             descriptionLabel.textColor = .tripBlue
@@ -567,7 +567,7 @@ extension NewNoteViewController: UITextViewDelegate {
     }
     
     func textViewDidChange(_ textView: UITextView) {
-        countLabel.text = "\(textView.text.count)/360"
+        countLabel.text = "\(textView.text.count)/\(I.maxCharCount)"
     }
 }
 

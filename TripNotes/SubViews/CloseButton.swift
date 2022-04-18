@@ -23,7 +23,7 @@ class CloseButton: UIButton {
     // MARK: Private methods
     
    private func initialize() {
-        setBackgroundImage(UIImage(systemName: "xmark.circle.fill"), for: .normal)
+    setBackgroundImage(UIImage(systemName: C.ImageNames.closeButton.rawValue), for: .normal)
         tintColor = .tripBlue
         layer.shadowColor = UIColor.darkGray.cgColor
         layer.shadowRadius = 5

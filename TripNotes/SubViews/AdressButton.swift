@@ -23,12 +23,12 @@ class AdressButton: UIButton {
     // MARK: Private methods
     
     private func initialize() {
-        setTitle(" Address", for: .normal)
+        setTitle(I.addressButtonTitle, for: .normal)
         titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .heavy)
         tintColor = .tripBlue
         setTitleColor(.tripBlue, for: .normal)
         backgroundColor = .tripGrey
-        setImage(UIImage(systemName: "magnifyingglass"), for: .normal)
+        setImage(UIImage(systemName: C.ImageNames.addressSearch.rawValue), for: .normal)
         layer.cornerRadius = 6
         layer.shadowColor = UIColor.darkGray.cgColor
         layer.shadowRadius = 4

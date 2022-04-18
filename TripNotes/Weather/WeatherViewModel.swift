@@ -49,7 +49,7 @@ class WeatherViewModel: WeatherViewModelProtocol {
     }
     
     var IconName: String {
-        weather?.systemIconNameString ?? "cloud"
+        weather?.systemIconNameString ?? C.ImageNames.cloud.rawValue
     }
     
     // MARK: - Life Time

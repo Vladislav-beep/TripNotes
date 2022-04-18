@@ -31,7 +31,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     private lazy var closeButton: UIButton = {
         let button = UIButton()
-        button.setBackgroundImage(UIImage(systemName: "xmark.circle.fill"), for: .normal)
+        button.setBackgroundImage(UIImage(systemName: C.ImageNames.closeButton.rawValue), for: .normal)
         button.tintColor = .tripRed
         button.addTarget(self, action: #selector(closeScreen), for: .touchUpInside)
         button.layer.shadowColor = UIColor.darkGray.cgColor
@@ -44,7 +44,8 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     private lazy var showUserLocationButton: UIButton = {
         let button = UIButton()
-        button.setBackgroundImage(UIImage(systemName: "location.circle"), for: .normal)
+        button.setBackgroundImage(UIImage(systemName: C.ImageNames.showUserLocationButton.rawValue),
+                                  for: .normal)
         button.tintColor = .tripRed
         button.addTarget(self, action: #selector(showUserLocationButtonTapped), for: .touchUpInside)
         button.layer.shadowColor = UIColor.darkGray.cgColor
@@ -58,7 +59,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     private lazy var okButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .tripRed
-        button.setTitle("OK", for: .normal)
+        button.setTitle(I.okButton, for: .normal)
         button.setTitleColor(.tripGrey, for: .normal)
         button.layer.cornerRadius = 8
         button.layer.shadowColor = UIColor.darkGray.cgColor
@@ -81,7 +82,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     private lazy var pinImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(systemName: "mappin")
+        imageView.image = UIImage(systemName: C.ImageNames.mapPinImage.rawValue)
         imageView.contentMode = .scaleAspectFit
         imageView.tintColor = .tripRed
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -220,12 +221,12 @@ extension MapViewController: CLLocationManagerDelegate {
         case .notDetermined:
             manager.requestWhenInUseAuthorization()
         case .restricted:
-            self.showAlert(title: "Your location is restricted",
-                           message: "To give permission go to: Settings -> My Places -> Location")
+            self.showAlert(title: I.restrictedAlertTitle,
+                           message: I.restrictedAlertMessage)
         case .denied:
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                self.showAlert(title: "Your location is not available",
-                               message: "To give permission go to: Settings -> My Places -> Location")
+                self.showAlert(title: I.deniedAlertTitle,
+                               message: I.deniedAlertMessage)
             }
         case .authorizedAlways:
             break
@@ -268,7 +269,7 @@ extension MapViewController: CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        showAlert(title: "Coudn't determine your location",
-                  message: "Please, check your internet connection")
+        showAlert(title: I.locationManagerErrorAlertTitle,
+                  message: I.errorConnectionAlertMessage)
     }
 }

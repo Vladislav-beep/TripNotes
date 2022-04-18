@@ -40,7 +40,7 @@ class NewNoteViewModel: NewNoteViewModelProtocol {
     var errorCompletion: ((FireBaseError) -> Void)?
     
     var category: String {
-        note?.category ?? "Other"
+        note?.category ?? Category.other.rawValue
     }
     
     var city: String {

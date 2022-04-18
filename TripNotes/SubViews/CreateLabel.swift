@@ -23,7 +23,7 @@ class CreateLabel: UILabel {
     // MARK: Private methods
     
     private func initialize() {
-        text = "I don't have an account"
+        text = I.createLabelText
         textAlignment = .center
         textColor = .tripBlue
         layer.opacity = 0.5

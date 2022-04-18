@@ -24,8 +24,14 @@ class SearchController: UISearchController {
     
     private func initialize() {
         obscuresBackgroundDuringPresentation = false
-        searchBar.placeholder = "Search by description"
-        searchBar.scopeButtonTitles = ["All", "H", "T", "F", "A", "P", "O"]
+        searchBar.placeholder = I.searchBarPlaceholder
+        searchBar.scopeButtonTitles = [I.allScope,
+                                       I.hotelsScope,
+                                       I.transportScope,
+                                       I.foodScope,
+                                       I.activityScope,
+                                       I.purchasesScope,
+                                       I.otherScope]
         searchBar.searchTextField.backgroundColor = .tripWhite
         definesPresentationContext = true
     }

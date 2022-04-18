@@ -11,17 +11,17 @@ extension UIViewController {
     
     func showAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        let okAction = UIAlertAction(title: I.okButton, style: .cancel, handler: nil)
         alert.addAction(okAction)
         present(alert, animated: true)
     }
     
     func showSignOutAlert(title: String, message: String, completion: @escaping () -> Void) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "Yes", style: .default) { (_) in
+        let okAction = UIAlertAction(title: I.yes, style: .default) { _ in
             completion()
         }
-        let cancelAction = UIAlertAction(title: "No", style: .cancel)
+        let cancelAction = UIAlertAction(title: I.no, style: .cancel)
         alert.addAction(okAction)
         alert.addAction(cancelAction)
         present(alert, animated: true)
@@ -30,19 +30,19 @@ extension UIViewController {
     func setImage(for category: String) -> UIImage {
         switch category {
         case Category.hotels.rawValue:
-            return UIImage(systemName: "building.fill") ?? UIImage()
+            return UIImage(systemName: C.ImageNames.hotel.rawValue) ?? UIImage()
         case Category.transport.rawValue:
-            return UIImage(systemName: "tram.tunnel.fill") ?? UIImage()
+            return UIImage(systemName: C.ImageNames.transport.rawValue) ?? UIImage()
         case Category.food.rawValue:
-            return UIImage(systemName: "hourglass.tophalf.fill") ?? UIImage()
+            return UIImage(systemName: C.ImageNames.food.rawValue) ?? UIImage()
         case Category.activity.rawValue:
-            return UIImage(systemName: "camera.on.rectangle.fill") ?? UIImage()
+            return UIImage(systemName: C.ImageNames.activity.rawValue) ?? UIImage()
         case Category.purchases.rawValue:
-            return UIImage(systemName: "creditcard.fill") ?? UIImage()
+            return UIImage(systemName: C.ImageNames.purchases.rawValue) ?? UIImage()
         case Category.other.rawValue:
-            return UIImage(systemName: "square.3.stack.3d.bottom.fill") ?? UIImage()
+            return UIImage(systemName: C.ImageNames.other.rawValue) ?? UIImage()
         default:
-            return UIImage(systemName: "square") ?? UIImage()
+            return UIImage(systemName: C.ImageNames.defaultCategory.rawValue) ?? UIImage()
         }
     }
 }

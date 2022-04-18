@@ -32,7 +32,7 @@
 		B90DB42A276F137500F1A544 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90DB429276F137500F1A544 /* Category.swift */; };
 		B90DB42E276F139700F1A544 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90DB42D276F139700F1A544 /* Currency.swift */; };
 		B90DB438276F14B100F1A544 /* DateFormatterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90DB437276F14B100F1A544 /* DateFormatterService.swift */; };
-		B90DB43C276F2D1500F1A544 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90DB43B276F2D1500F1A544 /* Constants.swift */; };
+		B90DB43C276F2D1500F1A544 /* CI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90DB43B276F2D1500F1A544 /* CI.swift */; };
 		B90DB440276F323000F1A544 /* Extension + Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90DB43F276F323000F1A544 /* Extension + Formatter.swift */; };
 		B90DB444276F326000F1A544 /* Extension + Numeric.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90DB443276F326000F1A544 /* Extension + Numeric.swift */; };
 		B90DB44A276F532D00F1A544 /* NotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90DB449276F532D00F1A544 /* NotesViewController.swift */; };
@@ -77,7 +77,7 @@
 		B95FBCE927D89857006FF5A8 /* SlideInPresentationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95FBCE827D89857006FF5A8 /* SlideInPresentationManager.swift */; };
 		B95FBCED27D89B13006FF5A8 /* SlideInPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95FBCEC27D89B13006FF5A8 /* SlideInPresentationController.swift */; };
 		B95FBCF327D8ACA6006FF5A8 /* SlideInPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95FBCEC27D89B13006FF5A8 /* SlideInPresentationController.swift */; };
-		B95FBCF827D8B686006FF5A8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90DB43B276F2D1500F1A544 /* Constants.swift */; };
+		B95FBCF827D8B686006FF5A8 /* CI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90DB43B276F2D1500F1A544 /* CI.swift */; };
 		B95FBCFC27D8B709006FF5A8 /* NetworkWeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95FBCFB27D8B709006FF5A8 /* NetworkWeatherManager.swift */; };
 		B95FBD0027D8B8AD006FF5A8 /* CurrentWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95FBCFF27D8B8AD006FF5A8 /* CurrentWeather.swift */; };
 		B95FBD0427D8B8D1006FF5A8 /* CurrentWeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95FBD0327D8B8D1006FF5A8 /* CurrentWeatherData.swift */; };
@@ -172,7 +172,7 @@
 		B90DB429276F137500F1A544 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		B90DB42D276F139700F1A544 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 		B90DB437276F14B100F1A544 /* DateFormatterService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatterService.swift; sourceTree = "<group>"; };
-		B90DB43B276F2D1500F1A544 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		B90DB43B276F2D1500F1A544 /* CI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CI.swift; sourceTree = "<group>"; };
 		B90DB43F276F323000F1A544 /* Extension + Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + Formatter.swift"; sourceTree = "<group>"; };
 		B90DB443276F326000F1A544 /* Extension + Numeric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + Numeric.swift"; sourceTree = "<group>"; };
 		B90DB449276F532D00F1A544 /* NotesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesViewController.swift; sourceTree = "<group>"; };
@@ -530,7 +530,7 @@
 		B9E8671627E1E2C100C97E5E /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				B90DB43B276F2D1500F1A544 /* Constants.swift */,
+				B90DB43B276F2D1500F1A544 /* CI.swift */,
 				B9E8670E27E1D3CF00C97E5E /* KeyboardHelper.swift */,
 			);
 			path = Helpers;
@@ -687,7 +687,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B9F39E052767D28600DAFB4C /* TripTableViewCell.swift in Sources */,
-				B90DB43C276F2D1500F1A544 /* Constants.swift in Sources */,
+				B90DB43C276F2D1500F1A544 /* CI.swift in Sources */,
 				B90B9A0C276D015A008DD627 /* TripTableViewCellViewModel.swift in Sources */,
 				B98282DE27A07CB2006EFED8 /* NewAccountViewModel.swift in Sources */,
 				B949FB0D27AEE4C700590F0E /* NoteLabel.swift in Sources */,
@@ -808,7 +808,7 @@
 				B90251C627DA3F1000788065 /* AddButton.swift in Sources */,
 				B95FBCD927D7D76F006FF5A8 /* WeatherViewModel.swift in Sources */,
 				B90DB45A276FB39E00F1A544 /* NotesViewModel.swift in Sources */,
-				B95FBCF827D8B686006FF5A8 /* Constants.swift in Sources */,
+				B95FBCF827D8B686006FF5A8 /* CI.swift in Sources */,
 				B9D9C8AF27C3EDF70003D34C /* FireBaseService.swift in Sources */,
 				B90632FE27AFE47F00F0C2A5 /* DetailNoteViewController.swift in Sources */,
 				B93DD4BD279F1BCC00D91A08 /* AuthViewModel.swift in Sources */,

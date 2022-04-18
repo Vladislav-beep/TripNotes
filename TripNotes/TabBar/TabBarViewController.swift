@@ -66,11 +66,11 @@ class TabBarViewController: UITabBarController {
         let firstViewController = UINavigationController(rootViewController: tripVC)
         let secondViewController = UINavigationController(rootViewController: favVC)
         
-        firstViewController.tabBarItem.title = "Trips"
-        firstViewController.tabBarItem.image = UIImage(systemName: "arrow.triangle.swap")
+        firstViewController.tabBarItem.title = I.tabBarTripItemTitle
+        firstViewController.tabBarItem.image = UIImage(systemName: C.ImageNames.tabBarTrip.rawValue)
         
-        secondViewController.tabBarItem.title = "Favourites"
-        secondViewController.tabBarItem.image = UIImage(systemName: "heart.fill")
+        secondViewController.tabBarItem.title = I.tabBarFavItemTitle
+        secondViewController.tabBarItem.image = UIImage(systemName: C.ImageNames.tabBarFav.rawValue)
         
         viewControllers = [firstViewController, secondViewController]
     }

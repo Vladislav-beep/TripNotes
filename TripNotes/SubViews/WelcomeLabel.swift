@@ -24,7 +24,7 @@ class WelcomeLabel: UILabel {
     
    private func initialize() {
         numberOfLines = 2
-        text = "Welcome to \n TripNotes"
+    text = I.welcomeLabelText
         textAlignment = .center
         textColor = .tripBlue
         adjustsFontSizeToFitWidth = true

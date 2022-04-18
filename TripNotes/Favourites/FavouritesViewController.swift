@@ -40,7 +40,7 @@ class FavouritesViewController: UIViewController {
     }()
     
     private lazy var noLabel: NoLabel = {
-        let noLabel = NoLabel(title: "No Trips yet")
+        let noLabel = NoLabel(title: I.noFavNotesLabel)
         noLabel.isHidden = false
         return noLabel
     }()
@@ -71,7 +71,7 @@ class FavouritesViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(refresh),
-                                               name: NSNotification.Name(rawValue: "updateNotes"),
+                                               name: NSNotification.Name(rawValue: I.updateObserverName),
                                                object: nil)
     }
     
@@ -83,7 +83,7 @@ class FavouritesViewController: UIViewController {
     }
     
     deinit {
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "updateNotes"), object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: I.updateObserverName), object: nil)
     }
     
     // MARK: - Actions
@@ -110,7 +110,7 @@ class FavouritesViewController: UIViewController {
         }
         
         viewModel.errorCompletion = { [weak self] error in
-            self?.showAlert(title: "Error!", message: error.errorDescription)
+            self?.showAlert(title: I.errorAlertFetchingNotes, message: error.errorDescription)
         }
     }
     
@@ -120,7 +120,7 @@ class FavouritesViewController: UIViewController {
     }
     
     private func setupNavigationBar() {
-        title = "Favourites"
+        title = I.tabBarFavItemTitle
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.tintColor = .tripWhite
         navigationItem.searchController = searchController
@@ -181,7 +181,7 @@ extension FavouritesViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.CellIdentifiers.noteCollectionViewCellId.rawValue,
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: C.CellIdentifiers.noteCollectionView.rawValue,
                                                       for: indexPath) as? NoteCell
         
         cell?.viewModel = viewModel.noteCellViewModel(for: indexPath, isFiltering: isFiltering)
@@ -203,7 +203,7 @@ extension FavouritesViewController: UICollectionViewDelegate {
 extension FavouritesViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         let searchBar = searchController.searchBar
-        let scope = searchBar.scopeButtonTitles?[searchBar.selectedScopeButtonIndex] ?? "All"
+        let scope = searchBar.scopeButtonTitles?[searchBar.selectedScopeButtonIndex] ?? I.allScope
         viewModel.filterContentForSearchText(searchController.searchBar.text ?? "",
                                              scope: scope,
                                              searchBarIsEmpty: searchBarIsEmpty)
@@ -215,7 +215,7 @@ extension FavouritesViewController: UISearchResultsUpdating {
 extension FavouritesViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
         viewModel.filterContentForSearchText(searchBar.text ?? "",
-                                             scope: searchBar.scopeButtonTitles?[selectedScope] ?? "All",
+                                             scope: searchBar.scopeButtonTitles?[selectedScope] ?? I.allScope,
                                              searchBarIsEmpty: searchBarIsEmpty)
         collectionView.reloadData()
     }

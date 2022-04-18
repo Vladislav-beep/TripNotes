@@ -15,7 +15,7 @@ class NotesCollectionView: UICollectionView {
         super.init(frame: .zero, collectionViewLayout: UICollectionViewLayout())
         backgroundColor = .white
         register(NoteCell.self,
-                 forCellWithReuseIdentifier: Constants.CellIdentifiers.noteCollectionViewCellId.rawValue)
+                 forCellWithReuseIdentifier: C.CellIdentifiers.noteCollectionView.rawValue)
         collectionViewLayout = createLayout()
         showsHorizontalScrollIndicator = false
         translatesAutoresizingMaskIntoConstraints = false

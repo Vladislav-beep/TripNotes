@@ -22,19 +22,21 @@ class TripsViewController: UIViewController {
         tableView.backgroundColor = .white
         tableView.separatorStyle = .none
         tableView.register(TripTableViewCell.self,
-                           forCellReuseIdentifier: Constants.CellIdentifiers.tripTableViewCellId.rawValue)
+                           forCellReuseIdentifier: C.CellIdentifiers.tripTableView.rawValue)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
     
     private lazy var addTripButton: AddButton = {
-        let button = AddButton(imageName: "plus", title: nil, cornerRadius: 25)
+        let button = AddButton(imageName: C.ImageNames.addTripButton.rawValue,
+                               title: nil,
+                               cornerRadius: 25)
         button.addTarget(self, action: #selector(addTrip), for: .touchUpInside)
         return button
     }()
     
     private lazy var addNoteButton: AddButton = {
-        let addNoteButton = AddButton(imageName: nil, title: "+ Add Note", cornerRadius: 8)
+        let addNoteButton = AddButton(imageName: nil, title: I.addNoteButtonTitle, cornerRadius: 8)
         addNoteButton.addTarget(self, action: #selector(addNote), for: .touchUpInside)
         return addNoteButton
     }()
@@ -42,7 +44,7 @@ class TripsViewController: UIViewController {
     private lazy var signOutButton: UIBarButtonItem = {
         let button = UIBarButtonItem.customButton(self,
                                                   action: #selector(signOutTapped),
-                                                  imageName: "arrowshape.turn.up.left.2.fill",
+                                                  imageName: C.ImageNames.signOutButton.rawValue,
                                                   widthAndHeight: 40)
         return button
     }()
@@ -50,7 +52,7 @@ class TripsViewController: UIViewController {
     private lazy var weatherButton: UIBarButtonItem = {
         let button = UIBarButtonItem.customButton(self,
                                                   action: #selector(showWeather),
-                                                  imageName: "cloud.rain.fill",
+                                                  imageName: C.ImageNames.weatherButton.rawValue,
                                                   widthAndHeight: 40)
         return button
     }()
@@ -62,7 +64,7 @@ class TripsViewController: UIViewController {
     }()
     
     private lazy var noLabel: NoLabel = {
-        let noLabel = NoLabel(title: "No Trips yet")
+        let noLabel = NoLabel(title: I.noTripsLabel)
         return noLabel
     }()
     
@@ -99,7 +101,8 @@ class TripsViewController: UIViewController {
     // MARK: - Actions
     
     @objc func signOutTapped() {
-        showSignOutAlert(title: "Sign out?", message: "Do you realy want to sign out?") { [weak self] in
+        showSignOutAlert(title: I.signOutAlertTitle,
+                         message: I.signOutAlertMessage) { [weak self] in
             self?.signOut()
         }
     }
@@ -130,7 +133,7 @@ class TripsViewController: UIViewController {
         }
         
         viewModel.errorCompletion = { [weak self] error in
-            self?.showAlert(title: "Error!", message: error.errorDescription)
+            self?.showAlert(title: I.errorAlertFetchingTrips, message: error.errorDescription)
         }
     }
     
@@ -146,12 +149,12 @@ class TripsViewController: UIViewController {
         viewModel.signOut { [weak self] in
             self?.dismiss(animated: true)
         } completionError: { [weak self] in
-            self?.showAlert(title: "Could not sign out", message: "Check your network connection")
+            self?.showAlert(title: I.signOutAlertErrorTitle, message: I.signOutAlertErrorMessage)
         }
     }
     
     private func setupNavigationBar() {
-        title = "Trips"
+        title = I.tabBarTripItemTitle
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.leftBarButtonItems = [signOutButton]
         navigationItem.rightBarButtonItems = [weatherButton]
@@ -167,7 +170,7 @@ class TripsViewController: UIViewController {
     }
     
     private func editAction(at indexPath: IndexPath) -> UIContextualAction {
-        let editAction = UIContextualAction(style: .normal, title: "Edit Trip") { [weak self] (action, view, complition) in
+        let editAction = UIContextualAction(style: .normal, title: I.editTripButtonTitle) { [weak self] (action, view, complition) in
             
             let tripId = self?.viewModel.getTripId(for: indexPath) ?? ""
             let userId = self?.viewModel.userId ?? ""
@@ -176,15 +179,16 @@ class TripsViewController: UIViewController {
             complition(true)
         }
         editAction.backgroundColor = .tripBlue
-        editAction.image = UIImage(systemName: Constants.ImageNames.tripEditRowImage.rawValue)
+        editAction.image = UIImage(systemName: C.ImageNames.editIcon.rawValue)
         return editAction
     }
     
     private func deleteAction(at indexPath: IndexPath) -> UIContextualAction {
-        let action = UIContextualAction(style: .destructive, title: "Delete") { [weak self] (action, view, complition) in
+        let action = UIContextualAction(style: .destructive, title: I.deleteTripButtonTitle) {
+            [weak self] (action, view, complition) in
             self?.viewModel.deleteRow(at: indexPath, errorCompletion: {
-                self?.showAlert(title: "Coudn't delete Trip(",
-                                message: "Please, check your internet connection")
+                self?.showAlert(title: I.deleteTripAlertTitle,
+                                message: I.deleteTripAlertMessage)
             })
 
             self?.tableView.beginUpdates()
@@ -193,7 +197,7 @@ class TripsViewController: UIViewController {
             complition(true)
         }
         action.backgroundColor = .tripRed
-        action.image = UIImage(systemName: Constants.ImageNames.tripDeleteRowImage.rawValue)
+        action.image = UIImage(systemName: C.ImageNames.deleteIcon.rawValue)
         return action
     }
     
@@ -288,7 +292,7 @@ extension TripsViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellIdentifiers.tripTableViewCellId.rawValue) as? TripTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: C.CellIdentifiers.tripTableView.rawValue) as? TripTableViewCell
    
         cell?.viewModel = viewModel.tripCellViewModel(for: indexPath)
         return cell ?? UITableViewCell()
@@ -321,8 +325,8 @@ extension TripsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             viewModel.deleteRow(at: indexPath, errorCompletion: { [weak self] in
-                self?.showAlert(title: "Coudn't delete Trip(",
-                                message: "Please, check your internet connection")
+                self?.showAlert(title: I.deleteTripAlertTitle,
+                                message: I.deleteTripAlertMessage)
             })
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }

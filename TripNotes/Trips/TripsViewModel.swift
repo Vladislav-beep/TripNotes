@@ -111,9 +111,9 @@ class TripsViewModel: TripsViewModelProtocol {
     func titleForHeaderInSection(section: Int) -> String {
         switch section {
         case 0:
-            return Constants.SectionTripNames.planned.rawValue
+            return I.sectionPlannedTitle
         case 1:
-            return Constants.SectionTripNames.past.rawValue
+            return I.sectionPastTitle
         default:
             return ""
         }

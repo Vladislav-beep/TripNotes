@@ -23,7 +23,7 @@ class BackButton: UIButton {
     // MARK: Private methods
     
     private func initialize() {
-        let image = UIImage(systemName: "chevron.compact.left")
+        let image = UIImage(systemName: C.ImageNames.back.rawValue)
         tintColor = .tripWhite
         setBackgroundImage(image, for: .normal)
         translatesAutoresizingMaskIntoConstraints = false

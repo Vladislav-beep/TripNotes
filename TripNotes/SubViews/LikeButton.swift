@@ -23,7 +23,7 @@ class LikeButton: UIButton {
     // MARK: Private methods
     
     private func initialize() {
-        setBackgroundImage(UIImage(systemName: "heart.fill"), for: .normal)
+        setBackgroundImage(UIImage(systemName: C.ImageNames.likeHeart.rawValue), for: .normal)
         tintColor = .tripGrey
         layer.shadowColor = UIColor.darkGray.cgColor
         layer.shadowRadius = 3

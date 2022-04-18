@@ -70,16 +70,16 @@ class DetailNoteViewController: UIViewController {
     }()
     
     private lazy var deleteButton: EditDeleteNoteButton = {
-        let deleteButton = EditDeleteNoteButton(title: " Delete",
-                                                imageName: "trash",
+        let deleteButton = EditDeleteNoteButton(title: I.deleteButtonTitle,
+                                                imageName: C.ImageNames.deleteIcon.rawValue,
                                                 backgroud: .tripRed)
         deleteButton.addTarget(self, action: #selector(deleteNote), for: .touchUpInside)
         return deleteButton
     }()
     
     private lazy var editButton: EditDeleteNoteButton = {
-        let editButton = EditDeleteNoteButton(title: " Edit",
-                                              imageName: "square.and.pencil",
+        let editButton = EditDeleteNoteButton(title: I.editButtonTitle,
+                                              imageName: C.ImageNames.editIcon.rawValue,
                                               backgroud: .tripBlue)
         editButton.addTarget(self, action: #selector(editNote), for: .touchUpInside)
         return editButton
@@ -131,7 +131,7 @@ class DetailNoteViewController: UIViewController {
     
     private lazy var heartImageView: UIImageView = {
         let heartImageView = UIImageView()
-        heartImageView.image = UIImage(named: "heart-color1")
+        heartImageView.image = UIImage(named: C.ImageNames.likeHeart.rawValue)
         heartImageView.tintColor = .tripRed
         heartImageView.translatesAutoresizingMaskIntoConstraints = false
         return heartImageView
@@ -208,7 +208,8 @@ class DetailNoteViewController: UIViewController {
     }
     
     private func postNotification() {
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateNotes"), object: nil)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: I.updateObserverName),
+                                        object: nil)
     }
     
     // MARK: - Layout

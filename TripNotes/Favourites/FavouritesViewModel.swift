@@ -124,32 +124,35 @@ class FavouritesViewModel: FavouritesViewModelProtocol {
                                  userId: userId)
     }
     
-    func filterContentForSearchText(_ searchText: String, scope: String = "All", searchBarIsEmpty: Bool) {
+    func filterContentForSearchText(_ searchText: String,
+                                    scope: String = I.allScope,
+                                    searchBarIsEmpty: Bool) {
         notesArrayFiltered = notesArray.filter({ (note: TripNote) -> Bool in
             var scopeCategory = ""
             
             switch scope {
-            case "H":
+            case I.hotelsScope:
                 scopeCategory = Category.hotels.rawValue
-            case "T":
+            case I.transportScope:
                 scopeCategory = Category.transport.rawValue
-            case "F":
+            case I.foodScope:
                 scopeCategory = Category.food.rawValue
-            case "A":
+            case I.activityScope:
                 scopeCategory = Category.activity.rawValue
-            case "P":
+            case I.purchasesScope:
                 scopeCategory = Category.purchases.rawValue
-            case "O":
+            case I.otherScope:
                 scopeCategory = Category.other.rawValue
             default:
-                scopeCategory = "All"
+                scopeCategory = I.allScope
             }
-            let doesCategoryMatch = (scope == "All") || (note.category == scopeCategory)
+            let doesCategoryMatch = (scope == I.allScope) || (note.category == scopeCategory)
             
             if searchBarIsEmpty {
                 return doesCategoryMatch
             }
-            return doesCategoryMatch && (note.description?.lowercased().contains(searchText.lowercased()) ?? false)
+            return doesCategoryMatch &&
+                (note.description?.lowercased().contains(searchText.lowercased()) ?? false)
         })
     }
 }

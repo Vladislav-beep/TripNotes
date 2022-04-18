@@ -23,7 +23,7 @@ class CreateButton: UIButton {
     // MARK: Private methods
     
     private func inititalize() {
-        setTitle("Create new account", for: .normal)
+        setTitle(I.createButtonTitle, for: .normal)
         setTitleColor(.tripBlue, for: .normal)
         translatesAutoresizingMaskIntoConstraints = false
     }

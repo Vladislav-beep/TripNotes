@@ -36,25 +36,25 @@ class AuthViewController: UIViewController {
         return welcomeLabel
     }()
     
-    private lazy var loginTextField: AuthTextField = {
-        let loginTextField = AuthTextField(placeHolder: "Email")
+    private lazy var emailTextField: AuthTextField = {
+        let loginTextField = AuthTextField(placeHolder: I.emailTextFieldPlaceholder)
         return loginTextField
     }()
     
     private lazy var passwordTextField: AuthTextField = {
-        let passwordTextField = AuthTextField(placeHolder: "Password")
+        let passwordTextField = AuthTextField(placeHolder: I.passwordTextFieldPlaceholder)
         passwordTextField.isSecureTextEntry = true
         return passwordTextField
     }()
     
     private let signInButton: SignInButton = {
-        let signInButton = SignInButton(title: "Sign in", colorOfBackground: .tripRed)
+        let signInButton = SignInButton(title: I.signInButtonTitle, colorOfBackground: .tripRed)
         signInButton.addTarget(self, action: #selector(showTabbar), for: .touchUpInside)
         return signInButton
     }()
     
     private lazy var textFieldStack: UIStackView = {
-        let textFieldStack = UIStackView(arrangedSubviews: [loginTextField, passwordTextField],
+        let textFieldStack = UIStackView(arrangedSubviews: [emailTextField, passwordTextField],
                                          axis: .vertical,
                                          spacing: 16,
                                          distribution: .fillEqually)
@@ -107,13 +107,13 @@ class AuthViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addGestureRecognizer(endEditingGestureRecognizer)
-        loginTextField.delegate = self
+        emailTextField.delegate = self
         passwordTextField.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        loginTextField.text = ""
+        emailTextField.text = ""
         passwordTextField.text = ""
     }
     
@@ -129,10 +129,10 @@ class AuthViewController: UIViewController {
     }
     
     @objc func showTabbar() {
-        guard let email = loginTextField.text, email != "",
+        guard let email = emailTextField.text, email != "",
               let password = passwordTextField.text, password != ""
         else {
-            let warningText = "None of fields can be empty"
+            let warningText = I.emptyFieldsWarning
             animator.animateWarningLabel(warningLabel: self.warningLabel, withText: warningText)
             return
         }
@@ -141,7 +141,7 @@ class AuthViewController: UIViewController {
             let tabBar = self?.configurator?.configureTabbar() ?? UIViewController()
             self?.present(tabBar, animated: true)
         } errorComletion: { [weak self] in
-            let warningText = "Incorrect login or password"
+            let warningText = I.incorrectWarning
             self?.animator.animateWarningLabel(warningLabel: self?.warningLabel ?? UILabel(),
                                                withText: warningText)
         }
@@ -246,7 +246,7 @@ extension AuthViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         switch textField {
-        case loginTextField:
+        case emailTextField:
             passwordTextField.becomeFirstResponder()
         case passwordTextField:
             passwordTextField.resignFirstResponder()

@@ -133,19 +133,19 @@ class NoteCell: UICollectionViewCell {
     private func setImage(for category: String) -> UIImage {
         switch category {
         case Category.hotels.rawValue:
-            return UIImage(systemName: "building.fill") ?? UIImage()
+            return UIImage(systemName: C.ImageNames.hotel.rawValue) ?? UIImage()
         case Category.transport.rawValue:
-            return UIImage(systemName: "tram.tunnel.fill") ?? UIImage()
+            return UIImage(systemName: C.ImageNames.transport.rawValue) ?? UIImage()
         case Category.food.rawValue:
-            return UIImage(systemName: "hourglass.tophalf.fill") ?? UIImage()
+            return UIImage(systemName: C.ImageNames.food.rawValue) ?? UIImage()
         case Category.activity.rawValue:
-            return UIImage(systemName: "camera.on.rectangle.fill") ?? UIImage()
+            return UIImage(systemName: C.ImageNames.activity.rawValue) ?? UIImage()
         case Category.purchases.rawValue:
-            return UIImage(systemName: "creditcard.fill") ?? UIImage()
+            return UIImage(systemName: C.ImageNames.purchases.rawValue) ?? UIImage()
         case Category.other.rawValue:
-            return UIImage(systemName: "square.3.stack.3d.bottom.fill") ?? UIImage()
+            return UIImage(systemName: C.ImageNames.other.rawValue) ?? UIImage()
         default:
-            return UIImage(systemName: "square") ?? UIImage()
+            return UIImage(systemName: C.ImageNames.defaultCategory.rawValue) ?? UIImage()
         }
     }
     

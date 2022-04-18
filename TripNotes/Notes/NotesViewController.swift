@@ -22,7 +22,7 @@ class NotesViewController: UIViewController {
     }()
     
     private lazy var noLabel: NoLabel = {
-        let noLabel = NoLabel(title: "No Notes yet")
+        let noLabel = NoLabel(title: I.noNotesLabel)
         return noLabel
     }()
     
@@ -51,7 +51,7 @@ class NotesViewController: UIViewController {
         setupViewModelBundings()
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(refresh),
-                                               name: NSNotification.Name(rawValue: "updateNotes"),
+                                               name: NSNotification.Name(rawValue: I.updateObserverName),
                                                object: nil)
     }
     
@@ -61,7 +61,7 @@ class NotesViewController: UIViewController {
     }
     
     deinit {
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "updateNotes"), object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: I.updateObserverName), object: nil)
     }
     
     // MARK: - Actions
@@ -82,7 +82,7 @@ class NotesViewController: UIViewController {
         }
         
         viewModel.errorCompletion = { [weak self] error in
-            self?.showAlert(title: "Error!", message: error.errorDescription)
+            self?.showAlert(title: I.errorAlertFetchingNotes, message: error.errorDescription)
         }
     }
     
@@ -149,7 +149,7 @@ extension NotesViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.CellIdentifiers.noteCollectionViewCellId.rawValue,
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: C.CellIdentifiers.noteCollectionView.rawValue,
                                                       for: indexPath) as? NoteCell
         
         cell?.viewModel = viewModel.noteCellViewModel(for: indexPath)

@@ -36,23 +36,23 @@ class NewAccountViewController: UIViewController {
     }()
     
     private lazy var nameTextField: AuthTextField = {
-        let nameTextField = AuthTextField(placeHolder: "Name")
+        let nameTextField = AuthTextField(placeHolder: I.nameTextFieldPlaceholder)
         return nameTextField
     }()
     
     private lazy var loginTextField: AuthTextField = {
-        let loginTextField = AuthTextField(placeHolder: "Email")
+        let loginTextField = AuthTextField(placeHolder: I.emailTextFieldPlaceholder)
         return loginTextField
     }()
     
     private lazy var passwordTextField: AuthTextField = {
-        let passwordTextField = AuthTextField(placeHolder: "Password")
+        let passwordTextField = AuthTextField(placeHolder: I.passwordTextFieldPlaceholder)
         passwordTextField.isSecureTextEntry = true
         return passwordTextField
     }()
     
     private let signUpButton: SignInButton = {
-        let signInButton = SignInButton(title: "Sign up", colorOfBackground: .tripBlue)
+        let signInButton = SignInButton(title: I.signUpButtonTitle, colorOfBackground: .tripBlue)
         signInButton.addTarget(self, action: #selector(signUpTapped), for: .touchUpInside)
         return signInButton
     }()
@@ -67,7 +67,7 @@ class NewAccountViewController: UIViewController {
     
     private lazy var haveLabel: UILabel = {
         let createLabel = UILabel()
-        createLabel.text = "Already have an account"
+        createLabel.text = I.haveLabelText
         createLabel.textAlignment = .center
         createLabel.textColor = .tripBlue
         createLabel.layer.opacity = 0.5
@@ -77,7 +77,7 @@ class NewAccountViewController: UIViewController {
     
     private lazy var logInButton: UIButton = {
         let logInButton = UIButton()
-        logInButton.setTitle("Log in now", for: .normal)
+        logInButton.setTitle(I.logInButtonTitle, for: .normal)
         logInButton.setTitleColor(.tripBlue, for: .normal)
         logInButton.addTarget(self, action: #selector(logInTapped), for: .touchUpInside)
         logInButton.translatesAutoresizingMaskIntoConstraints = false
@@ -146,8 +146,8 @@ class NewAccountViewController: UIViewController {
             let tabbar = self?.configurator?.configureTabbar() ?? UIViewController()
             self?.present(tabbar, animated: true)
         } errorCompletion: { [weak self] in
-            self?.showAlert(title: "We have some problems",
-                             message: "All of fields must be fullfilled")
+            self?.showAlert(title: I.newAccountAlertTitle,
+                            message: I.emptyFieldsWarning)
         }
         return
     }

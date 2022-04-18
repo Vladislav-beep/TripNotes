@@ -37,7 +37,7 @@ class NewTripViewController: UIViewController {
     private lazy var avatarImageView: UIImageView = {
         let avatarImageView = UIImageView()
         avatarImageView.backgroundColor = .tripRed
-        avatarImageView.image = UIImage(named: Constants.ImageNames.tripPlaceHolderImage.rawValue)
+        avatarImageView.image = UIImage(named: C.ImageNames.tripPlaceHolder.rawValue)
         avatarImageView.clipsToBounds = true
         avatarImageView.contentMode = .scaleAspectFill
         avatarImageView.layer.opacity = 0.8
@@ -63,28 +63,28 @@ class NewTripViewController: UIViewController {
     }()
     
     private lazy var countryTextField: CustomTextField = {
-        let countryTextField = CustomTextField(imageName: "flag-edit")
-        countryTextField.placeholder = "Country"
+        let countryTextField = CustomTextField(imageName: C.ImageNames.country.rawValue)
+        countryTextField.placeholder = I.countryTextFieldPlaceHolder
         return countryTextField
     }()
     
     private lazy var beginDateTextField: CustomTextField = {
-        let beginDateTextField = CustomTextField(imageName: "calendar-edit")
-        beginDateTextField.placeholder = "Date when trip begins"
+        let beginDateTextField = CustomTextField(imageName: C.ImageNames.calendar.rawValue)
+        beginDateTextField.placeholder = I.beginDateTextFieldPlaceHolder
         beginDateTextField.setInputViewDatePicker(target: self, selector: #selector(tapBeginningDate))
         return beginDateTextField
     }()
     
     private lazy var finishDateTextField: CustomTextField = {
-        let finishDateTextField = CustomTextField(imageName: "calendar-edit")
-        finishDateTextField.placeholder = "Date when trip ends"
+        let finishDateTextField = CustomTextField(imageName: C.ImageNames.calendar.rawValue)
+        finishDateTextField.placeholder = I.finishDateTextFieldPlaceHolder
         finishDateTextField.setInputViewDatePicker(target: self, selector: #selector(tapfinishingDate))
         return finishDateTextField
     }()
     
     private lazy var descriptionTextField: CustomTextField = {
-        let descriptionTextField = CustomTextField(imageName: "pencil-edit")
-        descriptionTextField.placeholder = "Describe your trip shortly"
+        let descriptionTextField = CustomTextField(imageName: C.ImageNames.description.rawValue)
+        descriptionTextField.placeholder = I.descriptionTextFieldPlaceHolder
         return descriptionTextField
     }()
     
@@ -100,19 +100,19 @@ class NewTripViewController: UIViewController {
     }()
     
     private lazy var dollarButton: SelectionButton = {
-        let dollarButton = SelectionButton(title: "$", fontSize: 30)
+        let dollarButton = SelectionButton(title: Currency.dollar.rawValue, fontSize: 30)
         dollarButton.addTarget(self, action: #selector(selectCurrency(_:)), for: .touchUpInside)
         return dollarButton
     }()
     
     private lazy var rubleButton: SelectionButton = {
-        let rubleButton = SelectionButton(title: "₽", fontSize: 30)
+        let rubleButton = SelectionButton(title: Currency.ruble.rawValue, fontSize: 30)
         rubleButton.addTarget(self, action: #selector(selectCurrency(_:)), for: .touchUpInside)
         return rubleButton
     }()
     
     private lazy var euroButton: SelectionButton = {
-        let euroButton = SelectionButton(title: "€", fontSize: 30)
+        let euroButton = SelectionButton(title: Currency.euro.rawValue, fontSize: 30)
         euroButton.addTarget(self, action: #selector(selectCurrency(_:)), for: .touchUpInside)
         return euroButton
     }()
@@ -131,7 +131,7 @@ class NewTripViewController: UIViewController {
     }()
     
     private lazy var addNewTripButton: AddButton = {
-        let addNewTripButton = AddButton(imageName: nil, title: "+ Add Trip", cornerRadius: 10)
+        let addNewTripButton = AddButton(imageName: nil, title: I.addNewTripButtonTitle, cornerRadius: 10)
         addNewTripButton.titleLabel?.font = .systemFont(ofSize: 20, weight: .regular)
         addNewTripButton.addTarget(self, action: #selector(addTrip), for: .touchUpInside)
         return addNewTripButton
@@ -188,7 +188,7 @@ class NewTripViewController: UIViewController {
               let beginningDateText = beginDateTextField.text, beginningDateText != "",
               let finishingDateText = finishDateTextField.text, finishingDateText != ""
         else {
-            let warningText = "None of fields can be empty"
+            let warningText = I.emptyFieldsWarning
             animator.animateWarningLabel(warningLabel: warningLabel, withText: warningText)
             return
         }
@@ -196,12 +196,12 @@ class NewTripViewController: UIViewController {
         var currency = ""
         for button in buttonArray {
             if button.backgroundColor == UIColor.tripRed {
-                currency = button.titleLabel?.text ?? "$"
+                currency = button.titleLabel?.text ?? Currency.dollar.rawValue
             }
         }
         
         guard currency != "" else {
-            let currencyWarningText = "Choose currency"
+            let currencyWarningText = I.currencyWarning
             animator.animateWarningLabel(warningLabel: warningLabel, withText: currencyWarningText)
             return
         }
@@ -212,8 +212,8 @@ class NewTripViewController: UIViewController {
         guard let bdate = dateformatter.date(from: beginningDateText) else { return }
         guard let fdate = dateformatter.date(from: finishingDateText) else { return }
         
-        guard bdate < fdate else {
-            let dateWarningText = "Beginning date can't be earlier then finishing date"
+        guard bdate <= fdate else {
+            let dateWarningText = I.dateWarning
             animator.animateWarningLabel(warningLabel: warningLabel, withText: dateWarningText)
             return
             
@@ -223,16 +223,16 @@ class NewTripViewController: UIViewController {
             viewModel?.updateTrip(country: country, currency: currency, description: description, beginningDate: bdate , finishingDate: fdate , completion: { [weak self] docId in
                 self?.updateImageAndCloseScreen(forKey: docId)
             }, errorCompletion: { [weak self] in
-                self?.showAlert(title: "Unable to update trip",
-                                message: "Please, check your internet connection")
+                self?.showAlert(title: I.updateTripAlertTitle,
+                                message: I.errorConnectionAlertMessage)
                 return
             })
         } else {
             viewModel?.addTrip(country: country, currency: currency, description: description, beginningDate: bdate , finishingDate: fdate , completion: { [weak self] docId in
                 self?.updateImageAndCloseScreen(forKey: docId)
             }, errorCompletion: { [weak self] in
-                self?.showAlert(title: "Unable to add trip",
-                                message: "Please, check your internet connection")
+                self?.showAlert(title: I.addTripAlertTitle,
+                                message: I.errorConnectionAlertMessage)
                 return
             })
         }
@@ -284,23 +284,23 @@ class NewTripViewController: UIViewController {
     @objc private func setAvatarImage(_ sender: UITapGestureRecognizer) {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
-        let camera = UIAlertAction(title: "Camera", style: .default) { _ in
+        let camera = UIAlertAction(title: I.cameraActionSheet, style: .default) { _ in
             self.chooseImagePicker(source: .camera)
         }
         
-        let photo = UIAlertAction(title: "Gallery", style: .default) { _ in
+        let photo = UIAlertAction(title: I.galleryActionSheet, style: .default) { _ in
             self.chooseImagePicker(source: .photoLibrary)
         }
         
-        let placeHolderImage = UIAlertAction(title: "Return placeholder image", style: .default) { _ in
-            self.avatarImageView.image = UIImage(named: "tripPlaceHolder")
+        let placeHolderImage = UIAlertAction(title: I.placeHolderActionSheet, style: .default) { _ in
+            self.avatarImageView.image = UIImage(named: C.ImageNames.tripPlaceHolder.rawValue)
         }
         
-        let deleteImage = UIAlertAction(title: "Delete image", style: .default) { _ in
+        let deleteImage = UIAlertAction(title: I.deleteActionSheet, style: .default) { _ in
             self.avatarImageView.image = nil
         }
         
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+        let cancel = UIAlertAction(title: I.cancelActionSheet, style: .cancel)
         
         actionSheet.addAction(camera)
         actionSheet.addAction(photo)
@@ -323,8 +323,8 @@ class NewTripViewController: UIViewController {
     private func setupUI() {
         if isEdited ?? false {
             addNewTripButton.backgroundColor = .tripBlue
-            addNewTripButton.setTitle(" Edit Trip", for: .normal)
-            addNewTripButton.setImage(UIImage(systemName: "square.and.pencil"), for: .normal)
+            addNewTripButton.setTitle(I.addNewTripEditButtonTitle, for: .normal)
+            addNewTripButton.setImage(UIImage(systemName: C.ImageNames.editIcon.rawValue), for: .normal)
             redView.backgroundColor = .tripBlue
             let imageData = viewModel?.retrieveImage()
             avatarImageView.image = UIImage(data: imageData ?? Data())
@@ -342,22 +342,25 @@ class NewTripViewController: UIViewController {
             
             let currency = self?.viewModel?.currency
             switch currency {
-            case "$":
+            case Currency.dollar.rawValue:
                 self?.dollarButton.pulsate()
                 self?.dollarButton.backgroundColor = .tripRed
-            case "€":
+                
+            case Currency.euro.rawValue:
                 self?.euroButton.pulsate()
                 self?.euroButton.backgroundColor = .tripRed
-            case "₽":
+                
+            case Currency.ruble.rawValue:
                 self?.rubleButton.pulsate()
                 self?.rubleButton.backgroundColor = .tripRed
+                
             default:
                 break
             }
         }
         
         viewModel?.errorCompletion = { [weak self] error in
-            self?.showAlert(title: "Error!", message: error.errorDescription)
+            self?.showAlert(title: I.fetchTripAlertTitle, message: error.errorDescription)
         }
     }
     
