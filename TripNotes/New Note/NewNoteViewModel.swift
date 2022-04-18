@@ -13,6 +13,7 @@ protocol NewNoteViewModelProtocol {
     var price: String { get }
     var description: String { get }
     var address: String { get }
+    var maxCharCount: Int { get }
     var noteCompletion: (() -> Void)? { get set }
     var errorCompletion: ((FireBaseError) -> Void)? { get set }
     init(userId: String, tripId: String, noteId: String, fireBaseService: FireBaseServiceProtocol)
@@ -57,6 +58,10 @@ class NewNoteViewModel: NewNoteViewModelProtocol {
     
     var address: String {
         note?.address ?? ""
+    }
+    
+    var maxCharCount: Int {
+        160
     }
     
     // MARK: - Life Time
