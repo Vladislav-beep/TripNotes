@@ -88,7 +88,7 @@ struct I {
     
     static let cameraActionSheet = "Camera"
     static let galleryActionSheet = "Gallery"
-    static let placeHolderActionSheet = "Return placeholder image"
+    static let placeHolderActionSheet = "Return placeholder"
     static let deleteActionSheet = "Delete image"
     static let cancelActionSheet = "Cancel"
     

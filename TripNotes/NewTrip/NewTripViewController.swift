@@ -287,18 +287,26 @@ class NewTripViewController: UIViewController {
         let camera = UIAlertAction(title: I.cameraActionSheet, style: .default) { _ in
             self.chooseImagePicker(source: .camera)
         }
+        camera.setValue(UIImage(named: "cameraSheet"), forKey: "image")
+        camera.setValue(CATextLayerAlignmentMode.left, forKey: "titleTextAlignment")
         
         let photo = UIAlertAction(title: I.galleryActionSheet, style: .default) { _ in
             self.chooseImagePicker(source: .photoLibrary)
         }
+        photo.setValue(UIImage(named: "photoSheet"), forKey: "image")
+        photo.setValue(CATextLayerAlignmentMode.left, forKey: "titleTextAlignment")
         
         let placeHolderImage = UIAlertAction(title: I.placeHolderActionSheet, style: .default) { _ in
             self.avatarImageView.image = UIImage(named: C.ImageNames.tripPlaceHolder.rawValue)
         }
+        placeHolderImage.setValue(UIImage(named: "placeholderSheet"), forKey: "image")
+        placeHolderImage.setValue(CATextLayerAlignmentMode.left, forKey: "titleTextAlignment")
         
         let deleteImage = UIAlertAction(title: I.deleteActionSheet, style: .default) { _ in
             self.avatarImageView.image = nil
         }
+        deleteImage.setValue(UIImage(named: "deleteSheet"), forKey: "image")
+        deleteImage.setValue(CATextLayerAlignmentMode.left, forKey: "titleTextAlignment")
         
         let cancel = UIAlertAction(title: I.cancelActionSheet, style: .cancel)
         
