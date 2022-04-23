@@ -29,7 +29,7 @@ class TripTableViewCell: UITableViewCell {
         tripImageView.layer.cornerRadius = 22
         tripImageView.clipsToBounds = true
         tripImageView.contentMode = .scaleAspectFill
-        tripImageView.image = UIImage(named: Constants.ImageNames.tripPlaceHolderImage.rawValue)
+        tripImageView.image = UIImage(named: C.ImageNames.tripPlaceHolder.rawValue)
         tripImageView.backgroundColor = .tripRed
         tripImageView.layer.opacity = 0.75
         tripImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -42,7 +42,7 @@ class TripTableViewCell: UITableViewCell {
     }()
     
     private lazy var descriptionLabel: TripCellLabel = {
-        let descriptionLabel = TripCellLabel(lineNumber: 2, fontSize: 14)
+        let descriptionLabel = TripCellLabel(lineNumber: 1, fontSize: 14)
         return descriptionLabel
     }()
     
@@ -54,8 +54,7 @@ class TripTableViewCell: UITableViewCell {
     }()
     
     private lazy var dateLabel: TripCellLabel = {
-        let dateLabel = TripCellLabel(lineNumber: 1, fontSize: 13)
-        dateLabel.font = UIFont.systemFont(ofSize: 13, weight: .heavy)
+        let dateLabel = TripCellLabel(lineNumber: 1, fontSize: 15)
         return dateLabel
     }()
     
@@ -72,16 +71,7 @@ class TripTableViewCell: UITableViewCell {
         infoStackView.translatesAutoresizingMaskIntoConstraints = false
         return infoStackView
     }()
-    
-//    private lazy var textView: UIView = {
-//        let textView = UIView()
-//        textView.backgroundColor = .tripRed
-//        textView.layer.opacity = 0.45
-//        textView.layer.cornerRadius = 8
-//        textView.translatesAutoresizingMaskIntoConstraints = false
-//        return textView
-//    }()
-    
+
     // MARK: - Life Time
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -108,7 +98,6 @@ class TripTableViewCell: UITableViewCell {
     
     private func setupAllConstraints() {
         setupTripImageConstraints()
-       // setupTextViewConstraints()
         setupTotalSumLabelConstraints()
         descriptionLabelConstraints()
         setupInfoStackViewConstraints()
@@ -144,21 +133,11 @@ class TripTableViewCell: UITableViewCell {
         ])
     }
     
-//    private func setupTextViewConstraints() {
-//        contentView.addSubview(textView)
-//        NSLayoutConstraint.activate([
-//            textView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
-//            textView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: -10),
-//            textView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -30),
-//            textView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -44),
-//        ])
-//    }
-    
     private func setupInfoStackViewConstraints() {
         descriptionLabelConstraints()
         contentView.addSubview(infoStackView)
         NSLayoutConstraint.activate([
-            infoStackView.topAnchor.constraint(equalTo: tripImageView.topAnchor, constant: 45),
+            infoStackView.topAnchor.constraint(equalTo: tripImageView.topAnchor, constant: 55),
             infoStackView.leadingAnchor.constraint(equalTo: tripImageView.leadingAnchor, constant: 10),
             infoStackView.trailingAnchor.constraint(equalTo: tripImageView.trailingAnchor, constant: -30),
             infoStackView.bottomAnchor.constraint(equalTo: tripImageView.bottomAnchor, constant: -10),
