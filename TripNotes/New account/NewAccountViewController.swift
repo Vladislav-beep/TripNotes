@@ -142,6 +142,16 @@ class NewAccountViewController: UIViewController {
         let password = passwordTextField.text ?? ""
         let name = nameTextField.text ?? ""
         
+        guard !email.isEmpty, !password.isEmpty, !name.isEmpty else {
+            self.showAlert(title: I.newAccountAlertTitle, message: I.emptyFieldsWarning)
+            return
+        }
+        
+        guard password.count >= 6 else {
+            self.showAlert(title: I.newAccountAlertPasswordTitle, message: I.newAccountAlertPasswordMessage)
+            return
+        }
+        
         viewModel.createNewUser(withEmail: email, password: password, name: name) { [weak self] in
             let tabbar = self?.configurator?.configureTabbar() ?? UIViewController()
             self?.present(tabbar, animated: true)

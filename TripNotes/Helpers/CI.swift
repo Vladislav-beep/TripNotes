@@ -121,7 +121,9 @@ struct I {
     static let signUpButtonTitle = "Sign up"
     static let haveLabelText = "Already have an account"
     static let logInButtonTitle = "Log in now"
-    static let newAccountAlertTitle = "We have some problems"
+    static let newAccountAlertTitle = "Empty fields"
+    static let newAccountAlertPasswordTitle = "Wrong password"
+    static let newAccountAlertPasswordMessage = "Password can't be less then 6 symbols"
     
     
     

@@ -17,7 +17,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     // MARK: - Dependencies
     
-    var viewModel: MapViewModelProtocol
+    private var viewModel: MapViewModelProtocol
     var mapViewControllerDelegate: MapViewControllerDelegate?
     
     // MARK: - UI
@@ -30,16 +30,10 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     }()
     
     private lazy var closeButton: UIButton = {
-        let button = UIButton()
-        button.setBackgroundImage(UIImage(systemName: C.ImageNames.closeButton.rawValue), for: .normal)
-        button.tintColor = .tripRed
-        button.addTarget(self, action: #selector(closeScreen), for: .touchUpInside)
-        button.layer.shadowColor = UIColor.darkGray.cgColor
-        button.layer.shadowRadius = 5
-        button.layer.shadowOffset = CGSize(width: 0, height: 5)
-        button.layer.shadowOpacity = 0.5
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
+        let closeButton = CloseButton()
+        closeButton.tintColor =  .tripRed
+        closeButton.addTarget(self, action: #selector(closeScreen), for: .touchUpInside)
+        return closeButton
     }()
     
     private lazy var showUserLocationButton: UIButton = {
@@ -161,9 +155,9 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     private func setupCloseButtonConstraints() {
         mapView.addSubview(closeButton)
         NSLayoutConstraint.activate([
-            closeButton.heightAnchor.constraint(equalToConstant: 50),
-            closeButton.widthAnchor.constraint(equalToConstant: 50),
-            closeButton.topAnchor.constraint(equalTo: mapView.topAnchor, constant: 30),
+            closeButton.heightAnchor.constraint(equalToConstant: 40),
+            closeButton.widthAnchor.constraint(equalTo: closeButton.heightAnchor),
+            closeButton.topAnchor.constraint(equalTo: mapView.topAnchor, constant: 36),
             closeButton.leadingAnchor.constraint(equalTo: mapView.leadingAnchor, constant: 15)
         ])
     }
