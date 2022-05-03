@@ -17,7 +17,7 @@ class TabBarViewModel: TabBarViewModelProtocol {
     
     // MARK: - Dependencies
     
-    private let auth: AuthService
+    private let authService: AuthServiceProtocol
     
     // MARK: - Properties
     
@@ -26,17 +26,18 @@ class TabBarViewModel: TabBarViewModelProtocol {
     
     // MARK: - Life Time
     
-    init(authService: AuthService) {
-        self.auth = authService
+    init(authService: AuthServiceProtocol) {
+        self.authService = authService
     }
     
     // MARK:  - Methods
     
     func fetchUserId() {
-        auth.getUserId(completion: { [weak self] (result: Result<String, AuthError>) in
+        authService.getUserId(completion: { [weak self] (result: Result<String, AuthError>) in
             switch result {
             case .success(let id):
                 self?.completion?(id)
+                
             case .failure(let error):
                 self?.errorCompletion?()
                 print(error.localizedDescription)

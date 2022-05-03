@@ -21,6 +21,7 @@ struct C {
         case deleteIcon = "trash"
         case editIcon = "square.and.pencil"
         case tripPlaceHolder = "tripPlaceHolder"
+        case heart = "heart.fill"
         
         // MARK: UI
         case back = "chevron.compact.left"
@@ -28,7 +29,6 @@ struct C {
         
         // MARK: TabBar
         case tabBarTrip = "arrow.triangle.swap"
-        case tabBarFav = "heart.fill"
         
         // MARK: Trips
         case addTripButton = "plus"
@@ -43,9 +43,6 @@ struct C {
         case purchases = "creditcard.fill"
         case other = "square.3.stack.3d.bottom.fill"
         case defaultCategory = "square"
-        
-        // MARK: Details
-        case likeHeart = "heart-color"
         
         // MARK: NewTripViewController
         case country = "flag-edit"

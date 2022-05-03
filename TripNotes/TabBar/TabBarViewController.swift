@@ -70,7 +70,7 @@ class TabBarViewController: UITabBarController {
         firstViewController.tabBarItem.image = UIImage(systemName: C.ImageNames.tabBarTrip.rawValue)
         
         secondViewController.tabBarItem.title = I.tabBarFavItemTitle
-        secondViewController.tabBarItem.image = UIImage(systemName: C.ImageNames.tabBarFav.rawValue)
+        secondViewController.tabBarItem.image = UIImage(systemName: C.ImageNames.heart.rawValue)
         
         viewControllers = [firstViewController, secondViewController]
     }

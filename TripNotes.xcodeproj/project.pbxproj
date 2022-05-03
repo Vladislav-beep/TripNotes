@@ -51,6 +51,39 @@
 		B91E81492767A88F00D0748B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B91E81472767A88F00D0748B /* LaunchScreen.storyboard */; };
 		B91E81532767A9AC00D0748B /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91E81522767A9AC00D0748B /* TabBarViewController.swift */; };
 		B91E81562767AA4F00D0748B /* FavouritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91E81552767AA4F00D0748B /* FavouritesViewController.swift */; };
+		B930CDE928154D6C00D0A6F5 /* TabBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C2F1F427E08E9600A38B18 /* TabBarViewModel.swift */; };
+		B930CDEC28154D9300D0A6F5 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90DB42D276F139700F1A544 /* Currency.swift */; };
+		B930CDEF28154DA200D0A6F5 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90DB429276F137500F1A544 /* Category.swift */; };
+		B930CDF228154DC100D0A6F5 /* SlideInPresentationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95FBCE827D89857006FF5A8 /* SlideInPresentationManager.swift */; };
+		B930CDF528154DCA00D0A6F5 /* AuthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C6A69D280C1A8F00BA9F61 /* AuthError.swift */; };
+		B930CDF828154DD000D0A6F5 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B919353227F37A0A0095D1C9 /* NetworkError.swift */; };
+		B930CDFB28154DD400D0A6F5 /* DateFormatterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90DB437276F14B100F1A544 /* DateFormatterService.swift */; };
+		B930CDFC28154DD900D0A6F5 /* FileStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B938B1F427DB50B400E205C6 /* FileStorageService.swift */; };
+		B930CDFF28154DDE00D0A6F5 /* Extension + UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F39E072767D47A00DAFB4C /* Extension + UIColor.swift */; };
+		B930CE0028154DE100D0A6F5 /* Extension + UIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E85C3C276E6468004FD1D8 /* Extension + UIStackView.swift */; };
+		B930CE0328154DE400D0A6F5 /* Extension + Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90DB43F276F323000F1A544 /* Extension + Formatter.swift */; };
+		B930CE0428154DE600D0A6F5 /* Extension + Numeric.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90DB443276F326000F1A544 /* Extension + Numeric.swift */; };
+		B930CE0528154DEA00D0A6F5 /* Extension + UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B938B1FC27DC99B600E205C6 /* Extension + UIViewController.swift */; };
+		B930CE0828154DEE00D0A6F5 /* SectionLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B905759A279458BB001EA8D1 /* SectionLabel.swift */; };
+		B930CE0928154DF200D0A6F5 /* SelectionLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B961212C279351FB00B7B81E /* SelectionLabel.swift */; };
+		B930CE0C28154DF600D0A6F5 /* AuthTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93DD4C1279F23DA00D91A08 /* AuthTextField.swift */; };
+		B930CE0D28154DFC00D0A6F5 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9FB61232772617000126A59 /* CustomTextField.swift */; };
+		B930CE1028154E0200D0A6F5 /* WelcomeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90251AE27DA1EB700788065 /* WelcomeLabel.swift */; };
+		B930CE1328154E0500D0A6F5 /* CreateButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90251B227DA205E00788065 /* CreateButton.swift */; };
+		B930CE1428154E0700D0A6F5 /* CreateLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90251B627DA221300788065 /* CreateLabel.swift */; };
+		B930CE1528154E0A00D0A6F5 /* WarningLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90251BA27DA264B00788065 /* WarningLabel.swift */; };
+		B930CE1828154E0C00D0A6F5 /* CreateNewAccountLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90251BE27DA2F0900788065 /* CreateNewAccountLabel.swift */; };
+		B930CE1928154E1100D0A6F5 /* TripCellLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90251C927DA44A500788065 /* TripCellLabel.swift */; };
+		B930CE1A28154E1400D0A6F5 /* TotalSumLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90251CD27DA477600788065 /* TotalSumLabel.swift */; };
+		B930CE1D28154E1600D0A6F5 /* EditDeleteNoteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90251D327DB35E800788065 /* EditDeleteNoteButton.swift */; };
+		B930CE1E28154E1900D0A6F5 /* LikeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90251D727DB3AE500788065 /* LikeButton.swift */; };
+		B930CE1F28154E1B00D0A6F5 /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90251DD27DB3D7C00788065 /* BackButton.swift */; };
+		B930CE2228154E1D00D0A6F5 /* AdressButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B938B1F027DB463D00E205C6 /* AdressButton.swift */; };
+		B930CE2528154E2000D0A6F5 /* NoLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B938B1F827DB91C400E205C6 /* NoLabel.swift */; };
+		B930CE2628154E2200D0A6F5 /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9072FEB27E8D1A9008BE67C /* SearchController.swift */; };
+		B930CE2728154E2700D0A6F5 /* KeyboardHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E8670E27E1D3CF00C97E5E /* KeyboardHelper.swift */; };
+		B930CE2E2815506100D0A6F5 /* FireBaseServiceErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B919352B27F36C7B0095D1C9 /* FireBaseServiceErrors.swift */; };
+		B930CE322815588700D0A6F5 /* AuthServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B930CE312815588700D0A6F5 /* AuthServiceMock.swift */; };
 		B938B1F127DB463D00E205C6 /* AdressButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B938B1F027DB463D00E205C6 /* AdressButton.swift */; };
 		B938B1F527DB50B400E205C6 /* FileStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B938B1F427DB50B400E205C6 /* FileStorageService.swift */; };
 		B938B1F927DB91C500E205C6 /* NoLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B938B1F827DB91C400E205C6 /* NoLabel.swift */; };
@@ -102,8 +135,8 @@
 		B9863ABB27C1371F00BE6337 /* FireBaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9863ABA27C1371F00BE6337 /* FireBaseService.swift */; };
 		B9863ABF27C1374100BE6337 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9863ABE27C1374100BE6337 /* AuthService.swift */; };
 		B9A0EF6B2774DDCE00DE65E2 /* SelectionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A0EF6A2774DDCE00DE65E2 /* SelectionButton.swift */; };
-		B9AA39D227BAC96800CD48E9 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = B9AA39D127BAC96800CD48E9 /* FirebaseAnalytics */; };
-		B9AA39D427BAC96800CD48E9 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = B9AA39D327BAC96800CD48E9 /* FirebaseAuth */; };
+		B9AA39D227BAC96800CD48E9 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = B9AA39D127BAC96800CD48E9 /* FirebaseAnalytics */; settings = {ATTRIBUTES = (Required, ); }; };
+		B9AA39D427BAC96800CD48E9 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = B9AA39D327BAC96800CD48E9 /* FirebaseAuth */; settings = {ATTRIBUTES = (Required, ); }; };
 		B9AA39D627BAC96800CD48E9 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = B9AA39D527BAC96800CD48E9 /* FirebaseFirestore */; settings = {ATTRIBUTES = (Required, ); }; };
 		B9AA39D927BACF9B00CD48E9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91E813C2767A88E00D0748B /* AppDelegate.swift */; };
 		B9AA39DF27BAD08A00CD48E9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B9AA39DE27BAD08A00CD48E9 /* GoogleService-Info.plist */; };
@@ -189,6 +222,7 @@
 		B91E814A2767A88F00D0748B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B91E81522767A9AC00D0748B /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		B91E81552767AA4F00D0748B /* FavouritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewController.swift; sourceTree = "<group>"; };
+		B930CE312815588700D0A6F5 /* AuthServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthServiceMock.swift; sourceTree = "<group>"; };
 		B938B1F027DB463D00E205C6 /* AdressButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdressButton.swift; sourceTree = "<group>"; };
 		B938B1F427DB50B400E205C6 /* FileStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileStorageService.swift; sourceTree = "<group>"; };
 		B938B1F827DB91C400E205C6 /* NoLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoLabel.swift; sourceTree = "<group>"; };
@@ -336,6 +370,7 @@
 				B91E813B2767A88E00D0748B /* TripNotes */,
 				B9DE0D482768FD7900805E4C /* TripNotesTests */,
 				B91E813A2767A88E00D0748B /* Products */,
+				B930CDE028154C0700D0A6F5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -376,6 +411,13 @@
 				B9AA39DE27BAD08A00CD48E9 /* GoogleService-Info.plist */,
 			);
 			path = TripNotes;
+			sourceTree = "<group>";
+		};
+		B930CDE028154C0700D0A6F5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		B93DD4B1279F184F00D91A08 /* Auth */ = {
@@ -493,6 +535,7 @@
 			isa = PBXGroup;
 			children = (
 				B9DE0D492768FD7900805E4C /* TripNotesTests.swift */,
+				B930CE312815588700D0A6F5 /* AuthServiceMock.swift */,
 				B9DE0D4B2768FD7900805E4C /* Info.plist */,
 			);
 			path = TripNotesTests;
@@ -585,8 +628,8 @@
 			buildConfigurationList = B91E814D2767A88F00D0748B /* Build configuration list for PBXNativeTarget "TripNotes" */;
 			buildPhases = (
 				B91E81352767A88E00D0748B /* Sources */,
-				B91E81362767A88E00D0748B /* Frameworks */,
 				B91E81372767A88E00D0748B /* Resources */,
+				B91E81362767A88E00D0748B /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -616,6 +659,8 @@
 				B9DE0D4D2768FD7900805E4C /* PBXTargetDependency */,
 			);
 			name = TripNotesTests;
+			packageProductDependencies = (
+			);
 			productName = TripNotesTests;
 			productReference = B9DE0D472768FD7900805E4C /* TripNotesTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -771,14 +816,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B930CE1028154E0200D0A6F5 /* WelcomeLabel.swift in Sources */,
 				B9DE0D592768FDAE00805E4C /* TabBarViewController.swift in Sources */,
 				B9698F29279C53B8005FB438 /* NewNoteViewModel.swift in Sources */,
 				B9AA39D927BACF9B00CD48E9 /* AppDelegate.swift in Sources */,
 				B90A37E427784E830028B6F1 /* Extension + UIBarButtonItem.swift in Sources */,
+				B930CDFC28154DD900D0A6F5 /* FileStorageService.swift in Sources */,
 				B95FBD0827D8BAD1006FF5A8 /* CurrentWeather.swift in Sources */,
 				B98282D327A07BF3006EFED8 /* SignInButton.swift in Sources */,
 				B9DE0D562768FDAB00805E4C /* TripTableViewCell.swift in Sources */,
 				B93DD4BA279F1BCA00D91A08 /* AuthViewController.swift in Sources */,
+				B930CDFB28154DD400D0A6F5 /* DateFormatterService.swift in Sources */,
 				B95FBCE327D893FC006FF5A8 /* CloseButton.swift in Sources */,
 				B9F63C5C27CA29F00021F02F /* AuthService.swift in Sources */,
 				B966487E2799D66900F527E8 /* MapViewController.swift in Sources */,
@@ -786,6 +834,8 @@
 				B90DB459276FB39200F1A544 /* TripTableViewCellViewModel.swift in Sources */,
 				B912CFF227ADB66B00AE1FCE /* NotesCollectionView.swift in Sources */,
 				B9D9FC14278F4E1D007710B4 /* SelectionButton.swift in Sources */,
+				B930CDFF28154DDE00D0A6F5 /* Extension + UIColor.swift in Sources */,
+				B930CE1528154E0A00D0A6F5 /* WarningLabel.swift in Sources */,
 				B909AFE0277E437D006EFC38 /* Extension + UITextField.swift in Sources */,
 				B9DE0D5F2768FDB800805E4C /* TripModel.swift in Sources */,
 				B98282E427A082CE006EFED8 /* NewAccountViewController.swift in Sources */,
@@ -796,25 +846,53 @@
 				B961212827934BDE00B7B81E /* NoteModel.swift in Sources */,
 				B95FBD0D27D8BAD6006FF5A8 /* CurrentWeatherData.swift in Sources */,
 				B9D9FC11278F390B007710B4 /* NewNoteViewController.swift in Sources */,
+				B930CE2228154E1D00D0A6F5 /* AdressButton.swift in Sources */,
 				B95FBD1227D90D5E006FF5A8 /* NetworkWeatherManager.swift in Sources */,
 				B949FB1E27AEF38800590F0E /* Configurator.swift in Sources */,
+				B930CE0528154DEA00D0A6F5 /* Extension + UIViewController.swift in Sources */,
+				B930CE1A28154E1400D0A6F5 /* TotalSumLabel.swift in Sources */,
 				B90DB456276FB38D00F1A544 /* NotesViewController.swift in Sources */,
+				B930CE0028154DE100D0A6F5 /* Extension + UIStackView.swift in Sources */,
+				B930CE2E2815506100D0A6F5 /* FireBaseServiceErrors.swift in Sources */,
 				B95FBCD627D7D76C006FF5A8 /* WeatherViewController.swift in Sources */,
 				B9FCE18E279D8A4900E06739 /* mapViewModel.swift in Sources */,
 				B9EA410B27777D9A00CC173A /* NewTripViewModel.swift in Sources */,
 				B9F018982770DF1D006F2DE7 /* TripsViewModel.swift in Sources */,
+				B930CE1D28154E1600D0A6F5 /* EditDeleteNoteButton.swift in Sources */,
+				B930CE2728154E2700D0A6F5 /* KeyboardHelper.swift in Sources */,
 				B90632F227AFCF0900F0C2A5 /* NoteCellVewModel.swift in Sources */,
+				B930CE322815588700D0A6F5 /* AuthServiceMock.swift in Sources */,
+				B930CDEC28154D9300D0A6F5 /* Currency.swift in Sources */,
+				B930CDF528154DCA00D0A6F5 /* AuthError.swift in Sources */,
 				B97374C227AC5CF8000B208D /* FavouritesViewModel.swift in Sources */,
 				B90251C627DA3F1000788065 /* AddButton.swift in Sources */,
 				B95FBCD927D7D76F006FF5A8 /* WeatherViewModel.swift in Sources */,
+				B930CE1E28154E1900D0A6F5 /* LikeButton.swift in Sources */,
+				B930CE1828154E0C00D0A6F5 /* CreateNewAccountLabel.swift in Sources */,
 				B90DB45A276FB39E00F1A544 /* NotesViewModel.swift in Sources */,
 				B95FBCF827D8B686006FF5A8 /* CI.swift in Sources */,
+				B930CE2628154E2200D0A6F5 /* SearchController.swift in Sources */,
 				B9D9C8AF27C3EDF70003D34C /* FireBaseService.swift in Sources */,
 				B90632FE27AFE47F00F0C2A5 /* DetailNoteViewController.swift in Sources */,
+				B930CE0928154DF200D0A6F5 /* SelectionLabel.swift in Sources */,
+				B930CE0828154DEE00D0A6F5 /* SectionLabel.swift in Sources */,
+				B930CDF828154DD000D0A6F5 /* NetworkError.swift in Sources */,
+				B930CE1928154E1100D0A6F5 /* TripCellLabel.swift in Sources */,
+				B930CDEF28154DA200D0A6F5 /* Category.swift in Sources */,
+				B930CE0C28154DF600D0A6F5 /* AuthTextField.swift in Sources */,
+				B930CE0D28154DFC00D0A6F5 /* CustomTextField.swift in Sources */,
+				B930CDE928154D6C00D0A6F5 /* TabBarViewModel.swift in Sources */,
+				B930CE1328154E0500D0A6F5 /* CreateButton.swift in Sources */,
 				B93DD4BD279F1BCC00D91A08 /* AuthViewModel.swift in Sources */,
+				B930CE0428154DE600D0A6F5 /* Extension + Numeric.swift in Sources */,
+				B930CE2528154E2000D0A6F5 /* NoLabel.swift in Sources */,
 				B95F0BBF27B986FC008BCAF6 /* Animator.swift in Sources */,
 				B9DE0D4A2768FD7900805E4C /* TripNotesTests.swift in Sources */,
+				B930CE1F28154E1B00D0A6F5 /* BackButton.swift in Sources */,
+				B930CDF228154DC100D0A6F5 /* SlideInPresentationManager.swift in Sources */,
 				B949FB2127AF1F7A00590F0E /* SceneDelegate.swift in Sources */,
+				B930CE0328154DE400D0A6F5 /* Extension + Formatter.swift in Sources */,
+				B930CE1428154E0700D0A6F5 /* CreateLabel.swift in Sources */,
 				B9DE0D5C2768FDB100805E4C /* FavouritesViewController.swift in Sources */,
 				B9DE0D532768FDA800805E4C /* TripsViewController.swift in Sources */,
 				B9F296C8278964CE00844D6C /* NoteCell.swift in Sources */,
@@ -826,6 +904,7 @@
 /* Begin PBXTargetDependency section */
 		B9DE0D4D2768FD7900805E4C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
+			platformFilter = ios;
 			target = B91E81382767A88E00D0748B /* TripNotes */;
 			targetProxy = B9DE0D4C2768FD7900805E4C /* PBXContainerItemProxy */;
 		};
@@ -877,9 +956,12 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = YES;
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = Y994MRWU9A;
+				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -903,6 +985,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VALIDATE_WORKSPACE = NO;
 			};
 			name = Debug;
 		};
@@ -940,9 +1023,12 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = YES;
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = Y994MRWU9A;
+				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -960,6 +1046,7 @@
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
+				VALIDATE_WORKSPACE = NO;
 			};
 			name = Release;
 		};
@@ -968,6 +1055,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Y994MRWU9A;
 				INFOPLIST_FILE = TripNotes/Info.plist;
@@ -977,8 +1065,10 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = swift.ru.TripNotes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_WORKSPACE = YES_ERROR;
 			};
 			name = Debug;
 		};
@@ -987,6 +1077,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Y994MRWU9A;
 				INFOPLIST_FILE = TripNotes/Info.plist;
@@ -996,8 +1087,10 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = swift.ru.TripNotes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_WORKSPACE = YES_ERROR;
 			};
 			name = Release;
 		};
