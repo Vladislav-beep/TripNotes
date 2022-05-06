@@ -6,11 +6,16 @@
 //
 
 import XCTest
+@testable import TripNotes
 
 class TripNotesTests: XCTestCase {
+    
+    var viewModel: TabBarViewModel!
+    var authServiceMock: AuthServiceMock!
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    override func setUp() {
+        authServiceMock = AuthServiceMock()
+        viewModel = .init(authService: authServiceMock)
     }
 
     override func tearDownWithError() throws {
@@ -18,15 +23,22 @@ class TripNotesTests: XCTestCase {
     }
 
     func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+
+        var userID: String?
+        let completion = { userID = "123" }
+       
+        
+        viewModel.fetchUserId()
+        
+        viewModel.completion = { id in
+            userID = id
+        }
+        
+        viewModel.completion = completion
+    //    XCTAssertNotNil(viewModel.fetchUserId())
+        XCTAssertEqual(userID, "123")
     }
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
+
 
 }
