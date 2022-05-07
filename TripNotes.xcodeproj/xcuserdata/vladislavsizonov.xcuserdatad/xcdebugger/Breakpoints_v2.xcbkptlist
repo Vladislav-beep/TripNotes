@@ -20,5 +20,211 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "12F62A97-BAF0-47B9-AFAD-30558E4B3A00"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TripNotes/TabBar/TabBarViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
+            landmarkName = "fetchUserId()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "12F62A97-BAF0-47B9-AFAD-30558E4B3A00 - 6a19b0be7d48b7ea"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TripNotes.TabBarViewModel.fetchUserId() -&gt; ()"
+                  moduleName = "TripNotes"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vladislavsizonov/Desktop/Swift/TripNotes/TripNotes/TabBar/TabBarViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "36"
+                  endingLineNumber = "36"
+                  offsetFromSymbolStart = "25">
+               </Location>
+               <Location
+                  uuid = "12F62A97-BAF0-47B9-AFAD-30558E4B3A00 - 7349da276c7ec711"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;Swift.String, TripNotes.AuthError&gt;) -&gt; () in TripNotes.TabBarViewModel.fetchUserId() -&gt; ()"
+                  moduleName = "TripNotes"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vladislavsizonov/Desktop/Swift/TripNotes/TripNotes/TabBar/TabBarViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "36"
+                  endingLineNumber = "36"
+                  offsetFromSymbolStart = "181">
+               </Location>
+               <Location
+                  uuid = "12F62A97-BAF0-47B9-AFAD-30558E4B3A00 - 287bd46169d5d5ba"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TripNotesTests.TabBarViewModel.fetchUserId() -&gt; ()"
+                  moduleName = "TripNotesTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vladislavsizonov/Desktop/Swift/TripNotes/TripNotes/TabBar/TabBarViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "36"
+                  endingLineNumber = "36"
+                  offsetFromSymbolStart = "25">
+               </Location>
+               <Location
+                  uuid = "12F62A97-BAF0-47B9-AFAD-30558E4B3A00 - 78362e4e6a5a8894"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;Swift.String, TripNotesTests.AuthError&gt;) -&gt; () in TripNotesTests.TabBarViewModel.fetchUserId() -&gt; ()"
+                  moduleName = "TripNotesTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vladislavsizonov/Desktop/Swift/TripNotes/TripNotes/TabBar/TabBarViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "36"
+                  endingLineNumber = "36"
+                  offsetFromSymbolStart = "181">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "831F28A1-9FCD-47C2-BEA6-09635C86FE96"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TripNotes/TabBar/TabBarViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
+            landmarkName = "fetchUserId()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "831F28A1-9FCD-47C2-BEA6-09635C86FE96 - 7349da276c7ec4fc"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;Swift.String, TripNotes.AuthError&gt;) -&gt; () in TripNotes.TabBarViewModel.fetchUserId() -&gt; ()"
+                  moduleName = "TripNotes"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vladislavsizonov/Desktop/Swift/TripNotes/TripNotes/TabBar/TabBarViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "39"
+                  endingLineNumber = "39"
+                  offsetFromSymbolStart = "329">
+               </Location>
+               <Location
+                  uuid = "831F28A1-9FCD-47C2-BEA6-09635C86FE96 - 78362e4e6a5a8b79"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;Swift.String, TripNotesTests.AuthError&gt;) -&gt; () in TripNotesTests.TabBarViewModel.fetchUserId() -&gt; ()"
+                  moduleName = "TripNotesTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vladislavsizonov/Desktop/Swift/TripNotes/TripNotes/TabBar/TabBarViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "39"
+                  endingLineNumber = "39"
+                  offsetFromSymbolStart = "329">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1E3C256C-273F-46BA-A2F2-B4CB03B25B8F"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TripNotes/TabBar/TabBarViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
+            landmarkName = "fetchUserId()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "1E3C256C-273F-46BA-A2F2-B4CB03B25B8F - 7349da276c7ec45b"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;Swift.String, TripNotes.AuthError&gt;) -&gt; () in TripNotes.TabBarViewModel.fetchUserId() -&gt; ()"
+                  moduleName = "TripNotes"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vladislavsizonov/Desktop/Swift/TripNotes/TripNotes/TabBar/TabBarViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "737">
+               </Location>
+               <Location
+                  uuid = "1E3C256C-273F-46BA-A2F2-B4CB03B25B8F - 78362e4e6a5a8bde"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;Swift.String, TripNotesTests.AuthError&gt;) -&gt; () in TripNotesTests.TabBarViewModel.fetchUserId() -&gt; ()"
+                  moduleName = "TripNotesTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vladislavsizonov/Desktop/Swift/TripNotes/TripNotes/TabBar/TabBarViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "737">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B9ABFDA4-1B95-4351-9F70-000E0FE9BE3D"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TripNotes/TabBar/TabBarViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
+            landmarkName = "TabBarViewModel"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5376DD99-3DB8-4C36-B8CB-2D1137A9CC35"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TripNotesTests/AuthServiceMock.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "13"
+            endingLineNumber = "13"
+            landmarkName = "getUserId(completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

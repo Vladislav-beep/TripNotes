@@ -24,17 +24,20 @@ class TripNotesTests: XCTestCase {
 
     func testExample() throws {
 
+        let exp = XCTestExpectation()
         var userID: String?
-        let completion = { userID = "123" }
-       
+        let completion = { userID in userID = "123" }
+     //   viewModel.completion = completion
         
         viewModel.fetchUserId()
-        
-        viewModel.completion = { id in
-            userID = id
-        }
+        exp.fulfill()
         
         viewModel.completion = completion
+//        viewModel.completion = { id in
+//            userID = id
+//        }
+        
+       // viewModel.completion = completion
     //    XCTAssertNotNil(viewModel.fetchUserId())
         XCTAssertEqual(userID, "123")
     }
