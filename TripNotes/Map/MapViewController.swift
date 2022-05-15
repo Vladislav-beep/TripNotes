@@ -70,6 +70,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         label.textAlignment = .center
         label.textColor = .tripBlue
         label.font = UIFont.systemFont(ofSize: 20, weight: .heavy)
+        label.adjustsFontSizeToFitWidth = true
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
