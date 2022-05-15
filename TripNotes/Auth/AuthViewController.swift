@@ -49,7 +49,9 @@ class AuthViewController: UIViewController {
     
     private let signInButton: SignInButton = {
         let signInButton = SignInButton(title: I.signInButtonTitle, colorOfBackground: .tripRed)
-        signInButton.addTarget(self, action: #selector(showTabbar), for: .touchUpInside)
+        signInButton.addTarget(AuthViewController.self,
+                               action: #selector(showTabbar),
+                               for: .touchUpInside)
         return signInButton
     }()
     

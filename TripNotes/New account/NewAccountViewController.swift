@@ -53,7 +53,9 @@ class NewAccountViewController: UIViewController {
     
     private let signUpButton: SignInButton = {
         let signInButton = SignInButton(title: I.signUpButtonTitle, colorOfBackground: .tripBlue)
-        signInButton.addTarget(self, action: #selector(signUpTapped), for: .touchUpInside)
+        signInButton.addTarget(NewAccountViewController.self,
+                               action: #selector(signUpTapped),
+                               for: .touchUpInside)
         return signInButton
     }()
     

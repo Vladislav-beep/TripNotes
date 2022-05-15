@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol TripsViewModelProtocol: class {
+protocol TripsViewModelProtocol: AnyObject {
     var userId: String { get set }
     var firstCompletion: (() -> Void)? { get set }
     var errorCompletion: ((FireBaseError) -> Void)? { get set }
