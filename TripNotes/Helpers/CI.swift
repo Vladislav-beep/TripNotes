@@ -34,6 +34,7 @@ struct C {
         case addTripButton = "plus"
         case signOutButton = "arrowshape.turn.up.left.2.fill"
         case weatherButton = "cloud.rain.fill"
+        case mapButton = "map.fill"
         
         // MARK: Notes
         case hotel = "building.fill"

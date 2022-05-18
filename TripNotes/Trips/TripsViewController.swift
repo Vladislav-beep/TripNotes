@@ -57,6 +57,14 @@ class TripsViewController: UIViewController {
         return button
     }()
     
+    private lazy var mapButton: UIBarButtonItem = {
+        let button = UIBarButtonItem.customButton(self,
+                                                  action: #selector(showMap),
+                                                  imageName: C.ImageNames.mapButton.rawValue,
+                                                  widthAndHeight: 40)
+        return button
+    }()
+    
     private lazy var activityIndicator: UIActivityIndicatorView = {
         let activityIndicator = UIActivityIndicatorView()
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
@@ -122,6 +130,11 @@ class TripsViewController: UIViewController {
         present(weatherVC, animated: true)
     }
     
+    @objc func showMap() {
+        let mapVC = configurator?.configureMapVC() ?? UIViewController()
+        present(mapVC, animated: true)
+    }
+    
     // MARK: - Private methods
     
     private func setupViewModelBindings() {
@@ -157,7 +170,7 @@ class TripsViewController: UIViewController {
         title = I.tabBarTripItemTitle
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.leftBarButtonItems = [signOutButton]
-        navigationItem.rightBarButtonItems = [weatherButton]
+        navigationItem.rightBarButtonItems = [weatherButton, mapButton]
         navigationController?.navigationBar.tintColor = .tripWhite
         
         let navBarAppearance = UINavigationBarAppearance()
