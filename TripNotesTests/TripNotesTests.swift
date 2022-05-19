@@ -32,7 +32,7 @@ class TripNotesTests: XCTestCase {
         viewModel.fetchUserId()
         exp.fulfill()
         
-        viewModel.completion = completion
+  //      viewModel.completion = completion
 //        viewModel.completion = { id in
 //            userID = id
 //        }
