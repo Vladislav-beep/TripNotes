@@ -34,7 +34,7 @@ class NewTripViewModel: NewTripViewModelProtocol {
     private let fireBaseService: FireBaseServiceProtocol
     private let fileStorageService: FileStorageServiceProtocol
     
-    // MARK: - Private proaperties
+    // MARK: - Private properties
     
     private var trip: Trip?
     

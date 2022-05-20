@@ -8,6 +8,8 @@
 import Foundation
 
 protocol NewNoteViewModelProtocol {
+    var userId: String { get }
+    var tripId: String { get }
     var category: String { get }
     var city: String { get }
     var price: String { get }

@@ -9,6 +9,7 @@ import Foundation
 
 protocol TripsViewModelProtocol: AnyObject {
     var userId: String { get set }
+    var trips: [Trip] { get set }
     var firstCompletion: (() -> Void)? { get set }
     var errorCompletion: ((FireBaseError) -> Void)? { get set }
     init(fireBaseService: FireBaseServiceProtocol,
@@ -41,12 +42,12 @@ class TripsViewModel: TripsViewModelProtocol {
     // MARK: - Properties
     
     var userId: String
+    var trips: [Trip] = []
     var firstCompletion: (() -> Void)?
     var errorCompletion: ((FireBaseError) -> Void)?
     
     // MARK: - Private properties
     
-    private var trips: [Trip] = []
     private var tripMore: [Trip]?
     private var tripLow: [Trip]?
     
