@@ -26,8 +26,6 @@ class AuthServiceMock: AuthServiceProtocol {
     }
     
     func checkSignIn(completion: @escaping () -> Void) {
-    
+        
     }
-    
-    
 }

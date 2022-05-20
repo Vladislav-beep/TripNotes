@@ -14,12 +14,10 @@ class FileStorageServiceMock: FileStorageServiceProtocol {
     }
     
     func retrieveImage(forKey key: String) -> Data? {
-        
+        return Data()
     }
     
     func delete(forKey key: String) {
         
     }
-    
-    
 }

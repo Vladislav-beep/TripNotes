@@ -9,8 +9,10 @@ import Foundation
 
 class FireBaseServiceMock: FireBaseServiceProtocol {
     
+    let trips = TripStub().getTripsStub()
+    
     func fetchTrips(forUser id: String, completion: @escaping (Result<[Trip], FireBaseError>) -> Void) {
-        
+        completion(.success(trips))
     }
     
     func addTrip(forUser userId: String, country: String, currency: String, description: String, beginningDate: Date, finishingDate: Date, completion: @escaping (String) -> Void, errorCompletion: @escaping () -> Void) {

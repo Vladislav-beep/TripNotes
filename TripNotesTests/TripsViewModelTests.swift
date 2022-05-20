@@ -8,7 +8,7 @@
 import XCTest
 @testable import TripNotes
 
-class TripsTests: XCTestCase {
+class TripsViewModelTests: XCTestCase {
     
     var viewModel: TripsViewModel!
     var authServiceMock: AuthServiceMock!
@@ -33,8 +33,5 @@ class TripsTests: XCTestCase {
     func testExample() throws {
 
     }
-
-
-
 }
 

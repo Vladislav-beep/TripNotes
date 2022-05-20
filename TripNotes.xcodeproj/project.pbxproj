@@ -143,10 +143,11 @@
 		B9AA39E027BAD08A00CD48E9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B9AA39DE27BAD08A00CD48E9 /* GoogleService-Info.plist */; };
 		B9C2F1F527E08E9600A38B18 /* TabBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C2F1F427E08E9600A38B18 /* TabBarViewModel.swift */; };
 		B9C6A69E280C1A8F00BA9F61 /* AuthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C6A69D280C1A8F00BA9F61 /* AuthError.swift */; };
-		B9D2722B2836CCA100A69062 /* TripsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9D2722A2836CCA100A69062 /* TripsTests.swift */; };
+		B9D2722B2836CCA100A69062 /* TripsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9D2722A2836CCA100A69062 /* TripsViewModelTests.swift */; };
 		B9D2722E2836CDEC00A69062 /* FireBaseServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9D2722D2836CDEC00A69062 /* FireBaseServiceMock.swift */; };
 		B9D272302836CE5E00A69062 /* FileStorageServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9D2722F2836CE5E00A69062 /* FileStorageServiceMock.swift */; };
 		B9D272322836CECE00A69062 /* DateFormatterServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9D272312836CECE00A69062 /* DateFormatterServiceMock.swift */; };
+		B9D2723428380F7800A69062 /* TripStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9D2723328380F7800A69062 /* TripStub.swift */; };
 		B9D9C8AF27C3EDF70003D34C /* FireBaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9863ABA27C1371F00BE6337 /* FireBaseService.swift */; };
 		B9D9FC11278F390B007710B4 /* NewNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9FD6C07278E040900311EF1 /* NewNoteViewController.swift */; };
 		B9D9FC14278F4E1D007710B4 /* SelectionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A0EF6A2774DDCE00DE65E2 /* SelectionButton.swift */; };
@@ -259,10 +260,11 @@
 		B9AA39DE27BAD08A00CD48E9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B9C2F1F427E08E9600A38B18 /* TabBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewModel.swift; sourceTree = "<group>"; };
 		B9C6A69D280C1A8F00BA9F61 /* AuthError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthError.swift; sourceTree = "<group>"; };
-		B9D2722A2836CCA100A69062 /* TripsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripsTests.swift; sourceTree = "<group>"; };
+		B9D2722A2836CCA100A69062 /* TripsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripsViewModelTests.swift; sourceTree = "<group>"; };
 		B9D2722D2836CDEC00A69062 /* FireBaseServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireBaseServiceMock.swift; sourceTree = "<group>"; };
 		B9D2722F2836CE5E00A69062 /* FileStorageServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileStorageServiceMock.swift; sourceTree = "<group>"; };
 		B9D272312836CECE00A69062 /* DateFormatterServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatterServiceMock.swift; sourceTree = "<group>"; };
+		B9D2723328380F7800A69062 /* TripStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripStub.swift; sourceTree = "<group>"; };
 		B9DCF134276BAFF8007B0320 /* TripsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripsViewModel.swift; sourceTree = "<group>"; };
 		B9DCF13D276BBE29007B0320 /* Extension + UIBarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIBarButtonItem.swift"; sourceTree = "<group>"; };
 		B9DE0D402768FD6400805E4C /* TripModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripModel.swift; sourceTree = "<group>"; };
@@ -537,6 +539,7 @@
 				B9D2722D2836CDEC00A69062 /* FireBaseServiceMock.swift */,
 				B9D2722F2836CE5E00A69062 /* FileStorageServiceMock.swift */,
 				B9D272312836CECE00A69062 /* DateFormatterServiceMock.swift */,
+				B9D2723328380F7800A69062 /* TripStub.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -555,7 +558,7 @@
 			children = (
 				B9D2722C2836CD8500A69062 /* Mocks */,
 				B9DE0D492768FD7900805E4C /* TripNotesTests.swift */,
-				B9D2722A2836CCA100A69062 /* TripsTests.swift */,
+				B9D2722A2836CCA100A69062 /* TripsViewModelTests.swift */,
 				B9DE0D4B2768FD7900805E4C /* Info.plist */,
 			);
 			path = TripNotesTests;
@@ -842,7 +845,7 @@
 				B9AA39D927BACF9B00CD48E9 /* AppDelegate.swift in Sources */,
 				B90A37E427784E830028B6F1 /* Extension + UIBarButtonItem.swift in Sources */,
 				B930CDFC28154DD900D0A6F5 /* FileStorageService.swift in Sources */,
-				B9D2722B2836CCA100A69062 /* TripsTests.swift in Sources */,
+				B9D2722B2836CCA100A69062 /* TripsViewModelTests.swift in Sources */,
 				B95FBD0827D8BAD1006FF5A8 /* CurrentWeather.swift in Sources */,
 				B98282D327A07BF3006EFED8 /* SignInButton.swift in Sources */,
 				B9DE0D562768FDAB00805E4C /* TripTableViewCell.swift in Sources */,
@@ -903,6 +906,7 @@
 				B930CE1928154E1100D0A6F5 /* TripCellLabel.swift in Sources */,
 				B930CDEF28154DA200D0A6F5 /* Category.swift in Sources */,
 				B930CE0C28154DF600D0A6F5 /* AuthTextField.swift in Sources */,
+				B9D2723428380F7800A69062 /* TripStub.swift in Sources */,
 				B930CE0D28154DFC00D0A6F5 /* CustomTextField.swift in Sources */,
 				B930CDE928154D6C00D0A6F5 /* TabBarViewModel.swift in Sources */,
 				B930CE1328154E0500D0A6F5 /* CreateButton.swift in Sources */,

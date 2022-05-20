@@ -10,14 +10,14 @@ import Foundation
 class DateFormatterServiceMock: DateFormatterServiceProtocol {
     
     func convertTripDateToString(date: Date) -> String {
-        
+        return ""
     }
     
     func convertTripDateToShortString(date: Date) -> String {
-    
+        return ""
     }
     
     func convertNoteDateToString(date: Date) -> String {
-        
+        return ""
     }
 }
