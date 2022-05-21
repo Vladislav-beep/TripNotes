@@ -15,7 +15,7 @@ class TripTableViewCellViewModelTests: XCTestCase {
     private var viewModel: TripTableViewCellViewModel!
     private var fileStorageServiceMock: FileStorageServiceMock!
     private var dateFormatterServiceMock: DateFormatterServiceMock!
-    private let trip = TripStub().getTripsStub().first!
+    private var trip: Trip? = TripStub().getTripsStub().first!
     
     
     // MARK: Lifecycle
@@ -27,29 +27,39 @@ class TripTableViewCellViewModelTests: XCTestCase {
         
         viewModel = .init(fileStorageService: fileStorageServiceMock,
                           dateFormatterService: dateFormatterServiceMock,
-                          trip: trip)
+                          trip: trip!)
     }
     
     override func tearDown() {
         viewModel = nil
         fileStorageServiceMock = nil
         dateFormatterServiceMock = nil
+        trip = nil
         super.tearDown()
     }
     
     
     // MARK: TESTS
     
-    func testExample() {
+    func testRetrieveImage() {
+        // Act
         let data = viewModel.retrieveImage()
         
+        // Assert
         XCTAssertEqual(data, Data())
     }
     
-    func testExample1() {
+    func testTripInfo() {
+        // Act
         let country = viewModel.country
+        let currency = viewModel.currency
+        let description = viewModel.description
+        let date = viewModel.date
         
+        // Assert
         XCTAssertEqual(country, "RUSSIA")
+        XCTAssertEqual(currency, "₽")
+        XCTAssertEqual(description, "Trip to Russia")
+        XCTAssertEqual(date, "14 Sep 2022 - 14 Sep 2022")
     }
-    
 }

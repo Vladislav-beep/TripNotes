@@ -33,7 +33,6 @@ class TripsViewModelTests: XCTestCase {
                           fileStorageService: fileStorageServiceMock,
                           dateFormatterService: dateFormatterServiceMock,
                           authService: authServiceMock)
-        
     }
     
     override func tearDown (){
@@ -56,7 +55,7 @@ class TripsViewModelTests: XCTestCase {
         // Act
         let title = viewModel.titleForHeaderInSection(section: section)
         
-        // assert
+        // Assert
         XCTAssertEqual(title, expectedTitle)
     }
     
@@ -68,7 +67,7 @@ class TripsViewModelTests: XCTestCase {
         // Act
         let title = viewModel.titleForHeaderInSection(section: section)
         
-        // assert
+        // Assert
         XCTAssertEqual(title, expectedTitle)
     }
     

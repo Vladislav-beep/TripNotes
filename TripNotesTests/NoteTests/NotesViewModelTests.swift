@@ -8,28 +8,76 @@
 import XCTest
 
 class NotesViewModelTests: XCTestCase {
+    
+    private var viewModel: NotesViewModel!
+    private var fireBaseServiceMock: FireBaseServiceMock!
+    private var dateFormatterServiceMock: DateFormatterServiceMock!
+    private var trip: Trip? = TripStub().getTripsStub().first!
+    private var userId: String? = "123"
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    override func setUp() {
+        super.setUp()
+        fireBaseServiceMock = FireBaseServiceMock()
+        dateFormatterServiceMock = DateFormatterServiceMock()
+        
+        viewModel = .init(trip: trip,
+                          fireBaseService: fireBaseServiceMock,
+                          dateFormatterService: dateFormatterServiceMock,
+                          userId: userId!)
     }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    override func tearDown() {
+        viewModel = nil
+        fireBaseServiceMock = nil
+        dateFormatterServiceMock = nil
+        trip = nil
+        userId = nil
+        super.tearDown()
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+    func testnumberOfCells() {
+        // Arrange
+        let expectedNumberOfCells = 2
+        
+        // Act
+        viewModel.fetchNotes()
+        let numberOfCells = viewModel.numberOfCells()
+        
+        // Assert
+        XCTAssertEqual(numberOfCells, expectedNumberOfCells)
     }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    
+    func testNoteCellViewModel() {
+        // Arrange
+        let indexPath = IndexPath(row: 0, section: 0)
+        
+        // Act
+        viewModel.fetchNotes()
+        let noteCellViewModel = viewModel.noteCellViewModel(for: indexPath)
+        
+        // Assert
+        XCTAssertEqual(noteCellViewModel?.userId, "123")
+        XCTAssertEqual(noteCellViewModel?.id, "1234567")
+        XCTAssertEqual(noteCellViewModel?.description, "Bus ride")
+        XCTAssertEqual(noteCellViewModel?.category, "Transport")
+        XCTAssertEqual(noteCellViewModel?.city, "Paris")
+        XCTAssertEqual(noteCellViewModel?.isFavourite, true)
     }
-
+    
+    func testViewModelForSelectedRow() {
+        // Arrange
+        let indexPath = IndexPath(row: 0, section: 0)
+        
+        // Act
+        viewModel.fetchNotes()
+        let viewModelForSelectedRow = viewModel.viewModelForSelectedRow(at: indexPath)
+        
+        // Assert
+        XCTAssertEqual(viewModelForSelectedRow.userId, "123")
+        XCTAssertEqual(viewModelForSelectedRow.id, "1234567")
+        XCTAssertEqual(viewModelForSelectedRow.description, "Bus ride")
+        XCTAssertEqual(viewModelForSelectedRow.category, "Transport")
+        XCTAssertEqual(viewModelForSelectedRow.city, "Paris")
+        XCTAssertEqual(viewModelForSelectedRow.isFavourite, true)
+    }
 }
