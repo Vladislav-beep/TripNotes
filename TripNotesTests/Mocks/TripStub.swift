@@ -9,6 +9,8 @@ import Foundation
 
 class TripStub {
     
+    // MARK: Public
+    
     func getTripsStub() -> [Trip] {
         return [
             Trip(id: "123",

@@ -9,6 +9,8 @@ import Foundation
 
 class AuthServiceMock: AuthServiceProtocol {
     
+    // MARK: Public
+    
     func getUserId(completion: @escaping (Result<String, AuthError>) -> Void) {
         completion(.success("123"))
     }

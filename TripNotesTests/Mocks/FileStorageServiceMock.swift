@@ -9,6 +9,8 @@ import Foundation
 
 class FileStorageServiceMock: FileStorageServiceProtocol {
     
+    // MARK: Public
+    
     func store(image: Data, forKey key: String) {
         
     }

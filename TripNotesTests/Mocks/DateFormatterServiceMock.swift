@@ -9,8 +9,10 @@ import Foundation
 
 class DateFormatterServiceMock: DateFormatterServiceProtocol {
     
+    // MARK: Public
+    
     func convertTripDateToString(date: Date) -> String {
-        return ""
+        return "14 Sep 2022"
     }
     
     func convertTripDateToShortString(date: Date) -> String {

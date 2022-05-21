@@ -9,7 +9,12 @@ import Foundation
 
 class FireBaseServiceMock: FireBaseServiceProtocol {
     
-    let trips = TripStub().getTripsStub()
+    // MARK: Private
+    
+    private var trips = TripStub().getTripsStub()
+    private var notes = NoteStub().getNotes()
+    
+    // MARK: Public
     
     func fetchTrips(forUser id: String, completion: @escaping (Result<[Trip], FireBaseError>) -> Void) {
         completion(.success(trips))
@@ -28,11 +33,11 @@ class FireBaseServiceMock: FireBaseServiceProtocol {
     }
     
     func deleteTrip(forUser userId: String, tripId: String, errorCompletion: @escaping () -> Void) {
-        
+        trips.remove(at: 0)
     }
     
     func fetchNotes(forUser userId: String, forTrip tripId: String, completion: @escaping (Result<[TripNote], FireBaseError>) -> Void) {
-        
+        completion(.success(notes))
     }
     
     func fetchFavouriteNotes(forUser userId: String, completion: @escaping (Result<[TripNote : Trip], FireBaseError>) -> Void) {
@@ -52,10 +57,10 @@ class FireBaseServiceMock: FireBaseServiceProtocol {
     }
     
     func deleteNote(forUser userId: String, tripId: String, noteId: String) {
-        
+        notes.remove(at: 0)
     }
     
     func toggleFavourite(forUser userId: String, tripId: String, noteId: String, isFavourite: Bool) {
-        
+            
+        }
     }
-}
