@@ -22,6 +22,7 @@ struct C {
         case editIcon = "square.and.pencil"
         case tripPlaceHolder = "tripPlaceHolder"
         case heart = "heart.fill"
+        case heartColor = "heart-color"
         
         // MARK: UI
         case back = "chevron.compact.left"
