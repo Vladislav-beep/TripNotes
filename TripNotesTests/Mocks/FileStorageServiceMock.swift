@@ -11,15 +11,11 @@ class FileStorageServiceMock: FileStorageServiceProtocol {
     
     // MARK: Public
     
-    func store(image: Data, forKey key: String) {
-        
-    }
+    func store(image: Data, forKey key: String) {}
     
     func retrieveImage(forKey key: String) -> Data? {
         return Data()
     }
     
-    func delete(forKey key: String) {
-        
-    }
+    func delete(forKey key: String) {}
 }
