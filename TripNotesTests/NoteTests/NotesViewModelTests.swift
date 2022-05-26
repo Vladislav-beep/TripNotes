@@ -9,11 +9,16 @@ import XCTest
 
 class NotesViewModelTests: XCTestCase {
     
+    // MARK: Private
+    
     private var viewModel: NotesViewModel!
     private var fireBaseServiceMock: FireBaseServiceMock!
     private var dateFormatterServiceMock: DateFormatterServiceMock!
     private var trip: Trip? = TripStub().getTripsStub().first!
     private var userId: String? = "123"
+    
+    
+    // MARK: Lifecycle
 
     override func setUp() {
         super.setUp()
@@ -34,6 +39,9 @@ class NotesViewModelTests: XCTestCase {
         userId = nil
         super.tearDown()
     }
+    
+    
+    // MARK: TESTS
 
     func testnumberOfCells() {
         // Arrange

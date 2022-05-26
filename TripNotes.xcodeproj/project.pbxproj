@@ -26,6 +26,9 @@
 		B9070CBD2838D5B5009A9785 /* TripTableViewCellViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9070CBC2838D5B5009A9785 /* TripTableViewCellViewModelTests.swift */; };
 		B9070CC128394FCD009A9785 /* NotesViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9070CC028394FCD009A9785 /* NotesViewModelTests.swift */; };
 		B9070CC32839535A009A9785 /* NoteStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9070CC22839535A009A9785 /* NoteStub.swift */; };
+		B9070CC5283A2470009A9785 /* NoteCellViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9070CC4283A2470009A9785 /* NoteCellViewModelTests.swift */; };
+		B9070CC7283A2893009A9785 /* FavouritesViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9070CC6283A2893009A9785 /* FavouritesViewModelTests.swift */; };
+		B9070CC9283A337B009A9785 /* NewTripViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9070CC8283A337B009A9785 /* NewTripViewModelTests.swift */; };
 		B9072FEC27E8D1A9008BE67C /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9072FEB27E8D1A9008BE67C /* SearchController.swift */; };
 		B909AFDD277E3135006EFC38 /* Extension + UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B909AFDC277E3135006EFC38 /* Extension + UITextField.swift */; };
 		B909AFE0277E437D006EFC38 /* Extension + UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B909AFDC277E3135006EFC38 /* Extension + UITextField.swift */; };
@@ -130,6 +133,10 @@
 		B9698F2D279C5691005FB438 /* mapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9698F2C279C5691005FB438 /* mapViewModel.swift */; };
 		B97374BF27AC5CBE000B208D /* FavouritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97374BE27AC5CBE000B208D /* FavouritesViewModel.swift */; };
 		B97374C227AC5CF8000B208D /* FavouritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97374BE27AC5CBE000B208D /* FavouritesViewModel.swift */; };
+		B97720B7283A4AED005262C9 /* NewNoteViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97720B6283A4AED005262C9 /* NewNoteViewModelTests.swift */; };
+		B97720BA283A6C28005262C9 /* WeatherViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97720B9283A6C28005262C9 /* WeatherViewModelTests.swift */; };
+		B97720BC283A6D26005262C9 /* NetworkWeatherManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97720BB283A6D26005262C9 /* NetworkWeatherManagerMock.swift */; };
+		B97720BE283A6D8B005262C9 /* LocationServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97720BD283A6D8B005262C9 /* LocationServiceMock.swift */; };
 		B98282D327A07BF3006EFED8 /* SignInButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93DD4C7279F284300D91A08 /* SignInButton.swift */; };
 		B98282D827A07C84006EFED8 /* NewAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98282D727A07C84006EFED8 /* NewAccountViewController.swift */; };
 		B98282DE27A07CB2006EFED8 /* NewAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98282DD27A07CB2006EFED8 /* NewAccountViewModel.swift */; };
@@ -208,6 +215,9 @@
 		B9070CBC2838D5B5009A9785 /* TripTableViewCellViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripTableViewCellViewModelTests.swift; sourceTree = "<group>"; };
 		B9070CC028394FCD009A9785 /* NotesViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesViewModelTests.swift; sourceTree = "<group>"; };
 		B9070CC22839535A009A9785 /* NoteStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteStub.swift; sourceTree = "<group>"; };
+		B9070CC4283A2470009A9785 /* NoteCellViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteCellViewModelTests.swift; sourceTree = "<group>"; };
+		B9070CC6283A2893009A9785 /* FavouritesViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewModelTests.swift; sourceTree = "<group>"; };
+		B9070CC8283A337B009A9785 /* NewTripViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTripViewModelTests.swift; sourceTree = "<group>"; };
 		B9072FEB27E8D1A9008BE67C /* SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
 		B909AFDC277E3135006EFC38 /* Extension + UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UITextField.swift"; sourceTree = "<group>"; };
 		B90B9A0B276D015A008DD627 /* TripTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripTableViewCellViewModel.swift; sourceTree = "<group>"; };
@@ -257,6 +267,10 @@
 		B9698F22279C4689005FB438 /* LocationSevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSevice.swift; sourceTree = "<group>"; };
 		B9698F2C279C5691005FB438 /* mapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mapViewModel.swift; sourceTree = "<group>"; };
 		B97374BE27AC5CBE000B208D /* FavouritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewModel.swift; sourceTree = "<group>"; };
+		B97720B6283A4AED005262C9 /* NewNoteViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewNoteViewModelTests.swift; sourceTree = "<group>"; };
+		B97720B9283A6C28005262C9 /* WeatherViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewModelTests.swift; sourceTree = "<group>"; };
+		B97720BB283A6D26005262C9 /* NetworkWeatherManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkWeatherManagerMock.swift; sourceTree = "<group>"; };
+		B97720BD283A6D8B005262C9 /* LocationServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationServiceMock.swift; sourceTree = "<group>"; };
 		B98282D727A07C84006EFED8 /* NewAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAccountViewController.swift; sourceTree = "<group>"; };
 		B98282DD27A07CB2006EFED8 /* NewAccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAccountViewModel.swift; sourceTree = "<group>"; };
 		B9863ABA27C1371F00BE6337 /* FireBaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireBaseService.swift; sourceTree = "<group>"; };
@@ -322,6 +336,7 @@
 			children = (
 				B9D2722A2836CCA100A69062 /* TripsViewModelTests.swift */,
 				B9070CBC2838D5B5009A9785 /* TripTableViewCellViewModelTests.swift */,
+				B9070CC8283A337B009A9785 /* NewTripViewModelTests.swift */,
 			);
 			path = TripTests;
 			sourceTree = "<group>";
@@ -330,6 +345,9 @@
 			isa = PBXGroup;
 			children = (
 				B9070CC028394FCD009A9785 /* NotesViewModelTests.swift */,
+				B9070CC4283A2470009A9785 /* NoteCellViewModelTests.swift */,
+				B9070CC6283A2893009A9785 /* FavouritesViewModelTests.swift */,
+				B97720B6283A4AED005262C9 /* NewNoteViewModelTests.swift */,
 			);
 			path = NoteTests;
 			sourceTree = "<group>";
@@ -535,6 +553,14 @@
 			path = Map;
 			sourceTree = "<group>";
 		};
+		B97720B8283A6C0A005262C9 /* WeatherTests */ = {
+			isa = PBXGroup;
+			children = (
+				B97720B9283A6C28005262C9 /* WeatherViewModelTests.swift */,
+			);
+			path = WeatherTests;
+			sourceTree = "<group>";
+		};
 		B98282D627A07C56006EFED8 /* New account */ = {
 			isa = PBXGroup;
 			children = (
@@ -560,6 +586,8 @@
 				B9D2722D2836CDEC00A69062 /* FireBaseServiceMock.swift */,
 				B9D2722F2836CE5E00A69062 /* FileStorageServiceMock.swift */,
 				B9D272312836CECE00A69062 /* DateFormatterServiceMock.swift */,
+				B97720BB283A6D26005262C9 /* NetworkWeatherManagerMock.swift */,
+				B97720BD283A6D8B005262C9 /* LocationServiceMock.swift */,
 				B9D2723328380F7800A69062 /* TripStub.swift */,
 				B9070CC22839535A009A9785 /* NoteStub.swift */,
 			);
@@ -580,6 +608,7 @@
 			children = (
 				B9070CBE2838D92B009A9785 /* TripTests */,
 				B9070CBF28394F73009A9785 /* NoteTests */,
+				B97720B8283A6C0A005262C9 /* WeatherTests */,
 				B9D2722C2836CD8500A69062 /* Mocks */,
 				B9DE0D4B2768FD7900805E4C /* Info.plist */,
 			);
@@ -861,12 +890,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B9070CC9283A337B009A9785 /* NewTripViewModelTests.swift in Sources */,
 				B930CE1028154E0200D0A6F5 /* WelcomeLabel.swift in Sources */,
 				B9DE0D592768FDAE00805E4C /* TabBarViewController.swift in Sources */,
 				B9698F29279C53B8005FB438 /* NewNoteViewModel.swift in Sources */,
 				B9070CC32839535A009A9785 /* NoteStub.swift in Sources */,
 				B9AA39D927BACF9B00CD48E9 /* AppDelegate.swift in Sources */,
 				B90A37E427784E830028B6F1 /* Extension + UIBarButtonItem.swift in Sources */,
+				B9070CC7283A2893009A9785 /* FavouritesViewModelTests.swift in Sources */,
 				B930CDFC28154DD900D0A6F5 /* FileStorageService.swift in Sources */,
 				B9D2722B2836CCA100A69062 /* TripsViewModelTests.swift in Sources */,
 				B95FBD0827D8BAD1006FF5A8 /* CurrentWeather.swift in Sources */,
@@ -887,6 +918,7 @@
 				B930CE1528154E0A00D0A6F5 /* WarningLabel.swift in Sources */,
 				B909AFE0277E437D006EFC38 /* Extension + UITextField.swift in Sources */,
 				B9DE0D5F2768FDB800805E4C /* TripModel.swift in Sources */,
+				B97720BE283A6D8B005262C9 /* LocationServiceMock.swift in Sources */,
 				B98282E427A082CE006EFED8 /* NewAccountViewController.swift in Sources */,
 				B9FB611F277236B400126A59 /* NewTripViewController.swift in Sources */,
 				B949FB1027AEE4EA00590F0E /* NoteLabel.swift in Sources */,
@@ -910,6 +942,7 @@
 				B9F018982770DF1D006F2DE7 /* TripsViewModel.swift in Sources */,
 				B930CE1D28154E1600D0A6F5 /* EditDeleteNoteButton.swift in Sources */,
 				B930CE2728154E2700D0A6F5 /* KeyboardHelper.swift in Sources */,
+				B97720BC283A6D26005262C9 /* NetworkWeatherManagerMock.swift in Sources */,
 				B90632F227AFCF0900F0C2A5 /* NoteCellVewModel.swift in Sources */,
 				B930CE322815588700D0A6F5 /* AuthServiceMock.swift in Sources */,
 				B930CDEC28154D9300D0A6F5 /* Currency.swift in Sources */,
@@ -921,6 +954,7 @@
 				B930CE1828154E0C00D0A6F5 /* CreateNewAccountLabel.swift in Sources */,
 				B90DB45A276FB39E00F1A544 /* NotesViewModel.swift in Sources */,
 				B95FBCF827D8B686006FF5A8 /* CI.swift in Sources */,
+				B9070CC5283A2470009A9785 /* NoteCellViewModelTests.swift in Sources */,
 				B930CE2628154E2200D0A6F5 /* SearchController.swift in Sources */,
 				B9D9C8AF27C3EDF70003D34C /* FireBaseService.swift in Sources */,
 				B90632FE27AFE47F00F0C2A5 /* DetailNoteViewController.swift in Sources */,
@@ -930,6 +964,7 @@
 				B930CE1928154E1100D0A6F5 /* TripCellLabel.swift in Sources */,
 				B930CDEF28154DA200D0A6F5 /* Category.swift in Sources */,
 				B930CE0C28154DF600D0A6F5 /* AuthTextField.swift in Sources */,
+				B97720B7283A4AED005262C9 /* NewNoteViewModelTests.swift in Sources */,
 				B9D2723428380F7800A69062 /* TripStub.swift in Sources */,
 				B930CE0D28154DFC00D0A6F5 /* CustomTextField.swift in Sources */,
 				B930CDE928154D6C00D0A6F5 /* TabBarViewModel.swift in Sources */,
@@ -938,6 +973,7 @@
 				B93DD4BD279F1BCC00D91A08 /* AuthViewModel.swift in Sources */,
 				B930CE0428154DE600D0A6F5 /* Extension + Numeric.swift in Sources */,
 				B930CE2528154E2000D0A6F5 /* NoLabel.swift in Sources */,
+				B97720BA283A6C28005262C9 /* WeatherViewModelTests.swift in Sources */,
 				B95F0BBF27B986FC008BCAF6 /* Animator.swift in Sources */,
 				B930CE1F28154E1B00D0A6F5 /* BackButton.swift in Sources */,
 				B930CDF228154DC100D0A6F5 /* SlideInPresentationManager.swift in Sources */,
