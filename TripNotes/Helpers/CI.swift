@@ -166,12 +166,12 @@ struct I {
     static let noFavNotesLabel = "No favourite notes yet"
     
     // MARK: FavouritesViewModel
-    static let hotelsScope = "H"
-    static let transportScope = "T"
-    static let foodScope = "F"
-    static let activityScope = "A"
-    static let purchasesScope = "P"
-    static let otherScope = "O"
+    static let hotelsScope = "Hotel"
+    static let transportScope = "Transp"
+    static let foodScope = "Food"
+    static let activityScope = "Activ"
+    static let purchasesScope = "Purch"
+    static let otherScope = "Other"
     static let allScope = "All"
     
     
