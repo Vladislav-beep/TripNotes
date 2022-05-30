@@ -30,7 +30,7 @@ class FavouritesViewModel: FavouritesViewModelProtocol {
     // MARK: - Private properties
     
     private var tripNotesDict: [TripNote: Trip]?
-    var notesArrayFiltered = [TripNote]()
+    private var notesArrayFiltered = [TripNote]()
     
     private var notesArray: [TripNote] {
         let notes = tripNotesDict!.keys

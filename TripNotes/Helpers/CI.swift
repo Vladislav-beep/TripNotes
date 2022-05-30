@@ -45,6 +45,7 @@ struct C {
         case purchases = "creditcard.fill"
         case other = "square.3.stack.3d.bottom.fill"
         case defaultCategory = "square"
+        case countryButton = "globe"
         
         // MARK: NewTripViewController
         case country = "flag-edit"

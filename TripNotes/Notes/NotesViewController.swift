@@ -23,6 +23,7 @@ class NotesViewController: UIViewController {
     
     private lazy var noLabel: NoLabel = {
         let noLabel = NoLabel(title: I.noNotesLabel)
+        noLabel.isHidden = true
         return noLabel
     }()
     
@@ -30,6 +31,14 @@ class NotesViewController: UIViewController {
         let activityIndicator = UIActivityIndicatorView()
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         return activityIndicator
+    }()
+    
+    private lazy var countryButton: UIBarButtonItem = {
+        let button = UIBarButtonItem.customButton(self,
+                                                  action: #selector(setDefaultCountry),
+                                                  imageName: C.ImageNames.countryButton.rawValue,
+                                                  widthAndHeight: 40)
+        return button
     }()
     
     // MARK: - Life Time
@@ -48,6 +57,7 @@ class NotesViewController: UIViewController {
     
     override func viewDidLoad() {
         setupUI()
+        setupNavBar()
         setupViewModelBundings()
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(refresh),
@@ -69,6 +79,11 @@ class NotesViewController: UIViewController {
     @objc private func refresh() {
         viewModel.fetchNotes()
         collectionView.reloadData()
+    }
+    
+    
+    @objc private func setDefaultCountry() {
+        showAlert()
     }
     
     // MARK: - Private methods
@@ -98,6 +113,35 @@ class NotesViewController: UIViewController {
         } else {
             noLabel.isHidden = true
         }
+    }
+    
+    private func setupNavBar() {
+        navigationItem.rightBarButtonItems = [countryButton]
+        navigationController?.navigationBar.tintColor = .tripWhite
+    }
+    
+    private func showAlert() {
+        let alert = UIAlertController(title: "Default country or city", message: "Set or delete default country or city", preferredStyle: .alert)
+        
+        alert.addTextField { textField in
+            textField.placeholder = "Enter default country or city"
+        }
+        
+        let setAction = UIAlertAction(title: "Set", style: .default) { _ in
+            
+        }
+        
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { _ in
+            
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        
+        alert.addAction(setAction)
+        alert.addAction(deleteAction)
+        alert.addAction(cancelAction)
+        
+        present(alert, animated: true)
     }
     
     // MARK: - Layout
