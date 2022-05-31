@@ -28,9 +28,12 @@ class WeatherViewModel: WeatherViewModelProtocol {
     private let networkManager: NetworkWeatherManagerProtocol
     private let locationService: LocationServiceProtocol
     
+    // MARK: - Private properties
+    
+    private var weather: CurrentWeather?
+    
     // MARK: - Properties
     
-    var weather: CurrentWeather?
     var weatherCompletion: (() -> Void)?
     var errorCompletion: ((String) -> Void)?
     
