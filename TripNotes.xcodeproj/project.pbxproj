@@ -153,6 +153,8 @@
 		B9AA39E027BAD08A00CD48E9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B9AA39DE27BAD08A00CD48E9 /* GoogleService-Info.plist */; };
 		B9C2F1F527E08E9600A38B18 /* TabBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C2F1F427E08E9600A38B18 /* TabBarViewModel.swift */; };
 		B9C6A69E280C1A8F00BA9F61 /* AuthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C6A69D280C1A8F00BA9F61 /* AuthError.swift */; };
+		B9CE194A284A990D00F4C595 /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9CE1949284A990D00F4C595 /* StatisticsViewController.swift */; };
+		B9CE194C284A994900F4C595 /* StatisticsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9CE194B284A994900F4C595 /* StatisticsViewModel.swift */; };
 		B9D2722B2836CCA100A69062 /* TripsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9D2722A2836CCA100A69062 /* TripsViewModelTests.swift */; };
 		B9D2722E2836CDEC00A69062 /* FireBaseServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9D2722D2836CDEC00A69062 /* FireBaseServiceMock.swift */; };
 		B9D272302836CE5E00A69062 /* FileStorageServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9D2722F2836CE5E00A69062 /* FileStorageServiceMock.swift */; };
@@ -280,6 +282,8 @@
 		B9AA39DE27BAD08A00CD48E9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B9C2F1F427E08E9600A38B18 /* TabBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewModel.swift; sourceTree = "<group>"; };
 		B9C6A69D280C1A8F00BA9F61 /* AuthError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthError.swift; sourceTree = "<group>"; };
+		B9CE1949284A990D00F4C595 /* StatisticsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewController.swift; sourceTree = "<group>"; };
+		B9CE194B284A994900F4C595 /* StatisticsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewModel.swift; sourceTree = "<group>"; };
 		B9D2722A2836CCA100A69062 /* TripsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripsViewModelTests.swift; sourceTree = "<group>"; };
 		B9D2722D2836CDEC00A69062 /* FireBaseServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireBaseServiceMock.swift; sourceTree = "<group>"; };
 		B9D2722F2836CE5E00A69062 /* FileStorageServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileStorageServiceMock.swift; sourceTree = "<group>"; };
@@ -450,6 +454,7 @@
 				B9DE0D65276900F700805E4C /* Favourites */,
 				B9FB61162772334000126A59 /* NewTrip */,
 				B9FD6C0F278E045B00311EF1 /* New Note */,
+				B9CE1948284A98EB00F4C595 /* Statistics */,
 				B96648772799D63100F527E8 /* Map */,
 				B95FBCCA27D7D599006FF5A8 /* Weather */,
 				B95FBCF027D8ABD1006FF5A8 /* Presentation */,
@@ -580,6 +585,15 @@
 				B9C6A69D280C1A8F00BA9F61 /* AuthError.swift */,
 			);
 			path = AuthService;
+			sourceTree = "<group>";
+		};
+		B9CE1948284A98EB00F4C595 /* Statistics */ = {
+			isa = PBXGroup;
+			children = (
+				B9CE1949284A990D00F4C595 /* StatisticsViewController.swift */,
+				B9CE194B284A994900F4C595 /* StatisticsViewModel.swift */,
+			);
+			path = Statistics;
 			sourceTree = "<group>";
 		};
 		B9D2722C2836CD8500A69062 /* Mocks */ = {
@@ -859,6 +873,7 @@
 				B938B1F127DB463D00E205C6 /* AdressButton.swift in Sources */,
 				B90251D427DB35E800788065 /* EditDeleteNoteButton.swift in Sources */,
 				B9F296C127895C4300844D6C /* NoteCell.swift in Sources */,
+				B9CE194A284A990D00F4C595 /* StatisticsViewController.swift in Sources */,
 				B9FD6C08278E040900311EF1 /* NewNoteViewController.swift in Sources */,
 				B95FBCED27D89B13006FF5A8 /* SlideInPresentationController.swift in Sources */,
 				B98282D827A07C84006EFED8 /* NewAccountViewController.swift in Sources */,
@@ -887,6 +902,7 @@
 				B919353327F37A0A0095D1C9 /* NetworkError.swift in Sources */,
 				B9C2F1F527E08E9600A38B18 /* TabBarViewModel.swift in Sources */,
 				B95FBCC727D7D58F006FF5A8 /* WeatherViewController.swift in Sources */,
+				B9CE194C284A994900F4C595 /* StatisticsViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
