@@ -95,7 +95,8 @@ class NotesViewController: UIViewController {
     }
     
     @objc private func showStatistics() {
-        
+        let statisticsVC = configurator?.configureStatisticsVC() ?? UIViewController()
+        present(statisticsVC, animated: true)
     }
     
     // MARK: - Private methods

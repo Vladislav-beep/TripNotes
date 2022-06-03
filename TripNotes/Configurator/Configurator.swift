@@ -134,4 +134,13 @@ class Configurator {
         mapVC.modalPresentationStyle = .fullScreen
         return mapVC
     }
+    
+    func configureStatisticsVC() -> StatisticsViewController {
+        let statisticsVM = StatisticsViewModel()
+        let statisticsVC = StatisticsViewController(viewModel: statisticsVM)
+        slideInTransitioningDelegate.direction = .bottom
+        statisticsVC.transitioningDelegate = slideInTransitioningDelegate
+        statisticsVC.modalPresentationStyle = .custom
+        return statisticsVC
+    }
 }
