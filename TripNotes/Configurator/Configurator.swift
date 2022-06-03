@@ -18,6 +18,7 @@ class Configurator {
     private let networkManager = NetworkWeatherManager()
     private let locationService = LocationService()
     private let slideInTransitioningDelegate = SlideInPresentationManager()
+    private let userDefaultsService = UserDefaultsService()
     
     // MARK: - Methods
     
@@ -50,7 +51,8 @@ class Configurator {
                                     userId: userId,
                                     fileStorageService: fileStorageService,
                                     dateFormatterService: dateFormatterService,
-                                    authService: authService)
+                                    authService: authService,
+                                    userDefaultsService: userDefaultsService)
         let tripVC = TripsViewController(viewModel: tripVM)
         tripVC.configurator = self
         tripVC.modalPresentationStyle = .fullScreen
@@ -108,7 +110,8 @@ class Configurator {
         let newNoteVM = NewNoteViewModel(userId: userId,
                                          tripId: tripId,
                                          noteId: noteId,
-                                         fireBaseService: fireBaseService)
+                                         fireBaseService: fireBaseService,
+                                         userDefaultsService: userDefaultsService)
         let newNoteVC = NewNoteViewController(viewModel: newNoteVM, isEdited: true)
         newNoteVC.configurator = self
         newNoteVC.modalPresentationStyle = .fullScreen

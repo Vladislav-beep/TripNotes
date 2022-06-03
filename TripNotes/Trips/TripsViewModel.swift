@@ -16,7 +16,8 @@ protocol TripsViewModelProtocol: AnyObject {
          userId: String,
          fileStorageService: FileStorageServiceProtocol,
          dateFormatterService: DateFormatterServiceProtocol,
-         authService: AuthServiceProtocol)
+         authService: AuthServiceProtocol,
+         userDefaultsService: UserDefaultsServiceProtocol)
     func fetchTrips()
     func signOut(completionSuccess: @escaping () -> (), completionError: @escaping () -> ())
     func numberOfRows(section: Int) -> Int
@@ -38,6 +39,7 @@ class TripsViewModel: TripsViewModelProtocol {
     private let fileStorageService: FileStorageServiceProtocol
     private let dateFormatterService: DateFormatterServiceProtocol
     private let authService: AuthServiceProtocol
+    private let userDefaultsService: UserDefaultsServiceProtocol
     
     // MARK: - Properties
     
@@ -57,12 +59,14 @@ class TripsViewModel: TripsViewModelProtocol {
                   userId: String,
                   fileStorageService: FileStorageServiceProtocol,
                   dateFormatterService: DateFormatterServiceProtocol,
-                  authService: AuthServiceProtocol) {
+                  authService: AuthServiceProtocol,
+                  userDefaultsService: UserDefaultsServiceProtocol) {
         self.fireBaseService = fireBaseService
         self.userId = userId
         self.fileStorageService = fileStorageService
         self.dateFormatterService = dateFormatterService
         self.authService = authService
+        self.userDefaultsService = userDefaultsService
     }
     
     // MARK: - Private methods
@@ -133,10 +137,10 @@ class TripsViewModel: TripsViewModelProtocol {
     func viewModelForSelectedRow(at indexPath: IndexPath) -> NotesViewModelProtocol {
         if indexPath.section == 0 {
             let trip = (tripMore?[indexPath.row]) ?? Trip(id: "", country: "", beginningDate: Date(), finishingDate: Date(), description: "", currency: "")
-            return NotesViewModel(trip: trip, fireBaseService: fireBaseService, dateFormatterService: dateFormatterService, userId: userId)
+            return NotesViewModel(trip: trip, fireBaseService: fireBaseService, dateFormatterService: dateFormatterService, userId: userId, userDefaultsService: userDefaultsService)
         } else {
             let trip = tripLow?[indexPath.row] ?? Trip(id: "", country: "", beginningDate: Date(), finishingDate: Date(), description: "", currency: "")
-            return NotesViewModel(trip: trip, fireBaseService: fireBaseService, dateFormatterService: dateFormatterService, userId: userId)
+            return NotesViewModel(trip: trip, fireBaseService: fireBaseService, dateFormatterService: dateFormatterService, userId: userId, userDefaultsService: userDefaultsService)
         }
     }
     
@@ -152,10 +156,10 @@ class TripsViewModel: TripsViewModelProtocol {
     func newNoteViewModel(at indexPath: IndexPath) -> NewNoteViewModelProtocol {
         if indexPath.section == 0 {
             let trip = (tripMore?[indexPath.row]) ?? Trip(id: "", country: "", beginningDate: Date(), finishingDate: Date(), description: "", currency: "")
-            return NewNoteViewModel(userId: userId, tripId: trip.id, noteId: "", fireBaseService: fireBaseService)
+            return NewNoteViewModel(userId: userId, tripId: trip.id, noteId: "", fireBaseService: fireBaseService, userDefaultsService: userDefaultsService)
         } else {
             let trip = tripLow?[indexPath.row] ?? Trip(id: "", country: "", beginningDate: Date(), finishingDate: Date(), description: "", currency: "")
-            return NewNoteViewModel(userId: userId, tripId: trip.id, noteId: "", fireBaseService: fireBaseService)
+            return NewNoteViewModel(userId: userId, tripId: trip.id, noteId: "", fireBaseService: fireBaseService, userDefaultsService: userDefaultsService)
         }
     }
     

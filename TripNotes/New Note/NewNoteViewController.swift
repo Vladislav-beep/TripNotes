@@ -407,6 +407,7 @@ class NewNoteViewController: UIViewController {
     
     private func setupUI() {
         view.backgroundColor = .white
+        cityTextField.text = viewModel?.getCityOrCountry()
         descriptionTextView.delegate = self
         
         if isEdited {

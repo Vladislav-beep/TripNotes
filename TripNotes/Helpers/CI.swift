@@ -46,6 +46,7 @@ struct C {
         case other = "square.3.stack.3d.bottom.fill"
         case defaultCategory = "square"
         case countryButton = "globe"
+        case statistics = "scribble.variable"
         
         // MARK: NewTripViewController
         case country = "flag-edit"
@@ -68,6 +69,10 @@ struct C {
     enum CellIdentifiers: String {
         case tripTableView = "tripTableViewCell"
         case noteCollectionView = "noteCollectionViewCell"
+    }
+    
+    enum UserDefaultsKeys: String {
+        case countryKey = "Country"
     }
 }
 

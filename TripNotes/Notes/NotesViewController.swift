@@ -41,6 +41,14 @@ class NotesViewController: UIViewController {
         return button
     }()
     
+    private lazy var statisticsButton: UIBarButtonItem = {
+        let button = UIBarButtonItem.customButton(self,
+                                                  action: #selector(showStatistics),
+                                                  imageName: C.ImageNames.statistics.rawValue,
+                                                  widthAndHeight: 40)
+        return button
+    }()
+    
     // MARK: - Life Time
     
     init(notesViewModel: NotesViewModelProtocol) {
@@ -86,6 +94,10 @@ class NotesViewController: UIViewController {
         showAlert()
     }
     
+    @objc private func showStatistics() {
+        
+    }
+    
     // MARK: - Private methods
     
     private func setupViewModelBundings() {
@@ -116,23 +128,29 @@ class NotesViewController: UIViewController {
     }
     
     private func setupNavBar() {
-        navigationItem.rightBarButtonItems = [countryButton]
+        navigationItem.rightBarButtonItems = [countryButton, statisticsButton]
         navigationController?.navigationBar.tintColor = .tripWhite
     }
     
     private func showAlert() {
         let alert = UIAlertController(title: "Default country or city", message: "Set or delete default country or city", preferredStyle: .alert)
         
-        alert.addTextField { textField in
+        alert.addTextField { [weak self] textField in
+            if self?.viewModel.getCountryOrCity().count == 0 {
             textField.placeholder = "Enter default country or city"
+            } else {
+                textField.text = self?.viewModel.getCountryOrCity()
+            }
         }
         
-        let setAction = UIAlertAction(title: "Set", style: .default) { _ in
-            
+        let setAction = UIAlertAction(title: "Set", style: .default) { [weak self] _ in
+            guard let textField = alert.textFields?.first else { return }
+            let savedText = textField.text ?? ""
+            self?.viewModel.setCountryOrCity(savedText)
         }
         
-        let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { _ in
-            
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { [weak self] _ in
+            self?.viewModel.deleteCountryOrCity()
         }
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)

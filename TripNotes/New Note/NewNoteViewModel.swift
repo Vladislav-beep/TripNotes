@@ -18,10 +18,11 @@ protocol NewNoteViewModelProtocol {
     var maxCharCount: Int { get }
     var noteCompletion: (() -> Void)? { get set }
     var errorCompletion: ((FireBaseError) -> Void)? { get set }
-    init(userId: String, tripId: String, noteId: String, fireBaseService: FireBaseServiceProtocol)
+    init(userId: String, tripId: String, noteId: String, fireBaseService: FireBaseServiceProtocol, userDefaultsService: UserDefaultsServiceProtocol)
     func addNote(category: String, city: String, price: Double, isFavourite: Bool, description: String, address: String, errorCompletion: @escaping () -> Void)
     func updateNote(city: String, category: String, description: String, price: Double, address: String, errorCompletion: @escaping () -> Void)
     func downloadNote()
+    func getCityOrCountry() -> String
 }
 
 class NewNoteViewModel: NewNoteViewModelProtocol {
@@ -29,6 +30,7 @@ class NewNoteViewModel: NewNoteViewModelProtocol {
     // MARK: - Dependencies
     
     private let fireBaseService: FireBaseServiceProtocol
+    private let userDefaultsService: UserDefaultsServiceProtocol
     
     // MARK: - Private properties
     
@@ -68,11 +70,12 @@ class NewNoteViewModel: NewNoteViewModelProtocol {
     
     // MARK: - Life Time
     
-    required init(userId: String, tripId: String, noteId: String, fireBaseService: FireBaseServiceProtocol) {
+    required init(userId: String, tripId: String, noteId: String, fireBaseService: FireBaseServiceProtocol, userDefaultsService: UserDefaultsServiceProtocol) {
         self.userId = userId
         self.tripId = tripId
         self.noteId = noteId
         self.fireBaseService = fireBaseService
+        self.userDefaultsService = userDefaultsService
     }
     
     // MARK: - Methods
@@ -95,5 +98,9 @@ class NewNoteViewModel: NewNoteViewModelProtocol {
     
     func updateNote(city: String, category: String, description: String, price: Double, address: String, errorCompletion: @escaping () -> Void) {
         fireBaseService.updateNote(forUser: userId, tripId: tripId, noteId: note?.id ?? "", city: city, category: category, description: description, price: price, address: address, errorCompletion: errorCompletion)
+    }
+    
+    func getCityOrCountry() -> String {
+        userDefaultsService.getCityOrCountry()
     }
 }

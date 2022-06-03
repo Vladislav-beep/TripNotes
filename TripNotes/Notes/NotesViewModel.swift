@@ -15,11 +15,15 @@ protocol NotesViewModelProtocol {
     init(trip: Trip?,
          fireBaseService: FireBaseServiceProtocol,
          dateFormatterService: DateFormatterServiceProtocol,
-         userId: String)
+         userId: String,
+         userDefaultsService: UserDefaultsServiceProtocol)
     func fetchNotes()
     func numberOfCells() -> Int
     func noteCellViewModel(for indexPath: IndexPath) -> NoteCellViewModelProtocol?
     func viewModelForSelectedRow(at indexpath: IndexPath) -> NoteCellViewModel
+    func getCountryOrCity() -> String
+    func setCountryOrCity(_ countryOrCity: String)
+    func deleteCountryOrCity()
 }
 
 class NotesViewModel: NotesViewModelProtocol {
@@ -28,6 +32,7 @@ class NotesViewModel: NotesViewModelProtocol {
     
     private let fireBaseService: FireBaseServiceProtocol
     private let dateFormatterService: DateFormatterServiceProtocol
+    private let userDefaultsService: UserDefaultsServiceProtocol
     
     // MARK: - Properties
     
@@ -52,11 +57,12 @@ class NotesViewModel: NotesViewModelProtocol {
     
     // MARK: - Life time
     
-    required init(trip: Trip?, fireBaseService: FireBaseServiceProtocol, dateFormatterService: DateFormatterServiceProtocol, userId: String) {
+    required init(trip: Trip?, fireBaseService: FireBaseServiceProtocol, dateFormatterService: DateFormatterServiceProtocol, userId: String, userDefaultsService: UserDefaultsServiceProtocol) {
         self.trip = trip
         self.fireBaseService = fireBaseService
         self.dateFormatterService = dateFormatterService
         self.userId = userId
+        self.userDefaultsService = userDefaultsService
     }
     
     // MARK: - Methods
@@ -88,5 +94,17 @@ class NotesViewModel: NotesViewModelProtocol {
         let note = notes[indexpath.item]
         let currency = trip?.currency ?? I.defaultCurrency
         return NoteCellViewModel(tripNote: note, currency: currency, trip: trip ?? Trip(id: "", country: "", beginningDate: Date(), finishingDate: Date(), description: "", currency: ""), isInfoShown: false, fireBaseService: fireBaseService, dateFormatterService: dateFormatterService, userId: userId)
+    }
+    
+    func getCountryOrCity() -> String {
+        userDefaultsService.getCityOrCountry()
+    }
+    
+    func setCountryOrCity(_ countryOrCity: String) {
+        userDefaultsService.save(countryOrCity)
+    }
+    
+    func deleteCountryOrCity() {
+        userDefaultsService.clearData()
     }
 }
