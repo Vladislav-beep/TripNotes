@@ -36,6 +36,7 @@ class NewNoteViewModelTests: XCTestCase {
     override func tearDown() {
         viewModel = nil
         fireBaseServiceMock = nil
+        userDefaultsService = nil
         userId = nil
         tripId = nil
         noteId = nil
@@ -55,5 +56,14 @@ class NewNoteViewModelTests: XCTestCase {
         XCTAssertEqual(viewModel.description, "Went to cafe")
         XCTAssertEqual(viewModel.address, "Puschin street")
         XCTAssertEqual(viewModel.price, "78.35")
+    }
+    
+    func testGetCountryOrCity() {
+
+        // Act
+        let saved = viewModel.getCityOrCountry()
+        
+        // Assert
+        XCTAssertEqual(saved, "")
     }
 }

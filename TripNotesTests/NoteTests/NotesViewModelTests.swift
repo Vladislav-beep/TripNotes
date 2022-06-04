@@ -38,6 +38,7 @@ class NotesViewModelTests: XCTestCase {
         viewModel = nil
         fireBaseServiceMock = nil
         dateFormatterServiceMock = nil
+        userDefaultsService = nil
         trip = nil
         userId = nil
         super.tearDown()
@@ -90,5 +91,29 @@ class NotesViewModelTests: XCTestCase {
         XCTAssertEqual(viewModelForSelectedRow.category, "Transport")
         XCTAssertEqual(viewModelForSelectedRow.city, "Paris")
         XCTAssertEqual(viewModelForSelectedRow.isFavourite, true)
+    }
+    
+    func testSaveInUserDefaults() {
+        // Arrange
+        let countryOrCity = "Питер"
+        
+        // Act
+        viewModel.setCountryOrCity(countryOrCity)
+        let saved = viewModel.getCountryOrCity()
+        
+        // Assert
+        XCTAssertEqual(saved, "Питер")
+    }
+    
+    func testDeleteFromUserDefaults() {
+        // Arrange
+        let countryOrCity = "Питер"
+        
+        // Act
+        viewModel.setCountryOrCity(countryOrCity)
+        viewModel.deleteCountryOrCity()
+        
+        // Assert
+        XCTAssertEqual("", viewModel.getCountryOrCity())
     }
 }

@@ -44,6 +44,7 @@ class TripsViewModelTests: XCTestCase {
         fireBaseServiceMock = nil
         fileStorageServiceMock = nil
         dateFormatterServiceMock = nil
+        userDefaultsServiceMock = nil
         super.tearDown()
     }
     
