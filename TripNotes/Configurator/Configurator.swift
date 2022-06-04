@@ -135,9 +135,8 @@ class Configurator {
         return mapVC
     }
     
-    func configureStatisticsVC() -> StatisticsViewController {
-        let statisticsVM = StatisticsViewModel()
-        let statisticsVC = StatisticsViewController(viewModel: statisticsVM)
+    func configureStatisticsVC(with statisticsViewModel: StatisticsViewModel) -> StatisticsViewController {
+        let statisticsVC = StatisticsViewController(viewModel: statisticsViewModel)
         slideInTransitioningDelegate.direction = .bottom
         statisticsVC.transitioningDelegate = slideInTransitioningDelegate
         statisticsVC.modalPresentationStyle = .custom

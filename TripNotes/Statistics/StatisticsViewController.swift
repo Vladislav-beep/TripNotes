@@ -39,29 +39,53 @@ final class StatisticsViewController: UIViewController {
         return label
     }()
     
-    private lazy var transportImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(systemName: C.ImageNames.purchases.rawValue)
-        imageView.tintColor = .tripBlue
-        imageView.contentMode = .scaleAspectFill
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        return imageView
-    }()
-    
-    private lazy var transportLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Transport: 100 000 $"
-        label.font = UIFont.systemFont(ofSize: 25, weight: .bold)
-        label.textColor = .tripBlue
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
+    private lazy var hotelsStack: UIStackView = {
+        let text = viewModel.hotelText
+        let stack = UIStackView.statisticsStackView(withImage: C.ImageNames.hotel.rawValue,
+                                                    withText: text)
+        return stack
     }()
     
     private lazy var transportStack: UIStackView = {
-        let stack = UIStackView(arrangedSubviews: [transportImageView, transportLabel],
-                                axis: .horizontal,
-                                spacing: 12,
-                                distribution: .fill)
+        let text = viewModel.trasportText
+        let stack = UIStackView.statisticsStackView(withImage: C.ImageNames.transport.rawValue,
+                                                    withText: text)
+        return stack
+    }()
+    
+    private lazy var foodStack: UIStackView = {
+        let text = viewModel.foodText
+        let stack = UIStackView.statisticsStackView(withImage: C.ImageNames.food.rawValue,
+                                                    withText: text)
+        return stack
+    }()
+    
+    private lazy var activityStack: UIStackView = {
+        let text = viewModel.activityText
+        let stack = UIStackView.statisticsStackView(withImage: C.ImageNames.activity.rawValue,
+                                                    withText: text)
+        return stack
+    }()
+    
+    private lazy var purchasesStack: UIStackView = {
+        let text = viewModel.purchasesText
+        let stack = UIStackView.statisticsStackView(withImage: C.ImageNames.purchases.rawValue,
+                                                    withText: text)
+        return stack
+    }()
+    
+    private lazy var otherStack: UIStackView = {
+        let text = viewModel.otherText
+        let stack = UIStackView.statisticsStackView(withImage: C.ImageNames.other.rawValue,
+                                                    withText: text)
+        return stack
+    }()
+    
+    private lazy var commonStack: UIStackView = {
+        let stack = UIStackView(arrangedSubviews: [hotelsStack, transportStack, foodStack, activityStack, purchasesStack, otherStack],
+                                axis: .vertical,
+                                spacing: 16,
+                                distribution: .fillEqually)
         return stack
     }()
     
@@ -89,7 +113,7 @@ final class StatisticsViewController: UIViewController {
         setupYellowViewConstraints()
         setupCloseButtonConstraints()
         setupHeaderLabelConstraints()
-        setupTransportStackConstraints()
+        setupCommonStackConstraints()
     }
     
     private func setupYellowViewConstraints() {
@@ -122,15 +146,14 @@ final class StatisticsViewController: UIViewController {
         ])
     }
     
-    private func setupTransportStackConstraints() {
-        yellowView.addSubview(transportStack)
+    private func setupCommonStackConstraints() {
+        yellowView.addSubview(commonStack)
+        
         NSLayoutConstraint.activate([
-            transportImageView.heightAnchor.constraint(equalToConstant: 30),
-            transportImageView.widthAnchor.constraint(equalToConstant: 30),
-            transportStack.topAnchor.constraint(equalTo: headerLabel.bottomAnchor, constant: 16),
-            transportStack.leadingAnchor.constraint(equalTo: yellowView.leadingAnchor, constant: 16),
-            transportStack.trailingAnchor.constraint(equalTo: yellowView.trailingAnchor, constant: -16),
-            transportStack.heightAnchor.constraint(equalToConstant: 30)
+            commonStack.topAnchor.constraint(equalTo: headerLabel.bottomAnchor, constant: 16),
+            commonStack.leadingAnchor.constraint(equalTo: yellowView.leadingAnchor, constant: 16),
+            commonStack.trailingAnchor.constraint(equalTo: yellowView.trailingAnchor, constant: -16),
+            commonStack.heightAnchor.constraint(equalToConstant: 240)
         ])
     }
 }

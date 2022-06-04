@@ -215,6 +215,11 @@ struct I {
     
     
     
+    // MARK: - StatisticsViewController
+    static let headerLabel = "Statistics"
+    
+    
+    
     // MARK: - MapViewController
     static let restrictedAlertTitle = "Your location is restricted"
     static let restrictedAlertMessage = "To give permission go to: Settings -> My Places -> Location"

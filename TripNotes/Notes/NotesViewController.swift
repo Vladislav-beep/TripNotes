@@ -95,7 +95,8 @@ class NotesViewController: UIViewController {
     }
     
     @objc private func showStatistics() {
-        let statisticsVC = configurator?.configureStatisticsVC() ?? UIViewController()
+        let statisticsVM = viewModel.statisticsViewModel()
+        let statisticsVC = configurator?.configureStatisticsVC(with: statisticsVM) ?? UIViewController()
         present(statisticsVC, animated: true)
     }
     

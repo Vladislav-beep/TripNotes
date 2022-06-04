@@ -21,6 +21,7 @@ protocol NotesViewModelProtocol {
     func numberOfCells() -> Int
     func noteCellViewModel(for indexPath: IndexPath) -> NoteCellViewModelProtocol?
     func viewModelForSelectedRow(at indexpath: IndexPath) -> NoteCellViewModel
+    func statisticsViewModel() -> StatisticsViewModel
     func getCountryOrCity() -> String
     func setCountryOrCity(_ countryOrCity: String)
     func deleteCountryOrCity()
@@ -94,6 +95,10 @@ class NotesViewModel: NotesViewModelProtocol {
         let note = notes[indexpath.item]
         let currency = trip?.currency ?? I.defaultCurrency
         return NoteCellViewModel(tripNote: note, currency: currency, trip: trip ?? Trip(id: "", country: "", beginningDate: Date(), finishingDate: Date(), description: "", currency: ""), isInfoShown: false, fireBaseService: fireBaseService, dateFormatterService: dateFormatterService, userId: userId)
+    }
+    
+    func statisticsViewModel() -> StatisticsViewModel {
+        return StatisticsViewModel(notes: notes, currency: trip?.currency ?? "$")
     }
     
     func getCountryOrCity() -> String {
