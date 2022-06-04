@@ -14,6 +14,7 @@ class NotesViewModelTests: XCTestCase {
     private var viewModel: NotesViewModel!
     private var fireBaseServiceMock: FireBaseServiceMock!
     private var dateFormatterServiceMock: DateFormatterServiceMock!
+    private var userDefaultsService: UserDefaltsServiceMock!
     private var trip: Trip? = TripStub().getTripsStub().first!
     private var userId: String? = "123"
     
@@ -24,11 +25,13 @@ class NotesViewModelTests: XCTestCase {
         super.setUp()
         fireBaseServiceMock = FireBaseServiceMock()
         dateFormatterServiceMock = DateFormatterServiceMock()
+        userDefaultsService = UserDefaltsServiceMock()
         
         viewModel = .init(trip: trip,
                           fireBaseService: fireBaseServiceMock,
                           dateFormatterService: dateFormatterServiceMock,
-                          userId: userId!)
+                          userId: userId!,
+                          userDefaultsService: userDefaultsService)
     }
 
     override func tearDown() {

@@ -17,6 +17,7 @@ class TripsViewModelTests: XCTestCase {
     private var fireBaseServiceMock: FireBaseServiceMock!
     private var fileStorageServiceMock: FileStorageServiceMock!
     private var dateFormatterServiceMock: DateFormatterServiceMock!
+    private var userDefaultsServiceMock: UserDefaltsServiceMock!
     
     
     // MARK: Lifecycle
@@ -27,12 +28,14 @@ class TripsViewModelTests: XCTestCase {
         fireBaseServiceMock = FireBaseServiceMock()
         fileStorageServiceMock = FileStorageServiceMock()
         dateFormatterServiceMock = DateFormatterServiceMock()
+        userDefaultsServiceMock = UserDefaltsServiceMock()
         
         viewModel = .init(fireBaseService: fireBaseServiceMock,
                           userId: "",
                           fileStorageService: fileStorageServiceMock,
                           dateFormatterService: dateFormatterServiceMock,
-                          authService: authServiceMock)
+                          authService: authServiceMock,
+                          userDefaultsService: userDefaultsServiceMock)
     }
     
     override func tearDown (){

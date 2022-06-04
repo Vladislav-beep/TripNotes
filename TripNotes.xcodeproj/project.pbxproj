@@ -34,6 +34,10 @@
 		B909AFE0277E437D006EFC38 /* Extension + UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B909AFDC277E3135006EFC38 /* Extension + UITextField.swift */; };
 		B90A37E427784E830028B6F1 /* Extension + UIBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DCF13D276BBE29007B0320 /* Extension + UIBarButtonItem.swift */; };
 		B90B9A0C276D015A008DD627 /* TripTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90B9A0B276D015A008DD627 /* TripTableViewCellViewModel.swift */; };
+		B90BFFCB284BE97A00FDC717 /* UserDefaltsServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90BFFCA284BE97A00FDC717 /* UserDefaltsServiceMock.swift */; };
+		B90BFFCC284BE9B200FDC717 /* UserDefaultService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9EF34E22845665600920D1E /* UserDefaultService.swift */; };
+		B90BFFCD284BEB5400FDC717 /* StatisticsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9CE194B284A994900F4C595 /* StatisticsViewModel.swift */; };
+		B90BFFCE284BEB5700FDC717 /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9CE1949284A990D00F4C595 /* StatisticsViewController.swift */; };
 		B90DB426276F134B00F1A544 /* NoteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90DB425276F134B00F1A544 /* NoteModel.swift */; };
 		B90DB42A276F137500F1A544 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90DB429276F137500F1A544 /* Category.swift */; };
 		B90DB42E276F139700F1A544 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90DB42D276F139700F1A544 /* Currency.swift */; };
@@ -224,6 +228,7 @@
 		B9072FEB27E8D1A9008BE67C /* SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
 		B909AFDC277E3135006EFC38 /* Extension + UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UITextField.swift"; sourceTree = "<group>"; };
 		B90B9A0B276D015A008DD627 /* TripTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripTableViewCellViewModel.swift; sourceTree = "<group>"; };
+		B90BFFCA284BE97A00FDC717 /* UserDefaltsServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaltsServiceMock.swift; sourceTree = "<group>"; };
 		B90DB425276F134B00F1A544 /* NoteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteModel.swift; sourceTree = "<group>"; };
 		B90DB429276F137500F1A544 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		B90DB42D276F139700F1A544 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
@@ -605,6 +610,7 @@
 				B9D272312836CECE00A69062 /* DateFormatterServiceMock.swift */,
 				B97720BB283A6D26005262C9 /* NetworkWeatherManagerMock.swift */,
 				B97720BD283A6D8B005262C9 /* LocationServiceMock.swift */,
+				B90BFFCA284BE97A00FDC717 /* UserDefaltsServiceMock.swift */,
 				B9D2723328380F7800A69062 /* TripStub.swift */,
 				B9070CC22839535A009A9785 /* NoteStub.swift */,
 			);
@@ -923,6 +929,7 @@
 				B95FBD0827D8BAD1006FF5A8 /* CurrentWeather.swift in Sources */,
 				B98282D327A07BF3006EFED8 /* SignInButton.swift in Sources */,
 				B9DE0D562768FDAB00805E4C /* TripTableViewCell.swift in Sources */,
+				B90BFFCE284BEB5700FDC717 /* StatisticsViewController.swift in Sources */,
 				B9D272322836CECE00A69062 /* DateFormatterServiceMock.swift in Sources */,
 				B93DD4BA279F1BCA00D91A08 /* AuthViewController.swift in Sources */,
 				B930CDFB28154DD400D0A6F5 /* DateFormatterService.swift in Sources */,
@@ -948,8 +955,10 @@
 				B9070CBD2838D5B5009A9785 /* TripTableViewCellViewModelTests.swift in Sources */,
 				B95FBD0D27D8BAD6006FF5A8 /* CurrentWeatherData.swift in Sources */,
 				B9D9FC11278F390B007710B4 /* NewNoteViewController.swift in Sources */,
+				B90BFFCD284BEB5400FDC717 /* StatisticsViewModel.swift in Sources */,
 				B930CE2228154E1D00D0A6F5 /* AdressButton.swift in Sources */,
 				B95FBD1227D90D5E006FF5A8 /* NetworkWeatherManager.swift in Sources */,
+				B90BFFCC284BE9B200FDC717 /* UserDefaultService.swift in Sources */,
 				B949FB1E27AEF38800590F0E /* Configurator.swift in Sources */,
 				B930CE0528154DEA00D0A6F5 /* Extension + UIViewController.swift in Sources */,
 				B930CE1A28154E1400D0A6F5 /* TotalSumLabel.swift in Sources */,
@@ -1001,6 +1010,7 @@
 				B9070CC128394FCD009A9785 /* NotesViewModelTests.swift in Sources */,
 				B930CE0328154DE400D0A6F5 /* Extension + Formatter.swift in Sources */,
 				B930CE1428154E0700D0A6F5 /* CreateLabel.swift in Sources */,
+				B90BFFCB284BE97A00FDC717 /* UserDefaltsServiceMock.swift in Sources */,
 				B9DE0D5C2768FDB100805E4C /* FavouritesViewController.swift in Sources */,
 				B9DE0D532768FDA800805E4C /* TripsViewController.swift in Sources */,
 				B9F296C8278964CE00844D6C /* NoteCell.swift in Sources */,

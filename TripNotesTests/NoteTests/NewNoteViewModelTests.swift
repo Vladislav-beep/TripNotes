@@ -13,6 +13,7 @@ class NewNoteViewModelTests: XCTestCase {
     
     private var viewModel: NewNoteViewModel!
     private var fireBaseServiceMock: FireBaseServiceMock!
+    private var userDefaultsService: UserDefaltsServiceMock!
     private var userId: String? = "XXXX"
     private var tripId: String? = "00000"
     private var noteId: String? = "12345"
@@ -23,11 +24,13 @@ class NewNoteViewModelTests: XCTestCase {
     override func setUp() {
         super.setUp()
         fireBaseServiceMock = FireBaseServiceMock()
+        userDefaultsService = UserDefaltsServiceMock()
         
         viewModel = .init(userId: userId!,
                           tripId: tripId!,
                           noteId: noteId!,
-                          fireBaseService: fireBaseServiceMock)
+                          fireBaseService: fireBaseServiceMock,
+                          userDefaultsService: userDefaultsService)
     }
 
     override func tearDown() {
