@@ -22,9 +22,9 @@ class WelcomeLabel: UILabel {
     
     // MARK: Private methods
     
-   private func initialize() {
+    private func initialize() {
         numberOfLines = 2
-    text = I.welcomeLabelText
+        text = I.welcomeLabelText
         textAlignment = .center
         textColor = .tripBlue
         adjustsFontSizeToFitWidth = true

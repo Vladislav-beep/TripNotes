@@ -37,6 +37,9 @@ class FavouritesViewModelTests: XCTestCase {
         super.tearDown()
     }
     
+    
+    // MARK: TESTS
+    
     func testNumberOfCells() throws {
         // Arrange
         let isFiltering = false

@@ -33,6 +33,9 @@ class WeatherViewModelTests: XCTestCase {
         locationServiceMock = nil
         super.tearDown()
     }
+    
+    
+    // MARK: TESTS
 
     func testFetchWeather() {        
         // Act

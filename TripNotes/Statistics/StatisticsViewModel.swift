@@ -19,8 +19,13 @@ protocol StatisticsViewModelProtocol {
 
 final class StatisticsViewModel: StatisticsViewModelProtocol {
     
+    // MARK: - Private properties
+    
     private let notes: [TripNote]
     private let currency: String
+    
+    
+    // MARK: - Properties
     
     var trasportText: String {
         var sum = 0.0
@@ -81,6 +86,9 @@ final class StatisticsViewModel: StatisticsViewModelProtocol {
         }
         return "Other: \(sum.formattedWithSeparator) \(currency)"
     }
+    
+    
+    // MARK: - Lifecycle
     
     init(notes: [TripNote], currency: String) {
         self.notes = notes

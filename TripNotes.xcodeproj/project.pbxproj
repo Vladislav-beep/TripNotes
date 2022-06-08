@@ -38,6 +38,7 @@
 		B90BFFCC284BE9B200FDC717 /* UserDefaultService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9EF34E22845665600920D1E /* UserDefaultService.swift */; };
 		B90BFFCD284BEB5400FDC717 /* StatisticsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9CE194B284A994900F4C595 /* StatisticsViewModel.swift */; };
 		B90BFFCE284BEB5700FDC717 /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9CE1949284A990D00F4C595 /* StatisticsViewController.swift */; };
+		B90BFFD1285127B200FDC717 /* StatisticsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90BFFD0285127B100FDC717 /* StatisticsViewModelTests.swift */; };
 		B90DB426276F134B00F1A544 /* NoteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90DB425276F134B00F1A544 /* NoteModel.swift */; };
 		B90DB42A276F137500F1A544 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90DB429276F137500F1A544 /* Category.swift */; };
 		B90DB42E276F139700F1A544 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90DB42D276F139700F1A544 /* Currency.swift */; };
@@ -229,6 +230,7 @@
 		B909AFDC277E3135006EFC38 /* Extension + UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UITextField.swift"; sourceTree = "<group>"; };
 		B90B9A0B276D015A008DD627 /* TripTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripTableViewCellViewModel.swift; sourceTree = "<group>"; };
 		B90BFFCA284BE97A00FDC717 /* UserDefaltsServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaltsServiceMock.swift; sourceTree = "<group>"; };
+		B90BFFD0285127B100FDC717 /* StatisticsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewModelTests.swift; sourceTree = "<group>"; };
 		B90DB425276F134B00F1A544 /* NoteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteModel.swift; sourceTree = "<group>"; };
 		B90DB429276F137500F1A544 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		B90DB42D276F139700F1A544 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
@@ -361,6 +363,14 @@
 				B97720B6283A4AED005262C9 /* NewNoteViewModelTests.swift */,
 			);
 			path = NoteTests;
+			sourceTree = "<group>";
+		};
+		B90BFFCF2851278F00FDC717 /* StatisticsTests */ = {
+			isa = PBXGroup;
+			children = (
+				B90BFFD0285127B100FDC717 /* StatisticsViewModelTests.swift */,
+			);
+			path = StatisticsTests;
 			sourceTree = "<group>";
 		};
 		B90DB424276F132C00F1A544 /* Notes */ = {
@@ -632,6 +642,7 @@
 				B9070CBE2838D92B009A9785 /* TripTests */,
 				B9070CBF28394F73009A9785 /* NoteTests */,
 				B97720B8283A6C0A005262C9 /* WeatherTests */,
+				B90BFFCF2851278F00FDC717 /* StatisticsTests */,
 				B9D2722C2836CD8500A69062 /* Mocks */,
 				B9DE0D4B2768FD7900805E4C /* Info.plist */,
 			);
@@ -1007,6 +1018,7 @@
 				B930CE1F28154E1B00D0A6F5 /* BackButton.swift in Sources */,
 				B930CDF228154DC100D0A6F5 /* SlideInPresentationManager.swift in Sources */,
 				B949FB2127AF1F7A00590F0E /* SceneDelegate.swift in Sources */,
+				B90BFFD1285127B200FDC717 /* StatisticsViewModelTests.swift in Sources */,
 				B9070CC128394FCD009A9785 /* NotesViewModelTests.swift in Sources */,
 				B930CE0328154DE400D0A6F5 /* Extension + Formatter.swift in Sources */,
 				B930CE1428154E0700D0A6F5 /* CreateLabel.swift in Sources */,

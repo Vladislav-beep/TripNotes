@@ -12,13 +12,13 @@ class DetailNoteViewController: UIViewController {
     // MARK: - Dependencies
     
     private var viewModel: NoteCellViewModelProtocol
-    private lazy var contraint = heartImageView.heightAnchor.constraint(equalToConstant: 0)
     private lazy var animator = Animator(container: view)
     var configurator: Configurator?
     
     // MARK: - Properties
     
     var isFavourite = false
+    private lazy var contraint = heartImageView.heightAnchor.constraint(equalToConstant: 0)
     
     // MARK: - UI
     
@@ -219,10 +219,10 @@ class DetailNoteViewController: UIViewController {
         setupCloseButtonConstraints()
         setupLikeButtonConstraints()
         setupSumLabelConstraints()
-        setupDeleteButtonConsytaints()
-        setupStackViewConstraints()
+        setupDeleteButtonConstraints()
+        setupCategoryImageViewConstraints()
         setupLabelStackConstraints()
-        setupDeleteButtonConsytaints()
+        setupDeleteButtonConstraints()
         setupHeartImageViewConstraints()
     }
     
@@ -256,7 +256,7 @@ class DetailNoteViewController: UIViewController {
         ])
     }
     
-    private func setupStackViewConstraints() {
+    private func setupCategoryImageViewConstraints() {
         yellowView.addSubview(categoryImageView)
         NSLayoutConstraint.activate([
             categoryImageView.topAnchor.constraint(equalTo: yellowView.topAnchor, constant: 8),
@@ -288,7 +288,7 @@ class DetailNoteViewController: UIViewController {
         ])
     }
     
-    private func setupDeleteButtonConsytaints() {
+    private func setupDeleteButtonConstraints() {
         yellowView.addSubview(editDeleteButtonStack)
         NSLayoutConstraint.activate([
             editDeleteButtonStack.bottomAnchor.constraint(equalTo: dateSumStack.topAnchor, constant: -20),
