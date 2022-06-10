@@ -57,6 +57,16 @@
                ReferencedContainer = "container:TripNotes.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "B90BFFD72851353200FDC717"
+               BuildableName = "TripNotesUITests.xctest"
+               BlueprintName = "TripNotesUITests"
+               ReferencedContainer = "container:TripNotes.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

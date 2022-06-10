@@ -39,6 +39,8 @@
 		B90BFFCD284BEB5400FDC717 /* StatisticsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9CE194B284A994900F4C595 /* StatisticsViewModel.swift */; };
 		B90BFFCE284BEB5700FDC717 /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9CE1949284A990D00F4C595 /* StatisticsViewController.swift */; };
 		B90BFFD1285127B200FDC717 /* StatisticsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90BFFD0285127B100FDC717 /* StatisticsViewModelTests.swift */; };
+		B90BFFDB2851353300FDC717 /* TripNotesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90BFFDA2851353300FDC717 /* TripNotesUITests.swift */; };
+		B90BFFDD2851353300FDC717 /* TripNotesUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90BFFDC2851353300FDC717 /* TripNotesUITestsLaunchTests.swift */; };
 		B90DB426276F134B00F1A544 /* NoteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90DB425276F134B00F1A544 /* NoteModel.swift */; };
 		B90DB42A276F137500F1A544 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90DB429276F137500F1A544 /* Category.swift */; };
 		B90DB42E276F139700F1A544 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90DB42D276F139700F1A544 /* Currency.swift */; };
@@ -197,6 +199,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		B90BFFDE2851353300FDC717 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B91E81312767A88E00D0748B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B91E81382767A88E00D0748B;
+			remoteInfo = TripNotes;
+		};
 		B9DE0D4C2768FD7900805E4C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B91E81312767A88E00D0748B /* Project object */;
@@ -231,6 +240,9 @@
 		B90B9A0B276D015A008DD627 /* TripTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripTableViewCellViewModel.swift; sourceTree = "<group>"; };
 		B90BFFCA284BE97A00FDC717 /* UserDefaltsServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaltsServiceMock.swift; sourceTree = "<group>"; };
 		B90BFFD0285127B100FDC717 /* StatisticsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewModelTests.swift; sourceTree = "<group>"; };
+		B90BFFD82851353200FDC717 /* TripNotesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TripNotesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B90BFFDA2851353300FDC717 /* TripNotesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripNotesUITests.swift; sourceTree = "<group>"; };
+		B90BFFDC2851353300FDC717 /* TripNotesUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripNotesUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		B90DB425276F134B00F1A544 /* NoteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteModel.swift; sourceTree = "<group>"; };
 		B90DB429276F137500F1A544 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		B90DB42D276F139700F1A544 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
@@ -316,6 +328,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		B90BFFD52851353200FDC717 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B91E81362767A88E00D0748B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -371,6 +390,15 @@
 				B90BFFD0285127B100FDC717 /* StatisticsViewModelTests.swift */,
 			);
 			path = StatisticsTests;
+			sourceTree = "<group>";
+		};
+		B90BFFD92851353300FDC717 /* TripNotesUITests */ = {
+			isa = PBXGroup;
+			children = (
+				B90BFFDA2851353300FDC717 /* TripNotesUITests.swift */,
+				B90BFFDC2851353300FDC717 /* TripNotesUITestsLaunchTests.swift */,
+			);
+			path = TripNotesUITests;
 			sourceTree = "<group>";
 		};
 		B90DB424276F132C00F1A544 /* Notes */ = {
@@ -440,6 +468,7 @@
 			children = (
 				B91E813B2767A88E00D0748B /* TripNotes */,
 				B9DE0D482768FD7900805E4C /* TripNotesTests */,
+				B90BFFD92851353300FDC717 /* TripNotesUITests */,
 				B91E813A2767A88E00D0748B /* Products */,
 				B930CDE028154C0700D0A6F5 /* Frameworks */,
 			);
@@ -450,6 +479,7 @@
 			children = (
 				B91E81392767A88E00D0748B /* TripNotes.app */,
 				B9DE0D472768FD7900805E4C /* TripNotesTests.xctest */,
+				B90BFFD82851353200FDC717 /* TripNotesUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -731,6 +761,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		B90BFFD72851353200FDC717 /* TripNotesUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B90BFFE02851353300FDC717 /* Build configuration list for PBXNativeTarget "TripNotesUITests" */;
+			buildPhases = (
+				B90BFFD42851353200FDC717 /* Sources */,
+				B90BFFD52851353200FDC717 /* Frameworks */,
+				B90BFFD62851353200FDC717 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B90BFFDF2851353300FDC717 /* PBXTargetDependency */,
+			);
+			name = TripNotesUITests;
+			productName = TripNotesUITests;
+			productReference = B90BFFD82851353200FDC717 /* TripNotesUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		B91E81382767A88E00D0748B /* TripNotes */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = B91E814D2767A88F00D0748B /* Build configuration list for PBXNativeTarget "TripNotes" */;
@@ -779,9 +827,13 @@
 		B91E81312767A88E00D0748B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1200;
+				LastSwiftUpdateCheck = 1330;
 				LastUpgradeCheck = 1200;
 				TargetAttributes = {
+					B90BFFD72851353200FDC717 = {
+						CreatedOnToolsVersion = 13.3.1;
+						TestTargetID = B91E81382767A88E00D0748B;
+					};
 					B91E81382767A88E00D0748B = {
 						CreatedOnToolsVersion = 12.0.1;
 					};
@@ -809,11 +861,19 @@
 			targets = (
 				B91E81382767A88E00D0748B /* TripNotes */,
 				B9DE0D462768FD7900805E4C /* TripNotesTests */,
+				B90BFFD72851353200FDC717 /* TripNotesUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		B90BFFD62851353200FDC717 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B91E81372767A88E00D0748B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -835,6 +895,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		B90BFFD42851353200FDC717 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B90BFFDB2851353300FDC717 /* TripNotesUITests.swift in Sources */,
+				B90BFFDD2851353300FDC717 /* TripNotesUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B91E81352767A88E00D0748B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1032,6 +1101,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		B90BFFDF2851353300FDC717 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B91E81382767A88E00D0748B /* TripNotes */;
+			targetProxy = B90BFFDE2851353300FDC717 /* PBXContainerItemProxy */;
+		};
 		B9DE0D4D2768FD7900805E4C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			platformFilter = ios;
@@ -1052,6 +1126,44 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		B90BFFE12851353300FDC717 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Y994MRWU9A;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = swift.ru.TripNotesUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = TripNotes;
+			};
+			name = Debug;
+		};
+		B90BFFE22851353300FDC717 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Y994MRWU9A;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = swift.ru.TripNotesUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = TripNotes;
+			};
+			name = Release;
+		};
 		B91E814B2767A88F00D0748B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1267,6 +1379,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		B90BFFE02851353300FDC717 /* Build configuration list for PBXNativeTarget "TripNotesUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B90BFFE12851353300FDC717 /* Debug */,
+				B90BFFE22851353300FDC717 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		B91E81342767A88E00D0748B /* Build configuration list for PBXProject "TripNotes" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
