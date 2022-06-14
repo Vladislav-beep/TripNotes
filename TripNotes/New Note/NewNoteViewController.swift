@@ -7,7 +7,7 @@
 
 import UIKit
 
-class NewNoteViewController: UIViewController {
+class NewNoteViewController: UIViewController, UIScrollViewDelegate {
     
     // MARK: - Dependencies
     
@@ -28,6 +28,9 @@ class NewNoteViewController: UIViewController {
     
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
+        scrollView.delegate = self
+        scrollView.contentMode = .top
+        scrollView.contentSize = CGSize(width: view.frame.size.width, height: 900)
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
     }()
@@ -455,10 +458,10 @@ class NewNoteViewController: UIViewController {
     private func setupLowerViewConstraints() {
         scrollView.addSubview(lowerView)
         NSLayoutConstraint.activate([
-            lowerView.centerYAnchor.constraint(equalTo: scrollView.centerYAnchor),
+            lowerView.topAnchor.constraint(equalTo: scrollView.topAnchor),
             lowerView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
-            lowerView.heightAnchor.constraint(equalTo: view.heightAnchor),
-            lowerView.widthAnchor.constraint(equalTo: view.widthAnchor)
+            lowerView.heightAnchor.constraint(equalTo: scrollView.heightAnchor),
+            lowerView.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
         ])
     }
     
