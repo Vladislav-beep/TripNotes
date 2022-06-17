@@ -29,8 +29,7 @@ class NewNoteViewController: UIViewController, UIScrollViewDelegate {
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.delegate = self
-        scrollView.contentMode = .top
-        scrollView.contentSize = CGSize(width: view.frame.size.width, height: 900)
+        scrollView.contentSize = CGSize(width: view.frame.size.width, height: 1000)
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
     }()
@@ -224,6 +223,28 @@ class NewNoteViewController: UIViewController, UIScrollViewDelegate {
     
     private lazy var stack: UIStackView = {
         let stack = UIStackView(arrangedSubviews: [cityStack, priceStack], axis: .vertical, spacing: 20, distribution: .fillEqually)
+        return stack
+    }()
+    
+    private lazy var paidLabel: UILabel = {
+        let paidLabel = UILabel()
+        paidLabel.text = I.paidLabel
+        paidLabel.textColor = .tripRed
+        paidLabel.font = UIFont.systemFont(ofSize: 21, weight: .heavy)
+        paidLabel.translatesAutoresizingMaskIntoConstraints = false
+        return paidLabel
+    }()
+    
+    private lazy var checkBoxView: CheckBoxView = {
+        let checkBox = CheckBoxView()
+        return checkBox
+    }()
+    
+    private lazy var paidStack: UIStackView = {
+        let stack = UIStackView(arrangedSubviews: [paidLabel, checkBoxView],
+                                axis: .horizontal,
+                                spacing: 10,
+                                distribution: .fillEqually)
         return stack
     }()
     
@@ -439,6 +460,7 @@ class NewNoteViewController: UIViewController, UIScrollViewDelegate {
         setupCategoryLabelConstraints()
         setupStackViewConstraints()
         setupOtherStackViewConstraints()
+        setupPaidStackConstraints()
         setupDescriptionStackViewConstraints()
         setupAdressButtonConstraints()
         setupWarningLabelConstraints()
@@ -459,8 +481,9 @@ class NewNoteViewController: UIViewController, UIScrollViewDelegate {
         scrollView.addSubview(lowerView)
         NSLayoutConstraint.activate([
             lowerView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            lowerView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
-            lowerView.heightAnchor.constraint(equalTo: scrollView.heightAnchor),
+            lowerView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            lowerView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            lowerView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             lowerView.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
         ])
     }
@@ -513,20 +536,31 @@ class NewNoteViewController: UIViewController, UIScrollViewDelegate {
         ])
     }
     
+    private func setupPaidStackConstraints() {
+        lowerView.addSubview(paidStack)
+        NSLayoutConstraint.activate([
+            paidStack.topAnchor.constraint(equalTo: stack.bottomAnchor, constant: 20),
+            paidStack.leadingAnchor.constraint(equalTo: lowerView.leadingAnchor, constant: 10),
+            paidStack.widthAnchor.constraint(equalToConstant: 135),
+            paidStack.heightAnchor.constraint(equalToConstant: 45)
+        ])
+    }
+    
     private func setupDescriptionStackViewConstraints() {
         lowerView.addSubview(descriptionStack)
         NSLayoutConstraint.activate([
-            descriptionStack.topAnchor.constraint(equalTo: stack.bottomAnchor, constant: 20),
+            descriptionStack.topAnchor.constraint(equalTo: paidStack.bottomAnchor, constant: 20),
             descriptionStack.leadingAnchor.constraint(equalTo: lowerView.leadingAnchor, constant: 10),
             descriptionStack.trailingAnchor.constraint(equalTo: lowerView.trailingAnchor, constant: -10),
-            descriptionStack.bottomAnchor.constraint(equalTo: addNewNoteButton.topAnchor, constant: -10)
+            descriptionStack.bottomAnchor.constraint(equalTo: addNewNoteButton.topAnchor, constant: -10),
+            descriptionStack.heightAnchor.constraint(equalToConstant: 200)
         ])
     }
     
     private func setupAdressButtonConstraints() {
         lowerView.addSubview(adressButton)
         NSLayoutConstraint.activate([
-            adressButton.topAnchor.constraint(equalTo: priceStack.bottomAnchor, constant: 20),
+            adressButton.topAnchor.constraint(equalTo: paidStack.bottomAnchor, constant: 20),
             adressButton.trailingAnchor.constraint(equalTo: lowerView.trailingAnchor, constant: -10),
             adressButton.widthAnchor.constraint(equalToConstant: 100),
             adressButton.heightAnchor.constraint(equalToConstant: 25)

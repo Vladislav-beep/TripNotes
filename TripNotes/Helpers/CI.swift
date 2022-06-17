@@ -204,6 +204,7 @@ struct I {
     static let priceLabelText = "Price"
     static let priceTextFieldPlaceHolder = "Enter price"
     static let descriptionLabelText = "Description"
+    static let paidLabel = "I paid"
     static let countLabelText = "0/160"
     static let maxCharCount = "160"
     static let fetchNoteAlertTitle = "Unable to fetch note"

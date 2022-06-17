@@ -23,12 +23,12 @@ class CloseButton: UIButton {
     // MARK: Private methods
     
    private func initialize() {
-    setBackgroundImage(UIImage(systemName: C.ImageNames.closeButton.rawValue), for: .normal)
-        tintColor = .tripBlue
-        layer.shadowColor = UIColor.darkGray.cgColor
-        layer.shadowRadius = 5
-        layer.shadowOffset = CGSize(width: 0, height: 5)
-        layer.shadowOpacity = 0.5
-        translatesAutoresizingMaskIntoConstraints = false
+       setBackgroundImage(UIImage(systemName: C.ImageNames.closeButton.rawValue), for: .normal)
+       tintColor = .tripBlue
+       layer.shadowColor = UIColor.darkGray.cgColor
+       layer.shadowRadius = 5
+       layer.shadowOffset = CGSize(width: 0, height: 5)
+       layer.shadowOpacity = 0.5
+       translatesAutoresizingMaskIntoConstraints = false
     }
 }
