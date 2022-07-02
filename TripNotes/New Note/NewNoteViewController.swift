@@ -234,14 +234,17 @@ class NewNoteViewController: UIViewController, UIScrollViewDelegate {
         paidLabel.translatesAutoresizingMaskIntoConstraints = false
         return paidLabel
     }()
-    
-    private lazy var checkBoxView: CheckBoxView = {
-        let checkBox = CheckBoxView()
-        return checkBox
+
+    private lazy var paidButton: SelectionButton = {
+        let paidButton = SelectionButton(imageHeight: 25)
+        paidButton.tag = 7
+        paidButton.setImage(imageName: "checkmark")
+        paidButton.addTarget(self, action: #selector(selectPayment), for: .touchUpInside)
+        return paidButton
     }()
     
     private lazy var paidStack: UIStackView = {
-        let stack = UIStackView(arrangedSubviews: [paidLabel, checkBoxView],
+        let stack = UIStackView(arrangedSubviews: [paidLabel, paidButton],
                                 axis: .horizontal,
                                 spacing: 10,
                                 distribution: .fillEqually)
@@ -419,6 +422,16 @@ class NewNoteViewController: UIViewController, UIScrollViewDelegate {
         }
         sender.isSelected = true
         sender.pulsate()
+    }
+    
+    @objc private func selectPayment() {
+        if paidButton.isSelected == false {
+            paidButton.isSelected = true
+            paidButton.pulsate()
+        } else {
+            paidButton.isSelected = false
+            paidButton.stopAnimation()
+        }
     }
     
     @objc private func getAdress() {

@@ -138,7 +138,6 @@
 		B9698F26279C52CC005FB438 /* LocationSevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9698F22279C4689005FB438 /* LocationSevice.swift */; };
 		B9698F29279C53B8005FB438 /* NewNoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9FD6C0B278E043600311EF1 /* NewNoteViewModel.swift */; };
 		B9698F2D279C5691005FB438 /* mapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9698F2C279C5691005FB438 /* mapViewModel.swift */; };
-		B96C8C87285CE93B00DD6E47 /* CheckBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96C8C86285CE93B00DD6E47 /* CheckBoxView.swift */; };
 		B97374BF27AC5CBE000B208D /* FavouritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97374BE27AC5CBE000B208D /* FavouritesViewModel.swift */; };
 		B97374C227AC5CF8000B208D /* FavouritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97374BE27AC5CBE000B208D /* FavouritesViewModel.swift */; };
 		B97720B7283A4AED005262C9 /* NewNoteViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97720B6283A4AED005262C9 /* NewNoteViewModelTests.swift */; };
@@ -289,7 +288,6 @@
 		B96648782799D65F00F527E8 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		B9698F22279C4689005FB438 /* LocationSevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSevice.swift; sourceTree = "<group>"; };
 		B9698F2C279C5691005FB438 /* mapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mapViewModel.swift; sourceTree = "<group>"; };
-		B96C8C86285CE93B00DD6E47 /* CheckBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxView.swift; sourceTree = "<group>"; };
 		B97374BE27AC5CBE000B208D /* FavouritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewModel.swift; sourceTree = "<group>"; };
 		B97720B6283A4AED005262C9 /* NewNoteViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewNoteViewModelTests.swift; sourceTree = "<group>"; };
 		B97720B9283A6C28005262C9 /* WeatherViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewModelTests.swift; sourceTree = "<group>"; };
@@ -577,7 +575,6 @@
 				B938B1F027DB463D00E205C6 /* AdressButton.swift */,
 				B938B1F827DB91C400E205C6 /* NoLabel.swift */,
 				B9072FEB27E8D1A9008BE67C /* SearchController.swift */,
-				B96C8C86285CE93B00DD6E47 /* CheckBoxView.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -966,7 +963,6 @@
 				B9FD6C08278E040900311EF1 /* NewNoteViewController.swift in Sources */,
 				B95FBCED27D89B13006FF5A8 /* SlideInPresentationController.swift in Sources */,
 				B98282D827A07C84006EFED8 /* NewAccountViewController.swift in Sources */,
-				B96C8C87285CE93B00DD6E47 /* CheckBoxView.swift in Sources */,
 				B919352C27F36C7B0095D1C9 /* FireBaseServiceErrors.swift in Sources */,
 				B938B1FD27DC99B600E205C6 /* Extension + UIViewController.swift in Sources */,
 				B90251C327DA3BF100788065 /* AddButton.swift in Sources */,

@@ -13,6 +13,7 @@ class SelectionButton: UIButton {
     
     private var title: String?
     private var fontSize: CGFloat?
+    private var imageHeight: CGFloat?
     private var selectedBackgroundColor: UIColor?
     private var defaultBackgroundColor: UIColor? {
         didSet {
@@ -54,14 +55,16 @@ class SelectionButton: UIButton {
     
     // MARK: Life Time
     
-    init(title: String?, fontSize: CGFloat?) {
+    init(title: String?, fontSize: CGFloat?, imageHeight: CGFloat? = 35) {
         self.title = title
         self.fontSize = fontSize
+        self.imageHeight = imageHeight
         super.init(frame: .zero)
         initialize()
     }
     
-    init() {
+    init(imageHeight: CGFloat? = 35) {
+        self.imageHeight = imageHeight
         super.init(frame: .zero)
         initialize()
     }
@@ -104,8 +107,8 @@ class SelectionButton: UIButton {
     func setImage(imageName: String) {
         self.addSubview(categoryImageView)
         NSLayoutConstraint.activate([
-            categoryImageView.heightAnchor.constraint(equalToConstant: 35),
-            categoryImageView.widthAnchor.constraint(equalToConstant: 35),
+            categoryImageView.heightAnchor.constraint(equalToConstant: imageHeight ?? 0),
+            categoryImageView.widthAnchor.constraint(equalToConstant: imageHeight ?? 0),
             categoryImageView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             categoryImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor)
         ])
