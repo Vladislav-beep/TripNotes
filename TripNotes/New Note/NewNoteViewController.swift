@@ -348,7 +348,13 @@ class NewNoteViewController: UIViewController, UIScrollViewDelegate {
             default:
                 break
             }
+            guard let isPaidByMe = self?.viewModel?.isPaidByMe else { return }
+            if isPaidByMe {
+                self?.paidButton.backgroundColor = .tripRed
+                self?.paidButton.pulsate()
+            }
         }
+        
         viewModel?.errorCompletion = { [weak self] error in
             self?.showAlert(title: I.fetchNoteAlertTitle, message: error.errorDescription)
         }
@@ -395,14 +401,16 @@ class NewNoteViewController: UIViewController, UIScrollViewDelegate {
             return
         }
         
+        let isPaidByMe = paidButton.backgroundColor == .tripRed
+        
         if isEdited {
-            viewModel?.updateNote(city: city, category: category, description: description, price: priceDouble, address: address ?? "", errorCompletion: { [weak self] in
+            viewModel?.updateNote(city: city, category: category, description: description, price: priceDouble, address: address ?? "", isPaidByMe: isPaidByMe, errorCompletion: { [weak self] in
                 self?.showAlert(title: I.updateNoteAlertTitle,
                                 message: I.errorConnectionAlertMessage)
                 return
             })
         } else {
-            viewModel?.addNote(category: category, city: city, price: priceDouble, isFavourite: false, description: description, address: address ?? "", errorCompletion: { [weak self] in
+            viewModel?.addNote(category: category, city: city, price: priceDouble, isFavourite: false, description: description, address: address ?? "", isPaidByMe: isPaidByMe, errorCompletion: { [weak self] in
                 self?.showAlert(title: I.addNOteAlertTitle,
                                 message: I.errorConnectionAlertMessage)
                 return
@@ -454,6 +462,7 @@ class NewNoteViewController: UIViewController, UIScrollViewDelegate {
             cityLabel.textColor = .tripBlue
             priceLabel.textColor = .tripBlue
             descriptionLabel.textColor = .tripBlue
+            paidLabel.textColor = .tripBlue
             viewModel?.downloadNote()
         }
     }

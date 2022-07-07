@@ -17,9 +17,9 @@ protocol FireBaseServiceProtocol {
     
     func fetchNotes(forUser userId: String, forTrip tripId: String, completion: @escaping (Result <[TripNote], FireBaseError>) -> Void)
     func fetchFavouriteNotes(forUser userId: String, completion: @escaping (Result <[TripNote: Trip], FireBaseError>) -> Void)
-    func addNote(forUser userId: String, tripId: String, category: String, city: String, price: Double, isFavourite: Bool, description: String, address: String, errorCompletion: @escaping () -> Void)
+    func addNote(forUser userId: String, tripId: String, category: String, city: String, price: Double, isFavourite: Bool, description: String, address: String, isPaidByMe: Bool, errorCompletion: @escaping () -> Void)
     func downloadNote(forUser userId: String, tripId: String, noteId: String, completion: @escaping (Result <TripNote, FireBaseError>) -> Void)
-    func updateNote(forUser userId: String, tripId: String, noteId: String, city: String, category: String, description: String, price: Double, address: String, errorCompletion: @escaping () -> Void)
+    func updateNote(forUser userId: String, tripId: String, noteId: String, city: String, category: String, description: String, price: Double, address: String, isPaidByMe: Bool, errorCompletion: @escaping () -> Void)
     func deleteNote(forUser userId: String, tripId: String, noteId: String)
     func toggleFavourite(forUser userId: String, tripId: String, noteId: String, isFavourite: Bool)
 }
@@ -156,7 +156,7 @@ class FireBaseService: FireBaseServiceProtocol {
         }
     }
     
-    func addNote(forUser userId: String, tripId: String, category: String, city: String, price: Double, isFavourite: Bool, description: String, address: String, errorCompletion: @escaping () -> Void) {
+    func addNote(forUser userId: String, tripId: String, category: String, city: String, price: Double, isFavourite: Bool, description: String, address: String, isPaidByMe: Bool, errorCompletion: @escaping () -> Void) {
         
         let newNoteRef = usersRef.document(userId).collection("trips").document(tripId).collection("tripNotes").document()
         newNoteRef.setData([
@@ -167,7 +167,8 @@ class FireBaseService: FireBaseServiceProtocol {
             "price": price,
             "isFavourite": isFavourite,
             "date": Date(),
-            "address": address
+            "address": address,
+            "isPaidByMe": isPaidByMe
         ]) { err in
             if err != nil {
                 errorCompletion()
@@ -187,14 +188,15 @@ class FireBaseService: FireBaseServiceProtocol {
         }
     }
     
-    func updateNote(forUser userId: String, tripId: String, noteId: String, city: String, category: String, description: String, price: Double, address: String, errorCompletion: @escaping () -> Void) {
+    func updateNote(forUser userId: String, tripId: String, noteId: String, city: String, category: String, description: String, price: Double, address: String, isPaidByMe: Bool, errorCompletion: @escaping () -> Void) {
         let noteRef = usersRef.document(userId).collection("trips").document(tripId).collection("tripNotes").document(noteId)
         noteRef.updateData([
             "city": city,
             "price": price,
             "description": description,
             "category": category,
-            "address": address
+            "address": address,
+            "isPaidByMe": isPaidByMe
         ]) { err in
             if err != nil {
                 errorCompletion()

@@ -20,6 +20,7 @@ struct TripNote: Hashable {
     let description: String?
     let isFavourite: Bool
     var address: String?
+    let isPaidByMe: Bool
     
     // MARK: - Life Time
     
@@ -33,6 +34,7 @@ struct TripNote: Hashable {
         description = snapshotValue["description"] as? String ?? ""
         isFavourite = snapshotValue["isFavourite"] as? Bool ?? false
         address = snapshotValue["address"] as? String ?? ""
+        isPaidByMe = snapshotValue["isPaidByMe"] as? Bool ?? false
     }
     
     init(document: DocumentSnapshot) {
@@ -45,9 +47,18 @@ struct TripNote: Hashable {
         description = snapshotValue?["description"] as? String ?? ""
         isFavourite = snapshotValue?["isFavourite"] as? Bool ?? false
         address = snapshotValue?["address"] as? String ?? ""
+        isPaidByMe = snapshotValue?["isPaidByMe"] as? Bool ?? false
     }
     
-    init(id: String, city: String, category: String, price: Double, date: Date, description: String, isFavourite: Bool, address: String) {
+    init(id: String,
+         city: String,
+         category: String,
+         price: Double,
+         date: Date,
+         description: String,
+         isFavourite: Bool,
+         address: String,
+         isPaidByMe: Bool) {
         self.id = id
         self.city = city
         self.category = category
@@ -56,5 +67,6 @@ struct TripNote: Hashable {
         self.description = description
         self.isFavourite = isFavourite
         self.address = address
+        self.isPaidByMe = isPaidByMe
     }
 }

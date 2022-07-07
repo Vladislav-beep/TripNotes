@@ -15,12 +15,13 @@ protocol NewNoteViewModelProtocol {
     var price: String { get }
     var description: String { get }
     var address: String { get }
+    var isPaidByMe: Bool { get }
     var maxCharCount: Int { get }
     var noteCompletion: (() -> Void)? { get set }
     var errorCompletion: ((FireBaseError) -> Void)? { get set }
     init(userId: String, tripId: String, noteId: String, fireBaseService: FireBaseServiceProtocol, userDefaultsService: UserDefaultsServiceProtocol)
-    func addNote(category: String, city: String, price: Double, isFavourite: Bool, description: String, address: String, errorCompletion: @escaping () -> Void)
-    func updateNote(city: String, category: String, description: String, price: Double, address: String, errorCompletion: @escaping () -> Void)
+    func addNote(category: String, city: String, price: Double, isFavourite: Bool, description: String, address: String, isPaidByMe: Bool, errorCompletion: @escaping () -> Void)
+    func updateNote(city: String, category: String, description: String, price: Double, address: String, isPaidByMe: Bool, errorCompletion: @escaping () -> Void)
     func downloadNote()
     func getCityOrCountry() -> String
 }
@@ -64,6 +65,10 @@ class NewNoteViewModel: NewNoteViewModelProtocol {
         note?.address ?? ""
     }
     
+    var isPaidByMe: Bool {
+        note?.isPaidByMe ?? false
+    }
+    
     var maxCharCount: Int {
         160
     }
@@ -80,8 +85,8 @@ class NewNoteViewModel: NewNoteViewModelProtocol {
     
     // MARK: - Methods
     
-    func addNote(category: String, city: String, price: Double, isFavourite: Bool, description: String, address: String, errorCompletion: @escaping () -> Void) {
-        fireBaseService.addNote(forUser: userId, tripId: tripId, category: category, city: city, price: price, isFavourite: isFavourite, description: description, address: address, errorCompletion: errorCompletion)
+    func addNote(category: String, city: String, price: Double, isFavourite: Bool, description: String, address: String, isPaidByMe: Bool, errorCompletion: @escaping () -> Void) {
+        fireBaseService.addNote(forUser: userId, tripId: tripId, category: category, city: city, price: price, isFavourite: isFavourite, description: description, address: address, isPaidByMe: isPaidByMe, errorCompletion: errorCompletion)
     }
     
     func downloadNote() {
@@ -96,8 +101,8 @@ class NewNoteViewModel: NewNoteViewModelProtocol {
         }
     }
     
-    func updateNote(city: String, category: String, description: String, price: Double, address: String, errorCompletion: @escaping () -> Void) {
-        fireBaseService.updateNote(forUser: userId, tripId: tripId, noteId: note?.id ?? "", city: city, category: category, description: description, price: price, address: address, errorCompletion: errorCompletion)
+    func updateNote(city: String, category: String, description: String, price: Double, address: String, isPaidByMe: Bool, errorCompletion: @escaping () -> Void) {
+        fireBaseService.updateNote(forUser: userId, tripId: tripId, noteId: note?.id ?? "", city: city, category: category, description: description, price: price, address: address, isPaidByMe: isPaidByMe, errorCompletion: errorCompletion)
     }
     
     func getCityOrCountry() -> String {
