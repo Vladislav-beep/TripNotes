@@ -81,8 +81,15 @@ final class StatisticsViewController: UIViewController {
         return stack
     }()
     
+    private lazy var paidStack: UIStackView = {
+        let text = viewModel.isPaidByMeText
+        let stack = UIStackView.statisticsStackView(withImage: "dollarsign.circle",
+                                                    withText: text)
+        return stack
+    }()
+    
     private lazy var commonStack: UIStackView = {
-        let stack = UIStackView(arrangedSubviews: [hotelsStack, transportStack, foodStack, activityStack, purchasesStack, otherStack],
+        let stack = UIStackView(arrangedSubviews: [hotelsStack, transportStack, foodStack, activityStack, purchasesStack, otherStack, paidStack],
                                 axis: .vertical,
                                 spacing: 16,
                                 distribution: .fillEqually)
@@ -153,7 +160,7 @@ final class StatisticsViewController: UIViewController {
             commonStack.topAnchor.constraint(equalTo: headerLabel.bottomAnchor, constant: 16),
             commonStack.leadingAnchor.constraint(equalTo: yellowView.leadingAnchor, constant: 16),
             commonStack.trailingAnchor.constraint(equalTo: yellowView.trailingAnchor, constant: -16),
-            commonStack.heightAnchor.constraint(equalToConstant: 240)
+            commonStack.heightAnchor.constraint(equalToConstant: 260)
         ])
     }
 }

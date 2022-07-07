@@ -14,6 +14,7 @@ protocol StatisticsViewModelProtocol {
     var activityText: String { get }
     var purchasesText: String { get }
     var otherText: String { get }
+    var isPaidByMeText: String { get }
     init(notes: [TripNote], currency: String)
 }
 
@@ -85,6 +86,16 @@ final class StatisticsViewModel: StatisticsViewModelProtocol {
             }
         }
         return "Other: \(sum.formattedWithSeparator) \(currency)"
+    }
+    
+    var isPaidByMeText: String {
+        var sum = 0.0
+        for note in notes {
+            if note.isPaidByMe {
+                sum += note.price
+            }
+        }
+        return "I paid: \(sum.formattedWithSeparator) \(currency)"
     }
     
     
