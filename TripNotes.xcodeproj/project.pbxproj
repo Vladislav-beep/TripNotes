@@ -424,6 +424,8 @@
 		B90DB436276F147000F1A544 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				B95FBCF027D8ABD1006FF5A8 /* Presentation */,
+				B949FB1727AEF05E00590F0E /* Configurator */,
 				B9C6A69C280C1A6F00BA9F61 /* AuthService */,
 				B919353127F379EA0095D1C9 /* NetworkService */,
 				B919352A27F36C5B0095D1C9 /* FireBaseService */,
@@ -489,20 +491,7 @@
 			children = (
 				B91E813C2767A88E00D0748B /* AppDelegate.swift */,
 				B91E813E2767A88E00D0748B /* SceneDelegate.swift */,
-				B949FB1727AEF05E00590F0E /* Configurator */,
-				B93DD4B1279F184F00D91A08 /* Auth */,
-				B98282D627A07C56006EFED8 /* New account */,
-				B9DCF13A276BB6F0007B0320 /* TabBar */,
-				B9DE0D64276900DC00805E4C /* Trips */,
-				B90DB424276F132C00F1A544 /* Notes */,
-				B90632F727AFE46200F0C2A5 /* DetailsNote */,
-				B9DE0D65276900F700805E4C /* Favourites */,
-				B9FB61162772334000126A59 /* NewTrip */,
-				B9FD6C0F278E045B00311EF1 /* New Note */,
-				B9CE1948284A98EB00F4C595 /* Statistics */,
-				B96648772799D63100F527E8 /* Map */,
-				B95FBCCA27D7D599006FF5A8 /* Weather */,
-				B95FBCF027D8ABD1006FF5A8 /* Presentation */,
+				B9CC134D2885EC410013ED76 /* Modules */,
 				B90DB436276F147000F1A544 /* Services */,
 				B9F39E0A2767D47F00DAFB4C /* Extensions */,
 				B95FBCE027D89354006FF5A8 /* SubViews */,
@@ -630,6 +619,25 @@
 				B9C6A69D280C1A8F00BA9F61 /* AuthError.swift */,
 			);
 			path = AuthService;
+			sourceTree = "<group>";
+		};
+		B9CC134D2885EC410013ED76 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				B93DD4B1279F184F00D91A08 /* Auth */,
+				B98282D627A07C56006EFED8 /* New account */,
+				B9DCF13A276BB6F0007B0320 /* TabBar */,
+				B9DE0D64276900DC00805E4C /* Trips */,
+				B90DB424276F132C00F1A544 /* Notes */,
+				B90632F727AFE46200F0C2A5 /* DetailsNote */,
+				B9DE0D65276900F700805E4C /* Favourites */,
+				B9FB61162772334000126A59 /* NewTrip */,
+				B9FD6C0F278E045B00311EF1 /* New Note */,
+				B9CE1948284A98EB00F4C595 /* Statistics */,
+				B96648772799D63100F527E8 /* Map */,
+				B95FBCCA27D7D599006FF5A8 /* Weather */,
+			);
+			path = Modules;
 			sourceTree = "<group>";
 		};
 		B9CE1948284A98EB00F4C595 /* Statistics */ = {
