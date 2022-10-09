@@ -134,8 +134,7 @@ class AuthViewController: UIViewController {
         guard let email = emailTextField.text, email != "",
               let password = passwordTextField.text, password != ""
         else {
-            let warningText = I.emptyFieldsWarning
-            animator.animateWarningLabel(warningLabel: self.warningLabel, withText: warningText)
+            self.showAlert(title: I.error, message: I.emptyFieldsWarning)
             return
         }
         
@@ -144,8 +143,7 @@ class AuthViewController: UIViewController {
             self?.present(tabBar, animated: true)
         } errorComletion: { [weak self] in
             let warningText = I.incorrectWarning
-            self?.animator.animateWarningLabel(warningLabel: self?.warningLabel ?? UILabel(),
-                                               withText: warningText)
+            self?.showAlert(title: "Error", message: warningText)
         }
     }
     

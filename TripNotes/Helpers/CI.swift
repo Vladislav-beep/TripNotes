@@ -83,6 +83,7 @@ struct I {
     static let defaultCurrency = "$"
     static let updateObserverName = "updateNotes"
     static let addNoteButtonTitle = "+ Add Note"
+    static let error = "Error"
     
     static let errorAlertFetchingNotes = "Unable to fetch notes :( Try later!"
     static let errorConnectionAlertMessage = "Please, check your internet connection"
