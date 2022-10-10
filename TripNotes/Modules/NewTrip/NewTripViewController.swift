@@ -137,11 +137,6 @@ class NewTripViewController: UIViewController {
         return addNewTripButton
     }()
     
-    private lazy var warningLabel: WarningLabel = {
-        let warningLabel = WarningLabel(fontSize: 16)
-        return warningLabel
-    }()
-    
     private lazy var tapGestureRecognizer: UITapGestureRecognizer = {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self,
                                                           action: #selector(setAvatarImage(_:)))
@@ -188,8 +183,7 @@ class NewTripViewController: UIViewController {
               let beginningDateText = beginDateTextField.text, beginningDateText != "",
               let finishingDateText = finishDateTextField.text, finishingDateText != ""
         else {
-            let warningText = I.emptyFieldsWarning
-            animator.animateWarningLabel(warningLabel: warningLabel, withText: warningText)
+            showAlert(title: I.error, message: I.emptyFieldsWarning)
             return
         }
         
@@ -201,8 +195,7 @@ class NewTripViewController: UIViewController {
         }
         
         guard currency != "" else {
-            let currencyWarningText = I.currencyWarning
-            animator.animateWarningLabel(warningLabel: warningLabel, withText: currencyWarningText)
+            showAlert(title: I.error, message: I.currencyWarning)
             return
         }
         
@@ -213,8 +206,7 @@ class NewTripViewController: UIViewController {
         guard let fdate = dateformatter.date(from: finishingDateText) else { return }
         
         guard bdate <= fdate else {
-            let dateWarningText = I.dateWarning
-            animator.animateWarningLabel(warningLabel: warningLabel, withText: dateWarningText)
+            showAlert(title: I.error, message: I.dateWarning)
             return
             
         }
@@ -392,7 +384,6 @@ class NewTripViewController: UIViewController {
         setupRedViewConstraints()
         setupBackButtonConstraints()
         setupTextFieldsStackViewConstraints()
-        setupWarningLabelConstraints()
         setupAddNewTripButtonConstraints()
         setupCurrencyButtonsConstraints()
     }
@@ -424,16 +415,6 @@ class NewTripViewController: UIViewController {
             avatarImageView.leadingAnchor.constraint(equalTo: lowerView.leadingAnchor, constant: 0),
             avatarImageView.trailingAnchor.constraint(equalTo: lowerView.trailingAnchor, constant: 0),
             avatarImageView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height / 4)
-        ])
-    }
-    
-    private func setupWarningLabelConstraints() {
-        lowerView.addSubview(warningLabel)
-        NSLayoutConstraint.activate([
-            warningLabel.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 5),
-            warningLabel.leadingAnchor.constraint(equalTo: lowerView.leadingAnchor, constant: 20),
-            warningLabel.trailingAnchor.constraint(equalTo: lowerView.trailingAnchor, constant: -20),
-            warningLabel.bottomAnchor.constraint(equalTo: textFieldsStackView.topAnchor, constant: -5),
         ])
     }
     

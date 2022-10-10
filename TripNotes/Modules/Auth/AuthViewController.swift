@@ -63,11 +63,6 @@ class AuthViewController: UIViewController {
         return textFieldStack
     }()
     
-    private lazy var warningLabel: WarningLabel = {
-        let warningLabel = WarningLabel(fontSize: 20)
-        return warningLabel
-    }()
-    
     private lazy var createLabel: CreateLabel = {
         let createLabel = CreateLabel()
         return createLabel
@@ -165,7 +160,6 @@ class AuthViewController: UIViewController {
         setupWelcomeLabelConstraints()
         setupTextFieldStackConstraints()
         setupSignInButtonConstraints()
-        setupWarningLabelConstraints()
         setupCreateButtonConstraints()
     }
     
@@ -216,16 +210,6 @@ class AuthViewController: UIViewController {
             signInButton.leadingAnchor.constraint(equalTo: lowerView.leadingAnchor, constant: 10),
             signInButton.trailingAnchor.constraint(equalTo: lowerView.trailingAnchor, constant: -10),
             signInButton.heightAnchor.constraint(equalToConstant: 60)
-        ])
-    }
-    
-    private func setupWarningLabelConstraints() {
-        lowerView.addSubview(warningLabel)
-        NSLayoutConstraint.activate([
-            warningLabel.topAnchor.constraint(equalTo: signInButton.bottomAnchor, constant: 40),
-            warningLabel.leadingAnchor.constraint(equalTo: lowerView.leadingAnchor, constant: 20),
-            warningLabel.trailingAnchor.constraint(equalTo: lowerView.trailingAnchor, constant: -20),
-            warningLabel.heightAnchor.constraint(equalToConstant: 40)
         ])
     }
     

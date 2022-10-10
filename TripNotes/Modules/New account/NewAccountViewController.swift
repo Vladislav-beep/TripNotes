@@ -53,7 +53,7 @@ class NewAccountViewController: UIViewController {
     
     private let signUpButton: SignInButton = {
         let signInButton = SignInButton(title: I.signUpButtonTitle, colorOfBackground: .tripBlue)
-        signInButton.addTarget(NewAccountViewController.self,
+        signInButton.addTarget(self,
                                action: #selector(signUpTapped),
                                for: .touchUpInside)
         return signInButton
@@ -246,6 +246,7 @@ class NewAccountViewController: UIViewController {
 }
 
 // MARK: - UITextFieldDelegate
+
 extension NewAccountViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
