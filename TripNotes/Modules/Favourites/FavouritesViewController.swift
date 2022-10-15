@@ -41,7 +41,7 @@ class FavouritesViewController: UIViewController {
     
     private lazy var noLabel: NoLabel = {
         let noLabel = NoLabel(title: I.noFavNotesLabel)
-        noLabel.isHidden = false
+        noLabel.isHidden = true
         return noLabel
     }()
     
@@ -77,6 +77,7 @@ class FavouritesViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        noLabel.isHidden = true
         setupNavigationBar()
         activityIndicator.startAnimating()
         viewModel.fetchNotes()
@@ -98,6 +99,8 @@ class FavouritesViewController: UIViewController {
     private func setupUI() {
         if viewModel.numberOfCells(isFiltering: isFiltering) != 0 {
             noLabel.isHidden = true
+        } else {
+            noLabel.isHidden = false
         }
     }
     
