@@ -12,13 +12,14 @@ class NoteStub {
     func getNotes() -> [TripNote] {
         return [
             TripNote(id: "0987654",
-                         city: "Moscow",
-                         category: "Food",
-                         price: 78.35,
-                         date: Date(),
-                         description: "Went to cafe",
-                         isFavourite: false,
-                         address: "Puschin street"),
+                     city: "Moscow",
+                     category: "Food",
+                     price: 78.35,
+                     date: Date(),
+                     description: "Went to cafe",
+                     isFavourite: false,
+                     address: "Puschin street",
+                     isPaidByMe: true),
             TripNote(id: "1234567",
                      city: "Paris",
                      category: "Transport",
@@ -26,7 +27,8 @@ class NoteStub {
                      date: Date(),
                      description: "Bus ride",
                      isFavourite: true,
-                     address: "Elesei fields")
+                     address: "Elesei fields",
+                     isPaidByMe: true)
         ]
     }
 }

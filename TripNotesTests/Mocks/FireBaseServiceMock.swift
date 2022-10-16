@@ -8,7 +8,7 @@
 import Foundation
 
 class FireBaseServiceMock: FireBaseServiceProtocol {
-    
+
     // MARK: Private
     
     private var trips = TripStub().getTripsStub()
@@ -40,13 +40,13 @@ class FireBaseServiceMock: FireBaseServiceProtocol {
         completion(.success([favouriteNote: trip]))
     }
     
-    func addNote(forUser userId: String, tripId: String, category: String, city: String, price: Double, isFavourite: Bool, description: String, address: String, errorCompletion: @escaping () -> Void) {}
+    func addNote(forUser userId: String, tripId: String, category: String, city: String, price: Double, isFavourite: Bool, description: String, address: String, isPaidByMe: Bool, errorCompletion: @escaping () -> Void) {}
     
     func downloadNote(forUser userId: String, tripId: String, noteId: String, completion: @escaping (Result<TripNote, FireBaseError>) -> Void) {
         completion(.success(notes.first!))
     }
     
-    func updateNote(forUser userId: String, tripId: String, noteId: String, city: String, category: String, description: String, price: Double, address: String, errorCompletion: @escaping () -> Void) {}
+    func updateNote(forUser userId: String, tripId: String, noteId: String, city: String, category: String, description: String, price: Double, address: String, isPaidByMe: Bool, errorCompletion: @escaping () -> Void) {}
     
     func deleteNote(forUser userId: String, tripId: String, noteId: String) {}
     
