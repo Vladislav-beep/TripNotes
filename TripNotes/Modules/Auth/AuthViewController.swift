@@ -87,6 +87,12 @@ class AuthViewController: UIViewController {
         return tap
     }()
     
+    private lazy var activityIndicator: UIActivityIndicatorView = {
+        let activityIndicator = UIActivityIndicatorView()
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        return activityIndicator
+    }()
+    
     // MARK: - Life Time
     
     init(viewModel: AuthViewModelProtocol) {
@@ -126,19 +132,23 @@ class AuthViewController: UIViewController {
     }
     
     @objc func showTabbar() {
+        activityIndicator.startAnimating()
         guard let email = emailTextField.text, email != "",
               let password = passwordTextField.text, password != ""
         else {
             self.showAlert(title: I.error, message: I.emptyFieldsWarning)
+            activityIndicator.stopAnimating()
             return
         }
         
         viewModel.signIn(withEmail: email, password: password) { [weak self] in
             let tabBar = self?.configurator?.configureTabbar() ?? UIViewController()
             self?.present(tabBar, animated: true)
+            self?.activityIndicator.stopAnimating()
         } errorComletion: { [weak self] in
             let warningText = I.incorrectWarning
             self?.showAlert(title: "Error", message: warningText)
+            self?.activityIndicator.stopAnimating()
         }
     }
     
@@ -161,6 +171,7 @@ class AuthViewController: UIViewController {
         setupTextFieldStackConstraints()
         setupSignInButtonConstraints()
         setupCreateButtonConstraints()
+        setupActivityIndicatorConstraints()
     }
     
     private func setupScrollViewConstraints() {
@@ -220,6 +231,14 @@ class AuthViewController: UIViewController {
             createStack.centerXAnchor.constraint(equalTo: lowerView.centerXAnchor, constant: 0),
             createStack.heightAnchor.constraint(equalToConstant: 55),
             createStack.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width / 2)
+        ])
+    }
+    
+    private func setupActivityIndicatorConstraints() {
+        view.addSubview(activityIndicator)
+        NSLayoutConstraint.activate([
+            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            activityIndicator.topAnchor.constraint(equalTo: welcomeLabel.bottomAnchor, constant: 40)
         ])
     }
 }
